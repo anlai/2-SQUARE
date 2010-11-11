@@ -1,0 +1,190 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/f:Web.config" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.Debug.config" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:About.aspx" caret="387" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:ComponentRegistrar.asax.cs" caret="549" fromTop="17" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:RouteConfigurator.cs" caret="743" fromTop="23" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Global.asax.cs" caret="1405" fromTop="31" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:RequirementCategory.cs" caret="678" fromTop="26" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Project.cs" caret="669" fromTop="25" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectWorker.cs" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Filters/f:RoleFilters.cs" caret="0" fromTop="0" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="638" fromTop="24" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Role.cs" caret="523" fromTop="22" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:AdminController.cs" caret="188" fromTop="9" />
+      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Step.cs" caret="270" fromTop="10" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="384" fromTop="18" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Account/f:LogOn.aspx" caret="100" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:Site.Master" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site-orig.css" caret="5055" fromTop="17" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="3729" fromTop="16" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Home.aspx" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="1114" fromTop="6" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2592" fromTop="33" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2490" fromTop="25" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="2800" fromTop="33" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2355" fromTop="26" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="1106" fromTop="38" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="57" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="1051" fromTop="14" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2590" fromTop="38" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2300" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="2770" fromTop="37" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="985" fromTop="2" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2610" fromTop="28" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="312" fromTop="13" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2822" fromTop="33" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2439" fromTop="25" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2268" fromTop="14" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2587" fromTop="28" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2587" fromTop="19" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2147" fromTop="31" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="508" fromTop="11" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="3280" fromTop="32" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="3151" fromTop="16" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="2513" fromTop="30" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="2346" fromTop="28" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="1991" fromTop="16" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="2572" fromTop="32" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2932" fromTop="30" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="872" fromTop="8" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="695" fromTop="19" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="534" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="1114" fromTop="6" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="public" priority="7" />
+      <Item value="static" priority="5" />
+      <Item value="class" priority="2" />
+      <Item value="prop" priority="1" />
+      <Item value="readonly" priority="3" />
+      <Item value="string" priority="11" />
+      <Item value="ctor" priority="2" />
+      <Item value="Roles`0" priority="0" />
+      <Item value="RoleNames`0" priority="2" />
+      <Item value="AuthorizeAttribute`0" priority="2" />
+      <Item value="Roles" priority="1" />
+      <Item value="Html" priority="20" />
+      <Item value="AccountController`0" priority="6" />
+      <Item value="action" priority="5" />
+      <Item value="a" priority="5" />
+      <Item value="this" priority="2" />
+      <Item value="void" priority="0" />
+      <Item value="_2SQUARE" priority="4" />
+      <Item value="using" priority="3" />
+      <Item value="propv" priority="17" />
+      <Item value="classMap" priority="6" />
+      <Item value="map" priority="12" />
+      <Item value="DateTime`0" priority="1" />
+      <Item value="LengthAttribute`0" priority="4" />
+      <Item value="IList" priority="2" />
+      <Item value="int" priority="0" />
+      <Item value="UriHostNameType`0" priority="0" />
+      <Item value="Type`0" priority="0" />
+      <Item value="RequirementCategory`0" priority="0" />
+      <Item value="RequirementCategory" priority="0" />
+      <Item value="Step`0" priority="0" />
+      <Item value="OneToManyPart" priority="0" />
+      <Item value="reference" priority="3" />
+      <Item value="HasMany`1" priority="1" />
+      <Item value="Project`0" priority="0" />
+      <Item value="DomainObjectWithTypedId" priority="2" />
+      <Item value="Table`0" priority="1" />
+      <Item value="ReadOnly`0" priority="1" />
+      <Item value="Domain" priority="0" />
+      <Item value="Guid`0" priority="0" />
+      <Item value="ProjectWorker`0" priority="0" />
+      <Item value="DomainObject`0" priority="0" />
+      <Item value="Url" priority="1" />
+      <Item value="FormMethod`0" priority="1" />
+      <Item value="new" priority="0" />
+      <Item value="object" priority="0" />
+      <Item value="Style`0" priority="0" />
+      <Item value="Dictionary&lt;string,object&gt;" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@_2SQUARE.Filters.RoleNames">
+      <Item value="RoleProjectManager" priority="0" />
+      <Item value="RoleRequirementsEngineer" priority="0" />
+      <Item value="RoleStakeholder" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.HtmlHelper`1">
+      <Item value="RenderPartial`0" priority="0" />
+      <Item value="actionLink" priority="0" />
+      <Item value="ActionLink`0" priority="10" />
+      <Item value="TextBox`0" priority="0" />
+      <Item value="BeginForm`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ASP.views_home_index_aspx">
+      <Item value="TextBox`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.Project">
+      <Item value="Name" priority="0" />
+      <Item value="DateCreated" priority="0" />
+      <Item value="Workers" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.Type">
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.RequirementCategory">
+      <Item value="Name" priority="0" />
+      <Item value="Steps" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.Step">
+      <Item value="Num" priority="0" />
+      <Item value="Name" priority="0" />
+      <Item value="Description" priority="0" />
+      <Item value="RequirementCategory" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FluentNHibernate.Mapping.OneToManyPart`1">
+      <Item value="Inverse`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FluentNHibernate.Mapping.IdentityPart">
+      <Item value="Column`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.User">
+      <Item value="UserName" priority="0" />
+      <Item value="LoweredUserName" priority="0" />
+      <Item value="LastActivityDate" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.Role">
+      <Item value="RoleName" priority="0" />
+      <Item value="LoweredRoleName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Core.Domain.ProjectWorker">
+      <Item value="User" priority="0" />
+      <Item value="Project" priority="0" />
+      <Item value="Role" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.UrlHelper">
+      <Item value="Content`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Mvc.FormMethod">
+      <Item value="Post" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

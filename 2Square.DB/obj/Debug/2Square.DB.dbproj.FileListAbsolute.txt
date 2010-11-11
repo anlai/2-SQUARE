@@ -1,0 +1,9 @@
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Script.PreDeployment.sql
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Script.PostDeployment.sql
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Master.sqlsettings
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Server.sqlsettings
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Master.sqldeployment
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\master_Master.sqlcmdvars
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\2Square.DB.deploymanifest
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\sql\debug\2Square.DB.dbschema
+C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2Square.DB\obj\Debug\2Square.DB.dbschema

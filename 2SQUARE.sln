@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2SQUARE", "2SQUARE\2SQUARE.csproj", "{FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{3C337B85-BF1C-492C-B675-A52CBB325ED4}"
+	ProjectSection(SolutionItems) = preProject
+		bin\Castle.Core.dll = bin\Castle.Core.dll
+		bin\Castle.DynamicProxy2.dll = bin\Castle.DynamicProxy2.dll
+		bin\Castle.MicroKernel.dll = bin\Castle.MicroKernel.dll
+		bin\Castle.Windsor.dll = bin\Castle.Windsor.dll
+		bin\FluentNHibernate.dll = bin\FluentNHibernate.dll
+		bin\HibernatingRhinos.Profiler.Appender.dll = bin\HibernatingRhinos.Profiler.Appender.dll
+		bin\Iesi.Collections.dll = bin\Iesi.Collections.dll
+		bin\log4net.dll = bin\log4net.dll
+		bin\Microsoft.Practices.ServiceLocation.dll = bin\Microsoft.Practices.ServiceLocation.dll
+		bin\MvcContrib.Castle.dll = bin\MvcContrib.Castle.dll
+		bin\MvcContrib.dll = bin\MvcContrib.dll
+		bin\MvcContrib.FluentHtml.dll = bin\MvcContrib.FluentHtml.dll
+		bin\MvcContrib.FluentHtml.pdb = bin\MvcContrib.FluentHtml.pdb
+		bin\MvcContrib.FluentHtml.xml = bin\MvcContrib.FluentHtml.xml
+		bin\MvcContrib.pdb = bin\MvcContrib.pdb
+		bin\MvcContrib.XML = bin\MvcContrib.XML
+		bin\NHibernate.ByteCode.Spring.dll = bin\NHibernate.ByteCode.Spring.dll
+		bin\NHibernate.dll = bin\NHibernate.dll
+		bin\NHibernate.Linq.dll = bin\NHibernate.Linq.dll
+		bin\NHibernate.Validator.dll = bin\NHibernate.Validator.dll
+		bin\Telerik.Web.Mvc.dll = bin\Telerik.Web.Mvc.dll
+		bin\UCDArch.Core.dll = bin\UCDArch.Core.dll
+		bin\UCDArch.Core.NHibernateValidator.dll = bin\UCDArch.Core.NHibernateValidator.dll
+		bin\UCDArch.Data.dll = bin\UCDArch.Data.dll
+		bin\UCDArch.ReferenceLinker.dll = bin\UCDArch.ReferenceLinker.dll
+		bin\UCDArch.Testing.dll = bin\UCDArch.Testing.dll
+		bin\UCDArch.Web.dll = bin\UCDArch.Web.dll
+		bin\UCDArch.Web.Providers.dll = bin\UCDArch.Web.Providers.dll
+		bin\xVal.dll = bin\xVal.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2SQUARE.Core", "2SQUARE.Core\2SQUARE.Core.csproj", "{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}"
+EndProject
+Global
+	GlobalSection(RocketSvnScc) = preSolution
+		Svn-Managed = True
+		Manager = Rocket SVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
