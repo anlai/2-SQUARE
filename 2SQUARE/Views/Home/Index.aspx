@@ -63,10 +63,6 @@
             <% } %>
             </div>    
         </div>
-
-        <div class="right_box">
-            some more stuff
-        </div>
     </div>
 </body>
 </html>

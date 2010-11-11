@@ -11,3 +11,16 @@ C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2SQUARE.Core\bin\Debu
 C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2SQUARE.Core\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2SQUARE.Core\obj\Debug\2SQUARE.Core.dll
 C:\Users\lai\Documents\Visual Studio 2010\Projects\2SQUARE\2SQUARE.Core\obj\Debug\2SQUARE.Core.pdb
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\2SQUARE.Core.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\2SQUARE.Core.pdb
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\FluentNHibernate.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\NHibernate.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\NHibernate.Validator.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\UCDArch.Core.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\UCDArch.Core.NHibernateValidator.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\Iesi.Collections.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\log4net.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\obj\Debug\2SQUARE.Core.dll
+C:\Users\lai\Documents\2SQUARE\2SQUARE.Core\obj\Debug\2SQUARE.Core.pdb

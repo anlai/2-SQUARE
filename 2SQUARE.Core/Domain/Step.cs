@@ -10,14 +10,14 @@ namespace _2SQUARE.Core.Domain
 {
     public class Step : DomainObject
     {
-        public virtual int Num { get; set; }
+        public virtual int Order { get; set; }
         [NotNull]
         [Length(50)]
         public virtual string Name { get; set; }
         [Length(500)]
         public virtual string Description { get; set; }
-
-        public RequirementCategory RequirementCategory { get; set; }
+        [NotNull]
+        public SquareType SquareType { get; set; }
     }
 
     public class StepMap : ClassMap<Step>
@@ -26,11 +26,11 @@ namespace _2SQUARE.Core.Domain
         {
             Id(x => x.Id);
 
-            Map(x => x.Num);
+            Map(x => x.Order).Column("[Order]");
             Map(x => x.Name);
             Map(x => x.Description);
 
-            References(x => x.RequirementCategory);
+            References(x => x.SquareType);
         }
     }
 }

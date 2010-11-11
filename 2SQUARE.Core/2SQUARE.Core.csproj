@@ -55,11 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Definition.cs" />
+    <Compile Include="Domain\GoalType.cs" />
     <Compile Include="Domain\Project.cs" />
+    <Compile Include="Domain\ProjectStep.cs" />
+    <Compile Include="Domain\ProjectTerm.cs" />
     <Compile Include="Domain\ProjectWorker.cs" />
-    <Compile Include="Domain\RequirementCategory.cs" />
+    <Compile Include="Domain\SquareType.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\Step.cs" />
+    <Compile Include="Domain\Term.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

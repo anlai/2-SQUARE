@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using NHibernate.Validator.Constraints;
 using UCDArch.Core.DomainModel;
 
@@ -19,6 +15,8 @@ namespace _2SQUARE.Core.Domain
     {
         public RoleMap()
         {
+            ReadOnly();
+
             Id(x => x.Id);
             Map(x => x.Name);
         }
