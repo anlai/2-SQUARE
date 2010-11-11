@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using _2SQUARE.Services;
 using Castle.Windsor;
 using UCDArch.Core.CommonValidator;
 using UCDArch.Core.NHibernateValidator.CommonValidatorAdapter;
@@ -17,6 +14,8 @@ namespace _2SQUARE
             //Add your components here
             container.AddComponent("validator", typeof(IValidator), typeof(Validator));
             container.AddComponent("dbContext", typeof(IDbContext), typeof(DbContext));
+
+            container.AddComponent("projectService", typeof (IProjectService), typeof (ProjectService));
 
             AddRepositoriesTo(container);
         }

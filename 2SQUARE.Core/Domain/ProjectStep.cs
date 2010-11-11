@@ -39,9 +39,7 @@ namespace _2SQUARE.Core.Domain
     {
         public ProjectStepMap()
         {
-            //Id(x => x.Id);
-
-            CompositeId().KeyProperty(x => x.Project).KeyProperty(x => x.Step);
+            Id(x => x.Id);
 
             References(x => x.Project);
             References(x => x.Step);

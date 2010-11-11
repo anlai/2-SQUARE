@@ -47,7 +47,7 @@ namespace _2SQUARE
 
             IWindsorContainer container = InitializeServiceLocator();
 
-            NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof(Project).Assembly);
+            NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof(User).Assembly);
 
             //NHibernateSessionManager.Instance.RegisterInterceptor(container.Resolve<IInterceptor>());
         }

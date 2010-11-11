@@ -17,7 +17,7 @@ namespace _2SQUARE.Core.Domain
         [Length(500)]
         public virtual string Description { get; set; }
         [NotNull]
-        public SquareType SquareType { get; set; }
+        public virtual SquareType SquareType { get; set; }
     }
 
     public class StepMap : ClassMap<Step>

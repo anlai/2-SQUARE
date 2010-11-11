@@ -29,37 +29,40 @@
         <div class="right_box corners" style="height: 200px;">
             <div class="box_header corners">Account Information</div>
             <div class="box_content">
-            <%--<% using (Html.BeginForm("LogOn", "Account", FormMethod.Post)) { %>                        --%>
-            <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new {style="width: 200px;"})) { %>
-                    <div class="editor-label">
-                        <%: Html.LabelFor(m => m.UserName) %>
-                    </div>
-                    <div class="editor-field">
-                        <%: Html.TextBoxFor(m => m.UserName) %>
-                        <%: Html.ValidationMessageFor(m => m.UserName) %>
-                    </div>
+            <% if (Request.IsAuthenticated) { %>
+                Welcome <%: Page.User.Identity.Name %>
+            <% } else { %>            
+                <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new {style="width: 200px;"})) { %>
+                        <div class="editor-label">
+                            <%: Html.LabelFor(m => m.UserName) %>
+                        </div>
+                        <div class="editor-field">
+                            <%: Html.TextBoxFor(m => m.UserName) %>
+                            <%: Html.ValidationMessageFor(m => m.UserName) %>
+                        </div>
                 
-                    <div class="editor-label">
-                        <%: Html.LabelFor(m => m.Password) %>
-                    </div>
-                    <div class="editor-field">
-                        <%: Html.PasswordFor(m => m.Password) %>
-                        <%: Html.ValidationMessageFor(m => m.Password) %>
-                    </div>
+                        <div class="editor-label">
+                            <%: Html.LabelFor(m => m.Password) %>
+                        </div>
+                        <div class="editor-field">
+                            <%: Html.PasswordFor(m => m.Password) %>
+                            <%: Html.ValidationMessageFor(m => m.Password) %>
+                        </div>
                 
-                    <div class="editor-label">
-                        <%: Html.CheckBoxFor(m => m.RememberMe) %>
-                        <%: Html.LabelFor(m => m.RememberMe) %>
-                    </div>
+                        <div class="editor-label">
+                            <%: Html.CheckBoxFor(m => m.RememberMe) %>
+                            <%: Html.LabelFor(m => m.RememberMe) %>
+                        </div>
                 
-                    <div>
+                        <div>
                         
-                    </div>
+                        </div>
 
-                        <input type="submit" class="button corners" style="display:inline;" value="Log On" />
-                        <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "corners button", style="position:relative;"})%>
-                </div>
+                            <input type="submit" class="button corners" style="display:inline;" value="Log On" />
+                            <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "corners button", style="position:relative;"})%>
+                    </div>
             
+                <% } %>
             <% } %>
             </div>    
         </div>
