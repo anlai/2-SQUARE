@@ -4283,15 +4283,13 @@ namespace _2SQUARE.Models
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
         /// <param name="stepId">Initial value of the StepId property.</param>
-        /// <param name="dateStarted">Initial value of the DateStarted property.</param>
         /// <param name="complete">Initial value of the Complete property.</param>
-        public static ProjectStep CreateProjectStep(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 stepId, global::System.DateTime dateStarted, global::System.Boolean complete)
+        public static ProjectStep CreateProjectStep(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 stepId, global::System.Boolean complete)
         {
             ProjectStep projectStep = new ProjectStep();
             projectStep.Id = id;
             projectStep.ProjectId = projectId;
             projectStep.StepId = stepId;
-            projectStep.DateStarted = dateStarted;
             projectStep.Complete = complete;
             return projectStep;
         }
@@ -4377,9 +4375,9 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.DateTime DateStarted
+        public Nullable<global::System.DateTime> DateStarted
         {
             get
             {
@@ -4394,8 +4392,8 @@ namespace _2SQUARE.Models
                 OnDateStartedChanged();
             }
         }
-        private global::System.DateTime _DateStarted;
-        partial void OnDateStartedChanging(global::System.DateTime value);
+        private Nullable<global::System.DateTime> _DateStarted;
+        partial void OnDateStartedChanging(Nullable<global::System.DateTime> value);
         partial void OnDateStartedChanged();
     
         /// <summary>

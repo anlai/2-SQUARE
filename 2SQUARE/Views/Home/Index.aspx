@@ -6,6 +6,7 @@
 <head id="Head1" runat="server">
     <title>2Square</title>
     <link href="<%: Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -17,21 +18,23 @@
 
     <div class=page>
 
-        <div class="main_box corners" style="height: 300px">
-        <div class="box_header corners">
+        <div class="large-left-box ui-corner-all" style="height: 300px">
+        <div class="box-header ui-corner-all ui-widget-header">
             Welcome!
         </div>
-        <div class="box_content">
+        <div class="box-content">
             <p>
                 blah blha blha
             </p>
         </div>
         </div>
-        <div class="right_box corners" style="height: 200px;">
-            <div class="box_header corners">Account Information</div>
-            <div class="box_content">
+        <div class="small-right-box ui-corner-all" style="height: 200px;">
+            <div class="box-header ui-widget-header ui-corner-all">Account Information</div>
+            <div class="box-content">
             <% if (Request.IsAuthenticated) { %>
                 Welcome <%: Page.User.Identity.Name %>
+
+                <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logout", new {@class="ui-button ui-corner-all"}) %>
             <% } else { %>            
                 <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new {style="width: 200px;"})) { %>
                         <div class="editor-label">
@@ -59,8 +62,8 @@
                         
                         </div>
 
-                            <input type="submit" class="button corners" style="display:inline;" value="Log On" />
-                            <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "corners button", style="position:relative;"})%>
+                            <input type="submit" class="ui-corner-all button ui-state-default" style="display:inline;" value="Log On" />
+                            <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "ui-corner-all button ui-state-default", style="position:relative;"})%>
                     </div>
             
                 <% } %>

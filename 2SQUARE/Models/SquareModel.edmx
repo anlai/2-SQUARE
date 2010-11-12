@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SquareModelStoreContainer">
           <EntitySet Name="aspnet_Applications" EntityType="SquareModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Membership" EntityType="SquareModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
@@ -296,7 +296,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="StepId" Type="int" Nullable="false" />
-          <Property Name="DateStarted" Type="datetime" Nullable="false" />
+          <Property Name="DateStarted" Type="datetime" />
           <Property Name="DateCompleted" Type="datetime" />
           <Property Name="Complete" Type="bit" Nullable="false" />
         </EntityType>
@@ -629,8 +629,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SquareModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -943,7 +942,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectId" Type="Int32" Nullable="false" />
           <Property Name="StepId" Type="Int32" Nullable="false" />
-          <Property Name="DateStarted" Type="DateTime" Nullable="false" />
+          <Property Name="DateStarted" Type="DateTime" />
           <Property Name="DateCompleted" Type="DateTime" />
           <Property Name="Complete" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_ProjectSteps_Projects" FromRole="ProjectSteps" ToRole="Projects" />

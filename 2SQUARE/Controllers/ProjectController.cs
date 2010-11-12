@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.Models;
 using _2SQUARE.Services;
-
+using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
+    [Authorize]
     public class ProjectController : SuperController
     {
         private readonly IProjectService _projectService;
@@ -17,9 +18,6 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
-        //
-        // GET: /Project/
-        [Authorize]
         public ActionResult Index()
         {
             var projects = _projectService.GetByUser(CurrentUserId);
@@ -27,5 +25,18 @@ namespace _2SQUARE.Controllers
             return View(projects);
         }
 
+        public ActionResult Details(int id)
+        {
+            try
+            {
+                var viewModel = ProjectDetailsViewModel.Create(Db, _projectService, id, CurrentUserId);
+                return View(viewModel);
+            }
+            // user is not authorized
+            catch (SecurityException se)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(se.Message));
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace _2SQUARE.Controllers
 {
     public class SuperController : Controller
     {
-        SquareEntities db = new SquareEntities();
+        public SquareEntities Db = new SquareEntities();
 
         protected string CurrentUserId
         {

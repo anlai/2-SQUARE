@@ -291,7 +291,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="StepId" Type="int" Nullable="false" />
-    <Property Name="DateStarted" Type="datetime" Nullable="false" />
+    <Property Name="DateStarted" Type="datetime" />
     <Property Name="DateCompleted" Type="datetime" />
     <Property Name="Complete" Type="bit" Nullable="false" />
   </EntityType>

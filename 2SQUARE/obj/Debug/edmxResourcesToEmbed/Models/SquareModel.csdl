@@ -309,7 +309,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ProjectId" Type="Int32" Nullable="false" />
     <Property Name="StepId" Type="Int32" Nullable="false" />
-    <Property Name="DateStarted" Type="DateTime" Nullable="false" />
+    <Property Name="DateStarted" Type="DateTime" />
     <Property Name="DateCompleted" Type="DateTime" />
     <Property Name="Complete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_ProjectSteps_Projects" FromRole="ProjectSteps" ToRole="Projects" />

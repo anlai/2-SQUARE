@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<_2SQUARE.App_Data.Project>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<_2SQUARE.Models.Project>>" %>
+<%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -6,19 +7,23 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Projects</h2>
 
-    <table>
-        <thead>
-        </thead>
-        <tbody>
-            <tr>
-                <% foreach (var a in Model) { %>
-                    <td><%: a.Name %></td>
-                <% } %>
-            </tr>
-        </tbody>
-    </table>
+    <% foreach (var a in Model) { %>
+
+
+        <div class="button object-list">
+            <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Name) %></h3>
+            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Description) %></div>
+        </div>
+
+        <div class="divider">&nbsp;</div>
+        
+        
+
+    <% } %>
+
+
 
 </asp:Content>
 
