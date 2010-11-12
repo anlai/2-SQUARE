@@ -225,13 +225,13 @@
     <EntitySetMapping Name="Steps">
       <EntityTypeMapping TypeName="SquareModel.Step">
         <MappingFragment StoreEntitySet="Steps">
-          <ScalarProperty Name="Action" ColumnName="Action" />
-          <ScalarProperty Name="Controller" ColumnName="Controller" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

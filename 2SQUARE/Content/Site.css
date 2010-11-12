@@ -61,6 +61,7 @@
 #logindisplay a:visited{color: #002266; text-decoration: none; }
 #logindisplay a:hover {color: #002266; text-decoration: none; }
 
+a {text-decoration: none;}
 
 /* containers */
 .large-left-box 
@@ -139,6 +140,44 @@
     font-weight:normal;
 }
 
+.object-list {cursor: default;}
+.object-list a { text-decoration:  none;  }
+
+h2
+{
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.divider 
+{
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0px 10px;
+}
+
+
+/* project/details */
+.steps-container { width: 325px; margin-left: 30px; float:left; }
+.step  
+{
+    height: 75px; 
+    margin-top: 10px;
+    width: 300px;
+    text-align:left;
+}
+.step span { float:left;}
+.icon  
+{
+    margin-top: 30px;
+}
+
+ul
+{
+    list-style-position: outside;
+    list-style-type: none;
+    text-indent: -25px;
+}
+
 /* Controls */
 /*
 .button
@@ -213,20 +252,7 @@ p
     
 }
 
-.object-list {cursor: default;}
-.object-list a { text-decoration:  none;  }
 
-h2
-{
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
-}
-
-.divider 
-{
-    border-bottom: 1px solid lightgray;
-    padding: 10px 0px 10px;
-}
 */
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/

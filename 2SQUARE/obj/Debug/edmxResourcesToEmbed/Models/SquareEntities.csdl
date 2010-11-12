@@ -365,10 +365,10 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="SquareTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="ProjectSteps" Relationship="SquareModel.FK_ProjectSteps_Steps" FromRole="Steps" ToRole="ProjectSteps" />
     <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="Steps" ToRole="SquareTypes" />
-    <Property Type="String" Name="Controller" MaxLength="50" FixedLength="false" Unicode="false" Nullable="true" />
-    <Property Type="String" Name="Action" MaxLength="50" FixedLength="false" Unicode="false" Nullable="true" />
   </EntityType>
   <EntityType Name="Term">
     <Key>

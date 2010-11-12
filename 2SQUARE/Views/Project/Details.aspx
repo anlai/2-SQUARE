@@ -18,18 +18,34 @@
 
         <div class="steps-container">
             
-            <%
+            <div class="ui-widget-header box-header ui-corner-all">
+                <%: a.Name %>
+            </div>
 
-           
-           foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.id == a.id).OrderBy(c => c.Step.Order))
-           {
-               %>
-            
-                <ul>
-                <li><%: b.Step.Name %></li>
-                <li><%: b.Complete %></li>
-                <li><%: b.DateStarted %></li>
-                </ul>
+            <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.id == a.id).OrderBy(c => c.Step.Order)) { %>            
+                
+                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.ProjectId, stepId=b.StepId}) %>">
+
+                <div class="step button ui-corner-all">
+
+                <% if (!b.DateStarted.HasValue) { %>
+                <span class="icon ui-icon ui-icon-circle-minus"></span>
+                <% } else if (b.Complete) { %>
+                    <span class="icon ui-icon ui-icon-check"></span>
+                <% } else { %>
+                    <span class="icon ui-icon ui-icon-play"></span>
+                <% } %>
+                
+                <span>
+                    <ul>
+                        <li><%: b.Step.Name %></li>
+                        <li><strong>Date Started:</strong><%: b.DateStarted.HasValue ? b.DateStarted.Value.ToString("d") : "n/a" %></li>
+                        <li><strong>Date Completed:</strong><%: b.DateCompleted.HasValue ? b.DateCompleted.Value.ToString("d") : "n/a" %></li>
+                    </ul>
+                </span>
+                </div>
+
+                </a>
             <% } %>
 
         </div>
