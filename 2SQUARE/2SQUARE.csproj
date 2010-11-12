@@ -37,26 +37,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
+    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\bin\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.MicroKernel">
+    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\bin\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\bin\Castle.MicroKernel.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor">
+    <Reference Include="Castle.Windsor, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\bin\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\bin\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender">
-      <HintPath>..\bin\HibernatingRhinos.Profiler.Appender.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\bin\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\bin\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -72,15 +63,6 @@
     <Reference Include="MvcContrib.FluentHtml, Version=2.0.36.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\MvcContrib.FluentHtml.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\bin\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Spring">
-      <HintPath>..\bin\NHibernate.ByteCode.Spring.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Validator">
-      <HintPath>..\bin\NHibernate.Validator.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,27 +94,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Telerik.Web.Mvc">
-      <HintPath>..\bin\Telerik.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="UCDArch.Core">
-      <HintPath>..\bin\UCDArch.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="UCDArch.Core.NHibernateValidator">
-      <HintPath>..\bin\UCDArch.Core.NHibernateValidator.dll</HintPath>
-    </Reference>
-    <Reference Include="UCDArch.Data">
-      <HintPath>..\bin\UCDArch.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="UCDArch.Web">
-      <HintPath>..\bin\UCDArch.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="UCDArch.Web.Providers">
-      <HintPath>..\bin\UCDArch.Web.Providers.dll</HintPath>
-    </Reference>
-    <Reference Include="xVal">
-      <HintPath>..\bin\xVal.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\2SquareData.cs">

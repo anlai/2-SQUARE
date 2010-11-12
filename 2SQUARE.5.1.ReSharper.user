@@ -14,23 +14,12 @@
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site-orig.css" caret="5055" fromTop="17" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Home.aspx" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="2592" fromTop="33" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:SquareType.cs" caret="721" fromTop="32" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectTerm.cs" caret="0" fromTop="0" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Term.cs" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:LogOnUserControl.ascx" caret="72" fromTop="1" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="1202" fromTop="19" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:RouteConfigurator.cs" caret="0" fromTop="0" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Step.cs" caret="540" fromTop="19" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectStep.cs" caret="1062" fromTop="43" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:About.aspx" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="2927" fromTop="11" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:Index.aspx" caret="0" fromTop="0" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Definition.cs" caret="0" fromTop="0" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:GoalType.cs" caret="0" fromTop="0" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Project.cs" caret="344" fromTop="13" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="1193" fromTop="34" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectWorker.cs" caret="594" fromTop="22" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Role.cs" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="35" fromTop="1" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:ComponentRegistrar.asax.cs" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Global.asax.cs" caret="1571" fromTop="28" />
@@ -41,22 +30,8 @@
     </RecentFiles>
     <RecentEdits>
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="523" fromTop="12" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Role.cs" caret="219" fromTop="8" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Role.cs" caret="442" fromTop="18" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Role.cs" caret="513" fromTop="22" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="821" fromTop="26" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="982" fromTop="22" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ProjectController.cs" caret="613" fromTop="25" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Project.cs" caret="713" fromTop="25" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Project.cs" caret="1098" fromTop="36" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="659" fromTop="20" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:Project.cs" caret="344" fromTop="13" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="1215" fromTop="37" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="245" fromTop="3" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectWorker.cs" caret="144" fromTop="6" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:ProjectWorker.cs" caret="691" fromTop="26" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="585" fromTop="14" />
-      <File id="9A65E740-1FD2-4E7A-A3E8-7292E888DF39/d:Domain/f:User.cs" caret="1193" fromTop="34" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="457" fromTop="17" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ProjectController.cs" caret="882" fromTop="27" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="161" fromTop="8" />

@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_Data;
 using _2SQUARE.Services;
-using UCDArch.Web.Controller;
+
 
 namespace _2SQUARE.Controllers
 {
-    public class ProjectController : SuperController
+    public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;
 
