@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using _2SQUARE.App_Data;
-using _2SQUARE.App_Data;
-using System.Web.Mvc;
+using _2SQUARE.Models;
 using _2SQUARE.Services;
 
 namespace _2SQUARE.Controllers 
@@ -22,8 +17,7 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Index()
         {
-            var db = new _2SquareDataDataContext();
-            var project = db.Projects.ToList();
+           
 
             return View();
         }

@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using _2SQUARE.Controllers;
-using _2SQUARE.App_Data;
 using Microsoft.Practices.ServiceLocation;
 using MvcContrib.Castle;
 using Castle.Windsor;

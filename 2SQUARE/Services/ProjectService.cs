@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using _2SQUARE.App_Data;
+using _2SQUARE.Models;
 
 namespace _2SQUARE.Services
 {
     public class ProjectService : IProjectService
     {
-        _2SquareDataDataContext db = new _2SquareDataDataContext();
+        SquareEntities db = new SquareEntities();
 
         /// <summary>
         /// Returns a list of projects based on user id
