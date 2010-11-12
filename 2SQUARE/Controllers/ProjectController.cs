@@ -9,7 +9,7 @@ using _2SQUARE.Services;
 
 namespace _2SQUARE.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : SuperController
     {
         private readonly IProjectService _projectService;
 
@@ -23,13 +23,9 @@ namespace _2SQUARE.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            //var projects = _projectService.GetByUser(CurrentUser.Identity.Name);
-
-            //var user = Repository.OfType<User>().Queryable.Where(a => a.UserName == CurrentUser.Identity.Name).ToList();
-            
+            var projects = _projectService.GetByUser(CurrentUserId);
            
-            throw new NotImplementedException();
-            //return View(projects);
+            return View(projects);
         }
 
     }

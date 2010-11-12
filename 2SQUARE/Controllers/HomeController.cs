@@ -11,7 +11,7 @@ using _2SQUARE.Services;
 namespace _2SQUARE.Controllers 
 {
     [HandleError]
-    public class HomeController : Controller 
+    public class HomeController : SuperController 
     {
         private readonly IProjectService _projectService;
 

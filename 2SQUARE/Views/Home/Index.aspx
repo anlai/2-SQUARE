@@ -13,6 +13,7 @@
         <span class=logos>
             <img src="<%= Url.Content("~/Images/logo.png") %>" alt="UC Davis" />
         </span>
+    </div>
 
     <div class=page>
 
@@ -66,7 +67,7 @@
             <% } %>
             </div>    
         </div>
-    </div>
+    
 </body>
 </html>
 

@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{3C337B85-BF1
 		bin\Castle.DynamicProxy2.dll = bin\Castle.DynamicProxy2.dll
 		bin\Castle.MicroKernel.dll = bin\Castle.MicroKernel.dll
 		bin\Castle.Windsor.dll = bin\Castle.Windsor.dll
-		bin\FluentNHibernate.dll = bin\FluentNHibernate.dll
-		bin\HibernatingRhinos.Profiler.Appender.dll = bin\HibernatingRhinos.Profiler.Appender.dll
 		bin\Iesi.Collections.dll = bin\Iesi.Collections.dll
 		bin\log4net.dll = bin\log4net.dll
 		bin\Microsoft.Practices.ServiceLocation.dll = bin\Microsoft.Practices.ServiceLocation.dll
@@ -21,19 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{3C337B85-BF1
 		bin\MvcContrib.FluentHtml.xml = bin\MvcContrib.FluentHtml.xml
 		bin\MvcContrib.pdb = bin\MvcContrib.pdb
 		bin\MvcContrib.XML = bin\MvcContrib.XML
-		bin\NHibernate.ByteCode.Spring.dll = bin\NHibernate.ByteCode.Spring.dll
-		bin\NHibernate.dll = bin\NHibernate.dll
-		bin\NHibernate.Linq.dll = bin\NHibernate.Linq.dll
-		bin\NHibernate.Validator.dll = bin\NHibernate.Validator.dll
-		bin\Telerik.Web.Mvc.dll = bin\Telerik.Web.Mvc.dll
-		bin\UCDArch.Core.dll = bin\UCDArch.Core.dll
-		bin\UCDArch.Core.NHibernateValidator.dll = bin\UCDArch.Core.NHibernateValidator.dll
-		bin\UCDArch.Data.dll = bin\UCDArch.Data.dll
-		bin\UCDArch.ReferenceLinker.dll = bin\UCDArch.ReferenceLinker.dll
-		bin\UCDArch.Testing.dll = bin\UCDArch.Testing.dll
-		bin\UCDArch.Web.dll = bin\UCDArch.Web.dll
-		bin\UCDArch.Web.Providers.dll = bin\UCDArch.Web.Providers.dll
-		bin\xVal.dll = bin\xVal.dll
 	EndProjectSection
 EndProject
 Global
