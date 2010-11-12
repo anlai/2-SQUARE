@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using _2SQUARE.Core.Domain;
+using _2SQUARE.App_Data;
 
 namespace _2SQUARE.Services
 {

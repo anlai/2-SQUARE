@@ -84,6 +84,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -134,6 +135,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\2SquareData.cs">
+      <DependentUpon>2SquareData.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\2SquareData.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2SquareData.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ComponentRegistrar.asax.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -195,10 +204,19 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2SQUARE.Core\2SQUARE.Core.csproj">
-      <Project>{9A65E740-1FD2-4E7A-A3E8-7292E888DF39}</Project>
-      <Name>2SQUARE.Core</Name>
-    </ProjectReference>
+    <None Include="App_Data\2SquareData.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>2SquareData.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\2SquareData.dbml.layout">
+      <DependentUpon>2SquareData.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

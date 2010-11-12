@@ -11,7 +11,7 @@ namespace _2SQUARE.Core.Domain
     {
         public Project()
         {
-            Workers = new List<ProjectWorker>();
+           // Workers = new List<ProjectWorker>();
             ProjectSteps = new List<ProjectStep>();
 
             DateCreated= new DateTime();
@@ -21,8 +21,9 @@ namespace _2SQUARE.Core.Domain
         [Length(50)]
         public virtual string Name { get; set; }
         public virtual DateTime DateCreated { get; set; }
+        public virtual string Description { get; set; }
 
-        public virtual IList<ProjectWorker> Workers { get; set; }
+        //public virtual IList<ProjectWorker> Workers { get; set; }
         public virtual IList<ProjectStep> ProjectSteps { get; set; }
     }
 
@@ -32,9 +33,10 @@ namespace _2SQUARE.Core.Domain
         {
             Id(x => x.Id);
             Map(x => x.Name);
+            Map(x => x.Description);
             Map(x => x.DateCreated);
 
-            HasMany(x => x.Workers).Inverse();
+            //HasMany(x => x.Workers).Inverse();
             HasMany(x => x.ProjectSteps).Inverse();
         }
     }

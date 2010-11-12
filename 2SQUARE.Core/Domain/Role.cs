@@ -1,10 +1,11 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System;
+using FluentNHibernate.Mapping;
 using NHibernate.Validator.Constraints;
 using UCDArch.Core.DomainModel;
 
 namespace _2SQUARE.Core.Domain
 {
-    public class Role : DomainObject
+    public class Role : DomainObjectWithTypedId<Guid>
     {
         [NotNull]
         [Length(50)]
@@ -15,9 +16,11 @@ namespace _2SQUARE.Core.Domain
     {
         public RoleMap()
         {
+            Table("aspnet_Roles");
+
             ReadOnly();
 
-            Id(x => x.Id);
+            Id(x => x.Id).Column("RoleId");
             Map(x => x.Name);
         }
     }

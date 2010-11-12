@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.App_Data;
 using _2SQUARE.Services;
 using UCDArch.Web.Controller;
 
@@ -22,9 +23,13 @@ namespace _2SQUARE.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var projects = _projectService.GetByUser(CurrentUser.Identity.Name);
+            //var projects = _projectService.GetByUser(CurrentUser.Identity.Name);
 
-            return View(projects);
+            //var user = Repository.OfType<User>().Queryable.Where(a => a.UserName == CurrentUser.Identity.Name).ToList();
+            
+           
+            throw new NotImplementedException();
+            //return View(projects);
         }
 
     }

@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using _2SQUARE.Controllers;
-using _2SQUARE.Core.Domain;
+using _2SQUARE.App_Data;
 using Microsoft.Practices.ServiceLocation;
 using MvcContrib.Castle;
 using Castle.Windsor;
@@ -47,7 +47,7 @@ namespace _2SQUARE
 
             IWindsorContainer container = InitializeServiceLocator();
 
-            NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof(User).Assembly);
+            //NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof(User).Assembly);
 
             //NHibernateSessionManager.Instance.RegisterInterceptor(container.Resolve<IInterceptor>());
         }
