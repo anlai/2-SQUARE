@@ -149,6 +149,12 @@ h2
     padding-bottom: 10px;
 }
 
+h3 
+{
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
 .divider 
 {
     border-bottom: 1px solid lightgray;
@@ -178,82 +184,17 @@ ul
     text-indent: -25px;
 }
 
+/* security/step1 and privacy/step1 */
+.source-cell{width: 150px;}
+.term{font-weight:bold;}
+
 /* Controls */
-/*
-.button
-{
-    color: black;
-    line-height: 17px;
-    padding: 5px 10px 5px 7px;
-    width:auto;
-    font-weight: normal;
-    border: 1px solid #D3D3D3;
-    cursor: pointer;
-    background-color: #EDEDED;
-    text-decoration: none;
-}
-
-.button:hover 
-{
-    border: 1px solid #999999; 
-}
-
-.container button:active
-{
-    border: 1px solid #999999; 
-    background-color: #999999;
-}
-
-.main_box
-{
-    width: 73%;
-    font-size: 1em;
-    border: 1px solid #AAAAAA;
-    margin: 10px 0px 0px 10px;
-    padding: 0px 0px 10px 0px;
-    float: left;
-}
-
-.right_box
-{
-    width: 24%;
-    font-size: 1em;
-    border: 1px solid #AAAAAA;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 0px 10px 0px;
-    float: right;
-}
-
-.corners
-{
-    -moz-border-radius: 4px 4px 4px 4px;
-    border-radius: 4px 4px 4px 4px;
-}
-
-.box_header
-{
-    margin: 2px 2px 0px 2px;
-    padding: 5px 0px 5px 5px;
-    height: 15px;
-    background-color: Red;
-    font-weight: bold;
-    background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC;
-}
-
-.box_content
-{
-    width: 100px;
-    margin: 5px 10px 0px 10px;
-    height: 100px;
-}
-
-p
-{
-    
-}
+table { border-spacing: 0px; }
+table thead { background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC; }
+table td { padding-top: 10px; padding-bottom: 10px; }
 
 
-*/
+
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
 .display-label,

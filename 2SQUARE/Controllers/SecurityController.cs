@@ -1,20 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.Models;
+using _2SQUARE.Services;
 
 namespace _2SQUARE.Controllers
 {
     public class SecurityController : SuperController
     {
-        public ActionResult Step1()
-        {
-            throw new NotImplementedException();
+        private readonly IProjectService _projectService;
 
-            return View();
+        public SecurityController(IProjectService projectService)
+        {
+            _projectService = projectService;
         }
 
+        #region Step 1
+        public ActionResult Step1(int id, int projectId)
+        {
+            var viewModel = SecurityStep1ViewModel.Create(Db, id, projectId);
+            return View(viewModel);
+        }
+        #endregion
         public ActionResult Step2()
         {
             throw new NotImplementedException();

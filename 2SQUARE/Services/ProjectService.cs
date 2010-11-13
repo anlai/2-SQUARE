@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security;
 using System.Web;
 using _2SQUARE.Models;
+using DesignByContract;
 
 namespace _2SQUARE.Services
 {
@@ -37,6 +38,27 @@ namespace _2SQUARE.Services
             if (!project.ProjectWorkers.Any(a => a.aspnet_Users == user)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
 
             return project;
+        }
+
+        public void AddTermToProject(int id, string term, string definition, string source, int projectTermId = 0)
+        {
+            ProjectTerm projectTerm = new ProjectTerm();
+
+            // update existing project term
+            if (projectTermId > 0)
+            {
+                projectTerm = db.ProjectTerms.Where(a => a.id == projectTermId).Single();
+            }
+
+            projectTerm.Term = term;
+            projectTerm.Definition = definition;
+            projectTerm.Source = source;
+
+            // add if new
+            if (projectTermId == 0) db.AddToProjectTerms(projectTerm);
+
+            // save
+            db.SaveChanges();
         }
     }
 }

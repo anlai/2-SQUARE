@@ -12,7 +12,7 @@
         <%: Model.Project.Description %>
     </div>
 
-    <h2>SQUARE Steps</h2>
+    <h3>SQUARE Steps</h3>
 
     <% foreach (var a in Model.SquareTypes) { %>
 
@@ -24,7 +24,7 @@
 
             <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.id == a.id).OrderBy(c => c.Step.Order)) { %>            
                 
-                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.ProjectId, stepId=b.StepId}) %>">
+                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.StepId, projectId=b.ProjectId}) %>">
 
                 <div class="step button ui-corner-all">
 

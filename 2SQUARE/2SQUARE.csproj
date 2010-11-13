@@ -121,6 +121,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DesignByContract.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +129,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
+    <Compile Include="Models\SecurityStep1ViewModel.cs" />
     <Compile Include="Models\SquareEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,6 +161,7 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Index.aspx" />
+    <Content Include="Views\Security\Step1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -203,9 +206,7 @@
       <LastGenOutput>SquareTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Models\SquareEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
