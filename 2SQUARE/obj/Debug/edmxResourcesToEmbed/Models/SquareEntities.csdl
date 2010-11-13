@@ -98,6 +98,10 @@
       <End Role="Steps" EntitySet="Steps" />
       <End Role="ProjectSteps" EntitySet="ProjectSteps" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProjectTerms_SquareTypes" Association="SquareModel.FK_ProjectTerms_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="ProjectTerms" EntitySet="ProjectTerms" />
+    </AssociationSet>
     <AssociationSet Name="FK_Steps_RequirementCategories" Association="SquareModel.FK_Steps_RequirementCategories">
       <End Role="SquareTypes" EntitySet="SquareTypes" />
       <End Role="Steps" EntitySet="Steps" />
@@ -324,7 +328,9 @@
     <Property Name="Definition" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="Source" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="SquareTypeId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_ProjectTerms_Projects" FromRole="ProjectTerms" ToRole="Projects" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="ProjectTerms" ToRole="SquareTypes" />
   </EntityType>
   <EntityType Name="ProjectWorker">
     <Key>
@@ -353,6 +359,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_SquareTypes" FromRole="SquareTypes" ToRole="Goals" />
+    <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="SquareTypes" ToRole="ProjectTerms" />
     <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
   </EntityType>
@@ -606,6 +613,18 @@
       </Principal>
       <Dependent Role="ProjectSteps">
         <PropertyRef Name="StepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTerms_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.SquareType" Multiplicity="1" />
+    <End Role="ProjectTerms" Type="SquareModel.ProjectTerm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectTerms">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -35,30 +35,52 @@ namespace _2SQUARE.Services
             var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
             var project = db.Projects.Where(a => a.id == id).Single();
 
-            if (!project.ProjectWorkers.Any(a => a.aspnet_Users == user)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
+            if (!project.ProjectWorkers.Any(a => a.aspnet_Users.UserId == user.UserId)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
 
             return project;
         }
 
-        public void AddTermToProject(int id, string term, string definition, string source, int projectTermId = 0)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="term"></param>
+        /// <param name="definition"></param>
+        /// <param name="source"></param>
+        /// <param name="termId"></param>
+        /// <param name="definitionId"></param>
+        public void AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
         {
-            ProjectTerm projectTerm = new ProjectTerm();
-
             // update existing project term
-            if (projectTermId > 0)
+            if (termId > 0 && definitionId > 0)
             {
-                projectTerm = db.ProjectTerms.Where(a => a.id == projectTermId).Single();
+                var termObj = db.Terms.Where(a => a.id == termId).Single();
+                var definitionObj = db.Definitions.Where(a => a.id == definitionId).Single();
+
+                // make sure def matches term
+                if (definitionObj.TermId != termObj.id) throw new ArgumentException("Term/Definition mismatch.");
+
+                term = termObj.Name;
+                definition = definitionObj.Description;
+                source = definitionObj.Source;
+
             }
 
-            projectTerm.Term = term;
-            projectTerm.Definition = definition;
-            projectTerm.Source = source;
+            if (!string.IsNullOrEmpty(term) && !string.IsNullOrEmpty(definition) && !string.IsNullOrEmpty(source))
+            {
+                if (id <= 0 || squareTypeId <= 0) throw new ArgumentException("Project or Square Type Id are invalid");
 
-            // add if new
-            if (projectTermId == 0) db.AddToProjectTerms(projectTerm);
+                var projectTerm = new ProjectTerm();
+                projectTerm.Term = term;
+                projectTerm.Definition = definition;
+                projectTerm.Source = source;
+                projectTerm.ProjectId = id;
+                projectTerm.SquareTypeId = squareTypeId;
 
-            // save
-            db.SaveChanges();
+                db.AddToProjectTerms(projectTerm);
+
+                db.SaveChanges();
+            }
         }
     }
 }

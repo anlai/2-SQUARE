@@ -12,7 +12,7 @@
     <% foreach (var a in Model) { %>
 
 
-        <div class="button object-list">
+        <div class="button object-list" style="text-align: left;">
             <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Name) %></h3>
             <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Description) %></div>
         </div>

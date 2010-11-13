@@ -95,6 +95,10 @@
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectTerms" EntitySet="ProjectTerms" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProjectTerms_SquareTypes" Association="SquareModel.Store.FK_ProjectTerms_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="ProjectTerms" EntitySet="ProjectTerms" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProjectWorkers_aspnet_Roles" Association="SquareModel.Store.FK_ProjectWorkers_aspnet_Roles">
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="ProjectWorkers" EntitySet="ProjectWorkers" />
@@ -304,6 +308,7 @@
     <Property Name="Definition" Type="varchar(max)" Nullable="false" />
     <Property Name="Source" Type="varchar" Nullable="false" MaxLength="200" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="SquareTypeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectWorkers">
     <Key>
@@ -563,6 +568,18 @@
       </Principal>
       <Dependent Role="ProjectTerms">
         <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTerms_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="1" />
+    <End Role="ProjectTerms" Type="SquareModel.Store.ProjectTerms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectTerms">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

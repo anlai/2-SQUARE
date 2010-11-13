@@ -21,7 +21,6 @@ namespace _2SQUARE.Controllers
         public ActionResult Index()
         {
             var projects = _projectService.GetByUser(CurrentUserId);
-           
             return View(projects);
         }
 

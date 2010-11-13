@@ -11,5 +11,17 @@ namespace _2SQUARE.Controllers
         {
             get { return User.Identity.Name; }
         }
+
+        public string Message
+        {
+            get { return (string) TempData["Message"]; }
+            set { TempData["Message"] = value; }
+        }
+
+        public string ErrorMessage
+        {
+            get { return (string) TempData["ErrorMessage"]; }
+            set { TempData["ErrorMessage"] = value; }
+        }
     }
 }

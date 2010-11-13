@@ -37,6 +37,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectWorkers_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "ProjectWorkers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectWorker), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Steps", "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Step), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
@@ -4545,7 +4546,8 @@ namespace _2SQUARE.Models
         /// <param name="definition">Initial value of the Definition property.</param>
         /// <param name="source">Initial value of the Source property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
-        public static ProjectTerm CreateProjectTerm(global::System.Int32 id, global::System.String term, global::System.String definition, global::System.String source, global::System.Int32 projectId)
+        /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
+        public static ProjectTerm CreateProjectTerm(global::System.Int32 id, global::System.String term, global::System.String definition, global::System.String source, global::System.Int32 projectId, global::System.Int32 squareTypeId)
         {
             ProjectTerm projectTerm = new ProjectTerm();
             projectTerm.id = id;
@@ -4553,6 +4555,7 @@ namespace _2SQUARE.Models
             projectTerm.Definition = definition;
             projectTerm.Source = source;
             projectTerm.ProjectId = projectId;
+            projectTerm.SquareTypeId = squareTypeId;
             return projectTerm;
         }
 
@@ -4681,6 +4684,30 @@ namespace _2SQUARE.Models
         private global::System.Int32 _ProjectId;
         partial void OnProjectIdChanging(global::System.Int32 value);
         partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SquareTypeId
+        {
+            get
+            {
+                return _SquareTypeId;
+            }
+            set
+            {
+                OnSquareTypeIdChanging(value);
+                ReportPropertyChanging("SquareTypeId");
+                _SquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SquareTypeId");
+                OnSquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SquareTypeId;
+        partial void OnSquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSquareTypeIdChanged();
 
         #endregion
     
@@ -4720,6 +4747,44 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_ProjectTerms_Projects", "Projects", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes")]
+        public SquareType SquareType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ProjectTerms_SquareTypes", "SquareTypes").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ProjectTerms_SquareTypes", "SquareTypes").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SquareType> SquareTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ProjectTerms_SquareTypes", "SquareTypes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_ProjectTerms_SquareTypes", "SquareTypes", value);
                 }
             }
         }
@@ -5137,6 +5202,28 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Goal>("SquareModel.FK_Goals_SquareTypes", "Goals", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "ProjectTerms")]
+        public EntityCollection<ProjectTerm> ProjectTerms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectTerm>("SquareModel.FK_ProjectTerms_SquareTypes", "ProjectTerms");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectTerm>("SquareModel.FK_ProjectTerms_SquareTypes", "ProjectTerms", value);
                 }
             }
         }

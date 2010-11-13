@@ -26,9 +26,18 @@
                 </tr>
                 <% foreach (var b in a.Definitions) { %>
                     <tr class="definition-row">
-                        <td><a href="#" class="button ui-corner-all ui-state-default">Select</a></td>
-                        <td class="source-cell">[<%: b.Source %>]</td>
-                        <td><%: b.Description %></td>
+                        <% using (Html.BeginForm("AddTerm", "Security", FormMethod.Post)) { %>
+
+                            <%: Html.Hidden("Id", Model.Step.id) %>
+                            <%: Html.Hidden("projectId", Model.Project.id)%>
+                            <%: Html.Hidden("squareTypeId", Model.Step.SquareTypeId)%>
+                            <%: Html.Hidden("termId", a.id) %>
+                            <%: Html.Hidden("definitionId", b.id) %>
+
+                            <td><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
+                            <td class="source-cell">[<%: b.Source %>]</td>
+                            <td><%: b.Description %></td>
+                        <% } %>
                     </tr>
                 <% } %>
 

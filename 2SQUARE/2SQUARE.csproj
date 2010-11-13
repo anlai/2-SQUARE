@@ -206,7 +206,6 @@
       <LastGenOutput>SquareTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Models\SquareEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

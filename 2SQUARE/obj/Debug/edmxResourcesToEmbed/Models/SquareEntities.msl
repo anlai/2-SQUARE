@@ -194,6 +194,7 @@
           <ScalarProperty Name="Definition" ColumnName="Definition" />
           <ScalarProperty Name="Source" ColumnName="Source" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

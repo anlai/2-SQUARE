@@ -23,6 +23,30 @@
         </span>
         </div>
     <div class=page>
+        
+        <% if (!string.IsNullOrEmpty((string)TempData["Message"])) { %>
+
+            <div class="ui-widget">
+                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0pt 0.7em;">
+                    <p>
+                        <span class="ui-icon ui-icon-alert" style="float:left; margin-right: 0.3em;"></span>
+                        <%: (string)TempData["Message"] %>
+                    </p>
+                </div>
+            </div>
+
+        <% } %>
+        <% if (!string.IsNullOrEmpty((string)TempData["ErrorMessage"])) { %>
+            <div class="ui-widget">
+                <div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0pt 0.7em;">
+                    <p>
+                        <span class="ui-icon ui-icon-info" style="float:left; margin-right: 0.3em;"></span>
+                        <%: (string)TempData["ErrorMessage"] %>
+                    </p>
+                </div>
+            </div>
+        <% } %>
+
 
         <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
 
