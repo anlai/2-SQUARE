@@ -1,10 +1,12 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title><asp:ContentPlaceHolder runat="server" ID="TitleContent">2Square</asp:ContentPlaceHolder></title>
+    <title>2Square | <asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
     <link href="<%: Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%: Url.Content("~/Content/PageStyles.css") %>" rel="stylesheet" type="text/css" />
 
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
@@ -21,11 +23,23 @@
         <span class=logos>
             <img src="<%= Url.Content("~/Images/logo.png") %>" alt="UC Davis" />
         </span>
+    </div>
+    <div id="nav">
+        <div id="nav-container">
+            <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Home", new {@class="ui-corner-left button ui-state-default"}) %>
+            <asp:ContentPlaceHolder runat="server" ID="NavContents"></asp:ContentPlaceHolder>
+            <%: Html.ActionLink<GuidanceController>(a=>a.Index(), "Square Guidance", new {@class="button ui-state-default"}) %>
+            <%: Html.ActionLink<HomeController>(a=>a.About(), "About", new {@class="ui-corner-right button ui-state-default"}) %>
+
+            <div id="logout-container">
+                <%: Page.User.Identity.Name %>
+                <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logoff", new {@class="ui-corner-all button ui-state-default"}) %>
+            </div>
         </div>
+    </div>
     <div class=page>
         
         <% if (!string.IsNullOrEmpty((string)TempData["Message"])) { %>
-
             <div class="ui-widget">
                 <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0pt 0.7em;">
                     <p>
@@ -34,7 +48,6 @@
                     </p>
                 </div>
             </div>
-
         <% } %>
         <% if (!string.IsNullOrEmpty((string)TempData["ErrorMessage"])) { %>
             <div class="ui-widget">

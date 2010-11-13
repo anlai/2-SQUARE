@@ -112,6 +112,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GuidanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -150,12 +151,14 @@
     <Content Include="App_Data\2Square_log.LDF">
       <DependentUpon>2Square.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\PageStyles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\branding.jpg" />
     <Content Include="Images\Logo.PNG" />
     <Content Include="Images\title_bar_bg.png" />
     <Content Include="Views\Error\Security.aspx" />
+    <Content Include="Views\Guidance\Index.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />

@@ -7,6 +7,7 @@ using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
+    [Authorize]
     public class SecurityController : SuperController
     {
         private readonly IProjectService _projectService;
@@ -52,6 +53,32 @@ namespace _2SQUARE.Controllers
 
             return this.RedirectToAction(a => a.Step1(id, projectId));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="term"></param>
+        /// <param name="definition"></param>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public RedirectToRouteResult AddNewTerm(int id, int projectId, int squareTypeId, string term, string definition, string source)
+        {
+            try
+            {
+                _projectService.AddTermToProject(id, squareTypeId, term: term, definition: definition, source: source);
+                Message = "Successfully added term to project";
+            }
+            catch
+            {
+                Message = "Unable to add term to project.";
+            }
+
+            return this.RedirectToAction(a => a.Step1(id, projectId));
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -64,6 +91,7 @@ namespace _2SQUARE.Controllers
             return this.RedirectToAction(a => a.Step1(id, projectId));
         }
         #endregion
+
         public ActionResult Step2()
         {
             throw new NotImplementedException();

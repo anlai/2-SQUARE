@@ -1,4 +1,7 @@
-﻿body
+﻿/* ==========================================
+Site-wide CSS
+========================================== */
+body
 {
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
@@ -10,16 +13,20 @@
 /* The top header */
 #header
 {
-    /* background: url(../Images/title_bar_bg.png) repeat-x top center; */
     background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC;
     height: 50px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
 }
-/*#header span.logos {width: 937px; padding: 22px 0px 0px 30px; margin: 0px auto; display: block;} */
 #header span.logos {width: 925px; margin: 0px auto; display: block;}
 #header span.logos img {height: 50px; padding: 0px 0px 0px 30px;}
+
+/* Nav bar */
+#nav { height: 30px; border-bottom: 1px solid lightgray; position:relative; padding: 0; }
+#nav-container {width: 925px; margin: 15px auto; }
+#logout-container {float:right;}
+
 
 /* Main body of the pages */
 .page
@@ -31,35 +38,6 @@
     font-size: 1.1em;
 }
 .main_content {width:937px; margin:0 auto;}
-
-/* Top navigation bar */
-#page_header
-{
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
-}
-#logindisplay
-{
-    font-size:1em;
-    float: right;
-    text-align:right;
-    margin: -14px 10px 0px;
-    padding: 10px 20px 10px;
-    color:#002266;
-    -moz-border-radius-bottomleft: 18px; 
-    -webkit-border-bottom-left-radius: 18px;
-    -moz-border-radius-bottomright: 18px; 
-    -webkit-border-bottom-right-radius: 18px;
-    -moz-box-shadow: 2px 2px 8px #dedede;
-    background: #fff;
-    background: rgba(255, 255, 255, .7);
-}
-#logindisplay:hover {background: rgba(255, 255, 255, 1); -moz-box-shadow: 2px 2px 5px #dedede; }
-#logindisplay a:link {color: #002266; text-decoration: none; }
-#logindisplay a:visited{color: #002266; text-decoration: none; }
-#logindisplay a:hover {color: #002266; text-decoration: none; }
 
 a {text-decoration: none;}
 
@@ -140,8 +118,7 @@ a {text-decoration: none;}
     font-weight:normal;
 }
 
-.object-list {cursor: default;}
-.object-list a { text-decoration:  none;  }
+
 
 h2
 {
@@ -161,39 +138,10 @@ h3
     padding: 10px 0px 10px;
 }
 
-
-/* project/details */
-.steps-container { width: 325px; margin-left: 30px; float:left; }
-.step  
-{
-    height: 75px; 
-    margin-top: 10px;
-    width: 300px;
-    text-align:left;
-}
-.step span { float:left;}
-.icon  
-{
-    margin-top: 30px;
-}
-
-ul
-{
-    list-style-position: outside;
-    list-style-type: none;
-    text-indent: -25px;
-}
-
-/* security/step1 and privacy/step1 */
-.source-cell{width: 150px;}
-.term{font-weight:bold;}
-
 /* Controls */
 table { border-spacing: 0px; }
 table thead { background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC; }
 table td { padding-top: 10px; padding-bottom: 10px; }
-
-
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
