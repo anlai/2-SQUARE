@@ -12,6 +12,18 @@ namespace _2SQUARE.Services
     {
         SquareEntities db = new SquareEntities();
 
+        public bool HasAccess(int id, string login)
+        {
+            return db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Any();
+        }
+
+        public List<string> UserRoles(int id, string login)
+        {
+            return
+                db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Select(
+                    a => a.aspnet_Roles.RoleName).ToList();
+        }
+
         /// <summary>
         /// Returns a list of projects based on user id
         /// </summary>

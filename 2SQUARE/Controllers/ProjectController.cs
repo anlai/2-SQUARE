@@ -26,6 +26,12 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Details(int id)
         {
+            // check user's access
+            if (!_projectService.HasAccess(id, CurrentUserId))
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + id + ")")));
+            }
+
             try
             {
                 var viewModel = ProjectDetailsViewModel.Create(Db, _projectService, id, CurrentUserId);

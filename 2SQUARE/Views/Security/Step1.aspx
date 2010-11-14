@@ -18,80 +18,39 @@
 
     <h2>Security Step 1 - Agree on Definitions</h2>
 
+    <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
+        <h3>Responsiblities</h3>
+    <% } %>
+
+    <% if (Model.ProjectManager) { %>
+        <div class="responsibility-box ui-state-highlight">
+            <p>
+                This is your guidance as a project manager.
+            </p>
+        </div>
+    <% } %>
+    <% if (Model.RequirementsEngineer) { %>
+        <div class="responsibility-box ui-state-highlight">
+            <p>
+                This is your guidance as a requirements engineer.
+            </p>
+        </div>
+    <% } %>    
+    <% if (Model.Stakeholder) { %>
+        <div class="responsibility-box ui-state-highlight">
+            <p>
+                This is your guidance as a stake holder.
+            </p>
+        </div>
+    <% } %>
+
+    <%: Html.ActionLink<SecurityController>(a=>a.Step1ViewPendingTerms(Model.Step.id, Model.Project.id), "View Pending Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
+    <%: Html.ActionLink<SecurityController>(a => a.Step1AddNewTerm(Model.Step.id, Model.Project.id), "Add New Term", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
+
     <h3>Selected Definitions</h3>
 
-    <table cellpadding="5px">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Term</th>
-                <th>Source</th>
-                <th>Definition</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% foreach (var a in Model.ProjectTerms) { %>
-                <tr class="definition-row">
-                    <td class="button-cell"><a href="#" class="button ui-corner-all ui-state-default">Edit</a></td>
-                    <td class="term-cell"><%: a.Term %></td>
-                    <td class="source-cell">[<%: a.Source %>]</td>
-                    <td><%: a.Definition %></td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
+    <% Html.RenderPartial("Step1ProjectTermsView"); %>
 
-
-    <h3>Pending Terms</h3>
-
-    <table cellpadding="5px">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Source</th>
-                <th>Definition</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%foreach (var a in Model.PendingTerms) { %>
-                <tr class="term">
-                    <td colspan="3"><%: a.Name %></td>
-                </tr>
-                <% foreach (var b in a.Definitions) { %>
-                    <tr class="definition-row">
-                        <% using (Html.BeginForm("AddTerm", "Security", FormMethod.Post)) { %>
-
-                            <%: Html.Hidden("Id", Model.Step.id) %>
-                            <%: Html.Hidden("projectId", Model.Project.id)%>
-                            <%: Html.Hidden("squareTypeId", Model.Step.SquareTypeId)%>
-                            <%: Html.Hidden("termId", a.id) %>
-                            <%: Html.Hidden("definitionId", b.id) %>
-
-                            <td class="button-cell"><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
-                            <td class="source-cell">[<%: b.Source %>]</td>
-                            <td><%: b.Description %></td>
-                        <% } %>
-                    </tr>
-                <% } %>
-
-                <tr>
-                    <% using (Html.BeginForm("AddNewTerm", "Security", FormMethod.Post)) { %>
-                        
-                        <%: Html.Hidden("Id", Model.Step.id) %>
-                        <%: Html.Hidden("projectId", Model.Project.id) %>
-                        <%: Html.Hidden("squareTypeId", Model.Step.SquareTypeId) %>
-                        <%: Html.Hidden("term", a.Name) %>
-                        
-                        <td><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
-                        <td class="source-cell"><%: Html.TextBox("source") %></td>
-                        <td><%: Html.TextBox("definition", string.Empty, new {style="width:100%;"}) %></td>
-                    <% }%>  
-                </tr>
-
-            <% } %>
-
-        </tbody>
-    </table>
 
 </asp:Content>
 

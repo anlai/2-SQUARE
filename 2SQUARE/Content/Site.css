@@ -39,7 +39,7 @@ body
 }
 .main_content {width:937px; margin:0 auto;}
 
-a {text-decoration: none;}
+
 
 /* containers */
 .large-left-box 
@@ -118,7 +118,7 @@ a {text-decoration: none;}
     font-weight:normal;
 }
 
-
+a {text-decoration: none;}
 
 h2
 {
@@ -136,6 +136,14 @@ h3
 {
     border-bottom: 1px solid lightgray;
     padding: 10px 0px 10px;
+}
+
+.entry-form{ list-style: none; }
+.entry-form li { margin: 7px;}
+.entry-form li strong 
+{
+    display: inline-block;
+    width: 150px;
 }
 
 /* Controls */

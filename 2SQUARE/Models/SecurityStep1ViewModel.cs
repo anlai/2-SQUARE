@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Filters;
+using _2SQUARE.Services;
 using DesignByContract;
 
 namespace _2SQUARE.Models
@@ -8,10 +10,14 @@ namespace _2SQUARE.Models
     {
         public Step Step { get; set; }
         public Project Project { get; set; }
-        public IEnumerable<Term> PendingTerms { get; set; }
+        //public IEnumerable<Term> PendingTerms { get; set; }
         public IEnumerable<ProjectTerm> ProjectTerms { get; set; }
 
-        public static SecurityStep1ViewModel Create(SquareEntities db, int stepId, int projectId)
+        public bool ProjectManager { get; set; }
+        public bool Stakeholder { get; set; }
+        public bool RequirementsEngineer { get; set; }
+
+        public static SecurityStep1ViewModel Create(SquareEntities db, IProjectService projectService, int stepId, int projectId, string loginId)
         {
             var viewModel = new SecurityStep1ViewModel()
                                 {
@@ -20,11 +26,16 @@ namespace _2SQUARE.Models
                                 };
 
             var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.SquareTypeId).ToList();
-            var pt = projectTerms.Select(a => a.Term).ToList();
-            var pendingTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive).ToList();
+            //var pt = projectTerms.Select(a => a.Term).ToList();
+            //var pendingTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive).ToList();
 
-            viewModel.PendingTerms = pendingTerms;
+            //viewModel.PendingTerms = pendingTerms;
             viewModel.ProjectTerms = projectTerms;
+
+            var roles = projectService.UserRoles(projectId, loginId);
+            viewModel.ProjectManager = roles.Contains(RoleNames.RoleProjectManager);
+            viewModel.Stakeholder = roles.Contains(RoleNames.RoleStakeholder);
+            viewModel.RequirementsEngineer = roles.Contains(RoleNames.RoleRequirementsEngineer);
 
             return viewModel;
         }

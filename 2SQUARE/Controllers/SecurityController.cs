@@ -24,9 +24,21 @@ namespace _2SQUARE.Controllers
         /// <param name="id">Step Id</param>
         /// <param name="projectId">Project Id</param>
         /// <returns></returns>
-        public ActionResult Step1(int id, int projectId)
+        public ActionResult Step1(int id /*step id*/, int projectId)
         {
-            var viewModel = SecurityStep1ViewModel.Create(Db, id, projectId);
+            var viewModel = SecurityStep1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+            return View(viewModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public ActionResult Step1ViewPendingTerms(int id /*step id*/, int projectId)
+        {
+            var viewModel = SecurityStep1PendingTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
             return View(viewModel);
         }
 
@@ -39,7 +51,7 @@ namespace _2SQUARE.Controllers
         /// <param name="definitionId"></param>
         /// <returns></returns>
         [HttpPost]
-        public RedirectToRouteResult AddTerm(int id, int projectId, int squareTypeId, int termId, int definitionId)
+        public RedirectToRouteResult AddTerm(int id /*step id*/, int projectId, int squareTypeId, int termId, int definitionId)
         {
             try
             {
@@ -54,6 +66,13 @@ namespace _2SQUARE.Controllers
             return this.RedirectToAction(a => a.Step1(id, projectId));
         }
 
+        public ActionResult Step1AddNewTerm(int id /*step id*/, int projectId)
+        {
+            var projectTerm = new ProjectTerm() {ProjectId = projectId};
+            var viewModel = SecurityStep1AddNewTermViewModel.Create(Db, id, projectTerm);
+            return View(viewModel);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -64,19 +83,22 @@ namespace _2SQUARE.Controllers
         /// <param name="source"></param>
         /// <returns></returns>
         [HttpPost]
-        public RedirectToRouteResult AddNewTerm(int id, int projectId, int squareTypeId, string term, string definition, string source)
+        //public ActionResult Step1AddNewTerm(int id /*step id*/, int projectId, int squareTypeId, string term, string definition, string source)
+        public ActionResult Step1AddNewTerm(int id /*step id*/, ProjectTerm projectTerm)
         {
-            try
-            {
-                _projectService.AddTermToProject(id, squareTypeId, term: term, definition: definition, source: source);
-                Message = "Successfully added term to project";
-            }
-            catch
-            {
-                Message = "Unable to add term to project.";
-            }
+            throw new NotImplementedException();
 
-            return this.RedirectToAction(a => a.Step1(id, projectId));
+            //try
+            //{
+            //    _projectService.AddTermToProject(id, squareTypeId, term: term, definition: definition, source: source);
+            //    Message = "Successfully added term to project";
+            //}
+            //catch
+            //{
+            //    Message = "Unable to add term to project.";
+            //}
+
+            //return this.RedirectToAction(a => a.Step1(id, projectId));
         }
 
         /// <summary>
@@ -86,7 +108,7 @@ namespace _2SQUARE.Controllers
         /// <param name="projectId">Project Id</param>
         /// <returns></returns>
         [HttpPost]
-        public RedirectToRouteResult RemoveTerm(int id, int projectId)
+        public RedirectToRouteResult RemoveTerm(int id /*step id*/, int projectId)
         {
             return this.RedirectToAction(a => a.Step1(id, projectId));
         }
