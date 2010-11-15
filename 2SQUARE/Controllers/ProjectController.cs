@@ -2,6 +2,7 @@
 using System.Security;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;

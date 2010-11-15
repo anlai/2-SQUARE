@@ -16,6 +16,11 @@ namespace _2SQUARE.Controllers
             return View();
         }
 
+        public ActionResult InvalidStep(string message)
+        {
+            return View(message);
+        }
+
         public ActionResult Security(string message)
         {
             return View(message);

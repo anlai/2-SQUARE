@@ -49,7 +49,6 @@ C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\MvcContrib.FluentHtml.xml
 C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\2SQUARE.dll
 C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\2SQUARE.pdb
-C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\_2SQUARE.Messages.resources
 C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\GenerateResource.read.1.tlog
 C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\Microsoft.Web.Mvc.AspNet4.dll
@@ -58,4 +57,5 @@ C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\Microsoft.Web.Mvc.dll
 C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\Microsoft.Web.Mvc.pdb
 C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\Microsoft.Web.Mvc.AspNet4.pdb
 C:\Users\lai\Documents\2SQUARE\2SQUARE\bin\Microsoft.Web.Mvc.Build.pdb
-C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\_2SQUARE.SquareTypes.resources
+C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\_2SQUARE.App_GlobalResources.Messages.resources
+C:\Users\lai\Documents\2SQUARE\2SQUARE\obj\Debug\_2SQUARE.App_GlobalResources.SquareTypes.resources

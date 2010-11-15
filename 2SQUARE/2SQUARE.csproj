@@ -116,6 +116,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Filters\RoleFilters.cs" />
@@ -123,11 +124,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DesignByContract.cs" />
-    <Compile Include="Messages.Designer.cs">
+    <Compile Include="App_GlobalResources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\SecurityStep1AddNewTermViewModel.cs" />
@@ -142,7 +144,7 @@
     <Compile Include="RouteConfigurator.cs" />
     <Compile Include="Services\IProjectService.cs" />
     <Compile Include="Services\ProjectService.cs" />
-    <Compile Include="SquareTypes.Designer.cs">
+    <Compile Include="App_GlobalResources\SquareTypes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SquareTypes.resx</DependentUpon>
@@ -167,10 +169,10 @@
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\Security\Step1.aspx" />
-    <Content Include="Views\Security\Step1AddNewTerm.aspx" />
-    <Content Include="Views\Security\Step1PredefinedTermsView.ascx" />
-    <Content Include="Views\Security\Step1ProjectTermsView.ascx" />
-    <Content Include="Views\Security\Step1ViewPredefinedTerms.aspx" />
+    <Content Include="Views\ProjectTerm\AddNewTerm.aspx" />
+    <Content Include="Views\ProjectTerm\PredefinedTermsView.ascx" />
+    <Content Include="Views\Shared\ProjectTermsView.ascx" />
+    <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -206,11 +208,11 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Messages.resx">
+    <EmbeddedResource Include="App_GlobalResources\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SquareTypes.resx">
+    <EmbeddedResource Include="App_GlobalResources\SquareTypes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SquareTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
