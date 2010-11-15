@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.SecurityStep1PendingTermsViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.SecurityStep1PredefinedTermsViewModel>" %>
 
     <table cellpadding="5px">
         <thead>

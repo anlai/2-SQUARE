@@ -131,7 +131,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\SecurityStep1AddNewTermViewModel.cs" />
-    <Compile Include="Models\SecurityStep1PendingTermsViewModel.cs" />
+    <Compile Include="Models\SecurityStep1PredefinedTermsViewModel.cs" />
     <Compile Include="Models\SecurityStep1ViewModel.cs" />
     <Compile Include="Models\SquareEntities.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -168,9 +168,9 @@
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\Security\Step1.aspx" />
     <Content Include="Views\Security\Step1AddNewTerm.aspx" />
-    <Content Include="Views\Security\Step1PendingTermsView.ascx" />
+    <Content Include="Views\Security\Step1PredefinedTermsView.ascx" />
     <Content Include="Views\Security\Step1ProjectTermsView.ascx" />
-    <Content Include="Views\Security\Step1ViewPendingTerms.aspx" />
+    <Content Include="Views\Security\Step1ViewPredefinedTerms.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

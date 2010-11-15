@@ -44,7 +44,7 @@
         </div>
     <% } %>
 
-    <%: Html.ActionLink<SecurityController>(a=>a.Step1ViewPendingTerms(Model.Step.id, Model.Project.id), "View Pending Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
+    <%: Html.ActionLink<SecurityController>(a=>a.Step1ViewPredefinedTerms(Model.Step.id, Model.Project.id), "View Predefined Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
     <%: Html.ActionLink<SecurityController>(a => a.Step1AddNewTerm(Model.Step.id, Model.Project.id), "Add New Term", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
 
     <h3>Selected Definitions</h3>

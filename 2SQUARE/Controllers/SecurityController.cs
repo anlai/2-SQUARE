@@ -36,9 +36,9 @@ namespace _2SQUARE.Controllers
         /// <param name="id"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public ActionResult Step1ViewPendingTerms(int id /*step id*/, int projectId)
+        public ActionResult Step1ViewPredefinedTerms(int id /*step id*/, int projectId)
         {
-            var viewModel = SecurityStep1PendingTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+            var viewModel = SecurityStep1PredefinedTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
             return View(viewModel);
         }
 
@@ -83,7 +83,6 @@ namespace _2SQUARE.Controllers
         /// <param name="source"></param>
         /// <returns></returns>
         [HttpPost]
-        //public ActionResult Step1AddNewTerm(int id /*step id*/, int projectId, int squareTypeId, string term, string definition, string source)
         public ActionResult Step1AddNewTerm(int id /*step id*/, ProjectTerm projectTerm)
         {
             try
