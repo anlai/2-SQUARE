@@ -86,19 +86,17 @@ namespace _2SQUARE.Controllers
         //public ActionResult Step1AddNewTerm(int id /*step id*/, int projectId, int squareTypeId, string term, string definition, string source)
         public ActionResult Step1AddNewTerm(int id /*step id*/, ProjectTerm projectTerm)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _projectService.AddTermToProject(id, projectTerm.SquareTypeId, term: projectTerm.Term, definition: projectTerm.Definition, source: projectTerm.Source);
+                Message = "Successfully added term to project";
+            }
+            catch
+            {
+                Message = "Unable to add term to project.";
+            }
 
-            //try
-            //{
-            //    _projectService.AddTermToProject(id, squareTypeId, term: term, definition: definition, source: source);
-            //    Message = "Successfully added term to project";
-            //}
-            //catch
-            //{
-            //    Message = "Unable to add term to project.";
-            //}
-
-            //return this.RedirectToAction(a => a.Step1(id, projectId));
+            return this.RedirectToAction(a => a.Step1(id, projectTerm.ProjectId));
         }
 
         /// <summary>
