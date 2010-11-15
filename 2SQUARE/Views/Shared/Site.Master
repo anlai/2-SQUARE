@@ -64,6 +64,10 @@
         <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
 
     </div>
+
+    <div id="footer">
+        <span>Developed by Alan Lai, California State University, Sacramento</span>
+    </div>
 </body>
 </html>
 

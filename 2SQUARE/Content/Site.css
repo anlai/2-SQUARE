@@ -22,6 +22,8 @@ body
 #header span.logos {width: 925px; margin: 0px auto; display: block;}
 #header span.logos img {height: 50px; padding: 0px 0px 0px 30px;}
 
+#footer { border-top: 1px solid lightgray; margin-top: 20px; text-align:center; padding: 10px 0px 10px 0px; color:#585858;}
+
 /* Nav bar */
 #nav { height: 30px; border-bottom: 1px solid lightgray; position:relative; padding: 0; }
 #nav-container {width: 925px; margin: 15px auto; }

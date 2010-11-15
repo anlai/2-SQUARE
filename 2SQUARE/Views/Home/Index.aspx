@@ -26,6 +26,9 @@
             <p>
                 blah blha blha
             </p>
+            <p>
+                <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Projects") %>
+            </p>
         </div>
         </div>
         <div class="small-right-box ui-corner-all" style="height: 200px;">
