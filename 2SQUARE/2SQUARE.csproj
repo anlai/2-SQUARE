@@ -132,8 +132,9 @@
     <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
-    <Compile Include="Models\SecurityStep1AddNewTermViewModel.cs" />
-    <Compile Include="Models\SecurityStep1PredefinedTermsViewModel.cs" />
+    <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
+    <Compile Include="Models\ProjectTermEditViewModel.cs" />
+    <Compile Include="Models\ProjectTermPredefinedTermsViewModel.cs" />
     <Compile Include="Models\SecurityStep1ViewModel.cs" />
     <Compile Include="Models\SquareEntities.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -166,6 +167,7 @@
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\ProjectTerm\EditTerm.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\Security\Step1.aspx" />

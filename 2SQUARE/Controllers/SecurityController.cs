@@ -35,8 +35,6 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>

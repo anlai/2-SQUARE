@@ -10,7 +10,6 @@ namespace _2SQUARE.Models
     {
         public Step Step { get; set; }
         public Project Project { get; set; }
-        //public IEnumerable<Term> PendingTerms { get; set; }
         public IEnumerable<ProjectTerm> ProjectTerms { get; set; }
 
         public bool ProjectManager { get; set; }
@@ -26,10 +25,6 @@ namespace _2SQUARE.Models
                                 };
 
             var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.SquareTypeId).ToList();
-            //var pt = projectTerms.Select(a => a.Term).ToList();
-            //var pendingTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive).ToList();
-
-            //viewModel.PendingTerms = pendingTerms;
             viewModel.ProjectTerms = projectTerms;
 
             var roles = projectService.UserRoles(projectId, loginId);
