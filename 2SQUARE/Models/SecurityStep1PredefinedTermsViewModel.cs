@@ -8,7 +8,7 @@ namespace _2SQUARE.Models
     {
         public Step Step { get; set; }
         public Project Project { get; set; }
-        public IEnumerable<Term> PendingTerms { get; set; }
+        public IEnumerable<Term> PredefinedTerms { get; set; }
 
         public static SecurityStep1PredefinedTermsViewModel Create(SquareEntities db, IProjectService projectService, int stepId, int projectId, string loginId)
         {
@@ -20,9 +20,9 @@ namespace _2SQUARE.Models
 
             var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.SquareTypeId).ToList();
             var pt = projectTerms.Select(a => a.Term).ToList();
-            var pendingTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive).ToList();
+            var predefinedTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive && a.SquareTypeId == viewModel.Step.SquareTypeId).ToList();
 
-            viewModel.PendingTerms = pendingTerms;
+            viewModel.PredefinedTerms = predefinedTerms;
 
             return viewModel;
         }

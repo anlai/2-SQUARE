@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <%foreach (var a in Model.PendingTerms) { %>
+            <%foreach (var a in Model.PredefinedTerms) { %>
                 <tr class="term">
                     <td colspan="3"><%: a.Name %></td>
                 </tr>
