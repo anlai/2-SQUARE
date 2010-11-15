@@ -36,12 +36,8 @@
                     <span class="icon ui-icon ui-icon-play"></span>
                 <% } %>
                 
-                <span>
-                    <ul class="step-list">
-                        <li><%: b.Step.Name %></li>
-                        <li><strong>Date Started:</strong><%: b.DateStarted.HasValue ? b.DateStarted.Value.ToString("d") : "n/a" %></li>
-                        <li><strong>Date Completed:</strong><%: b.DateCompleted.HasValue ? b.DateCompleted.Value.ToString("d") : "n/a" %></li>
-                    </ul>
+                <span class="step-text">
+                    <%: b.Step.Name %>
                 </span>
                 </div>
 
