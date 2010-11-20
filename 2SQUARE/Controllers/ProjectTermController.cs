@@ -77,11 +77,11 @@ namespace _2SQUARE.Controllers
 
             if (ModelState.IsValid)
             {
-                 _projectService.AddTermToProject(id, projectTerm.SquareTypeId, term: projectTerm.Term,
+                 projectTerm = _projectService.AddTermToProject(projectTerm.ProjectId, projectTerm.SquareTypeId, term: projectTerm.Term,
                                                      definition: projectTerm.Definition, source: projectTerm.Source);
-                    Message = "Successfully added term to project";
+                 Message = "Successfully added term to project";
 
-                return RedirectToAction("Step1", projectTerm.SquareType.Name);
+                return RedirectToAction("Step1", projectTerm.SquareType.Name, new {id=id, projectId=projectTerm.ProjectId});
             }
 
             var viewModel = ProjectTermAddNewTermViewModel.Create(Db, id, projectTerm);

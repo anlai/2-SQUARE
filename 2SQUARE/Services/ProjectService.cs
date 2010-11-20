@@ -62,7 +62,7 @@ namespace _2SQUARE.Services
         /// <param name="source"></param>
         /// <param name="termId"></param>
         /// <param name="definitionId"></param>
-        public void AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
+        public ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
         {
             // update existing project term
             if (termId > 0 && definitionId > 0)
@@ -76,7 +76,6 @@ namespace _2SQUARE.Services
                 term = termObj.Name;
                 definition = definitionObj.Description;
                 source = definitionObj.Source;
-
             }
 
             if (!string.IsNullOrEmpty(term) && !string.IsNullOrEmpty(definition) && !string.IsNullOrEmpty(source))
@@ -93,7 +92,11 @@ namespace _2SQUARE.Services
                 db.AddToProjectTerms(projectTerm);
 
                 db.SaveChanges();
+
+                return projectTerm;
             }
+
+            return null;
         }
     }
 }
