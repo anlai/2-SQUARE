@@ -135,7 +135,7 @@
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />
     <Compile Include="Models\ProjectTermPredefinedTermsViewModel.cs" />
-    <Compile Include="Models\SecurityStep1ViewModel.cs" />
+    <Compile Include="Models\Step1ViewModel.cs" />
     <Compile Include="Models\SquareEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +167,7 @@
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\ProjectTerm\EditTerm.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Index.aspx" />

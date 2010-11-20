@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.SecurityStep1ViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.Step1ViewModel>" %>
 <%@ Import Namespace="_2SQUARE.Models" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 

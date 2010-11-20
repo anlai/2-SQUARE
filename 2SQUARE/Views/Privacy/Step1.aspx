@@ -2,7 +2,7 @@
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Security Step 1 - Agree on Definitions
+	Privacy Step 1 - Agree on Definitions
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
@@ -16,7 +16,7 @@
 
     <%: Html.ActionLink<GuidanceController>(a=>a.SecurityStep1(), "Guidance", new {@class = "button ui-corner-all ui-state-default", style="float:right;"}) %>
 
-    <h2>Security Step 1 - Agree on Definitions</h2>
+    <h2>Privacy Step 1 - Agree on Definitions</h2>
 
     <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
         <h3>Responsiblities</h3>

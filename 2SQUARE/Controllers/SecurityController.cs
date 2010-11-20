@@ -27,7 +27,7 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Step1(int id /*step id*/, int projectId)
         {
-            var viewModel = SecurityStep1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+            var viewModel = Step1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
             // validate that this is a step 1 step
             if (viewModel.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));

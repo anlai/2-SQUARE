@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Models;
+using _2SQUARE.Services;
+using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
-    public class PrivacyController : Controller
+    public class PrivacyController : SuperController
     {
-        public ActionResult Step1()
-        {
-            throw new NotImplementedException();
+        private readonly IProjectService _projectService;
 
-            return View();
+        public PrivacyController(IProjectService projectService)
+        {
+            _projectService = projectService;
+        }
+
+        public ActionResult Step1(int id /* step id */, int projectId)
+        {
+            var viewModel = Step1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+
+            // validate that this is a step 1 step
+            if (viewModel.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
+
+            return View(viewModel);
         }
 
         public ActionResult Step2()
