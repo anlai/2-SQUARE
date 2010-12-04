@@ -110,9 +110,6 @@ body
     text-decoration: none;
     border: 1px solid #D3D3D3;
     color: #555555;
-    -moz-box-shadow: 3px 3px 4px #000;
-    -webkit-box-shadow: 3px 3px 4px #000;
-    box-shadow: 3px 3px 4px #000;
 }
 
 .button:hover
@@ -121,6 +118,17 @@ body
     border:1px solid #999999;
     color:#212121;
     font-weight:normal;
+}
+
+.shadow
+{
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;    
+}
+
+.shadow:active
+{
 }
 
 a {text-decoration: none;}

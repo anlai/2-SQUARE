@@ -44,5 +44,17 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(se.Message));
             }
         }
+
+        public ActionResult ChangeStatus(int id)
+        {
+            // check user's access
+            if (!_projectService.HasAccess(id, CurrentUserId))
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + id + ")")));
+            }
+
+            var project = _projectService.GetProject(id, CurrentUserId);
+            return View(project);
+        }
     }
 }

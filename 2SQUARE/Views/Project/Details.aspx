@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<_2SQUARE.Models.ProjectDetailsViewModel>" %>
+<%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Project Details
@@ -11,6 +12,8 @@
     <div id="description">
         <%: Model.Project.Description %>
     </div>
+
+    <%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.id), "Change Status", new { @class = "button ui-state-default ui-corner-all", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
 
     <h3>SQUARE Steps</h3>
 

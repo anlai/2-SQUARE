@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.Services;
+using DesignByContract;
 
 namespace _2SQUARE.Models
 {
@@ -12,6 +13,10 @@ namespace _2SQUARE.Models
 
         public static ProjectTermPredefinedTermsViewModel Create(SquareEntities db, IProjectService projectService, int stepId, int projectId, string loginId)
         {
+            Check.Require(db != null, "Square Entities is required.");
+            Check.Require(projectService != null, "projectService is required.");
+            Check.Require(loginId != null, "loginId is required.");
+
             var viewModel = new ProjectTermPredefinedTermsViewModel()
                                 {
                                     Step = db.Steps.Where(a => a.id == stepId && a.Order == 1).Single(),

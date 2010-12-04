@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.Services;
+using DesignByContract;
 
 namespace _2SQUARE.Models
 {
@@ -19,6 +20,10 @@ namespace _2SQUARE.Models
             //viewModel.Project = project;
             //viewModel.SquareTypes = squareEntities.SquareTypes.ToList();
             //viewModel.ProjectSteps = squareEntities.ProjectSteps.Where(a => a.ProjectId == project.id).ToList();
+
+            Check.Require(squareEntities != null, "squareEntities is required.");
+            Check.Require(projectService != null, "Project service is required.");
+            Check.Require(!string.IsNullOrEmpty(loginId), "login id is required.");
 
             var viewModel = new ProjectDetailsViewModel()
                                 {

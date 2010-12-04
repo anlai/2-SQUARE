@@ -13,13 +13,18 @@ namespace _2SQUARE.Services
     {
         SquareEntities db = new SquareEntities();
 
+        #region Access Methods
         public bool HasAccess(int id, string login)
         {
+            Check.Require(!string.IsNullOrEmpty(login), "login is required.");
+
             return db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Any();
         }
 
         public List<string> UserRoles(int id, string login)
         {
+            Check.Require(!string.IsNullOrEmpty(login), "login is required.");
+
             return
                 db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Select(
                     a => a.aspnet_Roles.RoleName).ToList();
@@ -32,6 +37,8 @@ namespace _2SQUARE.Services
         /// <returns></returns>
         public IList<Project> GetByUser(string login)
         {
+            Check.Require(!string.IsNullOrEmpty(login), "login is required.");
+
             var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
 
             return user.ProjectWorkers.Select(a=>a.Project).ToList();
@@ -45,6 +52,8 @@ namespace _2SQUARE.Services
         /// <returns></returns>
         public Project GetProject(int id, string login)
         {
+            Check.Require(!string.IsNullOrEmpty(login), "login is required.");
+
             var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
             var project = db.Projects.Where(a => a.id == id).Single();
 
@@ -52,7 +61,9 @@ namespace _2SQUARE.Services
 
             return project;
         }
+        #endregion
 
+        #region Step 1 Methods
         /// <summary>
         /// 
         /// </summary>
@@ -98,5 +109,6 @@ namespace _2SQUARE.Services
 
             return null;
         }
+        #endregion
     }
 }

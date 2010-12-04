@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DesignByContract;
 
 namespace _2SQUARE.Models
 {
@@ -11,6 +12,8 @@ namespace _2SQUARE.Models
 
         public static ProjectTermEditViewModel Create(SquareEntities db, int projectTermId, int stepId)
         {
+            Check.Require(db != null, "Square Entities is required.");
+
             var projectTerm = db.ProjectTerms.Where(a => a.id == projectTermId).Single();
 
             var viewModel = new ProjectTermEditViewModel()
