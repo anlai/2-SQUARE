@@ -30,6 +30,13 @@ namespace _2SQUARE.Services
                     a => a.aspnet_Roles.RoleName).ToList();
         }
 
+        public bool IsInProjectRole(int id /* project id */,string login, string roleName)
+        {
+            return
+                db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login && a.aspnet_Roles.RoleName == roleName)
+                .Any();
+        }
+
         /// <summary>
         /// Returns a list of projects based on user id
         /// </summary>

@@ -4,6 +4,9 @@ using _2SQUARE.Models;
 
 namespace _2SQUARE.Helpers
 {
+    /// <summary>
+    /// Validates objects are ready for persisting
+    /// </summary>
     public class Validation
     {
         public static void Validate(ProjectTerm projectTerm, ModelStateDictionary modelState)

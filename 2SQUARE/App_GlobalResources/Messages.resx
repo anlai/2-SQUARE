@@ -123,6 +123,9 @@
   <data name="NoAccess" xml:space="preserve">
     <value>User does not have access to {0}</value>
   </data>
+  <data name="NotValidForWork" xml:space="preserve">
+    <value>Step {0} for {1} is not ready to be worked on yet.  It has not been set by a project manager.</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>{0} is required.</value>
   </data>

@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 using _2SQUARE.Models;
 
 namespace _2SQUARE.Services
 {
     public interface IValidationService
     {
-        ValidationResult Validate(ProjectStep projectStep, bool complete, bool working);
+        ValidationChangeStatusResult ValidateChangeStatus(ProjectStep projectStep, bool complete, bool working);
+        RedirectToRouteResult ValidateForWork(ProjectStep projectStep, string login, Step step, Project project, out string message);
     }
 
-    public class ValidationResult
+    public class ValidationChangeStatusResult
     {
-        public ValidationResult()
+        public ValidationChangeStatusResult()
         {
             IsValid = false;
             Warnings = new List<string>();

@@ -79,6 +79,15 @@ namespace _2SQUARE.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Step {0} for {1} is not ready to be worked on yet.  It has not been set by a project manager..
+        /// </summary>
+        internal static string NotValidForWork {
+            get {
+                return ResourceManager.GetString("NotValidForWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string Required {

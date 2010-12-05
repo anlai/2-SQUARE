@@ -45,6 +45,11 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Change the status of a project step
+        /// </summary>
+        /// <param name="id">Project step id</param>
+        /// <returns></returns>
         public ActionResult ChangeStatus(int id)
         {
             // check user's access
