@@ -15,10 +15,12 @@ namespace _2SQUARE.Controllers
     public class SecurityController : SuperController
     {
         private readonly IProjectService _projectService;
+        private readonly IValidationService _validationService;
 
-        public SecurityController(IProjectService projectService)
+        public SecurityController(IProjectService projectService, IValidationService validationService)
         {
             _projectService = projectService;
+            _validationService = validationService;
         }
 
         #region Step 1
@@ -28,12 +30,22 @@ namespace _2SQUARE.Controllers
         /// <param name="id">Step Id</param>
         /// <param name="projectId">Project Id</param>
         /// <returns></returns>
+        [AvailableForWork]
         public ActionResult Step1(int id /*step id*/, int projectId)
         {
             var viewModel = Step1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
+            // validate that this step is available
+            var message = string.Empty;
+            var validateForWork = _validationService.ValidateForWork(CurrentUserId, viewModel.Step, viewModel.Project, out message);
+            if (validateForWork != null)
+            {
+                // display error if there is one
+                ErrorMessage = !string.IsNullOrEmpty(message) ? message : string.Empty;
+                return validateForWork;
+            }
 
-            // validate that this is a step 1 step
+            // validate that this is a step 1 step))))
             if (viewModel.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
 
             return View(viewModel);

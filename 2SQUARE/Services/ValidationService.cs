@@ -220,7 +220,7 @@ public class ValidationService : IValidationService
     /// <param name="step"></param>
     /// <param name="project"></param>
     /// <returns></returns>
-    public RedirectToRouteResult ValidateForWork(ProjectStep projectStep, string login, Step step, Project project, out string message)
+    public RedirectToRouteResult ValidateForWork(string login, Step step, Project project, out string message)
     {
         // validate that this step is in a working status
         var pStep = project.ProjectSteps.Where(a => a.StepId == step.id).FirstOrDefault();
