@@ -117,5 +117,90 @@ namespace _2SQUARE.Services
             return null;
         }
         #endregion
+
+        #region Project Status
+        /// <summary>
+        /// Determines the status of the requested step
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
+        public ProjectStepStatus GetStepStatus(int id)
+        {
+            var step = db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            // hasn't started working yet
+            if (!step.DateStarted.HasValue) return ProjectStepStatus.Pending;
+
+            // step is complete
+            if (step.Complete) return ProjectStepStatus.Complete;
+            
+            // step is working
+            return ProjectStepStatus.Working;
+        }
+
+        /// <summary>
+        /// Determines if step is in working state
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
+        public bool IsStepWorking(int id)
+        {
+            return GetStepStatus(id) == ProjectStepStatus.Working;
+        }
+
+        /// <summary>
+        /// Determines if step is in pending state
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
+        public bool IsStepPending(int id)
+        {
+            return GetStepStatus(id) == ProjectStepStatus.Pending;
+        }
+
+        /// <summary>
+        /// Determines if step is in complete state
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
+        public bool IsStepComplete(int id)
+        {
+            return GetStepStatus(id) == ProjectStepStatus.Complete;
+        }
+
+        /// <summary>
+        /// Determines if the step can/should be edited according to definition of SQUARE
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
+        public bool CanStepChangeStatus(int id)
+        {
+            var step = db.ProjectSteps.Where(a => a.Id == id).Single();
+            var project = step.Project;
+
+            // find the latest steps
+            var latestWorking = project.ProjectSteps.Where(a => IsStepWorking(a.Id)).Max(a=>a.Step.Order);
+            var latestComplete = project.ProjectSteps.Where(a => IsStepComplete(a.Id)).Max(a => a.Step.Order);
+
+            switch(step.Step.Order)
+            {
+                // as long as no other step has been started we're ok
+                case 1 :    return (latestWorking == 1 && latestComplete <= 1);
+                // step 1 must be completed
+                case 2:     return (latestComplete == 1);
+                case 3 : break;
+                case 4 : break;
+                case 5 : break;
+                case 6 : break;
+                case 7 : break;
+                case 8 : break;
+                case 9 : break;
+            }
+
+
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

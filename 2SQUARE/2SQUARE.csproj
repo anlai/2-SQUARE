@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ChangeStatusViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />

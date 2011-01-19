@@ -191,3 +191,13 @@ table td { padding-top: 10px; padding-bottom: 10px; }
 {
     width: 6em;
 }
+
+.editing-form
+{
+    list-style: none;
+}
+.editing-form li strong
+{
+    display: inline-block;
+    width: 125px;
+}

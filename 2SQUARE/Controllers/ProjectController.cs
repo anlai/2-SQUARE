@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
+using DesignByContract;
 using MvcContrib;
 
 namespace _2SQUARE.Controllers
@@ -59,7 +60,8 @@ namespace _2SQUARE.Controllers
             }
 
             var project = _projectService.GetProject(id, CurrentUserId);
-            return View(project);
+            var viewModel = ChangeStatusViewModel.Create(project);
+            return View(viewModel);
         }
     }
 }
