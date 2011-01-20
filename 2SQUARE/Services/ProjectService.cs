@@ -124,9 +124,11 @@ namespace _2SQUARE.Services
         /// </summary>
         /// <param name="id">Project Step Id</param>
         /// <returns></returns>
-        public ProjectStepStatus GetStepStatus(int id)
+        public ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null)
         {
-            var step = db.ProjectSteps.Where(a => a.Id == id).Single();
+            var step = projectStep ?? db.ProjectSteps.Where(a => a.Id == id).SingleOrDefault();
+
+            Check.Require(step != null, "step is required.");
 
             // hasn't started working yet
             if (!step.DateStarted.HasValue) return ProjectStepStatus.Pending;
@@ -173,32 +175,73 @@ namespace _2SQUARE.Services
         /// </summary>
         /// <param name="id">Project Step Id</param>
         /// <returns></returns>
-        public bool CanStepChangeStatus(int id)
+        public bool CanStepChangeStatus(int id = -1, ProjectStep projectStep = null)
         {
-            var step = db.ProjectSteps.Where(a => a.Id == id).Single();
-            var project = step.Project;
+            var step = projectStep ?? db.ProjectSteps.Where(a => a.Id == id).SingleOrDefault();
 
-            // find the latest steps
-            var latestWorking = project.ProjectSteps.Where(a => IsStepWorking(a.Id)).Max(a=>a.Step.Order);
-            var latestComplete = project.ProjectSteps.Where(a => IsStepComplete(a.Id)).Max(a => a.Step.Order);
+            Check.Require(step != null, "step is required.");
 
-            switch(step.Step.Order)
+            var stp = step.Step.Order;
+            var squareType = step.Step.SquareType;
+            var projectSteps = step.Project.ProjectSteps.ToList();
+
+            return ValidatePrereqs(stp, squareType, projectSteps)
+                && ValidateDependancies(stp, squareType, projectSteps);
+        }
+
+        private bool ValidatePrereqs(int step, SquareType squareType, List<ProjectStep> projectSteps)
+        {
+            // 0 index array with status at each step, ex. step 1 --> [0] contains the status of the step
+            var steps = projectSteps.Where(a => a.Step.SquareType == squareType).OrderBy(a => a.Step.Order)
+                                    .Select(a => GetStepStatus(projectStep:a)).ToArray();
+
+            Check.Require(steps.Count() == 9, "Incorrect number of steps returned.");
+
+            switch (step)
             {
-                // as long as no other step has been started we're ok
-                case 1 :    return (latestWorking == 1 && latestComplete <= 1);
-                // step 1 must be completed
-                case 2:     return (latestComplete == 1);
-                case 3 : break;
-                case 4 : break;
-                case 5 : break;
-                case 6 : break;
-                case 7 : break;
-                case 8 : break;
-                case 9 : break;
+                case 1: return true;                                    // no prereqs
+                case 2: return steps[0] == ProjectStepStatus.Complete;  // step 1
+                case 3: return true;                                    // no prereqs
+                case 4: return steps[2] == ProjectStepStatus.Complete;  // step 3
+                case 5: return steps[0] == ProjectStepStatus.Complete   // step 1
+                            && steps[1] == ProjectStepStatus.Complete;  // step 2
+                case 6: return steps[2] == ProjectStepStatus.Complete   // step 3
+                            && steps[3] == ProjectStepStatus.Complete   // step 4
+                            && steps[4] == ProjectStepStatus.Complete;  // step 5
+                case 7: return steps[5] == ProjectStepStatus.Complete;  // step 6
+                case 8: return steps[3] == ProjectStepStatus.Complete   // step 4
+                            && steps[6] == ProjectStepStatus.Complete;  // step 7
+                case 9: return steps[7] == ProjectStepStatus.Complete;  // step 8
             }
 
+            throw new ArgumentException("Step was not a valid step.");
+        }
 
-            throw new NotImplementedException();
+        private bool ValidateDependancies(int step, SquareType squareType, List<ProjectStep> projectSteps)
+        {
+            // 0 index array with status at each step, ex. step 1 --> [0] contains the status of the step
+            var steps = projectSteps.Where(a => a.Step.SquareType == squareType).OrderBy(a => a.Step.Order)
+                                    .Select(a => GetStepStatus(-1, a)).ToArray();
+
+            Check.Require(steps.Count() == 9, "Incorrect number of steps returned.");
+
+            switch (step)
+            {
+                case 1: return steps[1] != ProjectStepStatus.Complete   // step 2
+                            && steps[4] != ProjectStepStatus.Complete;  // step 5
+                case 2: return steps[4] != ProjectStepStatus.Complete;  // step 5
+                case 3: return steps[3] != ProjectStepStatus.Complete   // step 4
+                            && steps[5] != ProjectStepStatus.Complete;  // step 6
+                case 4: return steps[5] != ProjectStepStatus.Complete   // step 6
+                            && steps[7] != ProjectStepStatus.Complete;  // step 8
+                case 5: return steps[5] != ProjectStepStatus.Complete;  // step 6
+                case 6: return steps[6] != ProjectStepStatus.Complete;  // step 7
+                case 7: return steps[7] != ProjectStepStatus.Complete;  // step 8
+                case 8: return steps[8] != ProjectStepStatus.Complete;  // step 9
+                case 9: return true;                                    // no prereqs
+            }
+
+            throw new ArgumentException("Step was not a valid step.");
         }
 
         #endregion

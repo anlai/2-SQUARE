@@ -60,7 +60,7 @@ namespace _2SQUARE.Controllers
             }
 
             var project = _projectService.GetProject(id, CurrentUserId);
-            var viewModel = ChangeStatusViewModel.Create(project);
+            var viewModel = ChangeStatusViewModel.Create(project, _projectService);
             return View(viewModel);
         }
     }

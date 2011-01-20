@@ -18,11 +18,11 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step Status Methods
-        ProjectStepStatus GetStepStatus(int id);
+        ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);
         bool IsStepPending(int id);
         bool IsStepComplete(int id);
-        bool CanStepChangeStatus(int id);
+        bool CanStepChangeStatus(int id = -1, ProjectStep projectStep = null);
         #endregion
     }
 
