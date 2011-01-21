@@ -28,25 +28,18 @@
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:AccountModels.cs" caret="3882" fromTop="19" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:SecurityController.cs" caret="949" fromTop="8" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="3790" fromTop="25" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:Details.aspx" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ValidationService.cs" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Helpers/f:Validation.cs" caret="0" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="400" fromTop="15" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ProjectController.cs" caret="1643" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:ChangeStatusViewModel.cs" caret="1856" fromTop="26" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="794" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="7262" fromTop="56" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="487" fromTop="11" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ProjectController.cs" caret="1785" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="685" fromTop="17" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="9396" fromTop="14" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:ChangeStatusViewModel.cs" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="4064" fromTop="31" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="1105" fromTop="11" />
     </RecentFiles>
     <RecentEdits>
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="5263" fromTop="28" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="1095" fromTop="29" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="259" fromTop="4" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="5447" fromTop="25" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="5768" fromTop="32" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="6090" fromTop="32" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="6937" fromTop="39" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="6937" fromTop="39" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="10470" fromTop="33" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="669" fromTop="22" />
@@ -70,6 +63,13 @@
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:ChangeStatusViewModel.cs" caret="2069" fromTop="19" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="7484" fromTop="25" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="794" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="3762" fromTop="28" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="1600" fromTop="25" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="1546" fromTop="24" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="608" fromTop="13" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="3914" fromTop="35" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Content/f:Site.css" caret="4064" fromTop="39" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Project/f:ChangeStatus.aspx" caret="1105" fromTop="11" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -99,8 +99,8 @@
       <Item value="Html" priority="84" />
       <Item value="AccountController`0" priority="8" />
       <Item value="action" priority="29" />
-      <Item value="a" priority="145" />
-      <Item value="this" priority="17" />
+      <Item value="a" priority="146" />
+      <Item value="this" priority="18" />
       <Item value="void" priority="3" />
       <Item value="_2SQUARE" priority="10" />
       <Item value="using" priority="19" />
@@ -163,7 +163,7 @@
       <Item value="throw" priority="21" />
       <Item value="NotImplementedException" priority="16" />
       <Item value="IRepository" priority="1" />
-      <Item value="var" priority="104" />
+      <Item value="var" priority="107" />
       <Item value="from" priority="2" />
       <Item value="_projectRepository" priority="0" />
       <Item value="where" priority="1" />
@@ -180,8 +180,8 @@
       <Item value="projectService" priority="17" />
       <Item value="_projectService" priority="15" />
       <Item value="CurrentUser" priority="2" />
-      <Item value="foreach" priority="12" />
-      <Item value="in" priority="15" />
+      <Item value="foreach" priority="14" />
+      <Item value="in" priority="19" />
       <Item value="Request" priority="3" />
       <Item value="else" priority="8" />
       <Item value="Page" priority="2" />
@@ -201,7 +201,7 @@
       <Item value="SquareEntities`0" priority="4" />
       <Item value="SquareEntities" priority="2" />
       <Item value="partial" priority="0" />
-      <Item value="Model" priority="52" />
+      <Item value="Model" priority="56" />
       <Item value="id" priority="26" />
       <Item value="SecurityException" priority="0" />
       <Item value="Messages`0" priority="6" />
@@ -220,7 +220,7 @@
       <Item value="ProjectDetailsViewModel`0" priority="0" />
       <Item value="DBNull`0" priority="0" />
       <Item value="Db" priority="6" />
-      <Item value="b" priority="19" />
+      <Item value="b" priority="25" />
       <Item value="c" priority="1" />
       <Item value="t" priority="0" />
       <Item value="viewModel" priority="29" />
@@ -328,7 +328,7 @@
       <Item value="Status" priority="1" />
       <Item value="KeyValuePair&lt;string,string&gt;" priority="3" />
       <Item value="ChangeStatueViewModel`0" priority="0" />
-      <Item value="x" priority="1" />
+      <Item value="x" priority="3" />
       <Item value="enum" priority="0" />
       <Item value="ProjectStepStatus`0" priority="11" />
       <Item value="GetStepStatus`0" priority="3" />
@@ -357,6 +357,7 @@
       <Item value="CurrentStepStatus" priority="0" />
       <Item value="CanEdit" priority="0" />
       <Item value="IsStepPending`0" priority="0" />
+      <Item value="s" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Filters.RoleNames">
       <Item value="RoleProjectManager" priority="4" />
@@ -481,9 +482,9 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
       <Item value="ToList`1" priority="7" />
-      <Item value="OrderBy`2" priority="3" />
+      <Item value="OrderBy`2" priority="4" />
       <Item value="Where`1" priority="0" />
-      <Item value="Distinct`1" priority="0" />
+      <Item value="Distinct`1" priority="1" />
       <Item value="Count`1" priority="0" />
       <Item value="FirstOrDefault`1" priority="2" />
       <Item value="Any`1" priority="0" />
@@ -557,7 +558,7 @@
       <Item value="Description" priority="4" />
       <Item value="id" priority="19" />
       <Item value="ProjectWorkers" priority="2" />
-      <Item value="ProjectSteps" priority="18" />
+      <Item value="ProjectSteps" priority="19" />
       <Item value="ProjectTerms" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.SquareEntities">
@@ -587,7 +588,7 @@
       <Item value="Any`1" priority="1" />
       <Item value="OrderBy`2" priority="0" />
       <Item value="Where`1" priority="7" />
-      <Item value="Select`2" priority="3" />
+      <Item value="Select`2" priority="4" />
       <Item value="Distinct`1" priority="0" />
       <Item value="Count" priority="0" />
       <Item value="Max`2" priority="1" />
@@ -637,20 +638,20 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.SquareType">
       <Item value="Steps" priority="0" />
-      <Item value="Name" priority="10" />
-      <Item value="id" priority="3" />
+      <Item value="Name" priority="11" />
+      <Item value="id" priority="4" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Step">
       <Item value="Order" priority="14" />
       <Item value="Name" priority="5" />
-      <Item value="SquareType" priority="17" />
+      <Item value="SquareType" priority="18" />
       <Item value="Action" priority="0" />
       <Item value="Controller" priority="0" />
       <Item value="id" priority="12" />
       <Item value="SquareTypeId" priority="9" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.ProjectStep">
-      <Item value="Step" priority="34" />
+      <Item value="Step" priority="35" />
       <Item value="Complete" priority="2" />
       <Item value="DateStarted" priority="8" />
       <Item value="Project" priority="6" />
@@ -684,7 +685,7 @@
       <Item value="Select`2" priority="0" />
       <Item value="Contains`0" priority="4" />
       <Item value="Add`0" priority="6" />
-      <Item value="Where`1" priority="0" />
+      <Item value="Where`1" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Term">
       <Item value="Name" priority="6" />
@@ -829,10 +830,11 @@
       <Item value="ViewData" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:ASP.views_project_changestatus_aspx">
-      <Item value="Select`0" priority="0" />
+      <Item value="Select`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:MvcContrib.FluentHtml.Elements.Select">
-      <Item value="Options`1" priority="0" />
+      <Item value="Options`1" priority="1" />
+      <Item value="Selected`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.ChangeStatueViewModel">
       <Item value="Status" priority="2" />
@@ -841,13 +843,13 @@
       <Item value="Create`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.ChangeStatusViewModel">
-      <Item value="Project" priority="3" />
-      <Item value="Status" priority="0" />
-      <Item value="ChangeStatusProjectSteps" priority="0" />
+      <Item value="Project" priority="4" />
+      <Item value="Status" priority="2" />
+      <Item value="ChangeStatusProjectSteps" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair`2">
-      <Item value="Key" priority="0" />
-      <Item value="Value" priority="0" />
+      <Item value="Key" priority="3" />
+      <Item value="Value" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Services.ProjectStepStatus">
       <Item value="Pending" priority="2" />
@@ -859,6 +861,14 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Services.ProjectStepStatus">
       <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Models.ChangeStatusProjectStep">
+      <Item value="SquareTypeId" priority="0" />
+      <Item value="Order" priority="0" />
+      <Item value="CurrentStepStatus" priority="3" />
+      <Item value="Name" priority="0" />
+      <Item value="ProjectStepId" priority="0" />
+      <Item value="CanEdit" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

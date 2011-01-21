@@ -9,15 +9,29 @@
 
     <h2>Change Project Status</h2>
 
-    <% foreach (var a in Model.Project.ProjectSteps.Select(a => a.Step.SquareType).Distinct()) { %>
+    <% foreach (var a in Model.Project.ProjectSteps.Select(a=>a.Step.SquareType).Distinct()) { %>
+        <div class="squaretype-container">
+        <strong class="header"><%: a.Name %></strong>
         <ul class="editing-form">
-        <% foreach (var b in Model.Project.ProjectSteps.Where(b => b.Step.SquareTypeId == a.id).OrderBy(b=>b.Step.Order)) { %>
-            <li><strong><%= this.Select("Status").Options(Model.Status, x=>x.Key, x=>x.Value) %></strong>
-                <%: b.Step.Name %></li>
-        <% } %>
+            <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareTypeId == a.id).OrderBy(b => b.Order)) { %>
+                <li>
+                    <strong>
+                        <%--<%= this.Select("Status").Options(Model.Status,x=>x.Key, x=>x.Value).Selected(b.CurrentStepStatus) %>--%>
+                        <select class="status" data-id="<%: b.ProjectStepId %>" <%: b.CanEdit ? "disabled" : string.Empty %>>
+                            <% foreach (var s in Model.Status) { %>
+                                <option value="<%: s.Key %>" <%: (int)b.CurrentStepStatus == s.Key ? "selected" : string.Empty %>><%: s.Value %></option>
+                            <% } %>
+                        </select>
+                    </strong>
+                    <%: b.Name %>
+                </li>
+            <% } %>
         </ul>
+        </div>
     <% } %>
 
+
+    <div style="clear:both;">&nbsp;</div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

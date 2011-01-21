@@ -196,8 +196,26 @@ table td { padding-top: 10px; padding-bottom: 10px; }
 {
     list-style: none;
 }
+.editing-form li
+{
+    margin-bottom: .5em;
+}
 .editing-form li strong
 {
     display: inline-block;
     width: 125px;
+}
+
+.squaretype-container
+{
+    float: left;
+    margin-left: 20px;
+}
+
+.squaretype-container .header
+{
+    margin-left: 20px;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    display: inline-block;
 }
