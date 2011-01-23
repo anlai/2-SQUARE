@@ -10,7 +10,7 @@
 
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
-        google.load("jquery", "1.4.2");
+        google.load("jquery", "1.4.4");
         google.load("jqueryui", "1.8.6");
     </script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />

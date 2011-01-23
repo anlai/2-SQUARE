@@ -244,6 +244,36 @@ namespace _2SQUARE.Services
             throw new ArgumentException("Step was not a valid step.");
         }
 
+        public ProjectStep UpdateStatus(int id, ProjectStepStatus projectStepStatus, string login)
+        {
+            var step = db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            // validate that the step can be changed
+            if (CanStepChangeStatus(projectStep: step))
+            {
+                switch (projectStepStatus)
+                {
+                    case ProjectStepStatus.Pending:
+                        step.DateStarted = null;
+                        step.Complete = false;
+                        break;
+                    case ProjectStepStatus.Working:
+                        step.DateStarted = DateTime.Now;
+                        step.Complete = false;
+                        break;
+                    case ProjectStepStatus.Complete:
+                        step.DateStarted = step.DateStarted.HasValue ? step.DateStarted : DateTime.Now;
+                        step.DateCompleted = DateTime.Now;
+                        step.Complete = true;
+                        break;
+                }
+            }
+
+            db.SaveChanges();
+
+            return step;
+        }
+
         #endregion
     }
 }

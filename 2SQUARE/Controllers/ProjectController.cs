@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using _2SQUARE.Models;
 using _2SQUARE.Services;
 using DesignByContract;
 using MvcContrib;
+using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
@@ -62,6 +64,21 @@ namespace _2SQUARE.Controllers
             var project = _projectService.GetProject(id, CurrentUserId);
             var viewModel = ChangeStatusViewModel.Create(project, _projectService);
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateStatus(int id /* project id */, int stepId, ProjectStepStatus projectStepStatus)
+        {
+            var step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
+
+            // determine if any steps change in their ability to be edited
+            var changeSteps = new List<KeyValuePair<int, bool>>();
+            foreach (var a in Db.ProjectSteps.Where(a => a.ProjectId == id))
+            {
+                changeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
+            }
+
+            return Json(changeSteps);
         }
     }
 }

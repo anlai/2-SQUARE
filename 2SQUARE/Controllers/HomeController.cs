@@ -17,11 +17,6 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Index()
         {
-            SquareEntities db = new SquareEntities();
-
-            var project = db.Projects.FirstOrDefault();
-            var test = project.ProjectSteps.Select(a => _projectService.GetStepStatus(a.Id)).ToArray();
-
             return View();
         }
 

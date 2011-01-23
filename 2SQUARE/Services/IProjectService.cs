@@ -23,6 +23,7 @@ namespace _2SQUARE.Services
         bool IsStepPending(int id);
         bool IsStepComplete(int id);
         bool CanStepChangeStatus(int id = -1, ProjectStep projectStep = null);
+        ProjectStep UpdateStatus(int id, ProjectStepStatus projectStepStatus, string login);
         #endregion
     }
 

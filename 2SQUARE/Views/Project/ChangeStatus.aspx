@@ -8,7 +8,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Change Project Status</h2>
-
     <% foreach (var a in Model.Project.ProjectSteps.Select(a=>a.Step.SquareType).Distinct()) { %>
         <div class="squaretype-container">
         <strong class="header"><%: a.Name %></strong>
@@ -16,8 +15,7 @@
             <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareTypeId == a.id).OrderBy(b => b.Order)) { %>
                 <li>
                     <strong>
-                        <%--<%= this.Select("Status").Options(Model.Status,x=>x.Key, x=>x.Value).Selected(b.CurrentStepStatus) %>--%>
-                        <select class="status" data-id="<%: b.ProjectStepId %>" <%: b.CanEdit ? "disabled" : string.Empty %>>
+                        <select class="status" data-id="<%: b.ProjectStepId %>" <%: !b.CanEdit ? "disabled" : string.Empty %>>
                             <% foreach (var s in Model.Status) { %>
                                 <option value="<%: s.Key %>" <%: (int)b.CurrentStepStatus == s.Key ? "selected" : string.Empty %>><%: s.Value %></option>
                             <% } %>
@@ -30,11 +28,38 @@
         </div>
     <% } %>
 
-
     <div style="clear:both;">&nbsp;</div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+
+    <script type="text/javascript">
+
+        var projectId = '<%: Model.Project.id %>';
+        var updateUrl = '<%: Url.Action("UpdateStatus", "Project") %>';
+
+        $(function () {
+
+            $("select.status").change(function () {
+                var stepId = $(this).data("id");
+                var status = $(this).val();
+
+                $.post(updateUrl, { id: projectId, stepId: stepId, projectStepStatus: status }, function (result) {
+
+                    $.each(result, function (index, item) {
+                        var $select = $('select[data-id="' + item.Key + '"]');
+                        debugger;
+                        if (item.Value) $select.attr("disabled", "");
+                        else $select.attr("disabled", "disabled");
+
+                    });
+
+                });
+            });
+
+        });
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
