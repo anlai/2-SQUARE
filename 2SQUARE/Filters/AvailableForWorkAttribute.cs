@@ -12,6 +12,8 @@ namespace _2SQUARE.Filters
 {
     public class AvailableForWorkAttribute : ActionFilterAttribute
     {
+        private IProjectService _projectService = new ProjectService();
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var urlHelper = new UrlHelper(filterContext.RequestContext);
@@ -30,19 +32,22 @@ namespace _2SQUARE.Filters
 
             var project = pStep.Project;
 
-            if (!pStep.DateStarted.HasValue || pStep.DateCompleted.HasValue)
+            if (!_projectService.IsStepWorking(pStep.Id))
             {
                 // this project is not valid for working
                 // admin needs to change status
                 if (project.ProjectWorkers.Where(a => a.aspnet_Users.UserName == logon 
                     && a.aspnet_Roles.RoleName == RoleNames.RoleProjectManager).Any())
                 {
+                    filterContext.Controller.TempData["ErrorMessage"] = string.Format(Messages.Manager_NotValidForWork,
+                                                                                      pStep.Step.Order,
+                                                                                      pStep.Step.SquareType.Name);
                     filterContext.Result = new RedirectResult(urlHelper.Action("ChangeStatus", "Project", new { id = pStep.Id }));
                 }
                 else
                 {
                     // regular user, can't access step
-                    filterContext.Controller.ViewData["ErrorMessage"] = string.Format(Messages.NotValidForWork,
+                    filterContext.Controller.TempData["ErrorMessage"] = string.Format(Messages.NotValidForWork,
                                                                                       pStep.Step.Order,
                                                                                       pStep.Step.SquareType.Name);
                     filterContext.Result = new RedirectResult(urlHelper.Action("Details", "Project", new { id = projectId }));

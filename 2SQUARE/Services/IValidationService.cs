@@ -10,7 +10,6 @@ namespace _2SQUARE.Services
     public interface IValidationService
     {
         ValidationChangeStatusResult ValidateChangeStatus(ProjectStep projectStep, bool complete, bool working);
-        RedirectToRouteResult ValidateForWork(string login, Step step, Project project, out string message);
     }
 
     public class ValidationChangeStatusResult

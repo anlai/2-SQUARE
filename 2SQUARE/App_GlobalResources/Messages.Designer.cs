@@ -70,6 +70,15 @@ namespace _2SQUARE.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Step {0} for {1} has not been set for work yet.  Please change the status below to begin working..
+        /// </summary>
+        internal static string Manager_NotValidForWork {
+            get {
+                return ResourceManager.GetString("Manager_NotValidForWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User does not have access to {0}.
         /// </summary>
         internal static string NoAccess {

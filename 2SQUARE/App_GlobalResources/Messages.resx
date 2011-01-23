@@ -120,6 +120,9 @@
   <data name="InvalidStep" xml:space="preserve">
     <value>The provided step (id={0}) is not valid for the requested step {1}.</value>
   </data>
+  <data name="Manager_NotValidForWork" xml:space="preserve">
+    <value>Step {0} for {1} has not been set for work yet.  Please change the status below to begin working.</value>
+  </data>
   <data name="NoAccess" xml:space="preserve">
     <value>User does not have access to {0}</value>
   </data>

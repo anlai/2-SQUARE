@@ -37,13 +37,6 @@ namespace _2SQUARE.Controllers
 
             // validate that this step is available
             var message = string.Empty;
-            var validateForWork = _validationService.ValidateForWork(CurrentUserId, viewModel.Step, viewModel.Project, out message);
-            if (validateForWork != null)
-            {
-                // display error if there is one
-                ErrorMessage = !string.IsNullOrEmpty(message) ? message : string.Empty;
-                return validateForWork;
-            }
 
             // validate that this is a step 1 step))))
             if (viewModel.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
