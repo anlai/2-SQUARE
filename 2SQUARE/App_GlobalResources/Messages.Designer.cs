@@ -61,6 +61,15 @@ namespace _2SQUARE.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} has been successfully deleted..
+        /// </summary>
+        internal static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided step (id={0}) is not valid for the requested step {1}..
         /// </summary>
         internal static string InvalidStep {

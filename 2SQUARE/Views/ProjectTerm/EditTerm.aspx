@@ -13,17 +13,25 @@
     <fieldset>
         <legend>Current Definition</legend>
 
-        <%  using (Html.BeginForm()) { %>
-            
-            <%: Html.Hidden("id", Model.ProjectTerm.id)%>
-            <%: Html.Hidden("StepId", Model.StepId) %>
+
 
         <ul style="list-style:none;">
-            <li><%: Html.TextArea("definition", Model.ProjectTerm.Definition, new {cols=95}) %></li>
-            <li><strong style="margin-right: 20px;">Source:</strong><%: Html.TextBox("source", Model.ProjectTerm.Source) %></li>
-            <li><%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %></li>
+            <%  using (Html.BeginForm()) { %>
+                <%: Html.Hidden("id", Model.ProjectTerm.id)%>
+                <%: Html.Hidden("StepId", Model.StepId) %>    
+                <li><%: Html.TextArea("definition", Model.ProjectTerm.Definition, new {cols=95}) %></li>
+                <li><strong style="margin-right: 20px;">Source:</strong><%: Html.TextBox("source", Model.ProjectTerm.Source) %></li>
+                <li style="margin-top: 10px;">
+                    <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
+                    <% } %>
+                    <% using (Html.BeginForm("RemoveTerm", "ProjectTerm", FormMethod.Post, new {style="display:inline;"})) { %>
+                        <%: Html.Hidden("id", Model.ProjectTerm.id)%>
+                        <%: Html.Hidden("StepId", Model.StepId) %>                           
+                        <%: Html.SubmitButton("Delete", "Delete", new {@class="button ui-corner-all ui-state-default"}) %>
+                    <% } %>
+                </li>
         </ul>
-        <% } %>
+       
 
     </fieldset>
 

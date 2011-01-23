@@ -43,18 +43,6 @@ namespace _2SQUARE.Controllers
 
             return View(viewModel);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id">Step Id</param>
-        /// <param name="projectId">Project Id</param>
-        /// <returns></returns>
-        [HttpPost]
-        public RedirectToRouteResult RemoveTerm(int id /*step id*/, int projectId)
-        {
-            return this.RedirectToAction(a => a.Step1(id, projectId));
-        }
         #endregion
 
         public ActionResult Step2()

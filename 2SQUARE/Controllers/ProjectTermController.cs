@@ -137,5 +137,36 @@ namespace _2SQUARE.Controllers
             viewModel.ProjectTerm = projectTerm;
             return View(viewModel);
         }
+
+        /// <summary>
+        /// Remove term from step
+        /// </summary>
+        /// <param name="id">Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
+        [HttpPost]
+        public RedirectToRouteResult RemoveTerm(int id /*project term id*/, int stepId)
+        {
+            var step = Db.ProjectSteps.Where(a => a.Id == stepId).SingleOrDefault();
+            var projectTerm = Db.ProjectTerms.Where(a => a.id == id).SingleOrDefault();
+            var term = projectTerm.Term;
+
+            if (step == null || projectTerm == null)
+            {
+                ErrorMessage = "Unable to find either step or project term.";
+                return this.RedirectToAction<ErrorController>(a => a.Index());
+            }
+            if (projectTerm.ProjectId != step.ProjectId)
+            {
+                ErrorMessage = "Project mismatch, term project does not match step project.";
+                return this.RedirectToAction<ErrorController>(a => a.Index());
+            }
+
+            Db.DeleteObject(projectTerm);
+            Db.SaveChanges();
+
+            Message = string.Format(Messages.Deleted, term);
+            return RedirectToAction(step.Step.Action, step.Step.Controller, new {id=stepId, projectId=step.ProjectId});
+        }
     }
 }
