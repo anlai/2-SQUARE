@@ -77,7 +77,6 @@ public class ValidationService : IValidationService
 
         return result;
     }
-
     #region Validate Change Status Helpers
     /// <summary>
     /// Step 1 starting validation
@@ -95,31 +94,6 @@ public class ValidationService : IValidationService
         if (projectStep.Project.ProjectSteps.Any(a => a.DateStarted.HasValue))
         {
             warnings.Add("Other steps are active, making this step active may prevent you from completing or working on other steps.");
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// Step 1 completion validation
-    /// </summary>
-    /// <remarks>
-    /// Validation for step 1 of Privacy and Security are the same, there is an agreed upon
-    /// list of terms
-    /// </remarks>
-    /// <param name="projectStep"></param>
-    /// <param name="warnings"></param>
-    /// <param name="errors"></param>
-    /// <returns></returns>
-    private bool Step1Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        Check.Require(projectStep != null, "projectStep is required.");
-
-        // this is the only exit criteria, there are a set of terms
-        if (projectStep.Project.ProjectTerms.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Count() <= 0)
-        {
-            errors.Add("There are no definitions for this project.");
-            return false;
         }
 
         return true;
@@ -205,4 +179,44 @@ public class ValidationService : IValidationService
         throw new NotImplementedException();
     }
     #endregion
+
+    public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
+    {
+        var result = new ValidationChangeStatusResult();
+
+        switch (projectStep.Step.Order)
+        {
+            case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
+                break;
+        }
+
+        return result;
+    }
+    
+    /// <summary>
+    /// Step 1 completion validation
+    /// </summary>
+    /// <remarks>
+    /// Validation for step 1 of Privacy and Security are the same, there is an agreed upon
+    /// list of terms
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
+    private bool Step1Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+        
+        // this is the only exit criteria, there are a set of terms
+        if (projectStep.Project.ProjectTerms.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Count() <= 0)
+        {
+            errors.Add(string.Format("There are no definitions for {0} in this project.", projectStep.Step.SquareType.Name));
+            return false;
+        }
+
+        return true;
+    }
 }

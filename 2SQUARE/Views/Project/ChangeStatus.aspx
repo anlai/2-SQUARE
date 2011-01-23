@@ -45,14 +45,43 @@
                 var status = $(this).val();
 
                 $.post(updateUrl, { id: projectId, stepId: stepId, projectStepStatus: status }, function (result) {
+                    if (result.IsValid) {
+                        $.each(result.ChangeSteps, function (index, item) {
+                            var $select = $('select[data-id="' + item.Key + '"]');
 
-                    $.each(result, function (index, item) {
-                        var $select = $('select[data-id="' + item.Key + '"]');
-                        debugger;
-                        if (item.Value) $select.attr("disabled", "");
-                        else $select.attr("disabled", "disabled");
+                            if (item.Value) $select.attr("disabled", "");
+                            else $select.attr("disabled", "disabled");
 
-                    });
+                        });
+                    }
+                    else {
+                        $("#errormessage-container").html("");
+                        $("#message-container").html("");
+
+                        var errors = $("<ul>");
+                        var messages = $("<ul>");
+
+                        // go through the warnings
+                        $.each(result.Warnings, function (index, item) {
+                            messages.append($("<li>").html(item));
+                        });
+
+                        // go through the errors
+                        $.each(result.Errors, function (index, item) {
+                            errors.append($("<li>").html(item));
+                        });
+
+                        if (errors.children().size() > 0) {
+                            $("#errormessage-container").append(errors);
+                            $("#errormessage-container").parents("div.messages").show();
+                        }
+                        if (messages.children().size() > 0) {
+                            $("#message-container").append(messages);
+                            $("#message-container").parents("div.messages").show();
+                        }
+                    }
+
+
 
                 });
             });

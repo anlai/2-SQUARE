@@ -16,10 +16,12 @@ namespace _2SQUARE.Controllers
     public class ProjectController : SuperController
     {
         private readonly IProjectService _projectService;
+        private readonly IValidationService _validationService;
 
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectService projectService, IValidationService validationService)
         {
             _projectService = projectService;
+            _validationService = validationService;
         }
 
         public ActionResult Index()
@@ -69,16 +71,37 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public JsonResult UpdateStatus(int id /* project id */, int stepId, ProjectStepStatus projectStepStatus)
         {
-            var step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
+            var validationResult = new ValidationChangeStatusResult() {IsValid = true};
+            var step = Db.ProjectSteps.Where(a => a.Id == stepId).SingleOrDefault();
 
-            // determine if any steps change in their ability to be edited
-            var changeSteps = new List<KeyValuePair<int, bool>>();
-            foreach (var a in Db.ProjectSteps.Where(a => a.ProjectId == id))
+            if (step == null)
             {
-                changeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
+                validationResult.IsValid = false;
+                validationResult.Errors.Add("Unable to find step");
             }
 
-            return Json(changeSteps);
+            // only run validation if complete status and we are still valid
+            if (projectStepStatus == ProjectStepStatus.Complete && validationResult.IsValid)
+            {
+                validationResult = _validationService.ValidateCompletion(step);
+            }
+
+            // if still valid, run the update
+            if (validationResult.IsValid)
+            {
+                step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
+
+                // determine if any steps change in their ability to be edited
+                var changeSteps = new List<KeyValuePair<int, bool>>();
+                foreach (var a in Db.ProjectSteps.Where(a => a.ProjectId == id))
+                {
+                    validationResult.ChangeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
+                }
+
+            }
+            
+
+            return Json(validationResult);
         }
     }
 }
