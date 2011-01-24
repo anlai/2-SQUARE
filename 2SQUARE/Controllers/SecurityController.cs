@@ -39,13 +39,14 @@ namespace _2SQUARE.Controllers
             var message = string.Empty;
 
             // validate that this is a step 1 step))))
-            if (viewModel.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
+            if (viewModel.Step.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
 
             return View(viewModel);
         }
         #endregion
 
-        public ActionResult Step2()
+        [AvailableForWork]
+        public ActionResult Step2(int id /*step id*/, int projectId)
         {
             throw new NotImplementedException();
 

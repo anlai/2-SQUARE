@@ -14,7 +14,7 @@
         <tbody>
             <% foreach (var a in Model.ProjectTerms) { %>
                 <tr class="definition-row">
-                    <td class="button-cell"><%: Html.ActionLink<ProjectTermController>(b=>b.EditTerm(a.id, Model.Step.id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %></td>
+                    <td class="button-cell"><%: Html.ActionLink<ProjectTermController>(b=>b.EditTerm(a.id, Model.Step.Id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %></td>
                     <td class="term-cell"><%: a.Term %></td>
                     <td class="source-cell">[<%: a.Source %>]</td>
                     <td><%: a.Definition %></td>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 
 namespace _2SQUARE.Services
@@ -26,6 +27,4 @@ namespace _2SQUARE.Services
         ProjectStep UpdateStatus(int id, ProjectStepStatus projectStepStatus, string login);
         #endregion
     }
-
-    public enum ProjectStepStatus {Pending=0, Working, Complete}
 }

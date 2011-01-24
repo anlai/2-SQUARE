@@ -8,7 +8,7 @@ namespace _2SQUARE.Models
 {
     public class Step1ViewModel
     {
-        public Step Step { get; set; }
+        public ProjectStep Step { get; set; }
         public Project Project { get; set; }
         public IEnumerable<ProjectTerm> ProjectTerms { get; set; }
 
@@ -24,11 +24,13 @@ namespace _2SQUARE.Models
 
             var viewModel = new Step1ViewModel()
                                 {
-                                    Step = db.Steps.Where(a=>a.id == stepId && a.Order == 1).Single(),
+                                    Step = db.ProjectSteps.Where(a=>a.Id == stepId).Single(),
                                     Project = db.Projects.Where(a=>a.id == projectId).Single()
                                 };
 
-            var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.SquareTypeId).ToList();
+            
+
+            var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.Step.SquareTypeId).ToList();
             viewModel.ProjectTerms = projectTerms;
 
             var roles = projectService.UserRoles(projectId, loginId);
