@@ -13,6 +13,7 @@ namespace _2SQUARE.Filters
     public class AvailableForWorkAttribute : ActionFilterAttribute
     {
         private IProjectService _projectService = new ProjectService();
+        private IValidationService _validationService = new ValidationService(new ProjectService());
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -20,13 +21,17 @@ namespace _2SQUARE.Filters
 
             // if these are null, then the model binder will throw error anyways
             var projectId = Convert.ToInt32(filterContext.RequestContext.HttpContext.Request.Params["projectId"]);
-            var id = Convert.ToInt32(filterContext.RouteData.Values["id"]); // step id
+            var id = Convert.ToInt32(filterContext.RouteData.Values["id"]); // project step id
             var logon = filterContext.RequestContext.HttpContext.User.Identity.Name;
 
             var db = new SquareEntities();
 
             // load pstep
-            var pStep = db.ProjectSteps.Where(a => a.ProjectId == projectId && a.StepId == id).Single();
+            var pStep = db.ProjectSteps.Where(a => a.ProjectId == projectId && a.Id == id).Single();
+
+            // figure out if the current user has access
+
+            // validate their step access
 
             Check.Require(pStep != null, "pstep is required.");
 

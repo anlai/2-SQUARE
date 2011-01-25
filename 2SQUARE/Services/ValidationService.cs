@@ -192,7 +192,13 @@ public class ValidationService : IValidationService
 
         return result;
     }
-    
+
+    public bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep)
+    {
+        //todo: write in rules for each step on who can access
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Step 1 completion validation
     /// </summary>

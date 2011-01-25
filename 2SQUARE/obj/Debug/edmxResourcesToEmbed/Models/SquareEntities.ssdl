@@ -174,6 +174,10 @@
       <End Role="SquareTypes" EntitySet="SquareTypes" />
       <End Role="Goals" EntitySet="Goals" />
     </AssociationSet>
+    <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.Store.FK_GoalTypes_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="GoalTypes" EntitySet="GoalTypes" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.Store.FK_ProjectSteps_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectSteps" EntitySet="ProjectSteps" />
@@ -369,6 +373,7 @@
     <Property Name="id" Type="char" Nullable="false" MaxLength="1" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SquareTypeId" Type="int" />
   </EntityType>
   <EntityType Name="Projects">
     <Key>
@@ -780,6 +785,18 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Goals">
+        <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoalTypes_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="0..1" />
+    <End Role="GoalTypes" Type="SquareModel.Store.GoalTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GoalTypes">
         <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>

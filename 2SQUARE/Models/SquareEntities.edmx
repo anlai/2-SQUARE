@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SquareModelStoreContainer">
           <EntitySet Name="aspnet_Applications" EntityType="SquareModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Membership" EntityType="SquareModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
@@ -178,6 +178,10 @@
           <AssociationSet Name="FK_Goals_SquareTypes" Association="SquareModel.Store.FK_Goals_SquareTypes">
             <End Role="SquareTypes" EntitySet="SquareTypes" />
             <End Role="Goals" EntitySet="Goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.Store.FK_GoalTypes_SquareTypes">
+            <End Role="SquareTypes" EntitySet="SquareTypes" />
+            <End Role="GoalTypes" EntitySet="GoalTypes" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.Store.FK_ProjectSteps_Projects">
             <End Role="Projects" EntitySet="Projects" />
@@ -374,6 +378,7 @@
           <Property Name="id" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="SquareTypeId" Type="int" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -789,6 +794,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoalTypes_SquareTypes">
+          <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="0..1" />
+          <End Role="GoalTypes" Type="SquareModel.Store.GoalTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SquareTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GoalTypes">
+              <PropertyRef Name="SquareTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProjectSteps_Projects">
           <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="1" />
           <End Role="ProjectSteps" Type="SquareModel.Store.ProjectSteps" Multiplicity="*" />
@@ -897,8 +914,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SquareModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -1024,6 +1040,10 @@
           <AssociationSet Name="aspnet_UsersInRoles" Association="SquareModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.FK_GoalTypes_SquareTypes">
+            <End Role="SquareType" EntitySet="SquareTypes" />
+            <End Role="GoalType" EntitySet="GoalTypes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
@@ -1203,6 +1223,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_GoalTypes" FromRole="GoalTypes" ToRole="Goals" />
+          <Property Type="Int32" Name="SquareTypeId" />
+          <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="GoalType" ToRole="SquareType" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -1273,6 +1295,7 @@
           <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="SquareTypes" ToRole="ProjectTerms" />
           <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
           <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
+          <NavigationProperty Name="GoalTypes" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="SquareType" ToRole="GoalType" />
         </EntityType>
         <EntityType Name="Step">
           <Key>
@@ -1698,6 +1721,18 @@
           <End Role="aspnet_Roles" Type="SquareModel.aspnet_Roles" Multiplicity="*" />
           <End Role="aspnet_Users" Type="SquareModel.aspnet_Users" Multiplicity="*" />
         </Association>
+        <Association Name="FK_GoalTypes_SquareTypes">
+          <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="0..1" />
+          <End Type="SquareModel.GoalType" Role="GoalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SquareType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GoalType">
+              <PropertyRef Name="SquareTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1811,7 +1846,8 @@
             <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="GoalTypes"><EntityTypeMapping TypeName="SquareModel.GoalType"><MappingFragment StoreEntitySet="GoalTypes">
-            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
@@ -2064,8 +2100,8 @@
           <ConnectorPoint PointX="14.25" PointY="15.961293945312502" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_GoalTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="14.25" PointY="6.396098632812496" />
-          <ConnectorPoint PointX="16.40625" PointY="6.396098632812496" />
+          <ConnectorPoint PointX="14.25" PointY="6.5884000651041621" />
+          <ConnectorPoint PointX="16.40625" PointY="6.5884000651041621" />
           <ConnectorPoint PointX="16.40625" PointY="11.375" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_Projects" ManuallyRouted="false">
@@ -2074,8 +2110,8 @@
           <ConnectorPoint PointX="16.15625" PointY="13.932190755208332" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.25" PointY="6.9564925130208337" />
-          <ConnectorPoint PointX="16.3749975" PointY="6.9564925130208337" />
+          <ConnectorPoint PointX="11.25" PointY="7.1487939453125" />
+          <ConnectorPoint PointX="16.3749975" PointY="7.1487939453125" />
           <ConnectorPoint PointX="16.3749975" PointY="11.375" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Projects" ManuallyRouted="false">
@@ -2088,10 +2124,10 @@
           <ConnectorPoint PointX="6.75" PointY="18.126152846153843" />
           <ConnectorPoint PointX="7.125" PointY="17.751152846153843" />
           <ConnectorPoint PointX="7.125" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.416666666666666" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.583333333333334" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.822919166666667" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.989585833333335" PointY="10.307190755208339" />
+          <ConnectorPoint PointX="10.244792916666667" PointY="10.307190755208339" />
+          <ConnectorPoint PointX="10.411459583333334" PointY="10.307190755208339" />
+          <ConnectorPoint PointX="10.736982291666665" PointY="10.307190755208339" />
+          <ConnectorPoint PointX="10.903648958333333" PointY="10.307190755208339" />
           <ConnectorPoint PointX="11.625" PointY="10.307190755208339" />
           <ConnectorPoint PointX="12" PointY="9.9321907552083388" />
         </AssociationConnector>
@@ -2107,19 +2143,19 @@
           <ConnectorPoint PointX="14.25" PointY="18.451795688802086" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.25" PointY="8.0237939453125016" />
-          <ConnectorPoint PointX="12" PointY="8.0237939453125016" />
+          <ConnectorPoint PointX="11.25" PointY="8.1199446614583337" />
+          <ConnectorPoint PointX="12" PointY="8.1199446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Steps_RequirementCategories" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.5" PointY="8.6725878906250031" />
-          <ConnectorPoint PointX="10.5" PointY="12.749746093749998" />
-          <ConnectorPoint PointX="10.822919166666667" PointY="12.749746093749998" />
-          <ConnectorPoint PointX="10.989585833333335" PointY="12.749746093749998" />
+          <ConnectorPoint PointX="10.32812625" PointY="8.8648893229166656" />
+          <ConnectorPoint PointX="10.32812625" PointY="12.749746093749998" />
+          <ConnectorPoint PointX="10.736982291666665" PointY="12.749746093749998" />
+          <ConnectorPoint PointX="10.903648958333333" PointY="12.749746093749998" />
           <ConnectorPoint PointX="12" PointY="12.749746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Terms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.9062525" PointY="8.6725878906250031" />
-          <ConnectorPoint PointX="10.9062525" PointY="15.961293945312502" />
+          <ConnectorPoint PointX="10.820315625" PointY="8.8648893229166656" />
+          <ConnectorPoint PointX="10.820315625" PointY="15.961293945312502" />
           <ConnectorPoint PointX="12" PointY="15.961293945312502" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.aspnet_UsersInRoles" ManuallyRouted="false">
@@ -2127,6 +2163,10 @@
           <ConnectorPoint PointX="4.875" PointY="17.001152846153843" />
           <ConnectorPoint PointX="4.875" PointY="15.6702754375" />
           <ConnectorPoint PointX="5.25" PointY="15.6702754375" />
+        </AssociationConnector>
+        <AssociationConnector Association="SquareModel.FK_GoalTypes_SquareTypes" >
+          <ConnectorPoint PointX="11.25" PointY="6.7112939453125" />
+          <ConnectorPoint PointX="12.75" PointY="6.7112939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

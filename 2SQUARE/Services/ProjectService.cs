@@ -15,6 +15,12 @@ namespace _2SQUARE.Services
         SquareEntities db = new SquareEntities();
 
         #region Access Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public bool HasAccess(int id, string login)
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");

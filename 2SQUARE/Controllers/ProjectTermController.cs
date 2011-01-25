@@ -65,10 +65,7 @@ namespace _2SQUARE.Controllers
         /// 
         /// </summary>
         /// <param name="id">Step Id</param>
-        /// <param name="projectId">Project Id</param>
-        /// <param name="term"></param>
-        /// <param name="definition"></param>
-        /// <param name="source"></param>
+        /// <param name="projectTerm"></param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult AddNewTerm(int id /*step id*/, ProjectTerm projectTerm)
@@ -92,6 +89,7 @@ namespace _2SQUARE.Controllers
         /// 
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="stepId">Only used for redirection information</param>
         /// <returns></returns>
         public ActionResult EditTerm(int id /* project term id */, int stepId)
         {
@@ -102,6 +100,15 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="stepId">Only used for redirection information</param>
+        /// <param name="definitionId"></param>
+        /// <param name="definition"></param>
+        /// <param name="source"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EditTerm(int id /* project term id */, int stepId, int definitionId = -1, string definition = null, string source = null)
         {
@@ -141,8 +148,8 @@ namespace _2SQUARE.Controllers
         /// <summary>
         /// Remove term from step
         /// </summary>
-        /// <param name="id">Step Id</param>
-        /// <param name="projectId">Project Id</param>
+        /// <param name="id">Project Term Id</param>
+        /// <param name="stepId">Used for redirection information only</param>
         /// <returns></returns>
         [HttpPost]
         public RedirectToRouteResult RemoveTerm(int id /*project term id*/, int stepId)
