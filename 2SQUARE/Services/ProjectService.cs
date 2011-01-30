@@ -125,6 +125,30 @@ namespace _2SQUARE.Services
         }
         #endregion
 
+        #region Step 2 Methods
+        public Goal AddGoal(int id /* projectStep Id */, Goal goal)
+        {
+            // load the project step
+            var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
+            // list of goal types for this square type
+            var goalTypes = db.GoalTypes.Where(a=>a.SquareTypeId == projectStep.Step.SquareTypeId).Select(a=>a.id).ToList();
+
+            // wrong goal type for the project step
+            if (!goalTypes.Contains(goal.GoalTypeId)) return null;
+
+            // create new
+            if (goal.id <= 0)
+            {
+                goal.ProjectId = projectStep.ProjectId;
+                db.AddToGoals(goal);    
+            }
+
+            db.SaveChanges();
+
+            return goal;
+        }
+        #endregion
+
         #region Project Status
         /// <summary>
         /// Determines the status of the requested step

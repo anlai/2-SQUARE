@@ -18,6 +18,10 @@ namespace _2SQUARE.Services
         ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0);
         #endregion
 
+        #region Step 2 Methods
+        Goal AddGoal(int id /* projectStep Id */, Goal goal);
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);
