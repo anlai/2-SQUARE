@@ -11,11 +11,15 @@
 
     <h3>Business Goal</h3>
 
-    <div id="business-goal-container">
-    <%: Html.TextArea("BusinessGoal", Model.BusinessGoal != null ? Model.BusinessGoal.Description : string.Empty, new {style="width: 80%; height: 60px;"}) %>
-    <br />
-    <%: Html.SubmitButton("SaveBusinessGoal", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-    </div>
+    <% using (Html.BeginForm("SaveBusinessGoal", "Goal", FormMethod.Post)) { %>
+        <%: Html.Hidden("Id", Model.ProjectStep.Id) %>
+        <div id="business-goal-container">
+        <%: Html.TextArea("BusinessGoal", Model.BusinessGoal != null ? Model.BusinessGoal.Description : string.Empty, new {style="width: 80%; height: 60px;"}) %>
+        <br />
+        <%: Html.SubmitButton("SaveBusinessGoal", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
+        </div>
+    <% } %>
+
 
     <%: Html.ActionLink<GoalController>(a=>a.Add(Model.ProjectStep.Id), "Add Security Goal", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
 
@@ -30,8 +34,11 @@
         <tbody>
             <% foreach (var a in Model.SecurityGoals) { %>
                 <tr class="definition-row">
-                    <td class="button-cell"></td>
-                    <td><%: a.Description %></td>
+                    <td class="button-cell" style="width: 135px;">
+                        <%: Html.ActionLink<GoalController>(b=>b.Edit(Model.ProjectStep.Id, a.id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %>
+                        <%: Html.ActionLink<GoalController>(b=>b.Delete(Model.ProjectStep.Id, a.id), "Delete", new {@class="button ui-state-default ui-corner-all"}) %>
+                    </td>
+                    <td style="width: 700px;"><%: a.Description %></td>
                 </tr>
             <% } %>
         </tbody>

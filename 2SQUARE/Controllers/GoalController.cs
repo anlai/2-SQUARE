@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Data.Objects;
 using System.Web.Mvc;
+using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
+using MvcContrib;
+using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
@@ -29,10 +33,62 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 _projectService.AddGoal(id, goal);
+                return RedirectToAction("Step2", goal.SquareType.Name, new {id = id, projectId=goal.ProjectId});
             }
 
-            // parameters are being passed in correctly, just need to save and redirect);
+            var viewModel = AddGoalViewModel.Create(Db, id, goal);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult SaveBusinessGoal(int id /*project step id*/, string businessGoal)
+        {
+            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
+            var goal = projectStep.Project.Goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Business).ToString()).SingleOrDefault();
+
+            // if goal == null, then no current business goal, save as new
+            if (goal == null)
+            {
+                goal = new Goal()
+                           {
+                               Description = businessGoal,
+                               GoalTypeId = ((char)GoalTypes.Business).ToString(),
+                               ProjectId = projectStep.ProjectId, 
+                               SquareTypeId = projectStep.Step.SquareTypeId
+                           };
+                Db.AddToGoals(goal);
+            }
+            // if existing update
+            else
+            {
+                goal.Description = businessGoal;
+            }
+
+            Validation.Validate(goal, ModelState);
+
+            if (ModelState.IsValid)
+            {
+                Db.SaveChanges();
+                Db.Refresh(RefreshMode.ClientWins, goal);   // objects were beign cached and showing stale data
+                Message = "Business goal has been updated.";
+            }
+            else
+            {
+                ErrorMessage = "Unable to update business goal";
+            }
+
+            return RedirectToAction("Step2", projectStep.Step.SquareType.Name, new { id = id, projectId = projectStep.ProjectId });
+        }
+
+        public ActionResult Edit(int id /*project step id*/, int goalId)
+        {
             throw new NotImplementedException();
+            return View();
+        }
+
+        public ActionResult Delete(int id /*project step id*/, int goalId)
+        {
+            return View();
         }
     }
 }
