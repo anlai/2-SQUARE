@@ -160,10 +160,6 @@
     <Compile Include="Services\ValidationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\2Square.mdf" />
-    <Content Include="App_Data\2Square_log.LDF">
-      <DependentUpon>2Square.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\PageStyles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -230,6 +226,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SquareTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\SquareEntities.edmx">

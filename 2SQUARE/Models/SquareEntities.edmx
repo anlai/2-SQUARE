@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SquareModelStoreContainer">
           <EntitySet Name="aspnet_Applications" EntityType="SquareModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Membership" EntityType="SquareModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
@@ -457,7 +457,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_Applications">
           <Key>
@@ -471,7 +471,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_MembershipUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_MembershipUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_MembershipUsers">
           <Key>
@@ -517,7 +517,7 @@
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_Profiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_Profiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_Profiles">
           <Key>
@@ -529,7 +529,7 @@
           <Property Name="DataSize" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_Roles">
           <Key>
@@ -545,7 +545,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_Users">
           <Key>
@@ -565,7 +565,7 @@
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_UsersInRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_UsersInRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_UsersInRoles">
           <Key>
@@ -576,7 +576,7 @@
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_WebPartState_Paths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_WebPartState_Paths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_WebPartState_Paths">
           <Key>
@@ -591,7 +591,7 @@
           <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_WebPartState_Shared' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_WebPartState_Shared' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_WebPartState_Shared">
           <Key>
@@ -603,7 +603,7 @@
           <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE\APP_DATA\2SQUARE.MDF.dbo.vw_aspnet_WebPartState_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view '2Square.dbo.vw_aspnet_WebPartState_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_WebPartState_User">
           <Key>
@@ -914,7 +914,339 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+        <Function Name="aspnet_AnyDataInTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TablesToCheck" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Applications_CreateApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_CheckSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_ChangePasswordQuestionAndAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPasswordQuestion" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordQuestion" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsApproved" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+          <Parameter Name="UniqueEmail" Type="int" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Membership_FindUsersByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_FindUsersByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetNumberOfUsersOnline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MinutesSinceLastInActive" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetPasswordWithFormat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateLastLoginActivityDate" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateLastActivity" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateLastActivity" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_ResetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_SetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UnlockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Comment" Type="ntext" Mode="In" />
+          <Parameter Name="IsApproved" Type="bit" Mode="In" />
+          <Parameter Name="LastLoginDate" Type="datetime" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+          <Parameter Name="UniqueEmail" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UpdateUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPasswordCorrect" Type="bit" Mode="In" />
+          <Parameter Name="UpdateLastLoginActivityDate" Type="bit" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="LastLoginDate" Type="datetime" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Paths_CreatePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PathId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Personalization_GetApplicationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_DeleteAllState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_FindState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_GetCountOfState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_ResetSharedState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_ResetUserState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_GetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_ResetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_SetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageSettings" Type="image" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_GetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_ResetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_SetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageSettings" Type="image" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_DeleteInactiveProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_DeleteProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetNumberOfInactiveProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_SetProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyNames" Type="ntext" Mode="In" />
+          <Parameter Name="PropertyValuesString" Type="ntext" Mode="In" />
+          <Parameter Name="PropertyValuesBinary" Type="image" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsUserAnonymous" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_RegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsCurrentVersion" Type="bit" Mode="In" />
+          <Parameter Name="RemoveIncompatibleSchema" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_CreateRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_DeleteRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeleteOnlyIfRoleIsEmpty" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_RoleExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Setup_RemoveAllRoleMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Setup_RestorePermissions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UnRegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Users_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsUserAnonymous" Type="bit" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Users_DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TablesToDeleteFrom" Type="int" Mode="In" />
+          <Parameter Name="NumTablesDeletedFrom" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_AddUsersToRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_FindUsersInRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_GetRolesForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_GetUsersInRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_IsUserInRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_RemoveUsersFromRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleNames" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_WebEvent_LogEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventId" Type="char" Mode="In" />
+          <Parameter Name="EventTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="EventTime" Type="datetime" Mode="In" />
+          <Parameter Name="EventType" Type="nvarchar" Mode="In" />
+          <Parameter Name="EventSequence" Type="decimal" Mode="In" />
+          <Parameter Name="EventOccurrence" Type="decimal" Mode="In" />
+          <Parameter Name="EventCode" Type="int" Mode="In" />
+          <Parameter Name="EventDetailCode" Type="int" Mode="In" />
+          <Parameter Name="Message" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationVirtualPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="MachineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RequestUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Details" Type="ntext" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SquareModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -1009,6 +1341,10 @@
             <End Role="SquareTypes" EntitySet="SquareTypes" />
             <End Role="Goals" EntitySet="Goals" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.FK_GoalTypes_SquareTypes">
+            <End Role="SquareTypes" EntitySet="SquareTypes" />
+            <End Role="GoalTypes" EntitySet="GoalTypes" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.FK_ProjectSteps_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="ProjectSteps" EntitySet="ProjectSteps" />
@@ -1040,10 +1376,6 @@
           <AssociationSet Name="aspnet_UsersInRoles" Association="SquareModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.FK_GoalTypes_SquareTypes">
-            <End Role="SquareType" EntitySet="SquareTypes" />
-            <End Role="GoalType" EntitySet="GoalTypes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
@@ -1222,9 +1554,9 @@
           <Property Name="id" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="SquareTypeId" Type="Int32" />
           <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_GoalTypes" FromRole="GoalTypes" ToRole="Goals" />
-          <Property Type="Int32" Name="SquareTypeId" />
-          <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="GoalType" ToRole="SquareType" />
+          <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="GoalTypes" ToRole="SquareTypes" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -1292,10 +1624,10 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_SquareTypes" FromRole="SquareTypes" ToRole="Goals" />
+          <NavigationProperty Name="GoalTypes" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="SquareTypes" ToRole="GoalTypes" />
           <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="SquareTypes" ToRole="ProjectTerms" />
           <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
           <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
-          <NavigationProperty Name="GoalTypes" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="SquareType" ToRole="GoalType" />
         </EntityType>
         <EntityType Name="Step">
           <Key>
@@ -1633,6 +1965,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoalTypes_SquareTypes">
+          <End Role="SquareTypes" Type="SquareModel.SquareType" Multiplicity="0..1" />
+          <End Role="GoalTypes" Type="SquareModel.GoalType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SquareTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GoalTypes">
+              <PropertyRef Name="SquareTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProjectSteps_Projects">
           <End Role="Projects" Type="SquareModel.Project" Multiplicity="1" />
           <End Role="ProjectSteps" Type="SquareModel.ProjectStep" Multiplicity="*" />
@@ -1720,18 +2064,6 @@
         <Association Name="aspnet_UsersInRoles">
           <End Role="aspnet_Roles" Type="SquareModel.aspnet_Roles" Multiplicity="*" />
           <End Role="aspnet_Users" Type="SquareModel.aspnet_Users" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_GoalTypes_SquareTypes">
-          <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="0..1" />
-          <End Type="SquareModel.GoalType" Role="GoalType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SquareType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="GoalType">
-              <PropertyRef Name="SquareTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1846,10 +2178,10 @@
             <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="GoalTypes"><EntityTypeMapping TypeName="SquareModel.GoalType"><MappingFragment StoreEntitySet="GoalTypes">
-            <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
-                <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Projects"><EntityTypeMapping TypeName="SquareModel.Project"><MappingFragment StoreEntitySet="Projects">
             <ScalarProperty Name="id" ColumnName="id" />
@@ -2013,26 +2345,26 @@
         <EntityTypeShape EntityType="SquareModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.aspnet_Users" Width="1.5" PointX="5.25" PointY="13" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.aspnet_WebEvent_Events" Width="1.5" PointX="7.75" PointY="0.75" Height="3.9033007812500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.Definition" Width="1.5" PointX="14.25" PointY="14.875" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.Goal" Width="1.5" PointX="15" PointY="11.375" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.GoalType" Width="1.5" PointX="12.75" PointY="4.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.Definition" Width="1.5" PointX="14.25" PointY="17.875" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.Goal" Width="1.5" PointX="14.25" PointY="13.125" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.GoalType" Width="1.5" PointX="12" PointY="8.25" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.Project" Width="1.5" PointX="5.25" PointY="18.125" Height="2.5571907552083388" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.ProjectStep" Width="1.5" PointX="14.25" PointY="17.75" Height="2.5571907552083388" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.ProjectTerm" Width="1.5" PointX="12" PointY="7.375" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.ProjectStep" Width="1.5" PointX="17.25" PointY="16.25" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.ProjectTerm" Width="1.5" PointX="12" PointY="11.125" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.ProjectWorker" Width="1.5" PointX="7.5" PointY="15.375" Height="2.1725878906250031" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.Role" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4033821614583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.SquareType" Width="1.5" PointX="9.75" PointY="6.5" Height="2.1725878906250022" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.Step" Width="1.5" PointX="12" PointY="11.375" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.Term" Width="1.5" PointX="12" PointY="14.875" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.SquareType" Width="1.5" PointX="9.75" PointY="8" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.Step" Width="1.5" PointX="12" PointY="14.375" Height="2.749492187499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.Term" Width="1.5" PointX="12" PointY="17.875" Height="2.1725878906250031" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.vw_aspnet_Applications" Width="1.5" PointX="0.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_MembershipUsers" Width="1.5" PointX="14.75" PointY="0.75" Height="5.4417122395833246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_MembershipUsers" Width="1.5" PointX="9.75" PointY="0.75" Height="5.4417122395833246" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.vw_aspnet_Profiles" Width="1.5" PointX="4.75" PointY="0.75" Height="1.5956835937500102" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_Roles" Width="1.5" PointX="9.75" PointY="0.75" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_Users" Width="1.5" PointX="11.75" PointY="0.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_UsersInRoles" Width="1.5" PointX="14.75" PointY="7.75" Height="1.4033821614583246" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="16.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="16.75" PointY="3.75" Height="1.5956835937500102" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="16.75" PointY="6.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_Roles" Width="1.5" PointX="11.75" PointY="0.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_Users" Width="1.5" PointX="11.75" PointY="3.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_UsersInRoles" Width="1.5" PointX="13.75" PointY="0.75" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="13.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="14.75" PointY="6.75" Height="1.5956835937500102" IsExpanded="true" />
+        <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="14.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
         <AssociationConnector Association="SquareModel.FK__aspnet_Me__Appli__21B6055D" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="11.653595377604166" />
           <ConnectorPoint PointX="3" PointY="11.653595377604166" />
@@ -2076,8 +2408,6 @@
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK__aspnet_Pr__UserI__38996AB5" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="13.3987939453125" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="13.3987939453125" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="13.3987939453125" />
           <ConnectorPoint PointX="7.5" PointY="13.3987939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectWorkers_aspnet_Roles" ManuallyRouted="false">
@@ -2094,79 +2424,87 @@
           <ConnectorPoint PointX="7.5" PointY="15.946848958333334" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Definitions_Terms" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.5" PointY="15.961293945312502" />
-          <ConnectorPoint PointX="13.791666666666666" PointY="15.961293945312502" />
-          <ConnectorPoint PointX="13.958333333333334" PointY="15.961293945312502" />
-          <ConnectorPoint PointX="14.25" PointY="15.961293945312502" />
+          <ConnectorPoint PointX="13.5" PointY="18.9612939453125" />
+          <ConnectorPoint PointX="14.25" PointY="18.9612939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_GoalTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="14.25" PointY="6.5884000651041621" />
-          <ConnectorPoint PointX="16.40625" PointY="6.5884000651041621" />
-          <ConnectorPoint PointX="16.40625" PointY="11.375" />
+          <ConnectorPoint PointX="13.5" PointY="9.0478417968750051" />
+          <ConnectorPoint PointX="14.46875" PointY="9.0478417968750051" />
+          <ConnectorPoint PointX="14.46875" PointY="13.125" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="20.525940755208339" />
-          <ConnectorPoint PointX="16.15625" PointY="20.525940755208339" />
-          <ConnectorPoint PointX="16.15625" PointY="13.932190755208332" />
+          <ConnectorPoint PointX="6.75" PointY="19.403595377604169" />
+          <ConnectorPoint PointX="11.75" PointY="19.403595377604169" />
+          <ConnectorPoint PointX="11.75" PointY="17.625" />
+          <ConnectorPoint PointX="15" PointY="17.625" />
+          <ConnectorPoint PointX="15" PointY="15.682190755208332" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.25" PointY="7.1487939453125" />
-          <ConnectorPoint PointX="16.3749975" PointY="7.1487939453125" />
-          <ConnectorPoint PointX="16.3749975" PointY="11.375" />
+          <ConnectorPoint PointX="10.5" PointY="10.364889322916667" />
+          <ConnectorPoint PointX="10.5" PointY="14.028595377604169" />
+          <ConnectorPoint PointX="11.026045416666667" PointY="14.028595377604169" />
+          <ConnectorPoint PointX="11.192712083333335" PointY="14.028595377604169" />
+          <ConnectorPoint PointX="11.570262044270836" PointY="14.028595377604169" />
+          <ConnectorPoint PointX="11.736928710937503" PointY="14.028595377604169" />
+          <ConnectorPoint PointX="14.25" PointY="14.028595377604169" />
+        </AssociationConnector>
+        <AssociationConnector Association="SquareModel.FK_GoalTypes_SquareTypes" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.25" PointY="9.3074446614583337" />
+          <ConnectorPoint PointX="12" PointY="9.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="19.216095377604169" />
-          <ConnectorPoint PointX="7.7604141666666671" PointY="19.216095377604169" />
-          <ConnectorPoint PointX="7.9270808333333331" PointY="19.216095377604169" />
-          <ConnectorPoint PointX="14.25" PointY="19.216095377604169" />
+          <ConnectorPoint PointX="6.75" PointY="20.396139322916671" />
+          <ConnectorPoint PointX="18" PointY="20.396139322916671" />
+          <ConnectorPoint PointX="18" PointY="18.807190755208339" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_Projects" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="18.126152846153843" />
           <ConnectorPoint PointX="7.125" PointY="17.751152846153843" />
-          <ConnectorPoint PointX="7.125" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.244792916666667" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.411459583333334" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.736982291666665" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="10.903648958333333" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="11.625" PointY="10.307190755208339" />
-          <ConnectorPoint PointX="12" PointY="9.9321907552083388" />
+          <ConnectorPoint PointX="7.125" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="10.010414166666665" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="10.177080833333333" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="11.026045416666667" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="11.192712083333335" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="11.375" PointY="14.307190755208339" />
+          <ConnectorPoint PointX="12" PointY="13.682190755208339" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectWorkers_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="19.871018066406254" />
-          <ConnectorPoint PointX="7.8437475" PointY="19.871018066406254" />
+          <ConnectorPoint PointX="6.75" PointY="18.764874111879006" />
+          <ConnectorPoint PointX="7.8437475" PointY="18.764874111879006" />
           <ConnectorPoint PointX="7.8437475" PointY="17.547587890625003" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Steps" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.5" PointY="14.124492187499996" />
-          <ConnectorPoint PointX="13.875" PointY="14.499492187499996" />
-          <ConnectorPoint PointX="13.875" PointY="18.451795688802086" />
-          <ConnectorPoint PointX="14.25" PointY="18.451795688802086" />
+          <ConnectorPoint PointX="13.5" PointY="16.687246093749998" />
+          <ConnectorPoint PointX="14.916666666666666" PointY="16.687246093749998" />
+          <ConnectorPoint PointX="15.083333333333334" PointY="16.687246093749998" />
+          <ConnectorPoint PointX="17.25" PointY="16.687246093749998" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.25" PointY="8.1199446614583337" />
-          <ConnectorPoint PointX="12" PointY="8.1199446614583337" />
+          <ConnectorPoint PointX="10.9062525" PointY="10.364889322916667" />
+          <ConnectorPoint PointX="10.9062525" PointY="12.372342877604176" />
+          <ConnectorPoint PointX="11.026045416666667" PointY="12.372342877604176" />
+          <ConnectorPoint PointX="11.192712083333335" PointY="12.372342877604176" />
+          <ConnectorPoint PointX="12" PointY="12.372342877604176" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Steps_RequirementCategories" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.32812625" PointY="8.8648893229166656" />
-          <ConnectorPoint PointX="10.32812625" PointY="12.749746093749998" />
-          <ConnectorPoint PointX="10.736982291666665" PointY="12.749746093749998" />
-          <ConnectorPoint PointX="10.903648958333333" PointY="12.749746093749998" />
-          <ConnectorPoint PointX="12" PointY="12.749746093749998" />
+          <ConnectorPoint PointX="10.0937475" PointY="10.364889322916667" />
+          <ConnectorPoint PointX="10.0937475" PointY="15.749746093749998" />
+          <ConnectorPoint PointX="11.026045416666667" PointY="15.749746093749998" />
+          <ConnectorPoint PointX="11.192712083333335" PointY="15.749746093749998" />
+          <ConnectorPoint PointX="12" PointY="15.749746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Terms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.820315625" PointY="8.8648893229166656" />
-          <ConnectorPoint PointX="10.820315625" PointY="15.961293945312502" />
-          <ConnectorPoint PointX="12" PointY="15.961293945312502" />
+          <ConnectorPoint PointX="11.109378750000001" PointY="10.364889322916667" />
+          <ConnectorPoint PointX="11.109378750000001" PointY="18.639297688802085" />
+          <ConnectorPoint PointX="11.666666666666666" PointY="18.639297688802085" />
+          <ConnectorPoint PointX="11.833333333333334" PointY="18.639297688802085" />
+          <ConnectorPoint PointX="12" PointY="18.639297688802085" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.aspnet_UsersInRoles" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="17.376152846153843" />
           <ConnectorPoint PointX="4.875" PointY="17.001152846153843" />
           <ConnectorPoint PointX="4.875" PointY="15.6702754375" />
           <ConnectorPoint PointX="5.25" PointY="15.6702754375" />
-        </AssociationConnector>
-        <AssociationConnector Association="SquareModel.FK_GoalTypes_SquareTypes" >
-          <ConnectorPoint PointX="11.25" PointY="6.7112939453125" />
-          <ConnectorPoint PointX="12.75" PointY="6.7112939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

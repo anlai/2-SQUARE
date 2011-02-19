@@ -158,10 +158,10 @@
     <EntitySetMapping Name="GoalTypes">
       <EntityTypeMapping TypeName="SquareModel.GoalType">
         <MappingFragment StoreEntitySet="GoalTypes">
-          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

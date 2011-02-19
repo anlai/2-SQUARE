@@ -91,6 +91,10 @@
       <End Role="SquareTypes" EntitySet="SquareTypes" />
       <End Role="Goals" EntitySet="Goals" />
     </AssociationSet>
+    <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.FK_GoalTypes_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="GoalTypes" EntitySet="GoalTypes" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.FK_ProjectSteps_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectSteps" EntitySet="ProjectSteps" />
@@ -122,10 +126,6 @@
     <AssociationSet Name="aspnet_UsersInRoles" Association="SquareModel.aspnet_UsersInRoles">
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.FK_GoalTypes_SquareTypes">
-      <End Role="SquareType" EntitySet="SquareTypes" />
-      <End Role="GoalType" EntitySet="GoalTypes" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
@@ -304,9 +304,9 @@
     <Property Name="id" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="SquareTypeId" Type="Int32" />
     <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_GoalTypes" FromRole="GoalTypes" ToRole="Goals" />
-    <Property Type="Int32" Name="SquareTypeId" />
-    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="GoalType" ToRole="SquareType" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="GoalTypes" ToRole="SquareTypes" />
   </EntityType>
   <EntityType Name="Project">
     <Key>
@@ -374,10 +374,10 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_SquareTypes" FromRole="SquareTypes" ToRole="Goals" />
+    <NavigationProperty Name="GoalTypes" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="SquareTypes" ToRole="GoalTypes" />
     <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="SquareTypes" ToRole="ProjectTerms" />
     <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
-    <NavigationProperty Name="GoalTypes" Relationship="SquareModel.FK_GoalTypes_SquareTypes" FromRole="SquareType" ToRole="GoalType" />
   </EntityType>
   <EntityType Name="Step">
     <Key>
@@ -715,6 +715,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_GoalTypes_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.SquareType" Multiplicity="0..1" />
+    <End Role="GoalTypes" Type="SquareModel.GoalType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GoalTypes">
+        <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProjectSteps_Projects">
     <End Role="Projects" Type="SquareModel.Project" Multiplicity="1" />
     <End Role="ProjectSteps" Type="SquareModel.ProjectStep" Multiplicity="*" />
@@ -802,17 +814,5 @@
   <Association Name="aspnet_UsersInRoles">
     <End Role="aspnet_Roles" Type="SquareModel.aspnet_Roles" Multiplicity="*" />
     <End Role="aspnet_Users" Type="SquareModel.aspnet_Users" Multiplicity="*" />
-  </Association>
-  <Association Name="FK_GoalTypes_SquareTypes">
-    <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="0..1" />
-    <End Type="SquareModel.GoalType" Role="GoalType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SquareType">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="GoalType">
-        <PropertyRef Name="SquareTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
 </Schema>
