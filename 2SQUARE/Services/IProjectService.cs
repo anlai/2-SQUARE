@@ -12,6 +12,7 @@ namespace _2SQUARE.Services
         bool IsInProjectRole(int id /* project id */, string login, string roleName);
         IList<Project> GetByUser(string login);
         Project GetProject(int id, string login);
+        IList<ProjectStep> GetProjectSteps(int id, SquareType squareType = null);
         #endregion
 
         #region Step 1 Methods

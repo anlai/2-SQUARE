@@ -79,18 +79,11 @@ namespace _2SQUARE.Controllers
             {
                 validationResult.IsValid = false;
                 validationResult.Errors.Add("Unable to find step");
+                return Json(validationResult);
             }
 
-            //// only run validation if complete status and we are still valid
-            //if (projectStepStatus == ProjectStepStatus.Complete && validationResult.IsValid)
-            //{
-            //    validationResult = _validationService.ValidateCompletion(step);
-            //}
-
-            if (validationResult.IsValid)
-            {
-                validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
-            }
+            // run validation on the step and the status to change to
+            validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
 
             // if still valid, run the update
             if (validationResult.IsValid)

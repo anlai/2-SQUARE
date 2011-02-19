@@ -75,6 +75,18 @@ namespace _2SQUARE.Services
 
             return project;
         }
+
+        public IList<ProjectStep> GetProjectSteps(int id, SquareType squareType = null)
+        {
+            var query = db.ProjectSteps.Where(a => a.ProjectId == id);
+
+            if (squareType != null)
+            {
+                query = query.Where(a => a.Step.SquareTypeId == squareType.id);
+            }
+
+            return query.ToList();
+        }
         #endregion
 
         #region Step 1 Methods

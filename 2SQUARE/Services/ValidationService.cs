@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -82,6 +84,7 @@ public class ValidationService : IValidationService
     /// Step 1 starting validation
     /// </summary>
     /// <remarks>
+    /// There are no preconditions to get step 1 started.
     /// </remarks>
     /// <param name="projectStep"></param>
     /// <param name="warnings"></param>
@@ -126,15 +129,92 @@ public class ValidationService : IValidationService
         return true;
     }
 
+    /// <summary>
+    /// Step 2 starting validation
+    /// </summary>
+    /// <remarks>
+    /// This step has the prereq that step 1 is completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step2Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        // check for step 1's completion
+        var steps = _projectService.GetProjectSteps(projectStep.ProjectId, projectStep.Step.SquareType);
+        if (steps.Where(a => a.Step.Order == 1 && a.Complete).Any())
+        {
+            return true;
+        }
+        
+        // step 1 is not completed
+        errors.Add("Step 1 has not been completed.");
+
         return false;
     }
 
+    /// <summary>
+    /// Step 2 completion validation
+    /// </summary>
+    /// <remarks>
+    /// For security step 2 is required to have a business process and one or more security goals.
+    /// For privacy step 2 is required to have one or more privacy goals
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step2Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        // check the goals
+        var goals = projectStep.Project.Goals;
+
+        // deal with security checking
+        if (projectStep.Step.SquareType.Name == SquareTypes.Security)
+        {
+            // check for business goal
+            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Business).ToString()).Any())
+            {
+                errors.Add("No business goal was found.");
+            }
+
+            // check for security goal
+            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Security).ToString()).Any())
+            {
+                errors.Add("No security goals were found.");
+            }
+
+            // no errors approve the change
+            if (errors.Count == 0) return true;
+            
+            // there is at least one problem
+            return false;
+        }
+        
+        // deal with privacy
+        if (projectStep.Step.SquareType.Name == SquareTypes.Privacy)
+        {
+            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Privacy).ToString()).Any())
+            {
+                errors.Add("No privacy goals were found.");
+                return false;
+            }
+
+            // no errors approve the change
+            return true;
+        }
+
+        // default error, shouldn't hit this unless we added a new square type
+        errors.Add("A project step with a square type other than security or privacy has been provided.");
         return false;
     }
 
