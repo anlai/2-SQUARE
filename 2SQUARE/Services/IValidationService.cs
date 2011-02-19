@@ -25,6 +25,7 @@ namespace _2SQUARE.Services
         public bool IsValid { get; set; }
         public List<string> Warnings { get; set; }
         public List<string> Errors { get; set; }
+        public int ProjectStepId { get; set; }
 
         public List<KeyValuePair<int, bool>> ChangeSteps { get; set; }
     }

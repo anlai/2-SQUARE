@@ -15,7 +15,7 @@
             <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareTypeId == a.id).OrderBy(b => b.Order)) { %>
                 <li>
                     <strong>
-                        <select class="status" data-id="<%: b.ProjectStepId %>" <%: !b.CanEdit ? "disabled" : string.Empty %>>
+                        <select id="<%: b.ProjectStepId %>" class="status" data-id="<%: b.ProjectStepId %>" <%: !b.CanEdit ? "disabled" : string.Empty %> data-origValue="<%: (int)b.CurrentStepStatus %>">
                             <% foreach (var s in Model.Status) { %>
                                 <option value="<%: s.Key %>" <%: (int)b.CurrentStepStatus == s.Key ? "selected" : string.Empty %>><%: s.Value %></option>
                             <% } %>
@@ -79,6 +79,10 @@
                             $("#message-container").append(messages);
                             $("#message-container").parents("div.messages").show();
                         }
+
+                        // set the value of the selected step back to the original value becuase of the failure
+                        var $select = $("select#" + result.ProjectStepId);
+                        $select.val($select.data("origValue"));
                     }
 
 

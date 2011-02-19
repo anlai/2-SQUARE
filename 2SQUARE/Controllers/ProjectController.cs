@@ -81,10 +81,15 @@ namespace _2SQUARE.Controllers
                 validationResult.Errors.Add("Unable to find step");
             }
 
-            // only run validation if complete status and we are still valid
-            if (projectStepStatus == ProjectStepStatus.Complete && validationResult.IsValid)
+            //// only run validation if complete status and we are still valid
+            //if (projectStepStatus == ProjectStepStatus.Complete && validationResult.IsValid)
+            //{
+            //    validationResult = _validationService.ValidateCompletion(step);
+            //}
+
+            if (validationResult.IsValid)
             {
-                validationResult = _validationService.ValidateCompletion(step);
+                validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
             }
 
             // if still valid, run the update
@@ -100,7 +105,9 @@ namespace _2SQUARE.Controllers
                 }
 
             }
-            
+
+            // add the project step id
+            validationResult.ProjectStepId = stepId;
 
             return Json(validationResult);
         }

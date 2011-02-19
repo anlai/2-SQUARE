@@ -99,106 +99,6 @@ public class ValidationService : IValidationService
         return true;
     }
 
-    private bool Step2Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step2Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step3Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step3Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step4Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step4Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step5Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step5Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step6Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step6Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step7Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step7Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step8Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step8Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step9Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-
-    private bool Step9Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
-    {
-        throw new NotImplementedException();
-    }
-    #endregion
-
-    public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
-    {
-        var result = new ValidationChangeStatusResult();
-
-        switch (projectStep.Step.Order)
-        {
-            case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
-                break;
-        }
-
-        return result;
-    }
-
-    public bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep)
-    {
-        //todo: write in rules for each step on who can access
-        throw new NotImplementedException();
-    }
-
     /// <summary>
     /// Step 1 completion validation
     /// </summary>
@@ -215,7 +115,7 @@ public class ValidationService : IValidationService
         Check.Require(projectStep != null, "projectStep is required.");
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
-        
+
         // this is the only exit criteria, there are a set of terms
         if (projectStep.Project.ProjectTerms.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Count() <= 0)
         {
@@ -225,4 +125,126 @@ public class ValidationService : IValidationService
 
         return true;
     }
+
+    private bool Step2Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step2Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step3Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step3Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step4Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step4Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step5Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step5Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step6Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step6Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step7Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step7Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step8Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step8Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step9Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+
+    private bool Step9Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
+    {
+        warnings.Add("Validation has not been added yet.");
+        return false;
+    }
+    #endregion
+
+    public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
+    {
+        var result = new ValidationChangeStatusResult();
+
+        switch (projectStep.Step.Order)
+        {
+            case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
+                break;
+            default:
+                result.IsValid = false;
+                result.Errors.Add("Validation has not been added for the step.");
+                break;
+        }
+
+        return result;
+    }
+
+    public bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep)
+    {
+        //todo: write in rules for each step on who can access
+        throw new NotImplementedException();
+    }
+
+
 }
