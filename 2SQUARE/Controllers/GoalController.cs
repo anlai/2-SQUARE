@@ -33,6 +33,7 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 _projectService.AddGoal(id, goal);
+                Message = string.Format(Messages.Saved, "Goal");
                 return RedirectToAction("Step2", goal.SquareType.Name, new {id = id, projectId=goal.ProjectId});
             }
 
@@ -70,25 +71,85 @@ namespace _2SQUARE.Controllers
             {
                 Db.SaveChanges();
                 Db.Refresh(RefreshMode.ClientWins, goal);   // objects were beign cached and showing stale data
-                Message = "Business goal has been updated.";
+                Message = string.Format(Messages.Saved, "Business goal");
             }
             else
             {
-                ErrorMessage = "Unable to update business goal";
+                ErrorMessage = string.Format(Messages.UnableSave, "business goal");
             }
 
             return RedirectToAction("Step2", projectStep.Step.SquareType.Name, new { id = id, projectId = projectStep.ProjectId });
         }
 
-        public ActionResult Edit(int id /*project step id*/, int goalId)
+        /// <summary>
+        /// Edit a goal
+        /// </summary>
+        /// <param name="id">Project step id</param>
+        /// <param name="goalId"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int id /* project step id */, int goalId)
         {
-            throw new NotImplementedException();
-            return View();
+            var goal = _projectService.LoadGoal(goalId);
+            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            if (goal == null)
+            {
+                ErrorMessage = string.Format(Messages.UnabletoLoad, "goal", goalId);
+                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
+                                        new {id = projectStep.Id, projectId = projectStep.ProjectId});
+            }
+
+            var viewModel = AddGoalViewModel.Create(Db, id, goal);
+            return View(viewModel);
         }
 
-        public ActionResult Delete(int id /*project step id*/, int goalId)
+        /// <summary>
+        /// Edit a goal
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Edit(int id /* project step id */, int goalId, Goal goal)
         {
-            return View();
+            var existingGoal = _projectService.LoadGoal(goalId);
+            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            if (existingGoal == null)
+            {
+                ErrorMessage = string.Format(Messages.UnabletoLoad, "goal", goalId);
+                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
+                                        new { id = projectStep.Id, projectId = projectStep.ProjectId });                
+            }
+
+            existingGoal.Description = goal.Description;
+            existingGoal.GoalTypeId = goal.GoalTypeId;
+
+            Validation.Validate(existingGoal, ModelState);
+
+            // if function does not return null, we are good for save);
+            if (ModelState.IsValid)
+            {
+                _projectService.AddGoal(id, existingGoal);
+                Message = string.Format(Messages.Saved, "Goal");
+                return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
+                                             new {id = projectStep.Id, projectId = projectStep.ProjectId});
+            }
+
+            ErrorMessage = string.Format(Messages.UnableSave, "goal");
+            var viewModel = AddGoalViewModel.Create(Db, id, existingGoal);
+            return View(viewModel);
+        }
+
+        public RedirectToRouteResult Delete(int id /*project step id*/, int goalId)
+        {
+            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            _projectService.DeleteGoal(goalId);
+
+            Message = string.Format(Messages.Deleted, "Goal");
+            return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
+                                         new {id = projectStep.Id, projectId = projectStep.ProjectId});
         }
     }
 }

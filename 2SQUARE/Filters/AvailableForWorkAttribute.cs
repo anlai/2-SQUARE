@@ -47,7 +47,7 @@ namespace _2SQUARE.Filters
                     filterContext.Controller.TempData["ErrorMessage"] = string.Format(Messages.Manager_NotValidForWork,
                                                                                       pStep.Step.Order,
                                                                                       pStep.Step.SquareType.Name);
-                    filterContext.Result = new RedirectResult(urlHelper.Action("ChangeStatus", "Project", new { id = pStep.Id }));
+                    filterContext.Result = new RedirectResult(urlHelper.Action("ChangeStatus", "Project", new { id = pStep.ProjectId }));
                 }
                 else
                 {

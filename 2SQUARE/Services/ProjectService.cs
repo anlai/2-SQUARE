@@ -138,6 +138,16 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 2 Methods
+        public Goal LoadGoal(int id)
+        {
+            return db.Goals.Where(a => a.id == id).SingleOrDefault();
+        }
+        /// <summary>
+        /// Add/Update goal
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
         public Goal AddGoal(int id /* projectStep Id */, Goal goal)
         {
             // load the project step
@@ -158,6 +168,13 @@ namespace _2SQUARE.Services
             db.SaveChanges();
 
             return goal;
+        }
+
+        public void DeleteGoal(int id /* goal id */)
+        {
+            var goal = db.Goals.Where(a => a.id == id).Single();
+            db.DeleteObject(goal);
+            db.SaveChanges();
         }
         #endregion
 

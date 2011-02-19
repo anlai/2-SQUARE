@@ -20,7 +20,9 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 2 Methods
+        Goal LoadGoal(int id);
         Goal AddGoal(int id /* projectStep Id */, Goal goal);
+        void DeleteGoal(int id /* goal id */);
         #endregion
 
         #region Step Status Methods

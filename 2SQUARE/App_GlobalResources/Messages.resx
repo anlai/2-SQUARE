@@ -135,4 +135,13 @@
   <data name="Required" xml:space="preserve">
     <value>{0} is required.</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>{0} has been successfully saved.</value>
+  </data>
+  <data name="UnableSave" xml:space="preserve">
+    <value>There has been a problem trying to save the {0}.</value>
+  </data>
+  <data name="UnabletoLoad" xml:space="preserve">
+    <value>Unable to load {0} with id {1}</value>
+  </data>
 </root>

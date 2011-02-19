@@ -168,6 +168,8 @@
     <Content Include="Images\title_bar_bg.png" />
     <Content Include="Views\Error\Security.aspx" />
     <Content Include="Views\Goal\Add.aspx" />
+    <Content Include="Views\Goal\Edit.aspx" />
+    <Content Include="Views\Goal\GoalForm.ascx" />
     <Content Include="Views\Guidance\Index.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />

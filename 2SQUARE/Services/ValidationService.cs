@@ -218,12 +218,31 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// Step 3 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Step 3 has no prereqs to start
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step3Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        return true;
     }
 
+    /// <summary>
+    /// Step 3 completion validation
+    /// </summary>
+    /// <remarks>
+    /// Artifacts must be collected
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step3Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
         warnings.Add("Validation has not been added yet.");

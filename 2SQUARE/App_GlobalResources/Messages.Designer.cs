@@ -113,5 +113,32 @@ namespace _2SQUARE.App_GlobalResources {
                 return ResourceManager.GetString("Required", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has been successfully saved..
+        /// </summary>
+        internal static string Saved {
+            get {
+                return ResourceManager.GetString("Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There has been a problem trying to save the {0}..
+        /// </summary>
+        internal static string UnableSave {
+            get {
+                return ResourceManager.GetString("UnableSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to load {0} with id {1}.
+        /// </summary>
+        internal static string UnabletoLoad {
+            get {
+                return ResourceManager.GetString("UnabletoLoad", resourceCulture);
+            }
+        }
     }
 }
