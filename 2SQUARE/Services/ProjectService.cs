@@ -75,7 +75,24 @@ namespace _2SQUARE.Services
 
             return project;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public ProjectStep GetProjectStep(int id, string login)
+        {
+            Check.Require(!string.IsNullOrEmpty(login) , "login is required.");
 
+            var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
+            var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
+
+            if (!projectStep.Project.ProjectWorkers.Any(a=>a.aspnet_Users.UserId == user.UserId))
+                throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
+
+            return projectStep;
+        }
         public IList<ProjectStep> GetProjectSteps(int id, SquareType squareType = null)
         {
             var query = db.ProjectSteps.Where(a => a.ProjectId == id);

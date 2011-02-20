@@ -209,6 +209,12 @@ public class ValidationService : IValidationService
                 return false;
             }
 
+            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Asset).ToString()).Any())
+            {
+                errors.Add("No assets were found.");
+                return false;
+            }
+
             // no errors approve the change
             return true;
         }
