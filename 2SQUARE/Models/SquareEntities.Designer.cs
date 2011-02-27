@@ -42,6 +42,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.ArtifactType), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ArtifactType), true)]
 
 #endregion
 
@@ -572,6 +575,38 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<vw_aspnet_WebPartState_User> _vw_aspnet_WebPartState_User;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Artifact> Artifacts
+        {
+            get
+            {
+                if ((_Artifacts == null))
+                {
+                    _Artifacts = base.CreateObjectSet<Artifact>("Artifacts");
+                }
+                return _Artifacts;
+            }
+        }
+        private ObjectSet<Artifact> _Artifacts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ArtifactType> ArtifactTypes
+        {
+            get
+            {
+                if ((_ArtifactTypes == null))
+                {
+                    _ArtifactTypes = base.CreateObjectSet<ArtifactType>("ArtifactTypes");
+                }
+                return _ArtifactTypes;
+            }
+        }
+        private ObjectSet<ArtifactType> _ArtifactTypes;
 
         #endregion
         #region AddTo Methods
@@ -815,6 +850,22 @@ namespace _2SQUARE.Models
         {
             base.AddObject("vw_aspnet_WebPartState_User", vw_aspnet_WebPartState_User);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Artifacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToArtifacts(Artifact artifact)
+        {
+            base.AddObject("Artifacts", artifact);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ArtifactTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToArtifactTypes(ArtifactType artifactType)
+        {
+            base.AddObject("ArtifactTypes", artifactType);
+        }
 
         #endregion
     }
@@ -823,6 +874,436 @@ namespace _2SQUARE.Models
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Artifact")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Artifact : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Artifact object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="artifactTypeId">Initial value of the ArtifactTypeId property.</param>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        public static Artifact CreateArtifact(global::System.Int32 id, global::System.String name, global::System.Int32 artifactTypeId, global::System.Int32 projectId)
+        {
+            Artifact artifact = new Artifact();
+            artifact.id = id;
+            artifact.Name = name;
+            artifact.ArtifactTypeId = artifactTypeId;
+            artifact.ProjectId = projectId;
+            return artifact;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Data
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Data);
+            }
+            set
+            {
+                OnDataChanging(value);
+                ReportPropertyChanging("Data");
+                _Data = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Data");
+                OnDataChanged();
+            }
+        }
+        private global::System.Byte[] _Data;
+        partial void OnDataChanging(global::System.Byte[] value);
+        partial void OnDataChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ArtifactTypeId
+        {
+            get
+            {
+                return _ArtifactTypeId;
+            }
+            set
+            {
+                OnArtifactTypeIdChanging(value);
+                ReportPropertyChanging("ArtifactTypeId");
+                _ArtifactTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ArtifactTypeId");
+                OnArtifactTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _ArtifactTypeId;
+        partial void OnArtifactTypeIdChanging(global::System.Int32 value);
+        partial void OnArtifactTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactType")]
+        public ArtifactType ArtifactType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ArtifactType> ArtifactTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="ArtifactType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ArtifactType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ArtifactType object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
+        public static ArtifactType CreateArtifactType(global::System.Int32 id, global::System.String name, global::System.Int32 squareTypeId)
+        {
+            ArtifactType artifactType = new ArtifactType();
+            artifactType.id = id;
+            artifactType.Name = name;
+            artifactType.SquareTypeId = squareTypeId;
+            return artifactType;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SquareTypeId
+        {
+            get
+            {
+                return _SquareTypeId;
+            }
+            set
+            {
+                OnSquareTypeIdChanging(value);
+                ReportPropertyChanging("SquareTypeId");
+                _SquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SquareTypeId");
+                OnSquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SquareTypeId;
+        partial void OnSquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSquareTypeIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "Artifact")]
+        public EntityCollection<Artifact> Artifacts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifact");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifact", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareType")]
+        public SquareType SquareType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SquareType> SquareTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -4543,6 +5024,28 @@ namespace _2SQUARE.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Artifact")]
+        public EntityCollection<Artifact> Artifacts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifact");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifact", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -5569,6 +6072,28 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Term>("SquareModel.FK_Terms_SquareTypes", "Terms", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "ArtifactType")]
+        public EntityCollection<ArtifactType> ArtifactTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactType", value);
                 }
             }
         }

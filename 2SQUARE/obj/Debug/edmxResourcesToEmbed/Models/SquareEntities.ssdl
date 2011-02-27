@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="SquareModelStoreContainer">
+    <EntitySet Name="Artifacts" EntityType="SquareModel.Store.Artifacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArtifactTypes" EntityType="SquareModel.Store.ArtifactTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_Applications" EntityType="SquareModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_Membership" EntityType="SquareModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_Paths" EntityType="SquareModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
@@ -158,6 +160,18 @@
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
       <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Artifacts_ArtifactTypes" Association="SquareModel.Store.FK_Artifacts_ArtifactTypes">
+      <End Role="ArtifactTypes" EntitySet="ArtifactTypes" />
+      <End Role="Artifacts" EntitySet="Artifacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artifacts_Projects" Association="SquareModel.Store.FK_Artifacts_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Artifacts" EntitySet="Artifacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtifactTypes_SquareTypes" Association="SquareModel.Store.FK_ArtifactTypes_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="ArtifactTypes" EntitySet="ArtifactTypes" />
+    </AssociationSet>
     <AssociationSet Name="FK_Definitions_Terms" Association="SquareModel.Store.FK_Definitions_Terms">
       <End Role="Terms" EntitySet="Terms" />
       <End Role="Definitions" EntitySet="Definitions" />
@@ -215,6 +229,25 @@
       <End Role="Terms" EntitySet="Terms" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Artifacts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Data" Type="varbinary(max)" />
+    <Property Name="ArtifactTypeId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArtifactTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SquareTypeId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="aspnet_Applications">
     <Key>
       <PropertyRef Name="ApplicationId" />
@@ -738,6 +771,42 @@
       </Principal>
       <Dependent Role="aspnet_UsersInRoles">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artifacts_ArtifactTypes">
+    <End Role="ArtifactTypes" Type="SquareModel.Store.ArtifactTypes" Multiplicity="1" />
+    <End Role="Artifacts" Type="SquareModel.Store.Artifacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArtifactTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Artifacts">
+        <PropertyRef Name="ArtifactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artifacts_Projects">
+    <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="1" />
+    <End Role="Artifacts" Type="SquareModel.Store.Artifacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Artifacts">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtifactTypes_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="1" />
+    <End Role="ArtifactTypes" Type="SquareModel.Store.ArtifactTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ArtifactTypes">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -364,5 +364,26 @@
         <ScalarProperty Name="UserId" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Artifacts">
+      <EntityTypeMapping TypeName="SquareModel.Artifact">
+        <MappingFragment StoreEntitySet="Artifacts">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ArtifactTypeId" ColumnName="ArtifactTypeId" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArtifactTypes">
+      <EntityTypeMapping TypeName="SquareModel.ArtifactType">
+        <MappingFragment StoreEntitySet="ArtifactTypes">
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

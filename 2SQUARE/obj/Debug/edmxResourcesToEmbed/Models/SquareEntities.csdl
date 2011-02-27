@@ -127,6 +127,20 @@
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
     </AssociationSet>
+    <EntitySet Name="Artifacts" EntityType="SquareModel.Artifact" />
+    <EntitySet Name="ArtifactTypes" EntityType="SquareModel.ArtifactType" />
+    <AssociationSet Name="FK_Artifacts_ArtifactTypes" Association="SquareModel.FK_Artifacts_ArtifactTypes">
+      <End Role="ArtifactType" EntitySet="ArtifactTypes" />
+      <End Role="Artifact" EntitySet="Artifacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artifacts_Projects" Association="SquareModel.FK_Artifacts_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Artifact" EntitySet="Artifacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtifactTypes_SquareTypes" Association="SquareModel.FK_ArtifactTypes_SquareTypes">
+      <End Role="SquareType" EntitySet="SquareTypes" />
+      <End Role="ArtifactType" EntitySet="ArtifactTypes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
     <Key>
@@ -320,6 +334,7 @@
     <NavigationProperty Name="ProjectSteps" Relationship="SquareModel.FK_ProjectSteps_Projects" FromRole="Projects" ToRole="ProjectSteps" />
     <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_Projects" FromRole="Projects" ToRole="ProjectTerms" />
     <NavigationProperty Name="ProjectWorkers" Relationship="SquareModel.FK_ProjectWorkers_Projects" FromRole="Projects" ToRole="ProjectWorkers" />
+    <NavigationProperty Name="Artifacts" Relationship="SquareModel.FK_Artifacts_Projects" FromRole="Project" ToRole="Artifact" />
   </EntityType>
   <EntityType Name="ProjectStep">
     <Key>
@@ -378,6 +393,7 @@
     <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_SquareTypes" FromRole="SquareTypes" ToRole="ProjectTerms" />
     <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
+    <NavigationProperty Name="ArtifactTypes" Relationship="SquareModel.FK_ArtifactTypes_SquareTypes" FromRole="SquareType" ToRole="ArtifactType" />
   </EntityType>
   <EntityType Name="Step">
     <Key>
@@ -814,5 +830,64 @@
   <Association Name="aspnet_UsersInRoles">
     <End Role="aspnet_Roles" Type="SquareModel.aspnet_Roles" Multiplicity="*" />
     <End Role="aspnet_Users" Type="SquareModel.aspnet_Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Artifact">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Data" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int32" Name="ArtifactTypeId" Nullable="false" />
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <NavigationProperty Name="ArtifactType" Relationship="SquareModel.FK_Artifacts_ArtifactTypes" FromRole="Artifact" ToRole="ArtifactType" />
+    <NavigationProperty Name="Project" Relationship="SquareModel.FK_Artifacts_Projects" FromRole="Artifact" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="ArtifactType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
+    <NavigationProperty Name="Artifacts" Relationship="SquareModel.FK_Artifacts_ArtifactTypes" FromRole="ArtifactType" ToRole="Artifact" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_ArtifactTypes_SquareTypes" FromRole="ArtifactType" ToRole="SquareType" />
+  </EntityType>
+  <Association Name="FK_Artifacts_ArtifactTypes">
+    <End Type="SquareModel.ArtifactType" Role="ArtifactType" Multiplicity="1" />
+    <End Type="SquareModel.Artifact" Role="Artifact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArtifactType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Artifact">
+        <PropertyRef Name="ArtifactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artifacts_Projects">
+    <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />
+    <End Type="SquareModel.Artifact" Role="Artifact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Artifact">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtifactTypes_SquareTypes">
+    <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="1" />
+    <End Type="SquareModel.ArtifactType" Role="ArtifactType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ArtifactType">
+        <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>
