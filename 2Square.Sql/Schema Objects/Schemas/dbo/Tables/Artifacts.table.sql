@@ -4,6 +4,10 @@
     [Description]    VARCHAR (MAX)   NULL,
     [Data]           VARBINARY (MAX) NULL,
     [ArtifactTypeId] INT             NOT NULL,
-    [ProjectId]      INT             NOT NULL
+    [ProjectId]      INT             NOT NULL,
+    [CreatedBy]      VARCHAR (50)    NOT NULL,
+    [DateCreated]    DATETIME        NOT NULL
 );
+
+
 

@@ -464,6 +464,67 @@ CREATE SCHEMA [aspnet_WebEvent_FullAccess]
 
 
 GO
+PRINT N'Creating [dbo].[Artifacts]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[Artifacts] (
+    [id]             INT             IDENTITY (1, 1) NOT NULL,
+    [Name]           VARCHAR (100)   NOT NULL,
+    [Description]    VARCHAR (MAX)   NULL,
+    [Data]           VARBINARY (MAX) NULL,
+    [ArtifactTypeId] INT             NOT NULL,
+    [ProjectId]      INT             NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_ArtifactTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Artifacts]
+    ADD CONSTRAINT [PK_ArtifactTypes] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[ArtifactTypes]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[ArtifactTypes] (
+    [id]           INT          IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (50) NOT NULL,
+    [SquareTypeId] INT          NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_ArtifactType...';
+
+
+GO
+ALTER TABLE [dbo].[ArtifactTypes]
+    ADD CONSTRAINT [PK_ArtifactType] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[aspnet_Applications]...';
 
 
@@ -1350,6 +1411,33 @@ PRINT N'Creating DF_Terms_IsActive...';
 GO
 ALTER TABLE [dbo].[Terms]
     ADD CONSTRAINT [DF_Terms_IsActive] DEFAULT ((1)) FOR [IsActive];
+
+
+GO
+PRINT N'Creating FK_Artifacts_ArtifactTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Artifacts] WITH NOCHECK
+    ADD CONSTRAINT [FK_Artifacts_ArtifactTypes] FOREIGN KEY ([ArtifactTypeId]) REFERENCES [dbo].[ArtifactTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Artifacts_Projects...';
+
+
+GO
+ALTER TABLE [dbo].[Artifacts] WITH NOCHECK
+    ADD CONSTRAINT [FK_Artifacts_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_ArtifactTypes_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[ArtifactTypes] WITH NOCHECK
+    ADD CONSTRAINT [FK_ArtifactTypes_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -5484,6 +5572,12 @@ USE [$(DatabaseName)];
 
 
 GO
+ALTER TABLE [dbo].[Artifacts] WITH CHECK CHECK CONSTRAINT [FK_Artifacts_ArtifactTypes];
+
+ALTER TABLE [dbo].[Artifacts] WITH CHECK CHECK CONSTRAINT [FK_Artifacts_Projects];
+
+ALTER TABLE [dbo].[ArtifactTypes] WITH CHECK CHECK CONSTRAINT [FK_ArtifactTypes_SquareTypes];
+
 ALTER TABLE [dbo].[Definitions] WITH CHECK CHECK CONSTRAINT [FK_Definitions_Terms];
 
 ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_GoalTypes];
