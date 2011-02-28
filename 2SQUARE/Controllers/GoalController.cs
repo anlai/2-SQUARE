@@ -21,7 +21,7 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Add(int id /*project step id*/)
         {
-            var viewModel = AddGoalViewModel.Create(Db, id);
+            var viewModel = GoalViewModel.Create(Db, id);
             return View(viewModel);
         }
 
@@ -32,12 +32,12 @@ namespace _2SQUARE.Controllers
 
             if (ModelState.IsValid)
             {
-                _projectService.AddGoal(id, goal);
+                _projectService.SaveGoal(id, goal);
                 Message = string.Format(Messages.Saved, "Goal");
                 return RedirectToAction("Step2", goal.SquareType.Name, new {id = id, projectId=goal.ProjectId});
             }
 
-            var viewModel = AddGoalViewModel.Create(Db, id, goal);
+            var viewModel = GoalViewModel.Create(Db, id, goal);
             return View(viewModel);
         }
 
@@ -99,7 +99,7 @@ namespace _2SQUARE.Controllers
                                         new {id = projectStep.Id, projectId = projectStep.ProjectId});
             }
 
-            var viewModel = AddGoalViewModel.Create(Db, id, goal);
+            var viewModel = GoalViewModel.Create(Db, id, goal);
             return View(viewModel);
         }
 
@@ -130,20 +130,20 @@ namespace _2SQUARE.Controllers
             // if function does not return null, we are good for save);
             if (ModelState.IsValid)
             {
-                _projectService.AddGoal(id, existingGoal);
+                _projectService.SaveGoal(id, existingGoal);
                 Message = string.Format(Messages.Saved, "Goal");
                 return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
                                              new {id = projectStep.Id, projectId = projectStep.ProjectId});
             }
 
             ErrorMessage = string.Format(Messages.UnableSave, "goal");
-            var viewModel = AddGoalViewModel.Create(Db, id, existingGoal);
+            var viewModel = GoalViewModel.Create(Db, id, existingGoal);
             return View(viewModel);
         }
 
         public RedirectToRouteResult Delete(int id /*project step id*/, int goalId)
         {
-            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
             _projectService.DeleteGoal(goalId);
 

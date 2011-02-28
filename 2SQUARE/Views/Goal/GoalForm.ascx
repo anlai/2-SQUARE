@@ -1,7 +1,11 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.AddGoalViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<_2SQUARE.Models.GoalViewModel>" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 
+    <% Html.EnableClientValidation(); %>
+
     <% using (Html.BeginForm()) { %>
+
+    <%: Html.ValidationSummary() %>
 
     <ul class="entry-form">
         <%: Html.HiddenFor(a=>a.Goal.ProjectId) %>

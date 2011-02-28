@@ -6,6 +6,7 @@ using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Filters;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
+using DesignByContract;
 using MvcContrib;
 
 namespace _2SQUARE.Controllers
@@ -63,7 +64,7 @@ namespace _2SQUARE.Controllers
             {
                 var viewModel = Step2ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
-                // validate that this is a step 1 step
+                // validate that this is a step 2 step
                 if (viewModel.ProjectStep.Step.Order != 2) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 2)));
 
                 return View(viewModel);
@@ -74,15 +75,34 @@ namespace _2SQUARE.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Develop Artifacts
+        /// </summary>
+        /// <returns></returns>
+        [AvailableForWork]
+        public ActionResult Step3(int id /*project step id*/, int projectId)
+        {
+            try
+            {
+                var viewModel = Step3ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+
+                // validate that this is a step 3 project step
+                if (viewModel.ProjectStep.Step.Order != 3) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 3)));
+
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+
+            
+        }
         #endregion
 
         #region Pending
-        public ActionResult Step3()
-        {
-            throw new NotImplementedException();
 
-            return View();
-        }
 
         public ActionResult Step4()
         {
