@@ -892,13 +892,17 @@ namespace _2SQUARE.Models
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="artifactTypeId">Initial value of the ArtifactTypeId property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
-        public static Artifact CreateArtifact(global::System.Int32 id, global::System.String name, global::System.Int32 artifactTypeId, global::System.Int32 projectId)
+        /// <param name="createdBy">Initial value of the CreatedBy property.</param>
+        /// <param name="dateCreated">Initial value of the DateCreated property.</param>
+        public static Artifact CreateArtifact(global::System.Int32 id, global::System.String name, global::System.Int32 artifactTypeId, global::System.Int32 projectId, global::System.String createdBy, global::System.DateTime dateCreated)
         {
             Artifact artifact = new Artifact();
             artifact.id = id;
             artifact.Name = name;
             artifact.ArtifactTypeId = artifactTypeId;
             artifact.ProjectId = projectId;
+            artifact.CreatedBy = createdBy;
+            artifact.DateCreated = dateCreated;
             return artifact;
         }
 
@@ -1051,6 +1055,54 @@ namespace _2SQUARE.Models
         private global::System.Int32 _ProjectId;
         partial void OnProjectIdChanging(global::System.Int32 value);
         partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CreatedBy
+        {
+            get
+            {
+                return _CreatedBy;
+            }
+            set
+            {
+                OnCreatedByChanging(value);
+                ReportPropertyChanging("CreatedBy");
+                _CreatedBy = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CreatedBy");
+                OnCreatedByChanged();
+            }
+        }
+        private global::System.String _CreatedBy;
+        partial void OnCreatedByChanging(global::System.String value);
+        partial void OnCreatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateCreated
+        {
+            get
+            {
+                return _DateCreated;
+            }
+            set
+            {
+                OnDateCreatedChanging(value);
+                ReportPropertyChanging("DateCreated");
+                _DateCreated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreated");
+                OnDateCreatedChanged();
+            }
+        }
+        private global::System.DateTime _DateCreated;
+        partial void OnDateCreatedChanging(global::System.DateTime value);
+        partial void OnDateCreatedChanged();
 
         #endregion
     

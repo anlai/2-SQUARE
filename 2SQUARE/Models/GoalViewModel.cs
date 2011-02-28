@@ -4,13 +4,13 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class AddGoalViewModel
+    public class GoalViewModel
     {
         public ProjectStep ProjectStep { get; set; }
         public Goal Goal { get; set; }
         public IEnumerable<GoalType> GoalTypes { get; set; }
 
-        public static AddGoalViewModel Create(SquareEntities db, int projectStepId, Goal goal = null)
+        public static GoalViewModel Create(SquareEntities db, int projectStepId, Goal goal = null)
         {
             Check.Require(db != null, "db is required.");
 
@@ -25,7 +25,7 @@ namespace _2SQUARE.Models
                            };
             }
 
-            var viewModel = new AddGoalViewModel()
+            var viewModel = new GoalViewModel()
                                 {
                                     ProjectStep = projectStep,
                                     Goal = goal,

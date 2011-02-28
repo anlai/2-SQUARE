@@ -162,9 +162,10 @@ fieldset { border: 1px solid lightgray; }
 }
 
 /* Controls */
-table { border-spacing: 0px; }
+table { border-spacing: 0px; width: 100%;}
 table thead { background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC; }
 table td { padding-top: 10px; padding-bottom: 10px; }
+table th { text-align: left; }
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
@@ -218,4 +219,19 @@ table td { padding-top: 10px; padding-bottom: 10px; }
     width: 100%;
     border-bottom: 1px solid lightgrey;
     display: inline-block;
+}
+
+input[type='text']
+{
+    width: 200px;
+}
+
+select
+{
+    min-width: 200px;
+}
+
+textarea
+{
+    width: 200px;
 }

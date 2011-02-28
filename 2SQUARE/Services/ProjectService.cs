@@ -165,7 +165,7 @@ namespace _2SQUARE.Services
         /// <param name="id">Project Step Id</param>
         /// <param name="goal"></param>
         /// <returns></returns>
-        public Goal AddGoal(int id /* projectStep Id */, Goal goal)
+        public Goal SaveGoal(int id /* projectStep Id */, Goal goal)
         {
             // load the project step
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
@@ -193,6 +193,45 @@ namespace _2SQUARE.Services
             db.DeleteObject(goal);
             db.SaveChanges();
         }
+        #endregion
+
+        #region Step 3 Methods
+        public Artifact LoadArtifact(int id)
+        {
+            return db.Artifacts.Where(a => a.id == id).SingleOrDefault();
+        }
+
+        public Artifact SaveArtifact(int id, Artifact artifact, string loginId)
+        {
+            var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
+            var artifactType = db.ArtifactTypes.Where(a => a.id == artifact.ArtifactTypeId).Single();
+
+            // incorrect square type
+            if (projectStep.Step.SquareTypeId != artifactType.SquareTypeId) return null;
+
+            artifact.ArtifactType = artifactType;
+
+            if (artifact.id <= 0)
+            {
+                artifact.DateCreated = DateTime.Now;
+                artifact.CreatedBy = loginId;
+                artifact.Project = projectStep.Project;
+
+                db.Artifacts.AddObject(artifact);
+            }
+
+            db.SaveChanges();
+
+            return artifact;
+        }
+
+        public void DeleteArtifact(int id)
+        {
+            var artifact = db.Artifacts.Where(a => a.id == id).Single();
+            db.DeleteObject(artifact);
+            db.SaveChanges();
+        }
+
         #endregion
 
         #region Project Status

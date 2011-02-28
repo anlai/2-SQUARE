@@ -22,8 +22,14 @@ namespace _2SQUARE.Services
 
         #region Step 2 Methods
         Goal LoadGoal(int id);
-        Goal AddGoal(int id /* projectStep Id */, Goal goal);
+        Goal SaveGoal(int id /* projectStep Id */, Goal goal);
         void DeleteGoal(int id /* goal id */);
+        #endregion
+        
+        #region
+        Artifact LoadArtifact(int id);
+        Artifact SaveArtifact(int id /* project step id */, Artifact artifact, string loginId);
+        void DeleteArtifact(int id /* artifact id*/);
         #endregion
 
         #region Step Status Methods

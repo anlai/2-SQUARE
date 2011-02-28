@@ -21,5 +21,11 @@ namespace _2SQUARE.Helpers
             if (string.IsNullOrEmpty(goal.Description)) modelState.AddModelError("Description", string.Format(Messages.Required, "Description"));
             if (string.IsNullOrEmpty(goal.GoalTypeId) && goal.GoalType == null) modelState.AddModelError("Goal Type", string.Format(Messages.Required, "Goal Type"));
         }
+
+        public static void Validate(Artifact artifact, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrEmpty(artifact.Name)) modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));
+            if (artifact.ArtifactType == null && artifact.ArtifactTypeId <= 0) modelState.AddModelError("Artifact Type", string.Format(Messages.Required, "Artifact Type"));
+        }
     }
 }

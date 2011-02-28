@@ -10,6 +10,7 @@
     <h2>Add New Term</h2>
 
     <% Html.EnableClientValidation(); %>
+
     <% using (Html.BeginForm()) { %>
 
         <%: Html.ValidationSummary() %>

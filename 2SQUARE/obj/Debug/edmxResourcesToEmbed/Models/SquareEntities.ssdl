@@ -239,6 +239,8 @@
     <Property Name="Data" Type="varbinary(max)" />
     <Property Name="ArtifactTypeId" Type="int" Nullable="false" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ArtifactTypes">
     <Key>
