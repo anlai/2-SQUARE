@@ -85,7 +85,7 @@ namespace _2SQUARE.Controllers
             if (file != null)
             {
                 // read the file
-                var revader = new BinaryReader(file.InputStream);
+                var reader = new BinaryReader(file.InputStream);
                 var data = reader.ReadBytes(file.ContentLength);
                 existingArtifact.Data = data;
             }
