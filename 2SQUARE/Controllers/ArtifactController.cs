@@ -43,6 +43,7 @@ namespace _2SQUARE.Controllers
                 var reader = new BinaryReader(file.InputStream);
                 var data = reader.ReadBytes(file.ContentLength);
                 artifact.Data = data;
+                artifact.ContentType = file.ContentType;
             }
 
             if (ModelState.IsValid)
@@ -113,6 +114,31 @@ namespace _2SQUARE.Controllers
 
             // redirect using the generator
             return LinkGenerator.CreateRedirectResult(Request.RequestContext, projectStep);
+        }
+
+        public ActionResult Details(int id /* project step id */, int artifactId)
+        {
+            var artifact = _projectService.LoadArtifact(artifactId);
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
+            if (artifact == null) return LinkGenerator.CreateRedirectResult(Request.RequestContext, projectStep);
+
+            var viewModel = ArtifactViewModel.Create(Db, artifact, id);
+            return View(viewModel);
+        }
+
+        /// <summary>
+        /// Returns the image for an artifact
+        /// </summary>
+        /// <param name="id">Artifact Id</param>
+        /// <returns></returns>
+        public FileContentResult GetFile(int id)
+        {
+            var artifact = _projectService.LoadArtifact(id);
+
+            if (artifact == null) return File(new byte[0], string.Empty);
+
+            return File(artifact.Data, artifact.ContentType);
         }
     }
 }

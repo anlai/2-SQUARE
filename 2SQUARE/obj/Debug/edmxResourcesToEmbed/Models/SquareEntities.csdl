@@ -845,6 +845,7 @@
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_Artifacts_Projects" FromRole="Artifact" ToRole="Project" />
     <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="String" Name="ContentType" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ArtifactType">
     <Key>

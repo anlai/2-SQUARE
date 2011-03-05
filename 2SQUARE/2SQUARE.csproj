@@ -173,6 +173,7 @@
     <Content Include="Images\title_bar_bg.png" />
     <Content Include="Views\Artifact\Add.aspx" />
     <Content Include="Views\Artifact\ArtifactForm.ascx" />
+    <Content Include="Views\Artifact\Details.aspx" />
     <Content Include="Views\Artifact\Edit.aspx" />
     <Content Include="Views\Error\Security.aspx" />
     <Content Include="Views\Goal\Add.aspx" />

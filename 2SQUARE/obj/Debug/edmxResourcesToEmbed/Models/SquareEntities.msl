@@ -367,6 +367,7 @@
     <EntitySetMapping Name="Artifacts">
       <EntityTypeMapping TypeName="SquareModel.Artifact">
         <MappingFragment StoreEntitySet="Artifacts">
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />

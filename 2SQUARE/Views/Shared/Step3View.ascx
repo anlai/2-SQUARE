@@ -30,7 +30,8 @@
             <% foreach (var a in Model.Artifacts)
                { %>
                 <tr class="definition-row">
-                    <td class="button-cell" style="width: 135px;">
+                    <td class="button-cell" style="width: 215px;">
+                        <%: Html.ActionLink<ArtifactController>(b=>b.Details(Model.ProjectStep.Id, a.id), "Detials", new {@class="button ui-state-default ui-corner-all"}) %>
                         <%: Html.ActionLink<ArtifactController>(b=>b.Edit(Model.ProjectStep.Id, a.id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %>
                         <%: Html.ActionLink<ArtifactController>(b=>b.Delete(Model.ProjectStep.Id, a.id), "Delete", new {@class="button ui-state-default ui-corner-all"}) %>
                     </td>

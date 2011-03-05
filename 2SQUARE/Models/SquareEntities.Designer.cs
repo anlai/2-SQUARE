@@ -1103,6 +1103,30 @@ namespace _2SQUARE.Models
         private global::System.DateTime _DateCreated;
         partial void OnDateCreatedChanging(global::System.DateTime value);
         partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContentType
+        {
+            get
+            {
+                return _ContentType;
+            }
+            set
+            {
+                OnContentTypeChanging(value);
+                ReportPropertyChanging("ContentType");
+                _ContentType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContentType");
+                OnContentTypeChanged();
+            }
+        }
+        private global::System.String _ContentType;
+        partial void OnContentTypeChanging(global::System.String value);
+        partial void OnContentTypeChanged();
 
         #endregion
     

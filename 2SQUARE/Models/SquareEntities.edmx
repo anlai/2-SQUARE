@@ -246,6 +246,7 @@
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="ArtifactTypes">
           <Key>
@@ -2165,6 +2166,7 @@
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_Artifacts_Projects" FromRole="Artifact" ToRole="Project" />
           <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="String" Name="ContentType" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ArtifactType">
           <Key>
@@ -2464,6 +2466,7 @@
           <EntitySetMapping Name="Artifacts">
             <EntityTypeMapping TypeName="SquareModel.Artifact">
               <MappingFragment StoreEntitySet="Artifacts">
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
