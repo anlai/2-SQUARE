@@ -38,7 +38,8 @@ namespace _2SQUARE.Controllers
                 var viewModel = Step1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
                 // validate that this is a step 1 step
-                if (viewModel.Step.Step.Order != 1) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
+                if (viewModel.Step.Step.Order != 1 && viewModel.Step.Step.SquareType.Name == SquareTypes.Privacy) 
+                    return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
 
                 return View(viewModel);
             }
@@ -65,7 +66,8 @@ namespace _2SQUARE.Controllers
                 var viewModel = Step2ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
                 // validate that this is a step 2 step
-                if (viewModel.ProjectStep.Step.Order != 2) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 2)));
+                if (viewModel.ProjectStep.Step.Order != 2 && viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy) 
+                    return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 2)));
 
                 return View(viewModel);
             }
@@ -75,7 +77,9 @@ namespace _2SQUARE.Controllers
             }
 
         }
+        #endregion
 
+        #region Step 3
         /// <summary>
         /// Develop Artifacts
         /// </summary>
@@ -88,7 +92,8 @@ namespace _2SQUARE.Controllers
                 var viewModel = Step3ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
                 // validate that this is a step 3 project step
-                if (viewModel.ProjectStep.Step.Order != 3) return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 3)));
+                if (viewModel.ProjectStep.Step.Order != 3 && viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Security) 
+                    return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 3)));
 
                 return View(viewModel);
             }
@@ -96,8 +101,6 @@ namespace _2SQUARE.Controllers
             {
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
-
-            
         }
         #endregion
 

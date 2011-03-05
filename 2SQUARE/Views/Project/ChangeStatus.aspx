@@ -93,6 +93,9 @@
         });
     </script>
 
+    <style type="text/css">
+        select {min-width: 20px;}
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">

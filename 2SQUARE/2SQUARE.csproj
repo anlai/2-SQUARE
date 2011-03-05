@@ -184,6 +184,7 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
+    <Content Include="Views\Privacy\Step3.aspx" />
     <Content Include="Views\ProjectTerm\EditTerm.aspx" />
     <Content Include="Views\Project\ChangeStatus.aspx" />
     <Content Include="Views\Project\Details.aspx" />
@@ -196,6 +197,7 @@
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
+    <Content Include="Views\Shared\Step3View.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
