@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
-    public class GoalController : SuperController
+    public class GoalController : ApplicationController
     {
         private readonly IProjectService _projectService;
 

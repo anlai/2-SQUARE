@@ -12,7 +12,7 @@ using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
-    public class PrivacyController : SuperController
+    public class PrivacyController : ApplicationController
     {
         private readonly IProjectService _projectService;
 

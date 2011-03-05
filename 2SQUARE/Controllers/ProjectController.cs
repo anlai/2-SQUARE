@@ -14,7 +14,7 @@ using System.Linq;
 namespace _2SQUARE.Controllers
 {
     [Authorize]
-    public class ProjectController : SuperController
+    public class ProjectController : ApplicationController
     {
         private readonly IProjectService _projectService;
         private readonly IValidationService _validationService;

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
-    public class ProjectTermController : SuperController
+    public class ProjectTermController : ApplicationController
     {
         private readonly IProjectService _projectService;
 

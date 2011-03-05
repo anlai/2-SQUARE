@@ -11,7 +11,7 @@ using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
-    public class ArtifactController : SuperController
+    public class ArtifactController : ApplicationController
     {
         private readonly IProjectService _projectService;
 

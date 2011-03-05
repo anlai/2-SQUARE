@@ -12,7 +12,7 @@ using MvcContrib;
 namespace _2SQUARE.Controllers
 {
     [Authorize]
-    public class SecurityController : SuperController
+    public class SecurityController : ApplicationController
     {
         private readonly IProjectService _projectService;
         private readonly IValidationService _validationService;

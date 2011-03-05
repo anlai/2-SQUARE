@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
+<%@ Import Namespace="_2SQUARE.Models" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,8 +39,11 @@
         </div>
     </div>
     <div class=page>
-        
-            <div class="ui-widget messages" style='<%: string.IsNullOrEmpty((string)TempData["Message"]) ? "display:none;" : string.Empty %>'>
+    
+        <% if (!string.IsNullOrEmpty((string)TempData["Message"])) { Html.RenderPartial("Message", new MessageModel(message: (string)TempData["Message"], showWarning:true)); } %>
+        <% if (!string.IsNullOrEmpty((string)TempData["ErrorMessage"])) { Html.RenderPartial("Message", new MessageModel(message: (string)TempData["ErrorMessage"], showError:true)); } %>
+
+<%--            <div class="ui-widget messages" style='<%: string.IsNullOrEmpty((string)TempData["Message"]) ? "display:none;" : string.Empty %>'>
                 <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; margin-bottom: 10px; padding: 0pt 0.7em;">
                     <p>
                         <span class="ui-icon ui-icon-alert" style="float:left; margin-right: 0.3em;"></span>
@@ -54,7 +58,7 @@
                         <span id="errormessage-container"><%: (string)TempData["ErrorMessage"] %></span>
                     </p>
                 </div>
-            </div>
+            </div>--%>
 
 
         <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>

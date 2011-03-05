@@ -120,7 +120,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
-    <Compile Include="Controllers\SuperController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Filters\AvailableForWorkAttribute.cs" />
     <Compile Include="Filters\RoleFilters.cs" />
     <Compile Include="Global.asax.cs">
@@ -139,6 +139,7 @@
     <Compile Include="Models\ArtifactViewModel.cs" />
     <Compile Include="Models\GoalViewModel.cs" />
     <Compile Include="Models\ChangeStatusViewModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />
@@ -192,6 +193,7 @@
     <Content Include="Views\ProjectTerm\PredefinedTermsView.ascx" />
     <Content Include="Views\Security\Step2.aspx" />
     <Content Include="Views\Security\Step3.aspx" />
+    <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
     <Content Include="Web.config">
