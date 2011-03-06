@@ -45,6 +45,17 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.ArtifactType), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ArtifactType), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.AssessmentType), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_AssessmentTypes", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.AssessmentType), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Impacts", "Impact", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.Impact), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 
 #endregion
 
@@ -607,6 +618,70 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<ArtifactType> _ArtifactTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AssessmentType> AssessmentTypes
+        {
+            get
+            {
+                if ((_AssessmentTypes == null))
+                {
+                    _AssessmentTypes = base.CreateObjectSet<AssessmentType>("AssessmentTypes");
+                }
+                return _AssessmentTypes;
+            }
+        }
+        private ObjectSet<AssessmentType> _AssessmentTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Impact> Impacts
+        {
+            get
+            {
+                if ((_Impacts == null))
+                {
+                    _Impacts = base.CreateObjectSet<Impact>("Impacts");
+                }
+                return _Impacts;
+            }
+        }
+        private ObjectSet<Impact> _Impacts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RiskLevel> RiskLevels
+        {
+            get
+            {
+                if ((_RiskLevels == null))
+                {
+                    _RiskLevels = base.CreateObjectSet<RiskLevel>("RiskLevels");
+                }
+                return _RiskLevels;
+            }
+        }
+        private ObjectSet<RiskLevel> _RiskLevels;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Risk> Risks
+        {
+            get
+            {
+                if ((_Risks == null))
+                {
+                    _Risks = base.CreateObjectSet<Risk>("Risks");
+                }
+                return _Risks;
+            }
+        }
+        private ObjectSet<Risk> _Risks;
 
         #endregion
         #region AddTo Methods
@@ -865,6 +940,38 @@ namespace _2SQUARE.Models
         public void AddToArtifactTypes(ArtifactType artifactType)
         {
             base.AddObject("ArtifactTypes", artifactType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AssessmentTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAssessmentTypes(AssessmentType assessmentType)
+        {
+            base.AddObject("AssessmentTypes", assessmentType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Impacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToImpacts(Impact impact)
+        {
+            base.AddObject("Impacts", impact);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RiskLevels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRiskLevels(RiskLevel riskLevel)
+        {
+            base.AddObject("RiskLevels", riskLevel);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Risks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRisks(Risk risk)
+        {
+            base.AddObject("Risks", risk);
         }
 
         #endregion
@@ -4215,6 +4322,270 @@ namespace _2SQUARE.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="AssessmentType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AssessmentType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AssessmentType object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
+        /// <param name="controller">Initial value of the Controller property.</param>
+        public static AssessmentType CreateAssessmentType(global::System.Int32 id, global::System.String name, global::System.Int32 squareTypeId, global::System.String controller)
+        {
+            AssessmentType assessmentType = new AssessmentType();
+            assessmentType.id = id;
+            assessmentType.Name = name;
+            assessmentType.SquareTypeId = squareTypeId;
+            assessmentType.Controller = controller;
+            return assessmentType;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Source
+        {
+            get
+            {
+                return _Source;
+            }
+            set
+            {
+                OnSourceChanging(value);
+                ReportPropertyChanging("Source");
+                _Source = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Source");
+                OnSourceChanged();
+            }
+        }
+        private global::System.String _Source;
+        partial void OnSourceChanging(global::System.String value);
+        partial void OnSourceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SquareTypeId
+        {
+            get
+            {
+                return _SquareTypeId;
+            }
+            set
+            {
+                OnSquareTypeIdChanging(value);
+                ReportPropertyChanging("SquareTypeId");
+                _SquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SquareTypeId");
+                OnSquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SquareTypeId;
+        partial void OnSquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSquareTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Controller
+        {
+            get
+            {
+                return _Controller;
+            }
+            set
+            {
+                OnControllerChanging(value);
+                ReportPropertyChanging("Controller");
+                _Controller = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Controller");
+                OnControllerChanged();
+            }
+        }
+        private global::System.String _Controller;
+        partial void OnControllerChanging(global::System.String value);
+        partial void OnControllerChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareType")]
+        public SquareType SquareType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SquareType> SquareTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes", "Project")]
+        public EntityCollection<Project> Projects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "Project")]
+        public EntityCollection<Project> Projects1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes1", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes1", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "Risk")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risk", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Definition")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -4885,6 +5256,112 @@ namespace _2SQUARE.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Impact")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Impact : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Impact object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Impact CreateImpact(global::System.Int32 id, global::System.String name)
+        {
+            Impact impact = new Impact();
+            impact.id = id;
+            impact.Name = name;
+            return impact;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Risk")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risk", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Project")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5008,6 +5485,54 @@ namespace _2SQUARE.Models
         private global::System.DateTime _DateCreated;
         partial void OnDateCreatedChanging(global::System.DateTime value);
         partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SecurityAssessmentId
+        {
+            get
+            {
+                return _SecurityAssessmentId;
+            }
+            set
+            {
+                OnSecurityAssessmentIdChanging(value);
+                ReportPropertyChanging("SecurityAssessmentId");
+                _SecurityAssessmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SecurityAssessmentId");
+                OnSecurityAssessmentIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SecurityAssessmentId;
+        partial void OnSecurityAssessmentIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSecurityAssessmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PrivacyAssessmentId
+        {
+            get
+            {
+                return _PrivacyAssessmentId;
+            }
+            set
+            {
+                OnPrivacyAssessmentIdChanging(value);
+                ReportPropertyChanging("PrivacyAssessmentId");
+                _PrivacyAssessmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrivacyAssessmentId");
+                OnPrivacyAssessmentIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PrivacyAssessmentId;
+        partial void OnPrivacyAssessmentIdChanging(Nullable<global::System.Int32> value);
+        partial void OnPrivacyAssessmentIdChanged();
 
         #endregion
     
@@ -5119,6 +5644,104 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifact", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes", "AssessmentType")]
+        public AssessmentType AssessmentType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AssessmentType> AssessmentTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "AssessmentType")]
+        public AssessmentType AssessmentType1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AssessmentType> AssessmentType1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Risk")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risk", value);
                 }
             }
         }
@@ -5883,6 +6506,908 @@ namespace _2SQUARE.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Risk")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Risk : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Risk object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        /// <param name="ssquareTypeId">Initial value of the SsquareTypeId property.</param>
+        /// <param name="assessmentTypeId">Initial value of the AssessmentTypeId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Risk CreateRisk(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 ssquareTypeId, global::System.Int32 assessmentTypeId, global::System.String name)
+        {
+            Risk risk = new Risk();
+            risk.id = id;
+            risk.ProjectId = projectId;
+            risk.SsquareTypeId = ssquareTypeId;
+            risk.AssessmentTypeId = assessmentTypeId;
+            risk.Name = name;
+            return risk;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SsquareTypeId
+        {
+            get
+            {
+                return _SsquareTypeId;
+            }
+            set
+            {
+                OnSsquareTypeIdChanging(value);
+                ReportPropertyChanging("SsquareTypeId");
+                _SsquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SsquareTypeId");
+                OnSsquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SsquareTypeId;
+        partial void OnSsquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSsquareTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AssessmentTypeId
+        {
+            get
+            {
+                return _AssessmentTypeId;
+            }
+            set
+            {
+                OnAssessmentTypeIdChanging(value);
+                ReportPropertyChanging("AssessmentTypeId");
+                _AssessmentTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AssessmentTypeId");
+                OnAssessmentTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _AssessmentTypeId;
+        partial void OnAssessmentTypeIdChanging(global::System.Int32 value);
+        partial void OnAssessmentTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Likelihood
+        {
+            get
+            {
+                return _Likelihood;
+            }
+            set
+            {
+                OnLikelihoodChanging(value);
+                ReportPropertyChanging("Likelihood");
+                _Likelihood = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Likelihood");
+                OnLikelihoodChanged();
+            }
+        }
+        private global::System.String _Likelihood;
+        partial void OnLikelihoodChanging(global::System.String value);
+        partial void OnLikelihoodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ImpactId
+        {
+            get
+            {
+                return _ImpactId;
+            }
+            set
+            {
+                OnImpactIdChanging(value);
+                ReportPropertyChanging("ImpactId");
+                _ImpactId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ImpactId");
+                OnImpactIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ImpactId;
+        partial void OnImpactIdChanging(Nullable<global::System.Int32> value);
+        partial void OnImpactIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Damage
+        {
+            get
+            {
+                return _Damage;
+            }
+            set
+            {
+                OnDamageChanging(value);
+                ReportPropertyChanging("Damage");
+                _Damage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Damage");
+                OnDamageChanged();
+            }
+        }
+        private global::System.String _Damage;
+        partial void OnDamageChanging(global::System.String value);
+        partial void OnDamageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Magnitude
+        {
+            get
+            {
+                return _Magnitude;
+            }
+            set
+            {
+                OnMagnitudeChanging(value);
+                ReportPropertyChanging("Magnitude");
+                _Magnitude = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Magnitude");
+                OnMagnitudeChanged();
+            }
+        }
+        private global::System.String _Magnitude;
+        partial void OnMagnitudeChanging(global::System.String value);
+        partial void OnMagnitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Cost
+        {
+            get
+            {
+                return _Cost;
+            }
+            set
+            {
+                OnCostChanging(value);
+                ReportPropertyChanging("Cost");
+                _Cost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Cost");
+                OnCostChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Cost;
+        partial void OnCostChanging(Nullable<global::System.Int32> value);
+        partial void OnCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RiskLevel
+        {
+            get
+            {
+                return _RiskLevel;
+            }
+            set
+            {
+                OnRiskLevelChanging(value);
+                ReportPropertyChanging("RiskLevel");
+                _RiskLevel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RiskLevel");
+                OnRiskLevelChanged();
+            }
+        }
+        private global::System.String _RiskLevel;
+        partial void OnRiskLevelChanging(global::System.String value);
+        partial void OnRiskLevelChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentType")]
+        public AssessmentType AssessmentType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AssessmentType> AssessmentTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Impact")]
+        public Impact Impact
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Impact> ImpactReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevel")]
+        public RiskLevel RiskLevel1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<RiskLevel> RiskLevel1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevel")]
+        public RiskLevel RiskLevel2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<RiskLevel> RiskLevel2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevel")]
+        public RiskLevel RiskLevel3
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<RiskLevel> RiskLevel3Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevel")]
+        public RiskLevel RiskLevel4
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<RiskLevel> RiskLevel4Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareType")]
+        public SquareType SquareType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SquareType> SquareTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="RiskLevel")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RiskLevel : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RiskLevel object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static RiskLevel CreateRiskLevel(global::System.String id, global::System.String name)
+        {
+            RiskLevel riskLevel = new RiskLevel();
+            riskLevel.id = id;
+            riskLevel.Name = name;
+            return riskLevel;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.String _id;
+        partial void OnidChanging(global::System.String value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SLikelihood
+        {
+            get
+            {
+                return _SLikelihood;
+            }
+            set
+            {
+                OnSLikelihoodChanging(value);
+                ReportPropertyChanging("SLikelihood");
+                _SLikelihood = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SLikelihood");
+                OnSLikelihoodChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SLikelihood;
+        partial void OnSLikelihoodChanging(Nullable<global::System.Decimal> value);
+        partial void OnSLikelihoodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PLikelihood
+        {
+            get
+            {
+                return _PLikelihood;
+            }
+            set
+            {
+                OnPLikelihoodChanging(value);
+                ReportPropertyChanging("PLikelihood");
+                _PLikelihood = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PLikelihood");
+                OnPLikelihoodChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PLikelihood;
+        partial void OnPLikelihoodChanging(Nullable<global::System.Int32> value);
+        partial void OnPLikelihoodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Impact
+        {
+            get
+            {
+                return _Impact;
+            }
+            set
+            {
+                OnImpactChanging(value);
+                ReportPropertyChanging("Impact");
+                _Impact = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Impact");
+                OnImpactChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Impact;
+        partial void OnImpactChanging(Nullable<global::System.Int32> value);
+        partial void OnImpactChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Damage
+        {
+            get
+            {
+                return _Damage;
+            }
+            set
+            {
+                OnDamageChanging(value);
+                ReportPropertyChanging("Damage");
+                _Damage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Damage");
+                OnDamageChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Damage;
+        partial void OnDamageChanging(Nullable<global::System.Int32> value);
+        partial void OnDamageChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "Risk")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risk", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "Risk")]
+        public EntityCollection<Risk> Risks1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risk", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "Risk")]
+        public EntityCollection<Risk> Risks2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risk", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "Risk")]
+        public EntityCollection<Risk> Risks3
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risk", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Role")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -6170,6 +7695,50 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "AssessmentType")]
+        public EntityCollection<AssessmentType> AssessmentTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "Risk")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risk", value);
                 }
             }
         }

@@ -6,8 +6,11 @@
     [ArtifactTypeId] INT             NOT NULL,
     [ProjectId]      INT             NOT NULL,
     [CreatedBy]      VARCHAR (50)    NOT NULL,
-    [DateCreated]    DATETIME        NOT NULL
+    [DateCreated]    DATETIME        NOT NULL,
+    [ContentType]    VARCHAR (20)    NULL
 );
+
+
 
 
 
