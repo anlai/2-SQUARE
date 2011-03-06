@@ -480,7 +480,8 @@ CREATE TABLE [dbo].[Artifacts] (
     [ArtifactTypeId] INT             NOT NULL,
     [ProjectId]      INT             NOT NULL,
     [CreatedBy]      VARCHAR (50)    NOT NULL,
-    [DateCreated]    DATETIME        NOT NULL
+    [DateCreated]    DATETIME        NOT NULL,
+    [ContentType]    VARCHAR (20)    NULL
 );
 
 
@@ -901,6 +902,37 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
 
 
 GO
+PRINT N'Creating [dbo].[AssessmentTypes]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[AssessmentTypes] (
+    [id]           INT          IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (50) NOT NULL,
+    [Source]       VARCHAR (50) NULL,
+    [SquareTypeId] INT          NOT NULL,
+    [Controller]   VARCHAR (50) NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_AssessmentTypes...';
+
+
+GO
+ALTER TABLE [dbo].[AssessmentTypes]
+    ADD CONSTRAINT [PK_AssessmentTypes] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Definitions]...';
 
 
@@ -993,6 +1025,34 @@ ALTER TABLE [dbo].[GoalTypes]
 
 
 GO
+PRINT N'Creating [dbo].[Impacts]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[Impacts] (
+    [id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Name] VARCHAR (50) NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_Impacts...';
+
+
+GO
+ALTER TABLE [dbo].[Impacts]
+    ADD CONSTRAINT [PK_Impacts] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Projects]...';
 
 
@@ -1002,10 +1062,12 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
 
 GO
 CREATE TABLE [dbo].[Projects] (
-    [id]          INT           IDENTITY (1, 1) NOT NULL,
-    [Name]        VARCHAR (50)  NOT NULL,
-    [Description] VARCHAR (MAX) NULL,
-    [DateCreated] DATETIME      NOT NULL
+    [id]                   INT           IDENTITY (1, 1) NOT NULL,
+    [Name]                 VARCHAR (50)  NOT NULL,
+    [Description]          VARCHAR (MAX) NULL,
+    [DateCreated]          DATETIME      NOT NULL,
+    [SecurityAssessmentId] INT           NULL,
+    [PrivacyAssessmentId]  INT           NULL
 );
 
 
@@ -1113,6 +1175,76 @@ PRINT N'Creating PK_ProjectWorkers_1...';
 GO
 ALTER TABLE [dbo].[ProjectWorkers]
     ADD CONSTRAINT [PK_ProjectWorkers_1] PRIMARY KEY CLUSTERED ([UserId] ASC, [ProjectId] ASC, [RoleId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[RiskLevels]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[RiskLevels] (
+    [id]          CHAR (1)     NOT NULL,
+    [Name]        VARCHAR (50) NOT NULL,
+    [SLikelihood] DECIMAL (4)  NULL,
+    [PLikelihood] INT          NULL,
+    [Impact]      INT          NULL,
+    [Damage]      INT          NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_RiskLevels...';
+
+
+GO
+ALTER TABLE [dbo].[RiskLevels]
+    ADD CONSTRAINT [PK_RiskLevels] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[Risks]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[Risks] (
+    [id]               INT           NOT NULL,
+    [ProjectId]        INT           NOT NULL,
+    [SsquareTypeId]    INT           NOT NULL,
+    [AssessmentTypeId] INT           NOT NULL,
+    [Name]             VARCHAR (100) NOT NULL,
+    [Description]      VARCHAR (MAX) NULL,
+    [Likelihood]       CHAR (1)      NULL,
+    [ImpactId]         INT           NULL,
+    [Damage]           CHAR (1)      NULL,
+    [Magnitude]        CHAR (1)      NULL,
+    [Cost]             INT           NULL,
+    [RiskLevel]        CHAR (1)      NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_Risks...';
+
+
+GO
+ALTER TABLE [dbo].[Risks]
+    ADD CONSTRAINT [PK_Risks] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
 
 
 GO
@@ -1542,6 +1674,15 @@ ALTER TABLE [dbo].[aspnet_UsersInRoles] WITH NOCHECK
 
 
 GO
+PRINT N'Creating FK_AssessmentTypes_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[AssessmentTypes] WITH NOCHECK
+    ADD CONSTRAINT [FK_AssessmentTypes_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating FK_Definitions_Terms...';
 
 
@@ -1584,6 +1725,24 @@ PRINT N'Creating FK_GoalTypes_SquareTypes...';
 GO
 ALTER TABLE [dbo].[GoalTypes] WITH NOCHECK
     ADD CONSTRAINT [FK_GoalTypes_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Projects_AssessmentTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Projects] WITH NOCHECK
+    ADD CONSTRAINT [FK_Projects_AssessmentTypes] FOREIGN KEY ([SecurityAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Projects_AssessmentTypes1...';
+
+
+GO
+ALTER TABLE [dbo].[Projects] WITH NOCHECK
+    ADD CONSTRAINT [FK_Projects_AssessmentTypes1] FOREIGN KEY ([PrivacyAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1647,6 +1806,78 @@ PRINT N'Creating FK_ProjectWorkers_Projects...';
 GO
 ALTER TABLE [dbo].[ProjectWorkers] WITH NOCHECK
     ADD CONSTRAINT [FK_ProjectWorkers_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_AssessmentTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_AssessmentTypes] FOREIGN KEY ([AssessmentTypeId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_Impacts...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_Impacts] FOREIGN KEY ([ImpactId]) REFERENCES [dbo].[Impacts] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_Projects...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_RiskLevels...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_RiskLevels] FOREIGN KEY ([Likelihood]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_RiskLevels1...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_RiskLevels1] FOREIGN KEY ([Damage]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_RiskLevels2...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_RiskLevels2] FOREIGN KEY ([Magnitude]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_RiskLevels3...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_RiskLevels3] FOREIGN KEY ([RiskLevel]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_SquareTypes] FOREIGN KEY ([SsquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -5580,6 +5811,8 @@ ALTER TABLE [dbo].[Artifacts] WITH CHECK CHECK CONSTRAINT [FK_Artifacts_Projects
 
 ALTER TABLE [dbo].[ArtifactTypes] WITH CHECK CHECK CONSTRAINT [FK_ArtifactTypes_SquareTypes];
 
+ALTER TABLE [dbo].[AssessmentTypes] WITH CHECK CHECK CONSTRAINT [FK_AssessmentTypes_SquareTypes];
+
 ALTER TABLE [dbo].[Definitions] WITH CHECK CHECK CONSTRAINT [FK_Definitions_Terms];
 
 ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_GoalTypes];
@@ -5589,6 +5822,10 @@ ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_Projects];
 ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_SquareTypes];
 
 ALTER TABLE [dbo].[GoalTypes] WITH CHECK CHECK CONSTRAINT [FK_GoalTypes_SquareTypes];
+
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_AssessmentTypes];
+
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_AssessmentTypes1];
 
 ALTER TABLE [dbo].[ProjectSteps] WITH CHECK CHECK CONSTRAINT [FK_ProjectSteps_Projects];
 
@@ -5603,6 +5840,22 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorker
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_aspnet_Users];
 
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_Projects];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_AssessmentTypes];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Impacts];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Projects];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels1];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels2];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels3];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_SquareTypes];
 
 ALTER TABLE [dbo].[Steps] WITH CHECK CHECK CONSTRAINT [FK_Steps_RequirementCategories];
 

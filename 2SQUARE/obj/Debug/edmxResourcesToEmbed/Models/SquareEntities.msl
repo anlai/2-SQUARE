@@ -168,6 +168,8 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="SquareModel.Project">
         <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="PrivacyAssessmentId" ColumnName="PrivacyAssessmentId" />
+          <ScalarProperty Name="SecurityAssessmentId" ColumnName="SecurityAssessmentId" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -384,6 +386,55 @@
         <MappingFragment StoreEntitySet="ArtifactTypes">
           <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssessmentTypes">
+      <EntityTypeMapping TypeName="SquareModel.AssessmentType">
+        <MappingFragment StoreEntitySet="AssessmentTypes">
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Impacts">
+      <EntityTypeMapping TypeName="SquareModel.Impact">
+        <MappingFragment StoreEntitySet="Impacts">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RiskLevels">
+      <EntityTypeMapping TypeName="SquareModel.RiskLevel">
+        <MappingFragment StoreEntitySet="RiskLevels">
+          <ScalarProperty Name="Damage" ColumnName="Damage" />
+          <ScalarProperty Name="Impact" ColumnName="Impact" />
+          <ScalarProperty Name="PLikelihood" ColumnName="PLikelihood" />
+          <ScalarProperty Name="SLikelihood" ColumnName="SLikelihood" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Risks">
+      <EntityTypeMapping TypeName="SquareModel.Risk">
+        <MappingFragment StoreEntitySet="Risks">
+          <ScalarProperty Name="RiskLevel" ColumnName="RiskLevel" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Magnitude" ColumnName="Magnitude" />
+          <ScalarProperty Name="Damage" ColumnName="Damage" />
+          <ScalarProperty Name="ImpactId" ColumnName="ImpactId" />
+          <ScalarProperty Name="Likelihood" ColumnName="Likelihood" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AssessmentTypeId" ColumnName="AssessmentTypeId" />
+          <ScalarProperty Name="SsquareTypeId" ColumnName="SsquareTypeId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -145,17 +145,10 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        // check for step 1's completion
-        var steps = _projectService.GetProjectSteps(projectStep.ProjectId, projectStep.Step.SquareType);
-        if (steps.Where(a => a.Step.Order == 1 && a.Complete).Any())
-        {
-            return true;
-        }
-        
-        // step 1 is not completed
-        errors.Add("Step 1 has not been completed.");
+        if (!IsStepcomplete(projectStep, 1)) errors.Add("Step 1 has not been completed.");
 
-        return false;
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     /// <summary>
@@ -251,14 +244,38 @@ public class ValidationService : IValidationService
     /// <returns></returns>
     private bool Step3Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!projectStep.Project.Artifacts.Where(a => a.ArtifactType.SquareTypeId == projectStep.Step.SquareTypeId).Any())
+        {
+            errors.Add("No artifacts have been added.");
+        }
+
+        return !errors.Any();
     }
 
+    /// <summary>
+    /// Step 4 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Step 3 is required to be complete
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step4Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 3)) errors.Add("Step 3 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step4Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -267,10 +284,27 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// Step 5 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Steps 1 and 2 are required to be completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step5Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 1)) errors.Add("Step 1 has not been completed.");
+        if (!IsStepcomplete(projectStep, 2)) errors.Add("Step 2 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step5Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -279,10 +313,28 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// Step 6 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Steps 3,4 and 5 are required to be completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step6Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 3)) errors.Add("Step 3 has not been completed.");
+        if (!IsStepcomplete(projectStep, 4)) errors.Add("Step 4 has not been completed.");
+        if (!IsStepcomplete(projectStep, 5)) errors.Add("Step 5 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step6Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -291,10 +343,26 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// step 7 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Step 6 is required to be completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step7Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 6)) errors.Add("Step 6 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step7Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -303,10 +371,27 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// Step 8 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Step 4 and 7 are required to be completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step8Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 4)) errors.Add("Step 4 has not been completed.");
+        if (!IsStepcomplete(projectStep, 7)) errors.Add("Step 7 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step8Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -315,10 +400,26 @@ public class ValidationService : IValidationService
         return false;
     }
 
+    /// <summary>
+    /// Step 9 starting validation
+    /// </summary>
+    /// <remarks>
+    /// Step 8 is required to be completed
+    /// </remarks>
+    /// <param name="projectStep"></param>
+    /// <param name="warnings"></param>
+    /// <param name="errors"></param>
+    /// <returns></returns>
     private bool Step9Start(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!IsStepcomplete(projectStep, 8)) errors.Add("Step 8 has not been completed.");
+
+        // if any elements, validation failed
+        return !errors.Any();
     }
 
     private bool Step9Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
@@ -328,22 +429,34 @@ public class ValidationService : IValidationService
     }
     #endregion
 
-    public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
+    /// <summary>
+    /// Checks to see if that particular step in this project has been completed
+    /// </summary>
+    /// <param name="project"></param>
+    /// <param name="stepNum"></param>
+    /// <returns></returns>
+    private bool IsStepcomplete(ProjectStep projectStep, int stepNum)
     {
-        var result = new ValidationChangeStatusResult();
-
-        switch (projectStep.Step.Order)
-        {
-            case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
-                break;
-            default:
-                result.IsValid = false;
-                result.Errors.Add("Validation has not been added for the step.");
-                break;
-        }
-
-        return result;
+        var steps = _projectService.GetProjectSteps(projectStep.ProjectId, projectStep.Step.SquareType);
+        return steps.Where(a => a.Step.Order == stepNum && a.Complete).Any();
     }
+
+    //public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
+    //{
+    //    var result = new ValidationChangeStatusResult();
+
+    //    switch (projectStep.Step.Order)
+    //    {
+    //        case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
+    //            break;
+    //        default:
+    //            result.IsValid = false;
+    //            result.Errors.Add("Validation has not been added for the step.");
+    //            break;
+    //    }
+
+    //    return result;
+    //}
 
     public bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep)
     {

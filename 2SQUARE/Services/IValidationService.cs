@@ -7,7 +7,7 @@ namespace _2SQUARE.Services
     {
         ValidationChangeStatusResult ValidateChangeStatus(ProjectStep projectStep, bool complete, bool working);
 
-        ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep);
+        //ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep);
         bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep);
     }
 
