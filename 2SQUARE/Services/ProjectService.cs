@@ -243,11 +243,11 @@ namespace _2SQUARE.Services
 
             if (assessmentType.SquareType.Name == SquareTypes.Security)
             {
-                project.SecurityAssessmentType = assessmentType;
+                project.SecurityAssessmentId = assessmentType.id;
             }
             else if (assessmentType.SquareType.Name == SquareTypes.Privacy)
             {
-                project.PrivacyAssessmentType = assessmentType;
+                project.PrivacyAssessmentId = assessmentType.id;
             }
 
             // save

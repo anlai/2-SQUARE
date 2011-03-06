@@ -116,6 +116,7 @@
     <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\GuidanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NIST800_30Controller.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Models\GoalViewModel.cs" />
     <Compile Include="Models\ChangeStatusViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\NIST800_30EditViewModel.cs" />
+    <Compile Include="Models\NIST800_30ViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />
@@ -185,6 +188,8 @@
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\NIST800_30\Add.aspx" />
+    <Content Include="Views\NIST800_30\Index.aspx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
     <Content Include="Views\Privacy\Step3.aspx" />

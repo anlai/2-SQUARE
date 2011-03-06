@@ -20,7 +20,10 @@
         <tbody>
             <% foreach (var a in Model.AssessmentTypes) { %>
                 <tr class="definition-row">
-                    <td class="button-cell"><a href="<%: Url.Action("Index", a.Controller) %>" class="button ui-state-default ui-corner-all">Select</a></td>
+                    <%--<td class="button-cell"><a href="<%: Url.Action("Index", a.Controller, new {id=Model.ProjectStep.Id,projectId=Model.Project.id}) %>" class="button ui-state-default ui-corner-all">Select</a></td>--%>
+                    <td class="button-cell">
+                        <%: Html.ActionLink<SecurityController>(b=>b.SelectAssessmentType(Model.ProjectStep.Id, Model.Project.id, a.id), "Select", new {@class="button ui-state-default ui-corner-all"}) %>
+                    </td>
                     <td><%: a.Name %></td>
                     <td><%: a.Source %></td>
                 </tr>

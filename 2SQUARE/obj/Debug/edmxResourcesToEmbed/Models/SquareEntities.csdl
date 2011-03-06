@@ -157,19 +157,19 @@
       <End Role="SquareTypes" EntitySet="SquareTypes" />
       <End Role="ProjectTerms" EntitySet="ProjectTerms" />
     </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels" Association="SquareModel.FK_Risks_RiskLevels">
+    <AssociationSet Name="FK_Risks_Damage" Association="SquareModel.FK_Risks_Damage">
       <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels1" Association="SquareModel.FK_Risks_RiskLevels1">
+    <AssociationSet Name="FK_Risks_Likelihood" Association="SquareModel.FK_Risks_Likelihood">
       <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels2" Association="SquareModel.FK_Risks_RiskLevels2">
+    <AssociationSet Name="FK_Risks_Magnitude" Association="SquareModel.FK_Risks_Magnitude">
       <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels3" Association="SquareModel.FK_Risks_RiskLevels3">
+    <AssociationSet Name="FK_Risks_RiskLevel" Association="SquareModel.FK_Risks_RiskLevel">
       <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
@@ -429,8 +429,8 @@
     <Property Name="SecurityAssessmentId" Type="Int32" />
     <Property Name="PrivacyAssessmentId" Type="Int32" />
     <NavigationProperty Name="Artifacts" Relationship="SquareModel.FK_Artifacts_Projects" FromRole="Projects" ToRole="Artifacts" />
-    <NavigationProperty Name="SecurityAssessmentType" Relationship="SquareModel.FK_Projects_PrivacyAssessmentTypes" FromRole="Projects" ToRole="AssessmentTypes" />
-    <NavigationProperty Name="PrivacyAssessmentType" Relationship="SquareModel.FK_Projects_SecurityAssessmentTypes" FromRole="Projects" ToRole="AssessmentTypes" />
+    <NavigationProperty Name="PrivacyAssessmentType" Relationship="SquareModel.FK_Projects_PrivacyAssessmentTypes" FromRole="Projects" ToRole="AssessmentTypes" />
+    <NavigationProperty Name="SecurityAssessmentType" Relationship="SquareModel.FK_Projects_SecurityAssessmentTypes" FromRole="Projects" ToRole="AssessmentTypes" />
     <NavigationProperty Name="Goals" Relationship="SquareModel.FK_Goals_Projects" FromRole="Projects" ToRole="Goals" />
     <NavigationProperty Name="ProjectSteps" Relationship="SquareModel.FK_ProjectSteps_Projects" FromRole="Projects" ToRole="ProjectSteps" />
     <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_Projects" FromRole="Projects" ToRole="ProjectTerms" />
@@ -482,14 +482,16 @@
     </Key>
     <Property Name="id" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="SLikelihood" Type="Decimal" Precision="4" Scale="0" />
-    <Property Name="PLikelihood" Type="Int32" />
-    <Property Name="Impact" Type="Int32" />
-    <Property Name="Damage" Type="Int32" />
-    <NavigationProperty Name="Risks" Relationship="SquareModel.FK_Risks_RiskLevels" FromRole="RiskLevels" ToRole="Risks" />
-    <NavigationProperty Name="Risks1" Relationship="SquareModel.FK_Risks_RiskLevels1" FromRole="RiskLevels" ToRole="Risks" />
-    <NavigationProperty Name="Risks2" Relationship="SquareModel.FK_Risks_RiskLevels2" FromRole="RiskLevels" ToRole="Risks" />
-    <NavigationProperty Name="Risks3" Relationship="SquareModel.FK_Risks_RiskLevels3" FromRole="RiskLevels" ToRole="Risks" />
+    <Property Name="SLikelihood" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+    <Property Name="PLikelihood" Type="Int32" Nullable="false" />
+    <Property Name="Impact" Type="Int32" Nullable="false" />
+    <Property Name="Damage" Type="Int32" Nullable="false" />
+    <Property Name="Order" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Risks" Relationship="SquareModel.FK_Risks_Damage" FromRole="RiskLevels" ToRole="Risks" />
+    <NavigationProperty Name="Risks1" Relationship="SquareModel.FK_Risks_Likelihood" FromRole="RiskLevels" ToRole="Risks" />
+    <NavigationProperty Name="Risks2" Relationship="SquareModel.FK_Risks_Magnitude" FromRole="RiskLevels" ToRole="Risks" />
+    <NavigationProperty Name="Risks3" Relationship="SquareModel.FK_Risks_RiskLevel" FromRole="RiskLevels" ToRole="Risks" />
   </EntityType>
   <EntityType Name="Risk">
     <Key>
@@ -501,19 +503,22 @@
     <Property Name="AssessmentTypeId" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="Likelihood" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LikelihoodId" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
     <Property Name="ImpactId" Type="Int32" />
-    <Property Name="Damage" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
-    <Property Name="Magnitude" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="DamageId" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="MagnitudeId" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
     <Property Name="Cost" Type="Int32" />
-    <Property Name="RiskLevel" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="RiskLevelId" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="Source" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Vulnerability" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Action" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="AssessmentType" Relationship="SquareModel.FK_Risks_AssessmentTypes" FromRole="Risks" ToRole="AssessmentTypes" />
     <NavigationProperty Name="Impact" Relationship="SquareModel.FK_Risks_Impacts" FromRole="Risks" ToRole="Impacts" />
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_Risks_Projects" FromRole="Risks" ToRole="Projects" />
-    <NavigationProperty Name="RiskLevel1" Relationship="SquareModel.FK_Risks_RiskLevels" FromRole="Risks" ToRole="RiskLevels" />
-    <NavigationProperty Name="RiskLevel2" Relationship="SquareModel.FK_Risks_RiskLevels1" FromRole="Risks" ToRole="RiskLevels" />
-    <NavigationProperty Name="RiskLevel3" Relationship="SquareModel.FK_Risks_RiskLevels2" FromRole="Risks" ToRole="RiskLevels" />
-    <NavigationProperty Name="RiskLevel4" Relationship="SquareModel.FK_Risks_RiskLevels3" FromRole="Risks" ToRole="RiskLevels" />
+    <NavigationProperty Name="Damage" Relationship="SquareModel.FK_Risks_Damage" FromRole="Risks" ToRole="RiskLevels" />
+    <NavigationProperty Name="Likelihood" Relationship="SquareModel.FK_Risks_Likelihood" FromRole="Risks" ToRole="RiskLevels" />
+    <NavigationProperty Name="Magnitude" Relationship="SquareModel.FK_Risks_Magnitude" FromRole="Risks" ToRole="RiskLevels" />
+    <NavigationProperty Name="RiskLevel" Relationship="SquareModel.FK_Risks_RiskLevel" FromRole="Risks" ToRole="RiskLevels" />
     <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Risks_SquareTypes" FromRole="Risks" ToRole="SquareTypes" />
   </EntityType>
   <EntityType Name="Role">
@@ -1054,7 +1059,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Risks_RiskLevels">
+  <Association Name="FK_Risks_Damage">
     <End Role="RiskLevels" Type="SquareModel.RiskLevel" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Risk" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1062,11 +1067,11 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Risks">
-        <PropertyRef Name="Likelihood" />
+        <PropertyRef Name="DamageId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Risks_RiskLevels1">
+  <Association Name="FK_Risks_Likelihood">
     <End Role="RiskLevels" Type="SquareModel.RiskLevel" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Risk" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1074,11 +1079,11 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Risks">
-        <PropertyRef Name="Damage" />
+        <PropertyRef Name="LikelihoodId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Risks_RiskLevels2">
+  <Association Name="FK_Risks_Magnitude">
     <End Role="RiskLevels" Type="SquareModel.RiskLevel" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Risk" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1086,11 +1091,11 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Risks">
-        <PropertyRef Name="Magnitude" />
+        <PropertyRef Name="MagnitudeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Risks_RiskLevels3">
+  <Association Name="FK_Risks_RiskLevel">
     <End Role="RiskLevels" Type="SquareModel.RiskLevel" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Risk" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1098,7 +1103,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Risks">
-        <PropertyRef Name="RiskLevel" />
+        <PropertyRef Name="RiskLevelId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

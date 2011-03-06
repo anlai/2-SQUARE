@@ -48,10 +48,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Steps", "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Step), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Likelihood", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Magnitude", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevel", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
@@ -5567,7 +5567,7 @@ namespace _2SQUARE.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes")]
-        public AssessmentType SecurityAssessmentType
+        public AssessmentType PrivacyAssessmentType
         {
             get
             {
@@ -5583,7 +5583,7 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<AssessmentType> SecurityAssessmentTypeReference
+        public EntityReference<AssessmentType> PrivacyAssessmentTypeReference
         {
             get
             {
@@ -5605,7 +5605,7 @@ namespace _2SQUARE.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_SecurityAssessmentTypes", "AssessmentTypes")]
-        public AssessmentType PrivacyAssessmentType
+        public AssessmentType SecurityAssessmentType
         {
             get
             {
@@ -5621,7 +5621,7 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<AssessmentType> PrivacyAssessmentTypeReference
+        public EntityReference<AssessmentType> SecurityAssessmentTypeReference
         {
             get
             {
@@ -6687,24 +6687,24 @@ namespace _2SQUARE.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Likelihood
+        public global::System.String LikelihoodId
         {
             get
             {
-                return _Likelihood;
+                return _LikelihoodId;
             }
             set
             {
-                OnLikelihoodChanging(value);
-                ReportPropertyChanging("Likelihood");
-                _Likelihood = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Likelihood");
-                OnLikelihoodChanged();
+                OnLikelihoodIdChanging(value);
+                ReportPropertyChanging("LikelihoodId");
+                _LikelihoodId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LikelihoodId");
+                OnLikelihoodIdChanged();
             }
         }
-        private global::System.String _Likelihood;
-        partial void OnLikelihoodChanging(global::System.String value);
-        partial void OnLikelihoodChanged();
+        private global::System.String _LikelihoodId;
+        partial void OnLikelihoodIdChanging(global::System.String value);
+        partial void OnLikelihoodIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6735,48 +6735,48 @@ namespace _2SQUARE.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Damage
+        public global::System.String DamageId
         {
             get
             {
-                return _Damage;
+                return _DamageId;
             }
             set
             {
-                OnDamageChanging(value);
-                ReportPropertyChanging("Damage");
-                _Damage = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Damage");
-                OnDamageChanged();
+                OnDamageIdChanging(value);
+                ReportPropertyChanging("DamageId");
+                _DamageId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DamageId");
+                OnDamageIdChanged();
             }
         }
-        private global::System.String _Damage;
-        partial void OnDamageChanging(global::System.String value);
-        partial void OnDamageChanged();
+        private global::System.String _DamageId;
+        partial void OnDamageIdChanging(global::System.String value);
+        partial void OnDamageIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Magnitude
+        public global::System.String MagnitudeId
         {
             get
             {
-                return _Magnitude;
+                return _MagnitudeId;
             }
             set
             {
-                OnMagnitudeChanging(value);
-                ReportPropertyChanging("Magnitude");
-                _Magnitude = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Magnitude");
-                OnMagnitudeChanged();
+                OnMagnitudeIdChanging(value);
+                ReportPropertyChanging("MagnitudeId");
+                _MagnitudeId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MagnitudeId");
+                OnMagnitudeIdChanged();
             }
         }
-        private global::System.String _Magnitude;
-        partial void OnMagnitudeChanging(global::System.String value);
-        partial void OnMagnitudeChanged();
+        private global::System.String _MagnitudeId;
+        partial void OnMagnitudeIdChanging(global::System.String value);
+        partial void OnMagnitudeIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6807,24 +6807,96 @@ namespace _2SQUARE.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String RiskLevel
+        public global::System.String RiskLevelId
         {
             get
             {
-                return _RiskLevel;
+                return _RiskLevelId;
             }
             set
             {
-                OnRiskLevelChanging(value);
-                ReportPropertyChanging("RiskLevel");
-                _RiskLevel = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("RiskLevel");
-                OnRiskLevelChanged();
+                OnRiskLevelIdChanging(value);
+                ReportPropertyChanging("RiskLevelId");
+                _RiskLevelId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RiskLevelId");
+                OnRiskLevelIdChanged();
             }
         }
-        private global::System.String _RiskLevel;
-        partial void OnRiskLevelChanging(global::System.String value);
-        partial void OnRiskLevelChanged();
+        private global::System.String _RiskLevelId;
+        partial void OnRiskLevelIdChanging(global::System.String value);
+        partial void OnRiskLevelIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Source
+        {
+            get
+            {
+                return _Source;
+            }
+            set
+            {
+                OnSourceChanging(value);
+                ReportPropertyChanging("Source");
+                _Source = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Source");
+                OnSourceChanged();
+            }
+        }
+        private global::System.String _Source;
+        partial void OnSourceChanging(global::System.String value);
+        partial void OnSourceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Vulnerability
+        {
+            get
+            {
+                return _Vulnerability;
+            }
+            set
+            {
+                OnVulnerabilityChanging(value);
+                ReportPropertyChanging("Vulnerability");
+                _Vulnerability = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Vulnerability");
+                OnVulnerabilityChanged();
+            }
+        }
+        private global::System.String _Vulnerability;
+        partial void OnVulnerabilityChanging(global::System.String value);
+        partial void OnVulnerabilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Action
+        {
+            get
+            {
+                return _Action;
+            }
+            set
+            {
+                OnActionChanging(value);
+                ReportPropertyChanging("Action");
+                _Action = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Action");
+                OnActionChanged();
+            }
+        }
+        private global::System.String _Action;
+        partial void OnActionChanging(global::System.String value);
+        partial void OnActionChanged();
 
         #endregion
     
@@ -6950,16 +7022,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevels")]
-        public RiskLevel RiskLevel1
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels")]
+        public RiskLevel Damage
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Damage", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Damage", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -6967,17 +7039,17 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<RiskLevel> RiskLevel1Reference
+        public EntityReference<RiskLevel> DamageReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Damage", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_Damage", "RiskLevels", value);
                 }
             }
         }
@@ -6988,16 +7060,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevels")]
-        public RiskLevel RiskLevel2
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Likelihood", "RiskLevels")]
+        public RiskLevel Likelihood
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Likelihood", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Likelihood", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7005,17 +7077,17 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<RiskLevel> RiskLevel2Reference
+        public EntityReference<RiskLevel> LikelihoodReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Likelihood", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_Likelihood", "RiskLevels", value);
                 }
             }
         }
@@ -7026,16 +7098,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevels")]
-        public RiskLevel RiskLevel3
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Magnitude", "RiskLevels")]
+        public RiskLevel Magnitude
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Magnitude", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Magnitude", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7043,17 +7115,17 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<RiskLevel> RiskLevel3Reference
+        public EntityReference<RiskLevel> MagnitudeReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_Magnitude", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_Magnitude", "RiskLevels", value);
                 }
             }
         }
@@ -7064,16 +7136,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevels")]
-        public RiskLevel RiskLevel4
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevel", "RiskLevels")]
+        public RiskLevel RiskLevel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevel", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevel", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7081,17 +7153,17 @@ namespace _2SQUARE.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<RiskLevel> RiskLevel4Reference
+        public EntityReference<RiskLevel> RiskLevelReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevel", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevel", "RiskLevels", value);
                 }
             }
         }
@@ -7152,11 +7224,23 @@ namespace _2SQUARE.Models
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static RiskLevel CreateRiskLevel(global::System.String id, global::System.String name)
+        /// <param name="sLikelihood">Initial value of the SLikelihood property.</param>
+        /// <param name="pLikelihood">Initial value of the PLikelihood property.</param>
+        /// <param name="impact">Initial value of the Impact property.</param>
+        /// <param name="damage">Initial value of the Damage property.</param>
+        /// <param name="order">Initial value of the Order property.</param>
+        /// <param name="color">Initial value of the Color property.</param>
+        public static RiskLevel CreateRiskLevel(global::System.String id, global::System.String name, global::System.Decimal sLikelihood, global::System.Int32 pLikelihood, global::System.Int32 impact, global::System.Int32 damage, global::System.Int32 order, global::System.String color)
         {
             RiskLevel riskLevel = new RiskLevel();
             riskLevel.id = id;
             riskLevel.Name = name;
+            riskLevel.SLikelihood = sLikelihood;
+            riskLevel.PLikelihood = pLikelihood;
+            riskLevel.Impact = impact;
+            riskLevel.Damage = damage;
+            riskLevel.Order = order;
+            riskLevel.Color = color;
             return riskLevel;
         }
 
@@ -7217,9 +7301,9 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> SLikelihood
+        public global::System.Decimal SLikelihood
         {
             get
             {
@@ -7234,16 +7318,16 @@ namespace _2SQUARE.Models
                 OnSLikelihoodChanged();
             }
         }
-        private Nullable<global::System.Decimal> _SLikelihood;
-        partial void OnSLikelihoodChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _SLikelihood;
+        partial void OnSLikelihoodChanging(global::System.Decimal value);
         partial void OnSLikelihoodChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> PLikelihood
+        public global::System.Int32 PLikelihood
         {
             get
             {
@@ -7258,16 +7342,16 @@ namespace _2SQUARE.Models
                 OnPLikelihoodChanged();
             }
         }
-        private Nullable<global::System.Int32> _PLikelihood;
-        partial void OnPLikelihoodChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _PLikelihood;
+        partial void OnPLikelihoodChanging(global::System.Int32 value);
         partial void OnPLikelihoodChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Impact
+        public global::System.Int32 Impact
         {
             get
             {
@@ -7282,16 +7366,16 @@ namespace _2SQUARE.Models
                 OnImpactChanged();
             }
         }
-        private Nullable<global::System.Int32> _Impact;
-        partial void OnImpactChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _Impact;
+        partial void OnImpactChanging(global::System.Int32 value);
         partial void OnImpactChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Damage
+        public global::System.Int32 Damage
         {
             get
             {
@@ -7306,9 +7390,57 @@ namespace _2SQUARE.Models
                 OnDamageChanged();
             }
         }
-        private Nullable<global::System.Int32> _Damage;
-        partial void OnDamageChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _Damage;
+        partial void OnDamageChanging(global::System.Int32 value);
         partial void OnDamageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private global::System.Int32 _Order;
+        partial void OnOrderChanging(global::System.Int32 value);
+        partial void OnOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Color
+        {
+            get
+            {
+                return _Color;
+            }
+            set
+            {
+                OnColorChanging(value);
+                ReportPropertyChanging("Color");
+                _Color = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Color");
+                OnColorChanged();
+            }
+        }
+        private global::System.String _Color;
+        partial void OnColorChanging(global::System.String value);
+        partial void OnColorChanged();
 
         #endregion
     
@@ -7320,18 +7452,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "Risks")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Damage", "Risks")]
         public EntityCollection<Risk> Risks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Damage", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Damage", "Risks", value);
                 }
             }
         }
@@ -7342,18 +7474,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "Risks")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Likelihood", "Risks")]
         public EntityCollection<Risk> Risks1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Likelihood", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Likelihood", "Risks", value);
                 }
             }
         }
@@ -7364,18 +7496,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "Risks")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Magnitude", "Risks")]
         public EntityCollection<Risk> Risks2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Magnitude", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Magnitude", "Risks", value);
                 }
             }
         }
@@ -7386,18 +7518,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "Risks")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevel", "Risks")]
         public EntityCollection<Risk> Risks3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevel", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevel", "Risks", value);
                 }
             }
         }

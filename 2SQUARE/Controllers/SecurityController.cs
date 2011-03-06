@@ -113,10 +113,10 @@ namespace _2SQUARE.Controllers
                 // load the project
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
-                // assesment type picked  out already
+                // assesment type picked  out already)
                 if (project.SecurityAssessmentId.HasValue)
                 {
-                    return RedirectToAction("Index", project.SecurityAssessmentType.Controller);
+                    return RedirectToAction("Index", project.SecurityAssessmentType.Controller, new {id=id,projectId=projectId});
                 }
 
                 var viewModel = Step4ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
@@ -136,7 +136,7 @@ namespace _2SQUARE.Controllers
 
                 _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
 
-                return RedirectToAction("Index", assessmentType.Controller);
+                return RedirectToAction("Index", assessmentType.Controller, new { id = id, projectId = projectId });
             }
             catch (SecurityException)
             {

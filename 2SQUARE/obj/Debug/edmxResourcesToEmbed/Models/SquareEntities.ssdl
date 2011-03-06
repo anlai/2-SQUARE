@@ -240,27 +240,27 @@
       <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
+    <AssociationSet Name="FK_Risks_Damage" Association="SquareModel.Store.FK_Risks_Damage">
+      <End Role="RiskLevels" EntitySet="RiskLevels" />
+      <End Role="Risks" EntitySet="Risks" />
+    </AssociationSet>
     <AssociationSet Name="FK_Risks_Impacts" Association="SquareModel.Store.FK_Risks_Impacts">
       <End Role="Impacts" EntitySet="Impacts" />
+      <End Role="Risks" EntitySet="Risks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Risks_Likelihood" Association="SquareModel.Store.FK_Risks_Likelihood">
+      <End Role="RiskLevels" EntitySet="RiskLevels" />
+      <End Role="Risks" EntitySet="Risks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Risks_Magnitude" Association="SquareModel.Store.FK_Risks_Magnitude">
+      <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
     <AssociationSet Name="FK_Risks_Projects" Association="SquareModel.Store.FK_Risks_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels" Association="SquareModel.Store.FK_Risks_RiskLevels">
-      <End Role="RiskLevels" EntitySet="RiskLevels" />
-      <End Role="Risks" EntitySet="Risks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels1" Association="SquareModel.Store.FK_Risks_RiskLevels1">
-      <End Role="RiskLevels" EntitySet="RiskLevels" />
-      <End Role="Risks" EntitySet="Risks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels2" Association="SquareModel.Store.FK_Risks_RiskLevels2">
-      <End Role="RiskLevels" EntitySet="RiskLevels" />
-      <End Role="Risks" EntitySet="Risks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Risks_RiskLevels3" Association="SquareModel.Store.FK_Risks_RiskLevels3">
+    <AssociationSet Name="FK_Risks_RiskLevel" Association="SquareModel.Store.FK_Risks_RiskLevel">
       <End Role="RiskLevels" EntitySet="RiskLevels" />
       <End Role="Risks" EntitySet="Risks" />
     </AssociationSet>
@@ -525,10 +525,12 @@
     </Key>
     <Property Name="id" Type="char" Nullable="false" MaxLength="1" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="SLikelihood" Type="decimal" Precision="4" />
-    <Property Name="PLikelihood" Type="int" />
-    <Property Name="Impact" Type="int" />
-    <Property Name="Damage" Type="int" />
+    <Property Name="SLikelihood" Type="decimal" Nullable="false" Precision="4" Scale="1" />
+    <Property Name="PLikelihood" Type="int" Nullable="false" />
+    <Property Name="Impact" Type="int" Nullable="false" />
+    <Property Name="Damage" Type="int" Nullable="false" />
+    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="Color" Type="varchar" Nullable="false" MaxLength="10" />
   </EntityType>
   <EntityType Name="Risks">
     <Key>
@@ -540,12 +542,15 @@
     <Property Name="AssessmentTypeId" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Description" Type="varchar(max)" />
-    <Property Name="Likelihood" Type="char" MaxLength="1" />
+    <Property Name="LikelihoodId" Type="char" MaxLength="1" />
     <Property Name="ImpactId" Type="int" />
-    <Property Name="Damage" Type="char" MaxLength="1" />
-    <Property Name="Magnitude" Type="char" MaxLength="1" />
+    <Property Name="DamageId" Type="char" MaxLength="1" />
+    <Property Name="MagnitudeId" Type="char" MaxLength="1" />
     <Property Name="Cost" Type="int" />
-    <Property Name="RiskLevel" Type="char" MaxLength="1" />
+    <Property Name="RiskLevelId" Type="char" MaxLength="1" />
+    <Property Name="Source" Type="varchar(max)" />
+    <Property Name="Vulnerability" Type="varchar(max)" />
+    <Property Name="Action" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -1100,6 +1105,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Risks_Damage">
+    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
+    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RiskLevels">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Risks">
+        <PropertyRef Name="DamageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Risks_Impacts">
     <End Role="Impacts" Type="SquareModel.Store.Impacts" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
@@ -1109,6 +1126,30 @@
       </Principal>
       <Dependent Role="Risks">
         <PropertyRef Name="ImpactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Risks_Likelihood">
+    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
+    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RiskLevels">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Risks">
+        <PropertyRef Name="LikelihoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Risks_Magnitude">
+    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
+    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RiskLevels">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Risks">
+        <PropertyRef Name="MagnitudeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1124,7 +1165,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Risks_RiskLevels">
+  <Association Name="FK_Risks_RiskLevel">
     <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
     <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1132,43 +1173,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Risks">
-        <PropertyRef Name="Likelihood" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Risks_RiskLevels1">
-    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
-    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskLevels">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Risks">
-        <PropertyRef Name="Damage" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Risks_RiskLevels2">
-    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
-    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskLevels">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Risks">
-        <PropertyRef Name="Magnitude" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Risks_RiskLevels3">
-    <End Role="RiskLevels" Type="SquareModel.Store.RiskLevels" Multiplicity="0..1" />
-    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskLevels">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Risks">
-        <PropertyRef Name="RiskLevel" />
+        <PropertyRef Name="RiskLevelId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
