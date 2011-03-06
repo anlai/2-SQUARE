@@ -26,10 +26,14 @@ namespace _2SQUARE.Services
         void DeleteGoal(int id /* goal id */);
         #endregion
         
-        #region
+        #region Step 3 Methods
         Artifact LoadArtifact(int id);
         Artifact SaveArtifact(int id /* project step id */, Artifact artifact, string loginId);
         void DeleteArtifact(int id /* artifact id*/);
+        #endregion
+
+        #region Step 4 Methods
+        void SetAssessmentType(int id /* project id */, AssessmentType assessmentType, string userId);
         #endregion
 
         #region Step Status Methods

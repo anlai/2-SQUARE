@@ -231,7 +231,28 @@ namespace _2SQUARE.Services
             db.DeleteObject(artifact);
             db.SaveChanges();
         }
+        #endregion
 
+        #region Step 4 Methods
+        public void SetAssessmentType(int id /* project id */, AssessmentType assessmentType, string userId)
+        {
+            var project = GetProject(id, userId);
+
+            Check.Require(project != null, "project is required.");
+            Check.Require(assessmentType != null, "assessmentType is required.");
+
+            if (assessmentType.SquareType.Name == SquareTypes.Security)
+            {
+                project.SecurityAssessmentType = assessmentType;
+            }
+            else if (assessmentType.SquareType.Name == SquareTypes.Privacy)
+            {
+                project.PrivacyAssessmentType = assessmentType;
+            }
+
+            // save
+            db.SaveChanges();
+        }
         #endregion
 
         #region Project Status

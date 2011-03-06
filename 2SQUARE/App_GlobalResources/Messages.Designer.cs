@@ -106,6 +106,15 @@ namespace _2SQUARE.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check.Require(projectStep != null, &quot;projectStep is required.&quot;);.
+        /// </summary>
+        internal static string ProjectStepMismatch {
+            get {
+                return ResourceManager.GetString("ProjectStepMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string Required {

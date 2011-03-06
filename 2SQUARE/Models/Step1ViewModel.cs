@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Filters;
 using _2SQUARE.Services;
 using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class Step1ViewModel
+    public class Step1ViewModel : StepViewModelBase
     {
-        public ProjectStep Step { get; set; }
-        public Project Project { get; set; }
         public IEnumerable<ProjectTerm> ProjectTerms { get; set; }
 
         public bool ProjectManager { get; set; }
@@ -24,13 +23,13 @@ namespace _2SQUARE.Models
 
             var viewModel = new Step1ViewModel()
                                 {
-                                    Step = db.ProjectSteps.Where(a=>a.Id == projectStepId).Single(),
+                                    ProjectStep = db.ProjectSteps.Where(a=>a.Id == projectStepId).Single(),
                                     Project = db.Projects.Where(a=>a.id == projectId).Single()
                                 };
 
-            Check.Require(viewModel.Step.ProjectId == viewModel.Project.id , "Project mismatch with project step.");
+            Check.Require(viewModel.ProjectStep.ProjectId == viewModel.Project.id , Messages.ProjectStepMismatch);
 
-            var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.Step.Step.SquareTypeId).ToList();
+            var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
             viewModel.ProjectTerms = projectTerms;
 
             var roles = projectService.UserRoles(projectId, loginId);

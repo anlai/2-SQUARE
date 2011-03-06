@@ -18,6 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.ArtifactType), "Artifacts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Artifacts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ArtifactTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ArtifactType), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK__aspnet_Me__Appli__21B6055D", "aspnet_Applications", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Applications), "aspnet_Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Membership), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK__aspnet_Pa__Appli__5AEE82B9", "aspnet_Applications", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Applications), "aspnet_Paths", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Paths), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK__aspnet_Ro__Appli__440B1D61", "aspnet_Applications", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Applications), "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), true)]
@@ -29,33 +32,30 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK__aspnet_Pr__UserI__38996AB5", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.aspnet_Profile), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectWorkers_aspnet_Roles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Roles), "ProjectWorkers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectWorker), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectWorkers_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.aspnet_Users), "ProjectWorkers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectWorker), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "AssessmentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.AssessmentType), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_SecurityAssessmentTypes", "AssessmentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.AssessmentType), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Definitions_Terms", "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Term), "Definitions", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Definition), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Goals_GoalTypes", "GoalTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.GoalType), "Goals", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Goal), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Goals_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Goals", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Goal), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Goals_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Goals", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Goal), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_GoalTypes_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.SquareType), "GoalTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.GoalType), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Impacts", "Impacts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.Impact), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectWorkers_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "ProjectWorkers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectWorker), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Steps", "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Step), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.ArtifactType), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Artifacts_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Artifact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Artifact), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ArtifactType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ArtifactType), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.AssessmentType), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_AssessmentTypes", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.AssessmentType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.AssessmentType), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Impacts", "Impact", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.Impact), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 
 #endregion
 
@@ -106,6 +106,38 @@ namespace _2SQUARE.Models
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Artifact> Artifacts
+        {
+            get
+            {
+                if ((_Artifacts == null))
+                {
+                    _Artifacts = base.CreateObjectSet<Artifact>("Artifacts");
+                }
+                return _Artifacts;
+            }
+        }
+        private ObjectSet<Artifact> _Artifacts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ArtifactType> ArtifactTypes
+        {
+            get
+            {
+                if ((_ArtifactTypes == null))
+                {
+                    _ArtifactTypes = base.CreateObjectSet<ArtifactType>("ArtifactTypes");
+                }
+                return _ArtifactTypes;
+            }
+        }
+        private ObjectSet<ArtifactType> _ArtifactTypes;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -270,6 +302,22 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<AssessmentType> AssessmentTypes
+        {
+            get
+            {
+                if ((_AssessmentTypes == null))
+                {
+                    _AssessmentTypes = base.CreateObjectSet<AssessmentType>("AssessmentTypes");
+                }
+                return _AssessmentTypes;
+            }
+        }
+        private ObjectSet<AssessmentType> _AssessmentTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Definition> Definitions
         {
             get
@@ -314,6 +362,22 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<GoalType> _GoalTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Impact> Impacts
+        {
+            get
+            {
+                if ((_Impacts == null))
+                {
+                    _Impacts = base.CreateObjectSet<Impact>("Impacts");
+                }
+                return _Impacts;
+            }
+        }
+        private ObjectSet<Impact> _Impacts;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -378,6 +442,38 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<ProjectWorker> _ProjectWorkers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RiskLevel> RiskLevels
+        {
+            get
+            {
+                if ((_RiskLevels == null))
+                {
+                    _RiskLevels = base.CreateObjectSet<RiskLevel>("RiskLevels");
+                }
+                return _RiskLevels;
+            }
+        }
+        private ObjectSet<RiskLevel> _RiskLevels;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Risk> Risks
+        {
+            get
+            {
+                if ((_Risks == null))
+                {
+                    _Risks = base.CreateObjectSet<Risk>("Risks");
+                }
+                return _Risks;
+            }
+        }
+        private ObjectSet<Risk> _Risks;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -586,105 +682,25 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<vw_aspnet_WebPartState_User> _vw_aspnet_WebPartState_User;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Artifact> Artifacts
-        {
-            get
-            {
-                if ((_Artifacts == null))
-                {
-                    _Artifacts = base.CreateObjectSet<Artifact>("Artifacts");
-                }
-                return _Artifacts;
-            }
-        }
-        private ObjectSet<Artifact> _Artifacts;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<ArtifactType> ArtifactTypes
-        {
-            get
-            {
-                if ((_ArtifactTypes == null))
-                {
-                    _ArtifactTypes = base.CreateObjectSet<ArtifactType>("ArtifactTypes");
-                }
-                return _ArtifactTypes;
-            }
-        }
-        private ObjectSet<ArtifactType> _ArtifactTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<AssessmentType> AssessmentTypes
-        {
-            get
-            {
-                if ((_AssessmentTypes == null))
-                {
-                    _AssessmentTypes = base.CreateObjectSet<AssessmentType>("AssessmentTypes");
-                }
-                return _AssessmentTypes;
-            }
-        }
-        private ObjectSet<AssessmentType> _AssessmentTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Impact> Impacts
-        {
-            get
-            {
-                if ((_Impacts == null))
-                {
-                    _Impacts = base.CreateObjectSet<Impact>("Impacts");
-                }
-                return _Impacts;
-            }
-        }
-        private ObjectSet<Impact> _Impacts;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<RiskLevel> RiskLevels
-        {
-            get
-            {
-                if ((_RiskLevels == null))
-                {
-                    _RiskLevels = base.CreateObjectSet<RiskLevel>("RiskLevels");
-                }
-                return _RiskLevels;
-            }
-        }
-        private ObjectSet<RiskLevel> _RiskLevels;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Risk> Risks
-        {
-            get
-            {
-                if ((_Risks == null))
-                {
-                    _Risks = base.CreateObjectSet<Risk>("Risks");
-                }
-                return _Risks;
-            }
-        }
-        private ObjectSet<Risk> _Risks;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Artifacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToArtifacts(Artifact artifact)
+        {
+            base.AddObject("Artifacts", artifact);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ArtifactTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToArtifactTypes(ArtifactType artifactType)
+        {
+            base.AddObject("ArtifactTypes", artifactType);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the aspnet_Applications EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -767,6 +783,14 @@ namespace _2SQUARE.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the AssessmentTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAssessmentTypes(AssessmentType assessmentType)
+        {
+            base.AddObject("AssessmentTypes", assessmentType);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Definitions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToDefinitions(Definition definition)
@@ -788,6 +812,14 @@ namespace _2SQUARE.Models
         public void AddToGoalTypes(GoalType goalType)
         {
             base.AddObject("GoalTypes", goalType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Impacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToImpacts(Impact impact)
+        {
+            base.AddObject("Impacts", impact);
         }
     
         /// <summary>
@@ -820,6 +852,22 @@ namespace _2SQUARE.Models
         public void AddToProjectWorkers(ProjectWorker projectWorker)
         {
             base.AddObject("ProjectWorkers", projectWorker);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RiskLevels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRiskLevels(RiskLevel riskLevel)
+        {
+            base.AddObject("RiskLevels", riskLevel);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Risks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRisks(Risk risk)
+        {
+            base.AddObject("Risks", risk);
         }
     
         /// <summary>
@@ -924,54 +972,6 @@ namespace _2SQUARE.Models
         public void AddTovw_aspnet_WebPartState_User(vw_aspnet_WebPartState_User vw_aspnet_WebPartState_User)
         {
             base.AddObject("vw_aspnet_WebPartState_User", vw_aspnet_WebPartState_User);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Artifacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToArtifacts(Artifact artifact)
-        {
-            base.AddObject("Artifacts", artifact);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ArtifactTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToArtifactTypes(ArtifactType artifactType)
-        {
-            base.AddObject("ArtifactTypes", artifactType);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the AssessmentTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAssessmentTypes(AssessmentType assessmentType)
-        {
-            base.AddObject("AssessmentTypes", assessmentType);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Impacts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToImpacts(Impact impact)
-        {
-            base.AddObject("Impacts", impact);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the RiskLevels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRiskLevels(RiskLevel riskLevel)
-        {
-            base.AddObject("RiskLevels", riskLevel);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Risks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRisks(Risk risk)
-        {
-            base.AddObject("Risks", risk);
         }
 
         #endregion
@@ -1245,16 +1245,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactType")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "ArtifactTypes")]
         public ArtifactType ArtifactType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactTypes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactTypes").Value = value;
             }
         }
         /// <summary>
@@ -1266,13 +1266,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactTypes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ArtifactType>("SquareModel.FK_Artifacts_ArtifactTypes", "ArtifactTypes", value);
                 }
             }
         }
@@ -1283,16 +1283,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Projects")]
         public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Projects").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Projects").Value = value;
             }
         }
         /// <summary>
@@ -1304,13 +1304,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Projects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Artifacts_Projects", "Projects", value);
                 }
             }
         }
@@ -1431,18 +1431,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "Artifact")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_ArtifactTypes", "Artifacts")]
         public EntityCollection<Artifact> Artifacts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifact");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifacts");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifact", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_ArtifactTypes", "Artifacts", value);
                 }
             }
         }
@@ -1453,16 +1453,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareType")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "SquareTypes")]
         public SquareType SquareType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareTypes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareTypes").Value = value;
             }
         }
         /// <summary>
@@ -1474,13 +1474,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareTypes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_ArtifactTypes_SquareTypes", "SquareTypes", value);
                 }
             }
         }
@@ -4482,16 +4482,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareType")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "SquareTypes")]
         public SquareType SquareType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareTypes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareTypes").Value = value;
             }
         }
         /// <summary>
@@ -4503,13 +4503,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareTypes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_AssessmentTypes_SquareTypes", "SquareTypes", value);
                 }
             }
         }
@@ -4520,18 +4520,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_PrivacyAssessmentTypes", "Projects")]
         public EntityCollection<Project> Projects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "Projects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "Projects", value);
                 }
             }
         }
@@ -4542,18 +4542,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_SecurityAssessmentTypes", "Projects")]
         public EntityCollection<Project> Projects1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes1", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_SecurityAssessmentTypes", "Projects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_AssessmentTypes1", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_SecurityAssessmentTypes", "Projects", value);
                 }
             }
         }
@@ -4564,18 +4564,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "Risks")]
         public EntityCollection<Risk> Risks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_AssessmentTypes", "Risks", value);
                 }
             }
         }
@@ -5340,18 +5340,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Risks")]
         public EntityCollection<Risk> Risks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risks", value);
                 }
             }
         }
@@ -5544,6 +5544,104 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Artifacts")]
+        public EntityCollection<Artifact> Artifacts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifacts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifacts", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes")]
+        public AssessmentType SecurityAssessmentType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AssessmentType> SecurityAssessmentTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_PrivacyAssessmentTypes", "AssessmentTypes", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_SecurityAssessmentTypes", "AssessmentTypes")]
+        public AssessmentType PrivacyAssessmentType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_SecurityAssessmentTypes", "AssessmentTypes").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_SecurityAssessmentTypes", "AssessmentTypes").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AssessmentType> PrivacyAssessmentTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_SecurityAssessmentTypes", "AssessmentTypes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_SecurityAssessmentTypes", "AssessmentTypes", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Goals_Projects", "Goals")]
         public EntityCollection<Goal> Goals
         {
@@ -5632,116 +5730,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Artifacts_Projects", "Artifact")]
-        public EntityCollection<Artifact> Artifacts
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifact");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Artifact>("SquareModel.FK_Artifacts_Projects", "Artifact", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes", "AssessmentType")]
-        public AssessmentType AssessmentType
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AssessmentType> AssessmentTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes", "AssessmentType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_AssessmentTypes1", "AssessmentType")]
-        public AssessmentType AssessmentType1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AssessmentType> AssessmentType1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Projects_AssessmentTypes1", "AssessmentType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Risks")]
         public EntityCollection<Risk> Risks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risks", value);
                 }
             }
         }
@@ -6836,16 +6836,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentType")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_AssessmentTypes", "AssessmentTypes")]
         public AssessmentType AssessmentType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentTypes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentTypes").Value = value;
             }
         }
         /// <summary>
@@ -6857,13 +6857,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentTypes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AssessmentType>("SquareModel.FK_Risks_AssessmentTypes", "AssessmentTypes", value);
                 }
             }
         }
@@ -6874,16 +6874,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Impact")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Impacts", "Impacts")]
         public Impact Impact
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impacts").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impacts").Value = value;
             }
         }
         /// <summary>
@@ -6895,13 +6895,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impacts");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impact", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Impact>("SquareModel.FK_Risks_Impacts", "Impacts", value);
                 }
             }
         }
@@ -6912,16 +6912,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Projects", "Projects")]
         public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Projects").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Projects").Value = value;
             }
         }
         /// <summary>
@@ -6933,13 +6933,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Projects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("SquareModel.FK_Risks_Projects", "Projects", value);
                 }
             }
         }
@@ -6950,16 +6950,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevel")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "RiskLevels")]
         public RiskLevel RiskLevel1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -6971,13 +6971,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels", "RiskLevels", value);
                 }
             }
         }
@@ -6988,16 +6988,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevel")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "RiskLevels")]
         public RiskLevel RiskLevel2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7009,13 +7009,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels1", "RiskLevels", value);
                 }
             }
         }
@@ -7026,16 +7026,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevel")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "RiskLevels")]
         public RiskLevel RiskLevel3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7047,13 +7047,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels2", "RiskLevels", value);
                 }
             }
         }
@@ -7064,16 +7064,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevel")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "RiskLevels")]
         public RiskLevel RiskLevel4
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels").Value = value;
             }
         }
         /// <summary>
@@ -7085,13 +7085,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RiskLevel>("SquareModel.FK_Risks_RiskLevels3", "RiskLevels", value);
                 }
             }
         }
@@ -7102,16 +7102,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareType")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "SquareTypes")]
         public SquareType SquareType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareTypes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareTypes").Value = value;
             }
         }
         /// <summary>
@@ -7123,13 +7123,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareTypes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_Risks_SquareTypes", "SquareTypes", value);
                 }
             }
         }
@@ -7320,18 +7320,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels", "Risks")]
         public EntityCollection<Risk> Risks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels", "Risks", value);
                 }
             }
         }
@@ -7342,18 +7342,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels1", "Risks")]
         public EntityCollection<Risk> Risks1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels1", "Risks", value);
                 }
             }
         }
@@ -7364,18 +7364,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels2", "Risks")]
         public EntityCollection<Risk> Risks2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels2", "Risks", value);
                 }
             }
         }
@@ -7386,18 +7386,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_RiskLevels3", "Risks")]
         public EntityCollection<Risk> Risks3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevels3", "Risks", value);
                 }
             }
         }
@@ -7573,6 +7573,50 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "ArtifactTypes")]
+        public EntityCollection<ArtifactType> ArtifactTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactTypes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactTypes", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "AssessmentTypes")]
+        public EntityCollection<AssessmentType> AssessmentTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentTypes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentTypes", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Goals_SquareTypes", "Goals")]
         public EntityCollection<Goal> Goals
         {
@@ -7639,6 +7683,28 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "Risks")]
+        public EntityCollection<Risk> Risks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risks");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risks", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Steps_RequirementCategories", "Steps")]
         public EntityCollection<Step> Steps
         {
@@ -7673,72 +7739,6 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Term>("SquareModel.FK_Terms_SquareTypes", "Terms", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_ArtifactTypes_SquareTypes", "ArtifactType")]
-        public EntityCollection<ArtifactType> ArtifactTypes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ArtifactType>("SquareModel.FK_ArtifactTypes_SquareTypes", "ArtifactType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_AssessmentTypes_SquareTypes", "AssessmentType")]
-        public EntityCollection<AssessmentType> AssessmentTypes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AssessmentType>("SquareModel.FK_AssessmentTypes_SquareTypes", "AssessmentType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_SquareTypes", "Risk")]
-        public EntityCollection<Risk> Risks
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risk");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_SquareTypes", "Risk", value);
                 }
             }
         }

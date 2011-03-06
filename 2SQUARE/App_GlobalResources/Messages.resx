@@ -132,6 +132,9 @@
   <data name="NotValidForWork" xml:space="preserve">
     <value>Step {0} for {1} is not ready to be worked on yet.  It has not been set by a project manager.</value>
   </data>
+  <data name="ProjectStepMismatch" xml:space="preserve">
+    <value>Check.Require(projectStep != null, "projectStep is required.");</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>{0} is required.</value>
   </data>

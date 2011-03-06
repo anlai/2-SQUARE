@@ -7,11 +7,8 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class Step2ViewModel
+    public class Step2ViewModel : StepViewModelBase
     {
-        public ProjectStep ProjectStep { get; set; }
-        public Project Project { get; set; }
-
         // needed for security
         public Goal BusinessGoal { get; set; }
         public List<Goal> SecurityGoals { get; set; }
@@ -28,7 +25,7 @@ namespace _2SQUARE.Models
             var project = projectService.GetProject(projectId, loginId);
             var projectStep = db.ProjectSteps.Where(a => a.Id == projectStepId).Single();
 
-            Check.Require(project.id == projectStep.ProjectId, "Project mismatch with project step.");
+            Check.Require(project.id == projectStep.ProjectId, Messages.ProjectStepMismatch);
 
             var viewModel = new Step2ViewModel()
                                 {

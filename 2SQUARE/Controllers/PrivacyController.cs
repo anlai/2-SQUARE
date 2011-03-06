@@ -26,7 +26,7 @@ namespace _2SQUARE.Controllers
                 var viewModel = Step1ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
                 // validate that this is a step 1 step
-                if (viewModel.Step.Step.Order != 1 && viewModel.Step.Step.SquareType.Name == SquareTypes.Privacy) 
+                if (viewModel.ProjectStep.Step.Order != 1 && viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy) 
                     return this.RedirectToAction<ErrorController>(a => a.InvalidStep(string.Format(Messages.InvalidStep, id, 1)));
 
                 return View(viewModel);

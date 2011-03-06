@@ -44,8 +44,8 @@
         </div>
     <% } %>
 
-    <%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.Step.Id, Model.Project.id), "View Predefined Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
-    <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.Step.Id, Model.Project.id), "Add New Term", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
+    <%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.id), "View Predefined Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
+    <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.ProjectStep.Id, Model.Project.id), "Add New Term", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
 
     <h3>Selected Definitions</h3>
 
