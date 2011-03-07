@@ -108,6 +108,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\AssessmentTypes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssessmentTypes.resx</DependentUpon>
+    </Compile>
     <Compile Include="ComponentRegistrar.asax.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -242,6 +247,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\AssessmentTypes.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>AssessmentTypes.Designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="App_GlobalResources\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>

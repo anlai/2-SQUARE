@@ -13,7 +13,9 @@
 
     <%: Html.ValidationSummary() %>
 
-    <%: Html.HiddenFor(a=>a.Risk.ProjectId) %> 
+    <h3>Name</h3>
+
+    <%: Html.TextBoxFor(a=>a.Risk.Name) %>
 
     <h3>Threat Source</h3>
 
@@ -25,15 +27,15 @@
 
     <h3>Likelihood</h3>
 
-    <%= this.Select("Risk.Likelihood").Class("risk-level-calc").Options(Model.RiskLevels, x=>x.id, x=>x.Name).FirstOption("--Select a Likelihood Level--") %>
+    <%= this.Select("Risk.LikelihoodId").Class("risk-level-calc").Options(Model.RiskLevels, x=>x.id, x=>x.Name).FirstOption("--Select a Likelihood Level--") %>
 
     <h3>Impact</h3>
 
     <strong>Impact on Security Goal</strong>
-    <%= this.Select("Risk.Impact").Options(Model.Impacts,x=>x.id, x=>x.Name).FirstOption("--Select an Impact--") %>
+    <%= this.Select("Risk.ImpactId").Options(Model.Impacts,x=>x.id, x=>x.Name).FirstOption("--Select an Impact--") %>
     <br />
     <strong>Magnitude of Impact</strong>
-    <%= this.Select("Risk.Magnitude").Class("risk-level-calc").Options(Model.RiskLevels, x => x.id, x => x.Name).FirstOption("--Select a Magnitude of Impact--")%>
+    <%= this.Select("Risk.MagnitudeId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.id, x => x.Name).FirstOption("--Select a Magnitude of Impact--")%>
 
     <h3>Risk Level</h3>
 
@@ -64,8 +66,8 @@
 
                 var url = '<%: Url.Action("DetermineRiskLevel", "NIST800_30") %>';
 
-                var likelihood = $("#Risk_Likelihood").val();
-                var magnitude = $("#Risk_Magnitude").val();
+                var likelihood = $("#Risk_LikelihoodId").val();
+                var magnitude = $("#Risk_MagnitudeId").val();
 
                 if (likelihood == "" || magnitude == "") return;
 

@@ -8,6 +8,7 @@ using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
 using System.Linq;
+using Resources;
 
 namespace _2SQUARE.Controllers
 {
@@ -52,7 +53,31 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Add(int id /* project step id */, int projectId, Risk risk)
         {
-            return View();
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+            var likelihoodLevel = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
+            var magnitudeLevel = Db.RiskLevels.Where(a => a.id == risk.MagnitudeId).Single();
+
+            var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
+
+            // set the properties that the user can't set
+            risk.ProjectId = projectId;
+            risk.SsquareTypeId = projectStep.Step.SquareTypeId;
+            risk.RiskLevelId = riskLevel.id;
+            risk.AssessmentTypeId = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30).Select(a => a.id).Single();
+
+            Validate(risk, ModelState);
+
+            if (ModelState.IsValid)
+            {
+                Db.Risks.AddObject(risk);
+                Db.SaveChanges();
+
+                Message = string.Format(Messages.Saved, "Risk");
+                return this.RedirectToAction(a => a.Index(id, projectId));
+            }
+
+            var viewModel = NIST800_30EditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
+            return View(viewModel);
         }
 
         public JsonResult DetermineRiskLevel(string likelihood, string magnitude)
@@ -92,6 +117,27 @@ namespace _2SQUARE.Controllers
             }
 
             return Db.RiskLevels.Where(a => a.id == level).SingleOrDefault();
+        }
+
+        public static void Validate(Risk risk, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrEmpty(risk.Name))
+                modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));
+
+            if (string.IsNullOrEmpty(risk.Source))
+                modelState.AddModelError("Threat Source", string.Format(Messages.Required, "Name"));
+
+            if (string.IsNullOrEmpty(risk.Vulnerability))
+                modelState.AddModelError("Vulnerability", string.Format(Messages.Required, "Name"));
+
+            if (string.IsNullOrEmpty(risk.LikelihoodId) && risk.Likelihood == null)
+                modelState.AddModelError("Likelihood", string.Format(Messages.Required, "Likelihood"));
+
+            if (string.IsNullOrEmpty(risk.MagnitudeId) && risk.Magnitude == null)
+                modelState.AddModelError("Magnitude", string.Format(Messages.Required, "Magnitude"));
+
+            if (risk.ImpactId <= 0 && risk.Impact == null)
+                modelState.AddModelError("Impact", string.Format(Messages.Required, "Impact"));
         }
     }
 }
