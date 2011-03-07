@@ -80,6 +80,53 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Edit(int id /* project step id */, int projectId, int riskId)
+        {
+            try
+            {
+                var risk = Db.Risks.Where(a => a.id == riskId).Single();
+
+                var viewModel = NIST800_30EditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
+
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id /* project step id */, int projectId, int riskId, Risk risk)
+        {
+            var srcRisk = Db.Risks.Where(a => a.id == riskId).Single();
+
+            // copy the fields that could have been edited
+            srcRisk.Name = risk.Name;
+            srcRisk.Source = risk.Source;
+            srcRisk.Vulnerability = risk.Vulnerability;
+            srcRisk.LikelihoodId = risk.LikelihoodId;
+            srcRisk.ImpactId = risk.ImpactId;
+            srcRisk.MagnitudeId = risk.MagnitudeId;
+
+            var likelihoodLevel = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
+            var magnitudeLevel = Db.RiskLevels.Where(a => a.id == risk.MagnitudeId).Single();
+            var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
+            srcRisk.RiskLevelId = riskLevel.id;
+
+            Validate(srcRisk, ModelState);
+
+            if (ModelState.IsValid)
+            {
+                Db.SaveChanges();
+                Message = string.Format(Messages.Saved, "Risk");
+                return this.RedirectToAction(a => a.Index(id, projectId));
+            }
+
+            var viewModel = NIST800_30EditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, srcRisk);
+            return View(viewModel);
+        }
+
         public JsonResult DetermineRiskLevel(string likelihood, string magnitude)
         {
             var likelihoodLevel = Db.RiskLevels.Where(a => a.id == likelihood).Single();

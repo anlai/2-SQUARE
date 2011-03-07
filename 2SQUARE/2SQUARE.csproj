@@ -194,7 +194,9 @@
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\NIST800_30\Add.aspx" />
+    <Content Include="Views\NIST800_30\Edit.aspx" />
     <Content Include="Views\NIST800_30\Index.aspx" />
+    <Content Include="Views\NIST800_30\RiskForm.ascx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
     <Content Include="Views\Privacy\Step3.aspx" />

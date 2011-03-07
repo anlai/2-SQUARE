@@ -497,7 +497,7 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ProjectId" Type="Int32" Nullable="false" />
     <Property Name="SsquareTypeId" Type="Int32" Nullable="false" />
     <Property Name="AssessmentTypeId" Type="Int32" Nullable="false" />

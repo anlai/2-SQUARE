@@ -20,12 +20,31 @@
         
             <div class="risk">
         
+                <%: Html.ActionLink<NIST800_30Controller>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -5px;"}) %>
                 <h3><%: a.Name %></h3>
 
-                <span class="risk-description">
-                    <%: a.Description %>
-                </span>
+                <ul class="entry-form">
+                <li style="margin-top: 1em;"><strong>Threat Source:</strong>
+                    <div class="threat_source"><%: a.Source %></div>
+                </li>
 
+                <li style="margin-top: 1em;"><strong>Vulnerability:</strong>
+                    <div class="vulnerability"><%: a.Vulnerability %></div>
+                </li>
+
+                <li style="margin-top: 1em;"><strong>Likelihood:</strong>
+                    <%: a.Likelihood.Name %>
+                </li>
+                <li><strong>Impact:</strong>
+                    <%: a.Impact.Name %>
+                </li>
+                <li><strong>Impact Magnitude:</strong>
+                    <%: a.Magnitude.Name %>
+                </li>
+                <li><strong>Risk Level</strong> 
+                    <%: a.RiskLevel.Name %>
+                </li>
+                </ul>
             </div>
         
         <% } %>
@@ -35,6 +54,9 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+    <style type="text/css">
+        .risk { margin-top: 3em; }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
