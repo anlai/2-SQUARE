@@ -3,7 +3,7 @@
   <Version>1</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\sqlexpress;Initial Catalog=2Square;Integrated Security=True;Password=</ConnectionString>
+      <ConnectionString>Data Source=.\sqlexpress;Initial Catalog=2Square;Integrated Security=True;Password=;MultipleActiveResultSets=True</ConnectionString>
       <DatabaseName>2Square</DatabaseName>
       <DspFamilyName>sql</DspFamilyName>
       <Name>[SUPERKING\sqlexpress.2Square]</Name>
