@@ -23,6 +23,7 @@
     <EntitySet Name="ProjectSteps" EntityType="SquareModel.Store.ProjectSteps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectTerms" EntityType="SquareModel.Store.ProjectTerms" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectWorkers" EntityType="SquareModel.Store.ProjectWorkers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RiskControls" EntityType="SquareModel.Store.RiskControls" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RiskLevels" EntityType="SquareModel.Store.RiskLevels" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Risks" EntityType="SquareModel.Store.Risks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="SquareModel.Store.Roles" store:Type="Tables" Schema="dbo" />
@@ -235,6 +236,10 @@
     <AssociationSet Name="FK_ProjectWorkers_Projects" Association="SquareModel.Store.FK_ProjectWorkers_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectWorkers" EntitySet="ProjectWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RiskControls_Risks" Association="SquareModel.Store.FK_RiskControls_Risks">
+      <End Role="Risks" EntitySet="Risks" />
+      <End Role="RiskControls" EntitySet="RiskControls" />
     </AssociationSet>
     <AssociationSet Name="FK_Risks_AssessmentTypes" Association="SquareModel.Store.FK_Risks_AssessmentTypes">
       <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
@@ -518,6 +523,16 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RiskControls">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RiskId" Type="int" Nullable="false" />
+    <Property Name="Controls" Type="varchar(max)" Nullable="false" />
+    <Property Name="Impact" Type="varchar(max)" />
+    <Property Name="Feasibility" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="RiskLevels">
     <Key>
@@ -1090,6 +1105,18 @@
       </Principal>
       <Dependent Role="ProjectWorkers">
         <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RiskControls_Risks">
+    <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="1" />
+    <End Role="RiskControls" Type="SquareModel.Store.RiskControls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Risks">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RiskControls">
+        <PropertyRef Name="RiskId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -6,3 +6,11 @@ C:\Users\lai\Dropbox\Masters Project\src\2Square.Sql\sql\debug\2Square.Sql_Datab
 C:\Users\lai\Dropbox\Masters Project\src\2Square.Sql\sql\debug\2Square.Sql.deploymanifest
 C:\Users\lai\Dropbox\Masters Project\src\2Square.Sql\sql\debug\2Square.Sql.dbschema
 C:\Users\lai\Dropbox\Masters Project\src\2Square.Sql\obj\Debug\2Square.Sql.dbschema
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql_Script.PreDeployment.sql
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql_Script.PostDeployment.sql
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql_Database.sqlsettings
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql_Database.sqldeployment
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql_Database.sqlcmdvars
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql.deploymanifest
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\sql\debug\2Square.Sql.dbschema
+C:\Users\lai\Dropbox\Masters Project\src-old\2Square.Sql\obj\Debug\2Square.Sql.dbschema

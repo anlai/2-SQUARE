@@ -48,6 +48,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Steps", "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Step), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_RiskControls_Risks", "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Risk), "RiskControls", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RiskControl), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Likelihood", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Magnitude", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
@@ -56,7 +57,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_RiskControls_Risks", "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Risk), "RiskControl", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RiskControl), true)]
 
 #endregion
 
@@ -447,6 +447,22 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<RiskControl> RiskControls
+        {
+            get
+            {
+                if ((_RiskControls == null))
+                {
+                    _RiskControls = base.CreateObjectSet<RiskControl>("RiskControls");
+                }
+                return _RiskControls;
+            }
+        }
+        private ObjectSet<RiskControl> _RiskControls;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<RiskLevel> RiskLevels
         {
             get
@@ -683,22 +699,6 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<vw_aspnet_WebPartState_User> _vw_aspnet_WebPartState_User;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<RiskControl> RiskControls
-        {
-            get
-            {
-                if ((_RiskControls == null))
-                {
-                    _RiskControls = base.CreateObjectSet<RiskControl>("RiskControls");
-                }
-                return _RiskControls;
-            }
-        }
-        private ObjectSet<RiskControl> _RiskControls;
 
         #endregion
         #region AddTo Methods
@@ -872,6 +872,14 @@ namespace _2SQUARE.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the RiskControls EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRiskControls(RiskControl riskControl)
+        {
+            base.AddObject("RiskControls", riskControl);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the RiskLevels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRiskLevels(RiskLevel riskLevel)
@@ -989,14 +997,6 @@ namespace _2SQUARE.Models
         public void AddTovw_aspnet_WebPartState_User(vw_aspnet_WebPartState_User vw_aspnet_WebPartState_User)
         {
             base.AddObject("vw_aspnet_WebPartState_User", vw_aspnet_WebPartState_User);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the RiskControls EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRiskControls(RiskControl riskControl)
-        {
-            base.AddObject("RiskControls", riskControl);
         }
 
         #endregion
@@ -7047,6 +7047,28 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "RiskControls")]
+        public EntityCollection<RiskControl> RiskControls
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControls");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControls", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels")]
         public RiskLevel Damage
         {
@@ -7230,28 +7252,6 @@ namespace _2SQUARE.Models
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "RiskControl")]
-        public EntityCollection<RiskControl> RiskControls
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControl");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControl", value);
-                }
-            }
-        }
 
         #endregion
     }
@@ -7417,16 +7417,16 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "Risk")]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "Risks")]
         public Risk Risk
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risk").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risk").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks").Value = value;
             }
         }
         /// <summary>
@@ -7438,13 +7438,13 @@ namespace _2SQUARE.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risk");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risk", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks", value);
                 }
             }
         }

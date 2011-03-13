@@ -139,7 +139,10 @@
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
   </ItemGroup>
   <ItemGroup>
-    <NotInBuild Include="Schema Comparisons\SchemaComparison1.scmp">
+    <NotInBuild Include="Schema Comparisons\dbtoproj.scmp">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Schema Comparisons\projtodb.scmp">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>

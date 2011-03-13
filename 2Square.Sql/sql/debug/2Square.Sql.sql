@@ -1178,6 +1178,37 @@ ALTER TABLE [dbo].[ProjectWorkers]
 
 
 GO
+PRINT N'Creating [dbo].[RiskControls]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[RiskControls] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [RiskId]      INT           NOT NULL,
+    [Controls]    VARCHAR (MAX) NOT NULL,
+    [Impact]      VARCHAR (MAX) NULL,
+    [Feasibility] VARCHAR (MAX) NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_RiskControls...';
+
+
+GO
+ALTER TABLE [dbo].[RiskControls]
+    ADD CONSTRAINT [PK_RiskControls] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[RiskLevels]...';
 
 
@@ -1187,12 +1218,14 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
 
 GO
 CREATE TABLE [dbo].[RiskLevels] (
-    [id]          CHAR (1)     NOT NULL,
-    [Name]        VARCHAR (50) NOT NULL,
-    [SLikelihood] DECIMAL (4)  NULL,
-    [PLikelihood] INT          NULL,
-    [Impact]      INT          NULL,
-    [Damage]      INT          NULL
+    [id]          CHAR (1)       NOT NULL,
+    [Name]        VARCHAR (50)   NOT NULL,
+    [SLikelihood] DECIMAL (4, 1) NOT NULL,
+    [PLikelihood] INT            NOT NULL,
+    [Impact]      INT            NOT NULL,
+    [Damage]      INT            NOT NULL,
+    [Order]       INT            NOT NULL,
+    [Color]       VARCHAR (10)   NOT NULL
 );
 
 
@@ -1219,18 +1252,21 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
 
 GO
 CREATE TABLE [dbo].[Risks] (
-    [id]               INT           NOT NULL,
+    [id]               INT           IDENTITY (1, 1) NOT NULL,
     [ProjectId]        INT           NOT NULL,
     [SsquareTypeId]    INT           NOT NULL,
     [AssessmentTypeId] INT           NOT NULL,
     [Name]             VARCHAR (100) NOT NULL,
     [Description]      VARCHAR (MAX) NULL,
-    [Likelihood]       CHAR (1)      NULL,
+    [LikelihoodId]     CHAR (1)      NULL,
     [ImpactId]         INT           NULL,
-    [Damage]           CHAR (1)      NULL,
-    [Magnitude]        CHAR (1)      NULL,
+    [DamageId]         CHAR (1)      NULL,
+    [MagnitudeId]      CHAR (1)      NULL,
     [Cost]             INT           NULL,
-    [RiskLevel]        CHAR (1)      NULL
+    [RiskLevelId]      CHAR (1)      NULL,
+    [Source]           VARCHAR (MAX) NULL,
+    [Vulnerability]    VARCHAR (MAX) NULL,
+    [Action]           VARCHAR (MAX) NULL
 );
 
 
@@ -1728,21 +1764,21 @@ ALTER TABLE [dbo].[GoalTypes] WITH NOCHECK
 
 
 GO
-PRINT N'Creating FK_Projects_AssessmentTypes...';
+PRINT N'Creating FK_Projects_PrivacyAssessmentTypes...';
 
 
 GO
 ALTER TABLE [dbo].[Projects] WITH NOCHECK
-    ADD CONSTRAINT [FK_Projects_AssessmentTypes] FOREIGN KEY ([SecurityAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [FK_Projects_PrivacyAssessmentTypes] FOREIGN KEY ([PrivacyAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating FK_Projects_AssessmentTypes1...';
+PRINT N'Creating FK_Projects_SecurityAssessmentTypes...';
 
 
 GO
 ALTER TABLE [dbo].[Projects] WITH NOCHECK
-    ADD CONSTRAINT [FK_Projects_AssessmentTypes1] FOREIGN KEY ([PrivacyAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [FK_Projects_SecurityAssessmentTypes] FOREIGN KEY ([SecurityAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1809,12 +1845,30 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH NOCHECK
 
 
 GO
+PRINT N'Creating FK_RiskControls_Risks...';
+
+
+GO
+ALTER TABLE [dbo].[RiskControls] WITH NOCHECK
+    ADD CONSTRAINT [FK_RiskControls_Risks] FOREIGN KEY ([RiskId]) REFERENCES [dbo].[Risks] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating FK_Risks_AssessmentTypes...';
 
 
 GO
 ALTER TABLE [dbo].[Risks] WITH NOCHECK
     ADD CONSTRAINT [FK_Risks_AssessmentTypes] FOREIGN KEY ([AssessmentTypeId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_Damage...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_Damage] FOREIGN KEY ([DamageId]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1827,6 +1881,24 @@ ALTER TABLE [dbo].[Risks] WITH NOCHECK
 
 
 GO
+PRINT N'Creating FK_Risks_Likelihood...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_Likelihood] FOREIGN KEY ([LikelihoodId]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Risks_Magnitude...';
+
+
+GO
+ALTER TABLE [dbo].[Risks] WITH NOCHECK
+    ADD CONSTRAINT [FK_Risks_Magnitude] FOREIGN KEY ([MagnitudeId]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating FK_Risks_Projects...';
 
 
@@ -1836,39 +1908,12 @@ ALTER TABLE [dbo].[Risks] WITH NOCHECK
 
 
 GO
-PRINT N'Creating FK_Risks_RiskLevels...';
+PRINT N'Creating FK_Risks_RiskLevel...';
 
 
 GO
 ALTER TABLE [dbo].[Risks] WITH NOCHECK
-    ADD CONSTRAINT [FK_Risks_RiskLevels] FOREIGN KEY ([Likelihood]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating FK_Risks_RiskLevels1...';
-
-
-GO
-ALTER TABLE [dbo].[Risks] WITH NOCHECK
-    ADD CONSTRAINT [FK_Risks_RiskLevels1] FOREIGN KEY ([Damage]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating FK_Risks_RiskLevels2...';
-
-
-GO
-ALTER TABLE [dbo].[Risks] WITH NOCHECK
-    ADD CONSTRAINT [FK_Risks_RiskLevels2] FOREIGN KEY ([Magnitude]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating FK_Risks_RiskLevels3...';
-
-
-GO
-ALTER TABLE [dbo].[Risks] WITH NOCHECK
-    ADD CONSTRAINT [FK_Risks_RiskLevels3] FOREIGN KEY ([RiskLevel]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [FK_Risks_RiskLevel] FOREIGN KEY ([RiskLevelId]) REFERENCES [dbo].[RiskLevels] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -5823,9 +5868,9 @@ ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_SquareTypes];
 
 ALTER TABLE [dbo].[GoalTypes] WITH CHECK CHECK CONSTRAINT [FK_GoalTypes_SquareTypes];
 
-ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_AssessmentTypes];
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_PrivacyAssessmentTypes];
 
-ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_AssessmentTypes1];
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_SecurityAssessmentTypes];
 
 ALTER TABLE [dbo].[ProjectSteps] WITH CHECK CHECK CONSTRAINT [FK_ProjectSteps_Projects];
 
@@ -5841,19 +5886,21 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorker
 
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_Projects];
 
+ALTER TABLE [dbo].[RiskControls] WITH CHECK CHECK CONSTRAINT [FK_RiskControls_Risks];
+
 ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_AssessmentTypes];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Damage];
 
 ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Impacts];
 
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Likelihood];
+
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Magnitude];
+
 ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_Projects];
 
-ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels];
-
-ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels1];
-
-ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels2];
-
-ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevels3];
+ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_RiskLevel];
 
 ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_SquareTypes];
 

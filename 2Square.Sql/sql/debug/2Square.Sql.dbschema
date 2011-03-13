@@ -17,7 +17,7 @@
 			<Metadata Name="CompatibilityMode" Value="100" />
 		</CustomData>
 		<CustomData Category="Permissions" Type="XmlPermissions">
-			<Metadata Name="FileName" Value="C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC\2SQUARE.SQL\PROPERTIES\DATABASE.SQLPERMISSIONS" />
+			<Metadata Name="FileName" Value="C:\USERS\LAI\DROPBOX\MASTERS PROJECT\SRC-OLD\2SQUARE.SQL\PROPERTIES\DATABASE.SQLPERMISSIONS" />
 		</CustomData>
 	</Header>
 	<Model>
@@ -14653,10 +14653,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Projects_AssessmentTypes]">
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Projects_PrivacyAssessmentTypes]">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Projects].[SecurityAssessmentId]" />
+					<References Name="[dbo].[Projects].[PrivacyAssessmentId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
@@ -14675,10 +14675,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Projects_AssessmentTypes1]">
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Projects_SecurityAssessmentTypes]">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Projects].[PrivacyAssessmentId]" />
+					<References Name="[dbo].[Projects].[SecurityAssessmentId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
@@ -14851,6 +14851,28 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_RiskControls_Risks]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[RiskControls].[RiskId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[RiskControls]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Risks].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Risks]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_AssessmentTypes]">
 			<Relationship Name="Columns">
 				<Entry>
@@ -14870,6 +14892,28 @@ END]]></Value>
 			<Relationship Name="ForeignTable">
 				<Entry>
 					<References Name="[dbo].[AssessmentTypes]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_Damage]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Risks].[DamageId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Risks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[RiskLevels].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[RiskLevels]" />
 				</Entry>
 			</Relationship>
 		</Element>
@@ -14895,6 +14939,50 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_Likelihood]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Risks].[LikelihoodId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Risks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[RiskLevels].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[RiskLevels]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_Magnitude]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Risks].[MagnitudeId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Risks]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[RiskLevels].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[RiskLevels]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_Projects]">
 			<Relationship Name="Columns">
 				<Entry>
@@ -14917,76 +15005,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_RiskLevels]">
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_RiskLevel]">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Risks].[Likelihood]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Risks]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[RiskLevels].[id]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[RiskLevels]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_RiskLevels1]">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[Risks].[Damage]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Risks]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[RiskLevels].[id]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[RiskLevels]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_RiskLevels2]">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[Risks].[Magnitude]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Risks]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[RiskLevels].[id]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[RiskLevels]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_Risks_RiskLevels3]">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[Risks].[RiskLevel]" />
+					<References Name="[dbo].[Risks].[RiskLevelId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
@@ -15517,6 +15539,24 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_RiskControls]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[RiskControls].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[RiskControls]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_RiskLevels]">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
@@ -15986,6 +16026,98 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql100Table" Name="[dbo].[RiskControls]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskControls].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskControls].[RiskId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskControls].[Controls]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskControls].[Impact]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskControls].[Feasibility]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[RiskLevels]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -16025,9 +16157,11 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[SLikelihood]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Scale" Value="1" />
 									<Property Name="Precision" Value="4" />
 									<Relationship Name="Type">
 										<Entry>
@@ -16041,6 +16175,7 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[PLikelihood]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16056,6 +16191,7 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[Impact]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16071,12 +16207,46 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[Damage]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[Order]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[RiskLevels].[Color]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -16097,6 +16267,7 @@ END]]></Value>
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[id]">
 						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16192,7 +16363,7 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Likelihood]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[LikelihoodId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16223,7 +16394,7 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Damage]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[DamageId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16239,7 +16410,7 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Magnitude]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[MagnitudeId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16270,7 +16441,7 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[RiskLevel]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[RiskLevelId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -16278,6 +16449,54 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Source]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Vulnerability]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Risks].[Action]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
