@@ -209,6 +209,7 @@
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\RiskRecommendation\Create.aspx" />
     <Content Include="Views\RiskRecommendation\Edit.aspx" />
+    <Content Include="Views\RiskRecommendation\RiskRecommendationView.ascx" />
     <Content Include="Views\Security\Step1.aspx" />
     <Content Include="Views\ProjectTerm\AddNewTerm.aspx" />
     <Content Include="Views\ProjectTerm\PredefinedTermsView.ascx" />

@@ -8,26 +8,7 @@
 
     <h2>Create Risk Recommendation</h2>
 
-    <% using (Html.BeginForm()) { %>
-
-    <%: Html.ValidationSummary() %>
-
-    <ul class="entry-form">
-        <li><strong>Recommendated Controls:</strong>
-            <%: Html.TextAreaFor(a=>a.RiskRecommendation.Controls) %>
-        </li>
-        <li><strong>Impact:</strong>
-            <%: Html.TextAreaFor(a=>a.RiskRecommendation.Impact) %>
-        </li>
-        <li><strong>Feasibility:</strong>
-            <%: Html.TextAreaFor(a=>a.RiskRecommendation.Feasibility) %>
-        </li>
-        <li><strong></strong>
-            <%: Html.SubmitButton("Save", "Save", new { @class = "button ui-corner-all ui-state-default" })%>
-            <%: Html.ActionLink("Cancel", "Index", Model.Risk.AssessmentType.Controller, new {id=Model.ProjectStepId, projectId=Model.Risk.ProjectId}, new {@class="button ui-state-default ui-corner-all"}) %>
-        </li>
-    </ul>
-    <% } %>
+    <% Html.RenderPartial("RiskRecommendationView"); %>
 
 </asp:Content>
 

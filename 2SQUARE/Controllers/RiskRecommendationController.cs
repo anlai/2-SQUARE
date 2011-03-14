@@ -63,6 +63,7 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 _projectService.SaveRiskRecommendation(riskRecommendation, id);
+                Message = "Risk recommendation has been saved.";
                 return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.ProjectId });
             }
 
@@ -100,9 +101,27 @@ namespace _2SQUARE.Controllers
         /// <param name="riskControl"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id, int projectStepId, RiskRecommendation riskControl)
+        public ActionResult Edit(int id, int projectStepId, RiskRecommendation riskRecommendation)
         {
-            return View();
+            var risk = Db.Risks.Where(a => a.id == id).FirstOrDefault();
+
+            if (risk == null)
+            {
+                Message = string.Format("Unable to load risk with id {0}", id);
+                return this.RedirectToAction<ProjectController>(a => a.Index());
+            }
+
+            Validation.Validate(riskRecommendation, ModelState);
+
+            if (ModelState.IsValid)
+            {
+                _projectService.SaveRiskRecommendation(riskRecommendation, id);
+                Message = "Risk recommendation has been updated.";
+                return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.ProjectId });
+            }
+
+            var viewModel = RiskRecommendationViewModel.Create(projectStepId, risk, riskRecommendation);
+            return View(viewModel);
         }
     }
 }
