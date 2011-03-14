@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="SquareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SquareModelStoreContainer">
           <EntitySet Name="Artifacts" EntityType="SquareModel.Store.Artifacts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ArtifactTypes" EntityType="SquareModel.Store.ArtifactTypes" store:Type="Tables" Schema="dbo" />
@@ -28,8 +28,8 @@
           <EntitySet Name="ProjectSteps" EntityType="SquareModel.Store.ProjectSteps" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectTerms" EntityType="SquareModel.Store.ProjectTerms" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectWorkers" EntityType="SquareModel.Store.ProjectWorkers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RiskControls" EntityType="SquareModel.Store.RiskControls" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RiskLevels" EntityType="SquareModel.Store.RiskLevels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RiskRecommendation" EntityType="SquareModel.Store.RiskRecommendation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Risks" EntityType="SquareModel.Store.Risks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="SquareModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SquareTypes" EntityType="SquareModel.Store.SquareTypes" store:Type="Tables" Schema="dbo" />
@@ -244,7 +244,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_RiskControls_Risks" Association="SquareModel.Store.FK_RiskControls_Risks">
             <End Role="Risks" EntitySet="Risks" />
-            <End Role="RiskControls" EntitySet="RiskControls" />
+            <End Role="RiskRecommendation" EntitySet="RiskRecommendation" />
           </AssociationSet>
           <AssociationSet Name="FK_Risks_AssessmentTypes" Association="SquareModel.Store.FK_Risks_AssessmentTypes">
             <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
@@ -529,16 +529,6 @@
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="RiskControls">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RiskId" Type="int" Nullable="false" />
-          <Property Name="Controls" Type="varchar(max)" Nullable="false" />
-          <Property Name="Impact" Type="varchar(max)" />
-          <Property Name="Feasibility" Type="varchar(max)" />
-        </EntityType>
         <EntityType Name="RiskLevels">
           <Key>
             <PropertyRef Name="id" />
@@ -551,6 +541,16 @@
           <Property Name="Damage" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Color" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="RiskRecommendation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RiskId" Type="int" Nullable="false" />
+          <Property Name="Controls" Type="varchar(max)" Nullable="false" />
+          <Property Name="Impact" Type="varchar(max)" />
+          <Property Name="Feasibility" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Risks">
           <Key>
@@ -1115,12 +1115,12 @@
         </Association>
         <Association Name="FK_RiskControls_Risks">
           <End Role="Risks" Type="SquareModel.Store.Risks" Multiplicity="1" />
-          <End Role="RiskControls" Type="SquareModel.Store.RiskControls" Multiplicity="*" />
+          <End Role="RiskRecommendation" Type="SquareModel.Store.RiskRecommendation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Risks">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="RiskControls">
+            <Dependent Role="RiskRecommendation">
               <PropertyRef Name="RiskId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1576,8 +1576,7 @@
           <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
           <Parameter Name="Details" Type="ntext" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SquareModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -1603,7 +1602,6 @@
           <EntitySet Name="ProjectSteps" EntityType="SquareModel.ProjectStep" />
           <EntitySet Name="ProjectTerms" EntityType="SquareModel.ProjectTerm" />
           <EntitySet Name="ProjectWorkers" EntityType="SquareModel.ProjectWorker" />
-          <EntitySet Name="RiskControls" EntityType="SquareModel.RiskControl" />
           <EntitySet Name="RiskLevels" EntityType="SquareModel.RiskLevel" />
           <EntitySet Name="Risks" EntityType="SquareModel.Risk" />
           <EntitySet Name="Roles" EntityType="SquareModel.Role" />
@@ -1739,10 +1737,6 @@
             <End Role="SquareTypes" EntitySet="SquareTypes" />
             <End Role="ProjectTerms" EntitySet="ProjectTerms" />
           </AssociationSet>
-          <AssociationSet Name="FK_RiskControls_Risks" Association="SquareModel.FK_RiskControls_Risks">
-            <End Role="Risks" EntitySet="Risks" />
-            <End Role="RiskControls" EntitySet="RiskControls" />
-          </AssociationSet>
           <AssociationSet Name="FK_Risks_Damage" Association="SquareModel.FK_Risks_Damage">
             <End Role="RiskLevels" EntitySet="RiskLevels" />
             <End Role="Risks" EntitySet="Risks" />
@@ -1774,6 +1768,11 @@
           <AssociationSet Name="aspnet_UsersInRoles" Association="SquareModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="RiskRecommendations" EntityType="SquareModel.RiskRecommendation" />
+          <AssociationSet Name="FK_RiskControls_Risks1" Association="SquareModel.FK_RiskControls_Risks1">
+            <End Role="Risk" EntitySet="Risks" />
+            <End Role="RiskRecommendation" EntitySet="RiskRecommendations" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Artifact">
@@ -2062,17 +2061,6 @@
           <NavigationProperty Name="aspnet_Users" Relationship="SquareModel.FK_ProjectWorkers_aspnet_Users" FromRole="ProjectWorkers" ToRole="aspnet_Users" />
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_ProjectWorkers_Projects" FromRole="ProjectWorkers" ToRole="Projects" />
         </EntityType>
-        <EntityType Name="RiskControl">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RiskId" Type="Int32" Nullable="false" />
-          <Property Name="Controls" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="Impact" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="Feasibility" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Risk" Relationship="SquareModel.FK_RiskControls_Risks" FromRole="RiskControls" ToRole="Risks" />
-        </EntityType>
         <EntityType Name="RiskLevel">
           <Key>
             <PropertyRef Name="id" />
@@ -2112,12 +2100,12 @@
           <NavigationProperty Name="AssessmentType" Relationship="SquareModel.FK_Risks_AssessmentTypes" FromRole="Risks" ToRole="AssessmentTypes" />
           <NavigationProperty Name="Impact" Relationship="SquareModel.FK_Risks_Impacts" FromRole="Risks" ToRole="Impacts" />
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_Risks_Projects" FromRole="Risks" ToRole="Projects" />
-          <NavigationProperty Name="RiskControls" Relationship="SquareModel.FK_RiskControls_Risks" FromRole="Risks" ToRole="RiskControls" />
           <NavigationProperty Name="Damage" Relationship="SquareModel.FK_Risks_Damage" FromRole="Risks" ToRole="RiskLevels" />
           <NavigationProperty Name="Likelihood" Relationship="SquareModel.FK_Risks_Likelihood" FromRole="Risks" ToRole="RiskLevels" />
           <NavigationProperty Name="Magnitude" Relationship="SquareModel.FK_Risks_Magnitude" FromRole="Risks" ToRole="RiskLevels" />
           <NavigationProperty Name="RiskLevel" Relationship="SquareModel.FK_Risks_RiskLevel" FromRole="Risks" ToRole="RiskLevels" />
           <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Risks_SquareTypes" FromRole="Risks" ToRole="SquareTypes" />
+          <NavigationProperty Name="RiskRecommendations" Relationship="SquareModel.FK_RiskControls_Risks1" FromRole="Risk" ToRole="RiskRecommendation" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -2657,18 +2645,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RiskControls_Risks">
-          <End Role="Risks" Type="SquareModel.Risk" Multiplicity="1" />
-          <End Role="RiskControls" Type="SquareModel.RiskControl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Risks">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RiskControls">
-              <PropertyRef Name="RiskId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Risks_Damage">
           <End Role="RiskLevels" Type="SquareModel.RiskLevel" Multiplicity="0..1" />
           <End Role="Risks" Type="SquareModel.Risk" Multiplicity="*" />
@@ -2756,6 +2732,29 @@
         <Association Name="aspnet_UsersInRoles">
           <End Role="aspnet_Roles" Type="SquareModel.aspnet_Roles" Multiplicity="*" />
           <End Role="aspnet_Users" Type="SquareModel.aspnet_Users" Multiplicity="*" />
+        </Association>
+        <EntityType Name="RiskRecommendation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RiskId" Nullable="false" />
+          <Property Type="String" Name="Controls" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Impact" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Feasibility" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Risk" Relationship="SquareModel.FK_RiskControls_Risks1" FromRole="RiskRecommendation" ToRole="Risk" />
+        </EntityType>
+        <Association Name="FK_RiskControls_Risks1">
+          <End Type="SquareModel.Risk" Role="Risk" Multiplicity="1" />
+          <End Type="SquareModel.RiskRecommendation" Role="RiskRecommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RiskRecommendation">
+              <PropertyRef Name="RiskId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2931,13 +2930,6 @@
             <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
             <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RiskControls"><EntityTypeMapping TypeName="SquareModel.RiskControl"><MappingFragment StoreEntitySet="RiskControls">
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="RiskId" ColumnName="RiskId" />
-            <ScalarProperty Name="Controls" ColumnName="Controls" />
-            <ScalarProperty Name="Impact" ColumnName="Impact" />
-            <ScalarProperty Name="Feasibility" ColumnName="Feasibility" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="RiskLevels"><EntityTypeMapping TypeName="SquareModel.RiskLevel"><MappingFragment StoreEntitySet="RiskLevels">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
@@ -3069,6 +3061,17 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="RiskRecommendations">
+            <EntityTypeMapping TypeName="SquareModel.RiskRecommendation">
+              <MappingFragment StoreEntitySet="RiskRecommendation">
+                <ScalarProperty Name="Feasibility" ColumnName="Feasibility" />
+                <ScalarProperty Name="Impact" ColumnName="Impact" />
+                <ScalarProperty Name="Controls" ColumnName="Controls" />
+                <ScalarProperty Name="RiskId" ColumnName="RiskId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3111,7 +3114,6 @@
         <EntityTypeShape EntityType="SquareModel.ProjectStep" Width="1.5" PointX="7.5" PointY="20" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.ProjectTerm" Width="1.5" PointX="10.5" PointY="15.25" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.ProjectWorker" Width="1.5" PointX="10.5" PointY="12" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="SquareModel.RiskControl" Width="1.5" PointX="12.75" PointY="20.5" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.RiskLevel" Width="1.5" PointX="8.25" PointY="26" Height="3.326396484374996" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.Risk" Width="1.5" PointX="10.5" PointY="18.75" Height="5.63401367187501" IsExpanded="true" />
         <EntityTypeShape EntityType="SquareModel.Role" Width="1.5" PointX="4.75" PointY="0.875" Height="1.4033821614583246" IsExpanded="true" />
@@ -3213,15 +3215,15 @@
           <ConnectorPoint PointX="5.25" PointY="14.374873046875" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_AssessmentTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.843371140625003" />
-          <ConnectorPoint PointX="5" PointY="15.843371140625003" />
+          <ConnectorPoint PointX="4.5" PointY="15.124746093750002" />
+          <ConnectorPoint PointX="5" PointY="15.124746093750002" />
           <ConnectorPoint PointX="5" PointY="19.057190755208339" />
           <ConnectorPoint PointX="5.916666666666667" PointY="19.057190755208339" />
           <ConnectorPoint PointX="6.083333333333333" PointY="19.057190755208339" />
           <ConnectorPoint PointX="10.25" PointY="19.057190755208339" />
           <ConnectorPoint PointX="10.25" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.25" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.25" PointY="18.75" />
+          <ConnectorPoint PointX="11.453126000000001" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.453126000000001" PointY="18.75" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Definitions_Terms" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="25.2112939453125" />
@@ -3254,8 +3256,8 @@
           <ConnectorPoint PointX="3" PointY="18.711293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Impacts" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="24.067006835937505" />
-          <ConnectorPoint PointX="10.5" PointY="24.067006835937505" />
+          <ConnectorPoint PointX="9.75" PointY="24.163157552083334" />
+          <ConnectorPoint PointX="10.5" PointY="24.163157552083334" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Projects" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="16.960999348958339" />
@@ -3264,8 +3266,8 @@
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_Projects" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="15.754547526041668" />
-          <ConnectorPoint PointX="9.9166666666666661" PointY="15.754547526041668" />
-          <ConnectorPoint PointX="10.083333333333334" PointY="15.754547526041668" />
+          <ConnectorPoint PointX="10.104166666666666" PointY="15.754547526041668" />
+          <ConnectorPoint PointX="10.270833333333334" PointY="15.754547526041668" />
           <ConnectorPoint PointX="10.5" PointY="15.754547526041668" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectWorkers_Projects" ManuallyRouted="false">
@@ -3276,15 +3278,13 @@
           <ConnectorPoint PointX="10.5" PointY="12.046875" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="15.004547526041668" />
-          <ConnectorPoint PointX="7.25" PointY="15.004547526041668" />
+          <ConnectorPoint PointX="6.75" PointY="14.625000499999999" />
+          <ConnectorPoint PointX="7.25" PointY="14.625000499999999" />
           <ConnectorPoint PointX="7.25" PointY="15.509095052083335" />
-          <ConnectorPoint PointX="10" PointY="15.509095052083335" />
-          <ConnectorPoint PointX="10" PointY="18.307190755208339" />
-          <ConnectorPoint PointX="10.166666666666666" PointY="18.307190755208339" />
-          <ConnectorPoint PointX="10.333333333333334" PointY="18.307190755208339" />
-          <ConnectorPoint PointX="10.843748" PointY="18.307190755208339" />
-          <ConnectorPoint PointX="10.843748" PointY="18.75" />
+          <ConnectorPoint PointX="10.1875" PointY="15.509095052083335" />
+          <ConnectorPoint PointX="10.1875" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.945311" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.945311" PointY="18.75" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Steps" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="21.980393066406254" />
@@ -3305,35 +3305,29 @@
           <ConnectorPoint PointX="6.083333333333333" PointY="17.085999348958339" />
           <ConnectorPoint PointX="7.25" PointY="17.085999348958339" />
           <ConnectorPoint PointX="7.25" PointY="16" />
-          <ConnectorPoint PointX="9.9166666666666661" PointY="16" />
-          <ConnectorPoint PointX="10.083333333333334" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16.812121140624996" />
           <ConnectorPoint PointX="10.5" PointY="16.812121140624996" />
         </AssociationConnector>
-        <AssociationConnector Association="SquareModel.FK_RiskControls_Risks" ManuallyRouted="false">
-          <ConnectorPoint PointX="12" PointY="21.586293945312498" />
-          <ConnectorPoint PointX="12.75" PointY="21.586293945312498" />
-        </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Damage" ManuallyRouted="false">
           <ConnectorPoint PointX="9.75" PointY="27.663198242187498" />
           <ConnectorPoint PointX="11.25" PointY="27.663198242187498" />
-          <ConnectorPoint PointX="11.25" PointY="24.38401367187501" />
+          <ConnectorPoint PointX="11.25" PointY="24.576315104166667" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Likelihood" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="26.800346621093755" />
-          <ConnectorPoint PointX="10.8437475" PointY="26.800346621093755" />
-          <ConnectorPoint PointX="10.8437475" PointY="24.38401367187501" />
+          <ConnectorPoint PointX="9.75" PointY="27.01605952636719" />
+          <ConnectorPoint PointX="10.914058125" PointY="27.01605952636719" />
+          <ConnectorPoint PointX="10.914058125" PointY="24.576315104166667" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Magnitude" ManuallyRouted="false">
           <ConnectorPoint PointX="9.75" PointY="28.526049863281241" />
           <ConnectorPoint PointX="11.6562525" PointY="28.526049863281241" />
-          <ConnectorPoint PointX="11.6562525" PointY="24.38401367187501" />
+          <ConnectorPoint PointX="11.6562525" PointY="24.576315104166667" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_RiskLevel" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="26.368920810546882" />
-          <ConnectorPoint PointX="10.640621249999999" PointY="26.368920810546882" />
-          <ConnectorPoint PointX="10.640621249999999" PointY="24.38401367187501" />
+          <ConnectorPoint PointX="9.75" PointY="26.4767772631836" />
+          <ConnectorPoint PointX="10.675776562500001" PointY="26.4767772631836" />
+          <ConnectorPoint PointX="10.675776562500001" PointY="24.576315104166667" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_SquareTypes" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="19.816793619791667" />
@@ -3353,6 +3347,11 @@
         <AssociationConnector Association="SquareModel.aspnet_UsersInRoles" ManuallyRouted="false">
           <ConnectorPoint PointX="9" PointY="8.625" />
           <ConnectorPoint PointX="9" PointY="7.5186979166666674" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SquareModel.RiskRecommendation" Width="1.5" PointX="12.75" PointY="23.625" Height="2.172587890624996" />
+        <AssociationConnector Association="SquareModel.FK_RiskControls_Risks1" >
+          <ConnectorPoint PointX="12" PointY="24.100657552083334" />
+          <ConnectorPoint PointX="12.75" PointY="24.100657552083334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -253,17 +253,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RiskControls">
-      <EntityTypeMapping TypeName="SquareModel.RiskControl">
-        <MappingFragment StoreEntitySet="RiskControls">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="RiskId" ColumnName="RiskId" />
-          <ScalarProperty Name="Controls" ColumnName="Controls" />
-          <ScalarProperty Name="Impact" ColumnName="Impact" />
-          <ScalarProperty Name="Feasibility" ColumnName="Feasibility" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="RiskLevels">
       <EntityTypeMapping TypeName="SquareModel.RiskLevel">
         <MappingFragment StoreEntitySet="RiskLevels">
@@ -455,5 +444,16 @@
         <ScalarProperty Name="UserId" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="RiskRecommendations">
+      <EntityTypeMapping TypeName="SquareModel.RiskRecommendation">
+        <MappingFragment StoreEntitySet="RiskRecommendation">
+          <ScalarProperty Name="Feasibility" ColumnName="Feasibility" />
+          <ScalarProperty Name="Impact" ColumnName="Impact" />
+          <ScalarProperty Name="Controls" ColumnName="Controls" />
+          <ScalarProperty Name="RiskId" ColumnName="RiskId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -136,13 +136,20 @@ a {text-decoration: none;}
 h2
 {
     border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
+    padding-bottom: .5em;
 }
 
 h3 
 {
     border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
+    padding-bottom: .5em;
+}
+
+h4
+{
+    border-bottom: 1px solid lightgray;
+    padding-bottom: .5em;
+    margin-bottom: 5px;
 }
 
 fieldset { border: 1px solid lightgray; }

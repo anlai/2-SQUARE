@@ -21,6 +21,13 @@
             <div class="risk">
         
                 <%: Html.ActionLink<NIST800_30Controller>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -5px;"}) %>
+
+                <% if (a.RiskRecommendations.Any()) { %>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -5px; margin-right: .5em;" })%>
+                <% } else { %>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -5px; margin-right: .5em;" })%>
+                <% } %>
+
                 <h3><%: a.Name %></h3>
 
                 <ul class="entry-form">
@@ -44,7 +51,36 @@
                 <li><strong>Risk Level</strong> 
                     <%: a.RiskLevel.Name %>
                 </li>
+                
+                
+                <% if (!a.RiskRecommendations.Any()) { %>
+                    <% Html.RenderPartial("Message", new MessageModel("No Risk Recommendation has been created for this risk.", true)); %>
+                <% } else {
+                       var rec = a.RiskRecommendations.First();
+                       %>
+                
+                    <li><h4>Recommendation</h4></li>
+
+                    <!-- Display out the risk recommendation information -->
+                    <li style="margin-top: 1em;"><strong>Controls:</strong>
+                        <%: rec.Controls %>
+                    </li>
+
+                    <li style="margin-top: 1em;"><strong>Impact:</strong>
+                        <%: rec.Impact %>
+                    </li>
+
+                    <li style="margin-top: 1em;"><strong>Feasibility:</strong>
+                        <%: rec.Feasibility %>
+                    </li>
+
+                <% } %>
+                
+                
                 </ul>
+
+
+
             </div>
         
         <% } %>

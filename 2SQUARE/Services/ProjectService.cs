@@ -253,6 +253,20 @@ namespace _2SQUARE.Services
             // save
             db.SaveChanges();
         }
+
+        public RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId)
+        {
+            riskRecommendation.RiskId = riskId;
+
+            if (riskRecommendation.id <= 0)
+            {
+                db.AddToRiskRecommendations(riskRecommendation);
+            }
+
+            db.SaveChanges();
+
+            return riskRecommendation;
+        }
         #endregion
 
         #region Project Status

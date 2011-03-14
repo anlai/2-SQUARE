@@ -48,7 +48,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Projects", "Projects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectSteps_Steps", "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Step), "ProjectSteps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectStep), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_ProjectTerms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "ProjectTerms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.ProjectTerm), true)]
-[assembly: EdmRelationshipAttribute("SquareModel", "FK_RiskControls_Risks", "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Risk), "RiskControls", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RiskControl), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Likelihood", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Risks_Magnitude", "RiskLevels", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.RiskLevel), "Risks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Risk), true)]
@@ -57,6 +56,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Steps_RequirementCategories", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Steps", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Step), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_RiskControls_Risks1", "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Risk), "RiskRecommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RiskRecommendation), true)]
 
 #endregion
 
@@ -447,22 +447,6 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<RiskControl> RiskControls
-        {
-            get
-            {
-                if ((_RiskControls == null))
-                {
-                    _RiskControls = base.CreateObjectSet<RiskControl>("RiskControls");
-                }
-                return _RiskControls;
-            }
-        }
-        private ObjectSet<RiskControl> _RiskControls;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<RiskLevel> RiskLevels
         {
             get
@@ -699,6 +683,22 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<vw_aspnet_WebPartState_User> _vw_aspnet_WebPartState_User;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RiskRecommendation> RiskRecommendations
+        {
+            get
+            {
+                if ((_RiskRecommendations == null))
+                {
+                    _RiskRecommendations = base.CreateObjectSet<RiskRecommendation>("RiskRecommendations");
+                }
+                return _RiskRecommendations;
+            }
+        }
+        private ObjectSet<RiskRecommendation> _RiskRecommendations;
 
         #endregion
         #region AddTo Methods
@@ -872,14 +872,6 @@ namespace _2SQUARE.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the RiskControls EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRiskControls(RiskControl riskControl)
-        {
-            base.AddObject("RiskControls", riskControl);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the RiskLevels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRiskLevels(RiskLevel riskLevel)
@@ -997,6 +989,14 @@ namespace _2SQUARE.Models
         public void AddTovw_aspnet_WebPartState_User(vw_aspnet_WebPartState_User vw_aspnet_WebPartState_User)
         {
             base.AddObject("vw_aspnet_WebPartState_User", vw_aspnet_WebPartState_User);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RiskRecommendations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRiskRecommendations(RiskRecommendation riskRecommendation)
+        {
+            base.AddObject("RiskRecommendations", riskRecommendation);
         }
 
         #endregion
@@ -7047,28 +7047,6 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "RiskControls")]
-        public EntityCollection<RiskControl> RiskControls
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControls");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RiskControl>("SquareModel.FK_RiskControls_Risks", "RiskControls", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Risks_Damage", "RiskLevels")]
         public RiskLevel Damage
         {
@@ -7252,164 +7230,6 @@ namespace _2SQUARE.Models
                 }
             }
         }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="RiskControl")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class RiskControl : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new RiskControl object.
-        /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="riskId">Initial value of the RiskId property.</param>
-        /// <param name="controls">Initial value of the Controls property.</param>
-        public static RiskControl CreateRiskControl(global::System.Int32 id, global::System.Int32 riskId, global::System.String controls)
-        {
-            RiskControl riskControl = new RiskControl();
-            riskControl.id = id;
-            riskControl.RiskId = riskId;
-            riskControl.Controls = controls;
-            return riskControl;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 RiskId
-        {
-            get
-            {
-                return _RiskId;
-            }
-            set
-            {
-                OnRiskIdChanging(value);
-                ReportPropertyChanging("RiskId");
-                _RiskId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("RiskId");
-                OnRiskIdChanged();
-            }
-        }
-        private global::System.Int32 _RiskId;
-        partial void OnRiskIdChanging(global::System.Int32 value);
-        partial void OnRiskIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Controls
-        {
-            get
-            {
-                return _Controls;
-            }
-            set
-            {
-                OnControlsChanging(value);
-                ReportPropertyChanging("Controls");
-                _Controls = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Controls");
-                OnControlsChanged();
-            }
-        }
-        private global::System.String _Controls;
-        partial void OnControlsChanging(global::System.String value);
-        partial void OnControlsChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Impact
-        {
-            get
-            {
-                return _Impact;
-            }
-            set
-            {
-                OnImpactChanging(value);
-                ReportPropertyChanging("Impact");
-                _Impact = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Impact");
-                OnImpactChanged();
-            }
-        }
-        private global::System.String _Impact;
-        partial void OnImpactChanging(global::System.String value);
-        partial void OnImpactChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Feasibility
-        {
-            get
-            {
-                return _Feasibility;
-            }
-            set
-            {
-                OnFeasibilityChanging(value);
-                ReportPropertyChanging("Feasibility");
-                _Feasibility = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Feasibility");
-                OnFeasibilityChanged();
-            }
-        }
-        private global::System.String _Feasibility;
-        partial void OnFeasibilityChanging(global::System.String value);
-        partial void OnFeasibilityChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7417,34 +7237,18 @@ namespace _2SQUARE.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks", "Risks")]
-        public Risk Risk
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks1", "RiskRecommendation")]
+        public EntityCollection<RiskRecommendation> RiskRecommendations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Risk> RiskReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RiskRecommendation>("SquareModel.FK_RiskControls_Risks1", "RiskRecommendation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks", "Risks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RiskRecommendation>("SquareModel.FK_RiskControls_Risks1", "RiskRecommendation", value);
                 }
             }
         }
@@ -7773,6 +7577,202 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_RiskLevel", "Risks", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="RiskRecommendation")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RiskRecommendation : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RiskRecommendation object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="riskId">Initial value of the RiskId property.</param>
+        /// <param name="controls">Initial value of the Controls property.</param>
+        public static RiskRecommendation CreateRiskRecommendation(global::System.Int32 id, global::System.Int32 riskId, global::System.String controls)
+        {
+            RiskRecommendation riskRecommendation = new RiskRecommendation();
+            riskRecommendation.id = id;
+            riskRecommendation.RiskId = riskId;
+            riskRecommendation.Controls = controls;
+            return riskRecommendation;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RiskId
+        {
+            get
+            {
+                return _RiskId;
+            }
+            set
+            {
+                OnRiskIdChanging(value);
+                ReportPropertyChanging("RiskId");
+                _RiskId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RiskId");
+                OnRiskIdChanged();
+            }
+        }
+        private global::System.Int32 _RiskId;
+        partial void OnRiskIdChanging(global::System.Int32 value);
+        partial void OnRiskIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Controls
+        {
+            get
+            {
+                return _Controls;
+            }
+            set
+            {
+                OnControlsChanging(value);
+                ReportPropertyChanging("Controls");
+                _Controls = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Controls");
+                OnControlsChanged();
+            }
+        }
+        private global::System.String _Controls;
+        partial void OnControlsChanging(global::System.String value);
+        partial void OnControlsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Impact
+        {
+            get
+            {
+                return _Impact;
+            }
+            set
+            {
+                OnImpactChanging(value);
+                ReportPropertyChanging("Impact");
+                _Impact = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Impact");
+                OnImpactChanged();
+            }
+        }
+        private global::System.String _Impact;
+        partial void OnImpactChanging(global::System.String value);
+        partial void OnImpactChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Feasibility
+        {
+            get
+            {
+                return _Feasibility;
+            }
+            set
+            {
+                OnFeasibilityChanging(value);
+                ReportPropertyChanging("Feasibility");
+                _Feasibility = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Feasibility");
+                OnFeasibilityChanged();
+            }
+        }
+        private global::System.String _Feasibility;
+        partial void OnFeasibilityChanging(global::System.String value);
+        partial void OnFeasibilityChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RiskControls_Risks1", "Risk")]
+        public Risk Risk
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks1", "Risk").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks1", "Risk").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Risk> RiskReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks1", "Risk");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Risk>("SquareModel.FK_RiskControls_Risks1", "Risk", value);
                 }
             }
         }

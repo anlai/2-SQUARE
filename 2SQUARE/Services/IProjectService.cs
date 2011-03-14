@@ -34,6 +34,7 @@ namespace _2SQUARE.Services
 
         #region Step 4 Methods
         void SetAssessmentType(int id /* project id */, AssessmentType assessmentType, string userId);
+        RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId);
         #endregion
 
         #region Step Status Methods
