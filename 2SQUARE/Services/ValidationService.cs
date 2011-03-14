@@ -280,8 +280,26 @@ public class ValidationService : IValidationService
 
     private bool Step4Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        // load up all risk's and recommendations
+        var project = projectStep.Project;
+        var risks = project.Risks;
+
+        // if no risks exist
+        if (risks.Count == 0) errors.Add(string.Format("There are no {0} risks identified for this project.", projectStep.Step.SquareType.Name));
+
+        // check for any risks missing a recommendation
+        var count = risks.Where(a => a.RiskRecommendations.Count == 0).Count();
+
+        if (count > 0)
+        {
+            errors.Add(string.Format("There are {0} risks that do not have a recommendation.", count));
+        }
+
+        return !errors.Any();
     }
 
     /// <summary>

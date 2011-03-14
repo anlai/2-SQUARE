@@ -7,6 +7,26 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <div id="errormessage-container" style="display:none;" class="ui-widget messages">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; margin-bottom: 10px; padding: 0pt 0.7em;">
+            <p>
+                <span class="ui-icon ui-icon-alert" style="float:left; margin-right: 0.3em;"></span>
+                       
+                <span id="error-messages"></span>
+            </p>
+        </div>
+    </div>
+
+    <div id="message-container" style="display:none;" class="ui-widget messages">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; margin-bottom: 10px; padding: 0pt 0.7em;">
+            <p>
+                <span class="ui-icon ui-icon-info" style="float:left; margin-right: 0.3em;"></span>
+                       
+                <span id="messages"></span>
+            </p>
+        </div>
+    </div>
+
     <h2>Change Project Status</h2>
     <% foreach (var a in Model.Project.ProjectSteps.Select(a=>a.Step.SquareType).Distinct()) { %>
         <div class="squaretype-container">
@@ -45,6 +65,22 @@
                 var status = $(this).val();
 
                 $.post(updateUrl, { id: projectId, stepId: stepId, projectStepStatus: status }, function (result) {
+
+                    // reset the message containers
+                    var errorContainer = $("#errormessage-container");
+                    var messageContainer = $("#message-container");
+
+                    var errortxt = $("#error-messages");
+                    var messagetxt = $("#messages");
+
+                    // blank out the txt
+                    errortxt.html("");
+                    messagetxt.html("");
+
+                    // hide the containers
+                    errorContainer.hide();
+                    messageContainer.hide();
+
                     if (result.IsValid) {
                         $.each(result.ChangeSteps, function (index, item) {
                             var $select = $('select[data-id="' + item.Key + '"]');
@@ -55,8 +91,6 @@
                         });
                     }
                     else {
-                        $("#errormessage-container").html("");
-                        $("#message-container").html("");
 
                         var errors = $("<ul>");
                         var messages = $("<ul>");
@@ -72,12 +106,12 @@
                         });
 
                         if (errors.children().size() > 0) {
-                            $("#errormessage-container").append(errors);
-                            $("#errormessage-container").parents("div.messages").show();
+                            errortxt.append(errors);
+                            errorContainer.show();
                         }
                         if (messages.children().size() > 0) {
-                            $("#message-container").append(messages);
-                            $("#message-container").parents("div.messages").show();
+                            messagetxt.append(messages);
+                            messageContainer.show();
                         }
 
                         // set the value of the selected step back to the original value becuase of the failure
