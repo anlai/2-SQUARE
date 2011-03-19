@@ -18,6 +18,7 @@
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
     <SccProvider>RocketSvnScc</SccProvider>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,10 +124,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRiskAssessmentController.cs" />
     <Compile Include="Controllers\NIST800_30Controller.cs" />
+    <Compile Include="Controllers\PRAUCController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
+    <Compile Include="Models\RiskAssessmentViewModel.cs" />
     <Compile Include="Models\RiskRecommendationViewModel.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
@@ -150,7 +153,6 @@
     <Compile Include="Models\ChangeStatusViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\NIST800_30EditViewModel.cs" />
-    <Compile Include="Models\NIST800_30ViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />
@@ -200,9 +202,11 @@
     <Content Include="Views\NIST800_30\Edit.aspx" />
     <Content Include="Views\NIST800_30\Index.aspx" />
     <Content Include="Views\NIST800_30\RiskForm.ascx" />
+    <Content Include="Views\PRAUC\Index.aspx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
     <Content Include="Views\Privacy\Step3.aspx" />
+    <Content Include="Views\Privacy\Step4.aspx" />
     <Content Include="Views\ProjectTerm\EditTerm.aspx" />
     <Content Include="Views\Project\ChangeStatus.aspx" />
     <Content Include="Views\Project\Details.aspx" />

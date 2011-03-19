@@ -6922,6 +6922,30 @@ namespace _2SQUARE.Models
         private global::System.String _Action;
         partial void OnActionChanging(global::System.String value);
         partial void OnActionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Order;
+        partial void OnOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderChanged();
 
         #endregion
     

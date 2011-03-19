@@ -6,6 +6,7 @@ using _2SQUARE.Filters;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
+using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
@@ -78,11 +79,48 @@ namespace _2SQUARE.Controllers
             }
         }
 
-        public ActionResult Step4()
+        [AvailableForWork]
+        public ActionResult Step4(int id /*project step id*/, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // load the project
+                var project = _projectService.GetProject(projectId, CurrentUserId);
 
-            return View();
+                // assesment type picked  out already)
+                if (project.PrivacyAssessmentId.HasValue)
+                {
+                    return RedirectToAction("Index", project.PrivacyAssessmentType.Controller, new { id = id, projectId = projectId });
+                }
+
+                var viewModel = Step4ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+        }
+
+        public RedirectToRouteResult SelectAssessmentType(int id /* project step id */, int projectId, int assessmentTypeId)
+        {
+            try
+            {
+                var assessmentType = Db.AssessmentTypes.Where(a => a.id == assessmentTypeId).Single();
+
+                _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
+
+                return RedirectToAction("Index", assessmentType.Controller, new { id = id, projectId = projectId });
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Unable to assign assessment type to project.";
+                return this.RedirectToAction<SecurityController>(a => a.Step4(id, projectId));
+            }
         }
 
         public ActionResult Step5()

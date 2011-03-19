@@ -25,7 +25,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var viewModel = NIST800_30ViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+                var viewModel = RiskAssessmentViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
 
                 return View(viewModel);
             }
@@ -63,7 +63,7 @@ namespace _2SQUARE.Controllers
             risk.ProjectId = projectId;
             risk.SsquareTypeId = projectStep.Step.SquareTypeId;
             risk.RiskLevelId = riskLevel.id;
-            risk.AssessmentTypeId = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30).Select(a => a.id).Single();
+            risk.AssessmentTypeId = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30 && a.SquareTypeId == projectStep.Step.SquareTypeId).Select(a => a.id).Single();
 
             Validate(risk, ModelState);
 
