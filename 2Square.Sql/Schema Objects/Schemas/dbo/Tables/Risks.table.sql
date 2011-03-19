@@ -13,8 +13,11 @@
     [RiskLevelId]      CHAR (1)      NULL,
     [Source]           VARCHAR (MAX) NULL,
     [Vulnerability]    VARCHAR (MAX) NULL,
-    [Action]           VARCHAR (MAX) NULL
+    [Action]           VARCHAR (MAX) NULL,
+    [Order]            INT           NULL
 );
+
+
 
 
 
