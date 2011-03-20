@@ -1176,37 +1176,6 @@ ALTER TABLE [dbo].[ProjectWorkers]
 
 
 GO
-PRINT N'Creating [dbo].[RiskControls]...';
-
-
-GO
-SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
-
-
-GO
-CREATE TABLE [dbo].[RiskControls] (
-    [id]          INT           IDENTITY (1, 1) NOT NULL,
-    [RiskId]      INT           NOT NULL,
-    [Controls]    VARCHAR (MAX) NOT NULL,
-    [Impact]      VARCHAR (MAX) NULL,
-    [Feasibility] VARCHAR (MAX) NULL
-);
-
-
-GO
-SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
-
-
-GO
-PRINT N'Creating PK_RiskControls...';
-
-
-GO
-ALTER TABLE [dbo].[RiskControls]
-    ADD CONSTRAINT [PK_RiskControls] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
-
-
-GO
 PRINT N'Creating [dbo].[RiskLevels]...';
 
 
@@ -1241,6 +1210,37 @@ ALTER TABLE [dbo].[RiskLevels]
 
 
 GO
+PRINT N'Creating [dbo].[RiskRecommendation]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[RiskRecommendation] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [RiskId]      INT           NOT NULL,
+    [Controls]    VARCHAR (MAX) NOT NULL,
+    [Impact]      VARCHAR (MAX) NULL,
+    [Feasibility] VARCHAR (MAX) NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_RiskControls...';
+
+
+GO
+ALTER TABLE [dbo].[RiskRecommendation]
+    ADD CONSTRAINT [PK_RiskControls] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Risks]...';
 
 
@@ -1264,7 +1264,8 @@ CREATE TABLE [dbo].[Risks] (
     [RiskLevelId]      CHAR (1)      NULL,
     [Source]           VARCHAR (MAX) NULL,
     [Vulnerability]    VARCHAR (MAX) NULL,
-    [Action]           VARCHAR (MAX) NULL
+    [Action]           VARCHAR (MAX) NULL,
+    [Order]            INT           NULL
 );
 
 
@@ -1847,7 +1848,7 @@ PRINT N'Creating FK_RiskControls_Risks...';
 
 
 GO
-ALTER TABLE [dbo].[RiskControls] WITH NOCHECK
+ALTER TABLE [dbo].[RiskRecommendation] WITH NOCHECK
     ADD CONSTRAINT [FK_RiskControls_Risks] FOREIGN KEY ([RiskId]) REFERENCES [dbo].[Risks] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
@@ -5884,7 +5885,7 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorker
 
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_Projects];
 
-ALTER TABLE [dbo].[RiskControls] WITH CHECK CHECK CONSTRAINT [FK_RiskControls_Risks];
+ALTER TABLE [dbo].[RiskRecommendation] WITH CHECK CHECK CONSTRAINT [FK_RiskControls_Risks];
 
 ALTER TABLE [dbo].[Risks] WITH CHECK CHECK CONSTRAINT [FK_Risks_AssessmentTypes];
 

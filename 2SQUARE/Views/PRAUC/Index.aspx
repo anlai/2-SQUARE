@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<_2SQUARE.Models.RiskAssessmentViewModel>" %>
 <%@ Import Namespace="_2SQUARE.Models" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
+<%@ Import Namespace="_2SQUARE.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Privacy Risk Analysis for Ubiquitous Computing - Risk Assessment Module
@@ -18,40 +19,39 @@
     
         <% foreach (var a in Model.Risks) { %>
         
+            <fieldset>
             <div class="risk">
         
-                <%--<%: Html.ActionLink<NIST800_30Controller>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -.5em;"}) %>--%>
+                <%: Html.ActionLink<PRAUCController>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -1.5em;"}) %>
 
-<%--                <% if (a.RiskRecommendations.Any()) { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
+                <% if (a.RiskRecommendations.Any()) { %>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
                 <% } else { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
-                <% } %>--%>
-
-                <h3><%: a.Name %></h3>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
+                <% } %>
 
                 <ul class="entry-form">
-                <li style="margin-top: 1em;"><strong>Threat Source:</strong>
-                    <div class="threat_source"><%: a.Source %></div>
-                </li>
-
-                <li style="margin-top: 1em;"><strong>Vulnerability:</strong>
-                    <div class="vulnerability"><%: a.Vulnerability %></div>
+                <li style="margin-top: 1em;"><strong>Description:</strong>
+                    <div class="threat_source"><%: a.Description %></div>
                 </li>
 
                 <li style="margin-top: 1em;"><strong>Likelihood:</strong>
                     <%: a.Likelihood.Name %>
                 </li>
-                <li><strong>Impact:</strong>
-                    <%: a.Impact.Name %>
+                <li><strong>Damage:</strong>
+                    <%: a.Damage.Name %>
                 </li>
-                <li><strong>Impact Magnitude:</strong>
-                    <%: a.Magnitude.Name %>
+                <li><strong>Cost:</strong>
+                    <%: a.Cost %>
                 </li>
-                <li><strong>Risk Level</strong> 
-                    <%: a.RiskLevel.Name %>
+                <li><strong>Implement Protection:</strong>
+                    <% if (a.RiskLevelId == ((char)RiskLevelsEnum.High).ToString()) { %>
+                        Recommended
+                    <% } else { %>
+                        Not Necessary, Cost does not outweight Likelihood and Damage
+                    <% } %>
                 </li>
-                
+
                 
                 <% if (!a.RiskRecommendations.Any()) { %>
                     <% Html.RenderPartial("Message", new MessageModel("No Risk Recommendation has been created for this risk.", true)); %>
@@ -82,7 +82,7 @@
 
 
             </div>
-        
+            </fieldset>
         <% } %>
         
     <% } %>
@@ -91,7 +91,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
     <style type="text/css">
-        .risk { margin-top: 3em; }
+        .risk { margin-top: 1.75em; margin-left: -2em; }
+        fieldset { margin-bottom: 1em; }
     </style>
 </asp:Content>
 

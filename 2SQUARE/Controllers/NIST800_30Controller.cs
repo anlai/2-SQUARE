@@ -166,7 +166,7 @@ namespace _2SQUARE.Controllers
             return Db.RiskLevels.Where(a => a.id == level).SingleOrDefault();
         }
 
-        public static void Validate(Risk risk, ModelStateDictionary modelState)
+        private void Validate(Risk risk, ModelStateDictionary modelState)
         {
             if (string.IsNullOrEmpty(risk.Name))
                 modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));

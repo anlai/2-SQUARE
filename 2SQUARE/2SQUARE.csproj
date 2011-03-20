@@ -129,6 +129,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
+    <Compile Include="Models\PRAUCEditViewModel.cs" />
     <Compile Include="Models\RiskAssessmentViewModel.cs" />
     <Compile Include="Models\RiskRecommendationViewModel.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
@@ -202,7 +203,10 @@
     <Content Include="Views\NIST800_30\Edit.aspx" />
     <Content Include="Views\NIST800_30\Index.aspx" />
     <Content Include="Views\NIST800_30\RiskForm.ascx" />
+    <Content Include="Views\PRAUC\Add.aspx" />
+    <Content Include="Views\PRAUC\Edit.aspx" />
     <Content Include="Views\PRAUC\Index.aspx" />
+    <Content Include="Views\PRAUC\RiskForm.ascx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
     <Content Include="Views\Privacy\Step3.aspx" />

@@ -28,10 +28,9 @@
     </script>
 
 
+    <%: Html.ValidationSummary("Please correct the following errors.") %>
 
     <% using (Html.BeginForm()) { %>
-
-    <%: Html.ValidationSummary() %>
 
     <h3>Name</h3>
 

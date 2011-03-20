@@ -270,6 +270,7 @@
     <EntitySetMapping Name="Risks">
       <EntityTypeMapping TypeName="SquareModel.Risk">
         <MappingFragment StoreEntitySet="Risks">
+          <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="SsquareTypeId" ColumnName="SsquareTypeId" />

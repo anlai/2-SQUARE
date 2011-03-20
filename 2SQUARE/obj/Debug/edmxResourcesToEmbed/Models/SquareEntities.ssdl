@@ -566,6 +566,7 @@
     <Property Name="Source" Type="varchar(max)" />
     <Property Name="Vulnerability" Type="varchar(max)" />
     <Property Name="Action" Type="varchar(max)" />
+    <Property Name="Order" Type="int" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>

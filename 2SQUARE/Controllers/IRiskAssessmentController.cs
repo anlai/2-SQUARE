@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using _2SQUARE.Models;
 
 namespace _2SQUARE.Controllers
 {

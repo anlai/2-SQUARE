@@ -19,7 +19,9 @@ namespace _2SQUARE.Models
             {
                 ProjectStep = projectStep,
                 Project = projectService.GetProject(projectId, userId),
-                Risks = db.Risks.Where(a => a.ProjectId == projectStep.ProjectId && a.SsquareTypeId == projectStep.Step.SquareTypeId).ToList()
+                Risks = db.Risks.Where(a => a.ProjectId == projectStep.ProjectId 
+                                            && a.SsquareTypeId == projectStep.Step.SquareTypeId)
+                                            .OrderByDescending(a=>a.RiskLevel.Order).ToList()
             };
 
             return viewModel;

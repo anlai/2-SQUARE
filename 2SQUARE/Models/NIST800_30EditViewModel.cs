@@ -34,6 +34,8 @@ namespace _2SQUARE.Models
                 viewModel.RiskLevelColor = risk.RiskLevel != null ? risk.RiskLevel.Color : string.Empty;
             }
 
+            Check.Ensure(viewModel.Risk.ProjectId == viewModel.Project.id, "Risk does not belong to the intended project.");
+
             return viewModel;
         }
     }

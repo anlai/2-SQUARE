@@ -526,6 +526,7 @@
     <NavigationProperty Name="RiskLevel" Relationship="SquareModel.FK_Risks_RiskLevel" FromRole="Risks" ToRole="RiskLevels" />
     <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Risks_SquareTypes" FromRole="Risks" ToRole="SquareTypes" />
     <NavigationProperty Name="RiskRecommendations" Relationship="SquareModel.FK_RiskControls_Risks1" FromRole="Risk" ToRole="RiskRecommendation" />
+    <Property Type="Int32" Name="Order" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
