@@ -6,11 +6,14 @@
         public bool ShowErrorIcon { get; set; }
         public string Message { get; set; }
 
-        public MessageModel(string message, bool showWarning = false, bool showError = false)
+        public bool Encode { get; set; }
+
+        public MessageModel(string message, bool showWarning = false, bool showError = false, bool encode = true)
         {
             Message = message;
             ShowWarningIcon = showWarning;
             ShowErrorIcon = showError;
+            Encode = encode;
         }
     }
 }

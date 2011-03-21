@@ -270,6 +270,26 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 5 Methods
+        public void SetElicitationType(int id, ElicitationType elicitationType, string rationale, string userId)
+        {
+            Check.Require(!string.IsNullOrWhiteSpace(rationale), "rationale is required.");
+
+            var project = GetProject(id, userId);
+
+            if (elicitationType.SquareType.Name == SquareTypes.Security)
+            {
+                project.SecurityElicitationId = elicitationType.id;
+                project.SecurityElicitationRationale = rationale;
+            }
+
+            if (elicitationType.SquareType.Name == SquareTypes.Privacy)
+            {
+                project.PrivacyElicitationId = elicitationType.id;
+                project.PrivacyElicitationRationale = rationale;
+            }
+
+            db.SaveChanges();
+        }
         #endregion
 
         #region Project Status

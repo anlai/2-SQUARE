@@ -11,7 +11,7 @@
     <h2>Security Step 5 - Select Elicitation Technique</h2>
 
     <% if (Model.Project.SecurityElicitationType != null) { %>
-        <% Html.RenderPartial("Message", new MessageModel(string.Format("{0} is the selected elicitation technique.", Model.Project.SecurityElicitationType.Name))); %>
+        <% Html.RenderPartial("Message", new MessageModel(message: string.Format("{0} is the selected elicitation technique.<br/><br/><strong>Rationale:</strong><br/>{1}", Model.Project.SecurityElicitationType.Name, Model.Project.SecurityElicitationRationale), encode: false)); %>
     <% } %>
 
     <%foreach (var a in Model.ElicitationTypes) { %>
@@ -21,13 +21,8 @@
 
             <% if (a.id != Model.Project.SecurityElicitationId) { %>
 
-                <% using (Html.BeginForm("SelectElicitationType", "Security")) { %>
-                    <%: Html.Hidden("id", Model.ProjectStep.Id) %>
-                    <%: Html.Hidden("projectId", Model.Project.id) %>
-                    <%: Html.Hidden("elicitationId", a.id) %>
+                <input type="button" class="select_elicitation button ui-corner-all ui-state-default" style="float:right; top: -.5em;" value="Save" data-id='<%: a.id %>' data-name='<%: a.Name %>' />
 
-                    <%: Html.SubmitButton("Select", "Select", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -.5em;"}) %>
-                <% } %>
             <% } %>
 
             <h3>Description:</h3>
@@ -43,9 +38,42 @@
 
     <% } %>
 
+    <div id="dialog" title="Select Elicitation Technique">
+        <% using (Html.BeginForm()) { %>
+
+        <%: Html.Hidden("id", Model.ProjectStep.Id) %>
+        <%: Html.Hidden("projectId", Model.Project.id) %>
+        <%: Html.Hidden("elicitationId") %>
+
+        <strong>Technique: </strong><span id="elicitation_name"></span>
+        <br /><br />
+        <strong>Rationale:</strong><br />
+        <textarea id="rationale" name="rationale" style="width: 377px; height: 100px;"></textarea>
+        <br /><br />
+        <input type="submit" value="Save" class="button ui-corner-all ui-state-default" />
+        <% } %>
+    </div>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+    
+    <script type="text/javascript">
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                modal: true, width: 400, height: 250
+            });
+
+            $(".select_elicitation").click(function () {
+                $("#elicitation_name").html($(this).data("name"));
+                $("#elicitationId").val($(this).data("id"));
+
+                $("#dialog").dialog("open");
+            });
+        });
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">

@@ -9,8 +9,12 @@
             <% } else if (Model.ShowWarningIcon) { %>
                 <span class="ui-icon ui-icon-info" style="float:left; margin-right: 0.3em;"></span>
             <% } %>
-                       
+            
+            <% if (Model.Encode) { %>
             <span id="errormessage-container"><%: Model.Message %></span>
+            <% } else { %>
+                <span id="errormessage-container"><%= Model.Message %></span>
+            <% } %>           
         </p>
     </div>
 </div>

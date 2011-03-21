@@ -6,6 +6,10 @@ using System.Web.Mvc;
 
 namespace _2SQUARE.Controllers
 {
+    /// <summary>
+    /// This controller interface defines the interface that is needed
+    /// if a new square type is added, all steps must be implemented
+    /// </summary>
     interface ISquareTypeController
     {
         /*

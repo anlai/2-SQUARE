@@ -203,6 +203,10 @@
       <End Role="ElicitationType" EntitySet="ElicitationTypes" />
       <End Role="Project" EntitySet="Projects" />
     </AssociationSet>
+    <AssociationSet Name="FK_ElicitationTypes_SquareTypes" Association="SquareModel.FK_ElicitationTypes_SquareTypes">
+      <End Role="SquareType" EntitySet="SquareTypes" />
+      <End Role="ElicitationType" EntitySet="ElicitationTypes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artifact">
     <Key>
@@ -454,6 +458,8 @@
     <Property Type="Int32" Name="PrivacyElicitationId" />
     <NavigationProperty Name="SecurityElicitationType" Relationship="SquareModel.FK_Projects_ElicitationTypes" FromRole="Project" ToRole="ElicitationType" />
     <NavigationProperty Name="PrivacyElicitationType" Relationship="SquareModel.FK_Projects_ElicitationTypes1" FromRole="Project" ToRole="ElicitationType" />
+    <Property Type="String" Name="SecurityElicitationRationale" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrivacyElicitationRationale" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ProjectStep">
     <Key>
@@ -562,6 +568,7 @@
     <NavigationProperty Name="Risks" Relationship="SquareModel.FK_Risks_SquareTypes" FromRole="SquareTypes" ToRole="Risks" />
     <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
+    <NavigationProperty Name="ElicitationTypes" Relationship="SquareModel.FK_ElicitationTypes_SquareTypes" FromRole="SquareType" ToRole="ElicitationType" />
   </EntityType>
   <EntityType Name="Step">
     <Key>
@@ -1203,6 +1210,7 @@
     <Property Type="String" Name="Weaknesses" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Projects" Relationship="SquareModel.FK_Projects_ElicitationTypes" FromRole="ElicitationType" ToRole="Project" />
     <NavigationProperty Name="Projects1" Relationship="SquareModel.FK_Projects_ElicitationTypes1" FromRole="ElicitationType" ToRole="Project" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_ElicitationTypes_SquareTypes" FromRole="ElicitationType" ToRole="SquareType" />
   </EntityType>
   <Association Name="FK_Projects_ElicitationTypes">
     <End Type="SquareModel.ElicitationType" Role="ElicitationType" Multiplicity="0..1" />
@@ -1225,6 +1233,18 @@
       </Principal>
       <Dependent Role="Project">
         <PropertyRef Name="PrivacyElicitationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ElicitationTypes_SquareTypes">
+    <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="1" />
+    <End Type="SquareModel.ElicitationType" Role="ElicitationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ElicitationType">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

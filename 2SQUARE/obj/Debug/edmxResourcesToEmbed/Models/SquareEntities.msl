@@ -211,6 +211,8 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="SquareModel.Project">
         <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="PrivacyElicitationRationale" ColumnName="PrivacyElicitationRationale" />
+          <ScalarProperty Name="SecurityElicitationRationale" ColumnName="SecurityElicitationRationale" />
           <ScalarProperty Name="PrivacyElicitationId" ColumnName="PrivacyElicitationId" />
           <ScalarProperty Name="SecurityElicitationId" ColumnName="SecurityElicitationId" />
           <ScalarProperty Name="id" ColumnName="id" />

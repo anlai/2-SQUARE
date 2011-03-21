@@ -170,19 +170,27 @@ namespace _2SQUARE.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult SelectElicitationType(int id, int projectId, int elicitationId)
+        public ActionResult Step5(int id, int projectId, int elicitationId, string rationale)
         {
-            var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
-            var project = _projectService.GetProject(projectId, CurrentUserId);
+            try
+            {
+                var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
 
-            Check.Ensure(elicitationType != null, "elicitationType is required.");
-            Check.Ensure(project != null, "project is required.");
+                Check.Require(elicitationType != null, "elicitationType is required.");
 
-            project.SecurityElicitationId = elicitationId;
+                _projectService.SetElicitationType(projectId, elicitationType, rationale, CurrentUserId);
 
-            Db.SaveChanges();
-
-            return this.RedirectToAction(a => a.Step5(id, projectId));
+                return this.RedirectToAction(a => a.Step5(id, projectId));
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Unable to assign assessment type to project.";
+                return this.RedirectToAction<SecurityController>(a => a.Step5(id, projectId));
+            }
         }
         #endregion
 

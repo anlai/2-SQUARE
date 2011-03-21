@@ -6,7 +6,7 @@
       <ConnectionString>Data Source=.\sqlexpress;Initial Catalog=2Square;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True</ConnectionString>
       <DatabaseName>2Square</DatabaseName>
       <DspFamilyName>sql</DspFamilyName>
-      <Name>[SUPERKING\sqlexpress.2square]</Name>
+      <Name>[SUPERKING\sqlexpress.2Square]</Name>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>
@@ -286,6 +286,14 @@
       <PropertyElementName>
         <Name>GenerateDropsIfNotInProject</Name>
         <Value>True</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>TargetDatabaseName</Name>
+        <Value>2Square</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>TargetConnectionString</Name>
+        <Value>Data Source=.\sqlexpress;Initial Catalog=2Square;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>VerifyDeployment</Name>

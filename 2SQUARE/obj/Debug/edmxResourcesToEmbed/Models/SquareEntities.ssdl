@@ -186,6 +186,10 @@
       <End Role="Terms" EntitySet="Terms" />
       <End Role="Definitions" EntitySet="Definitions" />
     </AssociationSet>
+    <AssociationSet Name="FK_ElicitationTypes_SquareTypes" Association="SquareModel.Store.FK_ElicitationTypes_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="ElicitationTypes" EntitySet="ElicitationTypes" />
+    </AssociationSet>
     <AssociationSet Name="FK_Goals_GoalTypes" Association="SquareModel.Store.FK_Goals_GoalTypes">
       <End Role="GoalTypes" EntitySet="GoalTypes" />
       <End Role="Goals" EntitySet="Goals" />
@@ -513,7 +517,9 @@
     <Property Name="SecurityAssessmentId" Type="int" />
     <Property Name="PrivacyAssessmentId" Type="int" />
     <Property Name="SecurityElicitationId" Type="int" />
+    <Property Name="SecurityElicitationRationale" Type="varchar(max)" />
     <Property Name="PrivacyElicitationId" Type="int" />
+    <Property Name="PrivacyElicitationRationale" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="ProjectSteps">
     <Key>
@@ -973,6 +979,18 @@
       </Principal>
       <Dependent Role="Definitions">
         <PropertyRef Name="TermId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ElicitationTypes_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="1" />
+    <End Role="ElicitationTypes" Type="SquareModel.Store.ElicitationTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ElicitationTypes">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

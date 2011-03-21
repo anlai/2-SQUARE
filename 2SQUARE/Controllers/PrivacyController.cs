@@ -5,12 +5,13 @@ using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Filters;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
+using DesignByContract;
 using MvcContrib;
 using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
-    public class PrivacyController : ApplicationController
+    public class PrivacyController : ApplicationController, ISquareTypeController
     {
         private readonly IProjectService _projectService;
 
@@ -19,6 +20,7 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
+        #region Step 1
         [AvailableForWork]
         public ActionResult Step1(int id /* step id */, int projectId)
         {
@@ -37,7 +39,9 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
         }
+        #endregion
 
+        #region Step 2
         [AvailableForWork]
         public ActionResult Step2(int id /* project step id */, int projectId)
         {
@@ -55,7 +59,9 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
         }
+        #endregion
 
+        #region Step 3
         /// <summary>
         /// Develop Artifacts
         /// </summary>
@@ -78,7 +84,9 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
         }
+        #endregion
 
+        #region Step 4
         [AvailableForWork]
         public ActionResult Step4(int id /*project step id*/, int projectId)
         {
@@ -122,41 +130,79 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<SecurityController>(a => a.Step4(id, projectId));
             }
         }
+        #endregion
 
-        public ActionResult Step5()
+        #region Step 5
+        [AvailableForWork]
+        public ActionResult Step5(int id, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // load project
+                var project = _projectService.GetProject(projectId, CurrentUserId);
 
-            return View();
+                var viewModel = Step5ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
-        public ActionResult Step6()
+        [HttpPost]
+        public ActionResult Step5(int id, int projectId, int elicitationId, string rationale)
+        {
+            try
+            {
+                var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
+
+                Check.Require(elicitationType != null, "elicitationType is required.");
+
+                _projectService.SetElicitationType(projectId, elicitationType, rationale, CurrentUserId);
+
+                return this.RedirectToAction(a => a.Step5(id, projectId));
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Unable to assign assessment type to project.";
+                return this.RedirectToAction<PrivacyController>(a => a.Step5(id, projectId));
+            }
+        }
+        #endregion
+
+        #region Step 6
+        public ActionResult Step6(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
 
-        public ActionResult Step7()
+        #region Step 7
+        public ActionResult Step7(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
 
-        public ActionResult Step8()
+        #region Step 8
+        public ActionResult Step8(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
 
-        public ActionResult Step9()
+        #region Step 9
+        public ActionResult Step9(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
+        
 
     }
 }
