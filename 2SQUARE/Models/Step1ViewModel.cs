@@ -27,7 +27,7 @@ namespace _2SQUARE.Models
                                     Project = db.Projects.Where(a=>a.id == projectId).Single()
                                 };
 
-            Check.Require(viewModel.ProjectStep.ProjectId == viewModel.Project.id , Messages.ProjectStepMismatch);
+            Check.Ensure(viewModel.Project.id == viewModel.ProjectStep.ProjectId, Messages.ProjectStepMismatch);
 
             var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
             viewModel.ProjectTerms = projectTerms;

@@ -8,68 +8,68 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PrivacyController.cs" caret="2634" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:StepViewModelBase.cs" caret="134" fromTop="5" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:Step4ViewModel.cs" caret="1216" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/f:Web.config" caret="12" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:ProjectTermsView.ascx" caret="549" fromTop="16" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:NIST800_30ViewModel.cs" caret="813" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Security/f:Step4.aspx" caret="1050" fromTop="18" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:GoalController.cs" caret="1266" fromTop="15" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Security/f:Step1.aspx" caret="2281" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Security/f:Step2.aspx" caret="1205" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IProjectService.cs" caret="1459" fromTop="26" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ProjectService.cs" caret="0" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:ProjectTerm/f:AddNewTerm.aspx" caret="1225" fromTop="17" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Helpers/f:Enums.cs" caret="0" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ProjectTermController.cs" caret="0" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Helpers/f:Validation.cs" caret="1631" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:NIST800_30EditViewModel.cs" caret="1576" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:RiskForm.ascx" caret="1014" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="82" fromTop="0" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Edit.aspx" caret="487" fromTop="11" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Artifact/f:Add.aspx" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Artifact/f:Details.aspx" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Artifact/f:Edit.aspx" caret="724" fromTop="14" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Artifact/f:ArtifactForm.ascx" caret="872" fromTop="18" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:Step3View.ascx" caret="265" fromTop="3" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Security/f:Step2.aspx" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Home/f:Index.aspx" caret="3300" fromTop="69" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:Site.Master" caret="2975" fromTop="47" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:SecurityController.cs" caret="5832" fromTop="33" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Privacy/f:Step4.aspx" caret="822" fromTop="22" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Security/f:Step4.aspx" caret="1431" fromTop="23" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PrivacyController.cs" caret="3704" fromTop="19" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:Step4ViewModel.cs" caret="1216" fromTop="31" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="4316" fromTop="36" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:RiskAssessmentViewModel.cs" caret="1055" fromTop="24" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Goal/f:GoalForm.ascx" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Goal/f:Add.aspx" caret="0" fromTop="0" />
       <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Add.aspx" caret="696" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="4701" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:MessageModel.cs" caret="30" fromTop="2" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:Message.ascx" caret="791" fromTop="15" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:Shared/f:Site.Master" caret="1830" fromTop="6" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:SecurityController.cs" caret="3940" fromTop="12" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ApplicationController.cs" caret="642" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:AccountModels.cs" caret="3707" fromTop="14" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="2554" fromTop="39" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:PRAUCEditViewModel.cs" caret="1014" fromTop="24" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:NIST800_30EditViewModel.cs" caret="1671" fromTop="36" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:RiskForm.ascx" caret="1024" fromTop="4" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="3265" fromTop="4" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:IRiskAssessmentController.cs" caret="422" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:RiskForm.ascx" caret="1355" fromTop="27" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Add.aspx" caret="871" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Edit.aspx" caret="727" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="4201" fromTop="22" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="6512" fromTop="27" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:IValidationService.cs" caret="0" fromTop="0" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Services/f:ValidationService.cs" caret="17133" fromTop="19" />
     </RecentFiles>
     <RecentEdits>
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="1462" fromTop="29" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="1642" fromTop="33" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="2352" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="3238" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:RiskForm.ascx" caret="2530" fromTop="38" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Add.aspx" caret="593" fromTop="12" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:RiskForm.ascx" caret="163" fromTop="3" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:RiskForm.ascx" caret="1014" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Add.aspx" caret="482" fromTop="6" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Edit.aspx" caret="321" fromTop="3" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Edit.aspx" caret="850" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Index.aspx" caret="1060" fromTop="16" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:NIST800_30/f:Edit.aspx" caret="487" fromTop="11" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="4856" fromTop="38" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="3627" fromTop="24" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="3641" fromTop="21" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="4806" fromTop="27" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:AccountModels.cs" caret="100096" fromTop="14" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="11" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:SecurityController.cs" caret="4447" fromTop="20" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="11" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="18" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="12" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="11" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="4073" fromTop="11" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:ApplicationController.cs" caret="642" fromTop="23" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="1288" fromTop="14" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="896" fromTop="14" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="2024" fromTop="33" />
-      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/f:Web.config" caret="2566" fromTop="39" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Add.aspx" caret="479" fromTop="4" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Add.aspx" caret="479" fromTop="4" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="6832" fromTop="36" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="3327" fromTop="23" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="3579" fromTop="29" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:PRAUCEditViewModel.cs" caret="1122" fromTop="24" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Models/f:NIST800_30EditViewModel.cs" caret="1671" fromTop="36" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="3802" fromTop="26" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Add.aspx" caret="479" fromTop="13" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="2298" fromTop="7" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="5009" fromTop="14" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="6595" fromTop="15" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="6422" fromTop="13" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="2131" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="1932" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="1857" fromTop="19" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="2797" fromTop="25" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="2490" fromTop="17" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:RiskForm.ascx" caret="158" fromTop="2" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:RiskForm.ascx" caret="1355" fromTop="27" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Add.aspx" caret="514" fromTop="4" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:PRAUCController.cs" caret="6697" fromTop="19" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:NIST800_30Controller.cs" caret="6512" fromTop="27" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Controllers/f:IRiskAssessmentController.cs" caret="422" fromTop="12" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Edit.aspx" caret="353" fromTop="3" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Edit.aspx" caret="515" fromTop="10" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Edit.aspx" caret="727" fromTop="20" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="1008" fromTop="3" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="3920" fromTop="34" />
+      <File id="FBF7DDCC-B154-4CCC-9D64-CAA6ACB0AC06/d:Views/d:PRAUC/f:Index.aspx" caret="4201" fromTop="22" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -85,32 +85,32 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="public" priority="54" />
-      <Item value="static" priority="10" />
+      <Item value="public" priority="56" />
+      <Item value="static" priority="12" />
       <Item value="class" priority="9" />
-      <Item value="prop" priority="78" />
+      <Item value="prop" priority="83" />
       <Item value="readonly" priority="3" />
-      <Item value="string" priority="162" />
-      <Item value="ctor" priority="30" />
+      <Item value="string" priority="174" />
+      <Item value="ctor" priority="32" />
       <Item value="Roles`0" priority="0" />
       <Item value="RoleNames`0" priority="7" />
       <Item value="AuthorizeAttribute`0" priority="2" />
       <Item value="Roles" priority="1" />
-      <Item value="Html" priority="126" />
+      <Item value="Html" priority="147" />
       <Item value="AccountController`0" priority="8" />
-      <Item value="action" priority="56" />
-      <Item value="a" priority="249" />
-      <Item value="this" priority="38" />
-      <Item value="void" priority="8" />
+      <Item value="action" priority="64" />
+      <Item value="a" priority="276" />
+      <Item value="this" priority="44" />
+      <Item value="void" priority="11" />
       <Item value="_2SQUARE" priority="11" />
-      <Item value="using" priority="35" />
+      <Item value="using" priority="40" />
       <Item value="propv" priority="42" />
       <Item value="classMap" priority="13" />
       <Item value="map" priority="28" />
       <Item value="DateTime`0" priority="8" />
       <Item value="LengthAttribute`0" priority="7" />
       <Item value="IList" priority="7" />
-      <Item value="int" priority="138" />
+      <Item value="int" priority="159" />
       <Item value="UriHostNameType`0" priority="0" />
       <Item value="Type`0" priority="0" />
       <Item value="RequirementCategory`0" priority="0" />
@@ -129,13 +129,13 @@
       <Item value="DomainObject`0" priority="1" />
       <Item value="Url" priority="9" />
       <Item value="FormMethod`0" priority="7" />
-      <Item value="new" priority="110" />
-      <Item value="object" priority="26" />
+      <Item value="new" priority="118" />
+      <Item value="object" priority="30" />
       <Item value="Style`0" priority="0" />
       <Item value="Dictionary&lt;string,object&gt;" priority="15" />
       <Item value="SquareTypeMap`0" priority="0" />
       <Item value="bool" priority="30" />
-      <Item value="project" priority="39" />
+      <Item value="project" priority="41" />
       <Item value="step" priority="46" />
       <Item value="DateStarted" priority="0" />
       <Item value="Complete" priority="11" />
@@ -159,11 +159,11 @@
       <Item value="Term`0" priority="1" />
       <Item value="RequiredAttribute`0" priority="0" />
       <Item value="references" priority="0" />
-      <Item value="Project" priority="12" />
+      <Item value="Project" priority="13" />
       <Item value="throw" priority="26" />
       <Item value="NotImplementedException" priority="19" />
       <Item value="IRepository" priority="1" />
-      <Item value="var" priority="191" />
+      <Item value="var" priority="220" />
       <Item value="from" priority="2" />
       <Item value="_projectRepository" priority="0" />
       <Item value="where" priority="1" />
@@ -173,61 +173,61 @@
       <Item value="container" priority="1" />
       <Item value="typeof" priority="3" />
       <Item value="ProjectService`0" priority="0" />
-      <Item value="if" priority="111" />
+      <Item value="if" priority="123" />
       <Item value="user" priority="4" />
-      <Item value="return" priority="120" />
+      <Item value="return" priority="132" />
       <Item value="null" priority="24" />
-      <Item value="projectService" priority="32" />
-      <Item value="_projectService" priority="50" />
+      <Item value="projectService" priority="36" />
+      <Item value="_projectService" priority="57" />
       <Item value="CurrentUser" priority="2" />
       <Item value="foreach" priority="17" />
       <Item value="in" priority="23" />
       <Item value="Request" priority="3" />
-      <Item value="else" priority="22" />
+      <Item value="else" priority="28" />
       <Item value="Page" priority="2" />
       <Item value="check" priority="63" />
       <Item value="login" priority="16" />
       <Item value="Repository" priority="3" />
       <Item value="App_Data" priority="0" />
       <Item value="_2SquareDataDataContext`0" priority="0" />
-      <Item value="db" priority="72" />
+      <Item value="db" priority="75" />
       <Item value="EnvironmentVariableTarget`0" priority="0" />
-      <Item value="private" priority="15" />
+      <Item value="private" priority="17" />
       <Item value="User" priority="0" />
-      <Item value="CurrentUserId" priority="26" />
-      <Item value="Models" priority="6" />
+      <Item value="CurrentUserId" priority="32" />
+      <Item value="Models" priority="8" />
       <Item value="Entities`0" priority="1" />
       <Item value="DatabaseEntities" priority="1" />
       <Item value="SquareEntities`0" priority="7" />
       <Item value="SquareEntities" priority="2" />
       <Item value="partial" priority="0" />
-      <Item value="Model" priority="115" />
-      <Item value="id" priority="58" />
+      <Item value="Model" priority="124" />
+      <Item value="id" priority="65" />
       <Item value="SecurityException" priority="1" />
-      <Item value="Messages`0" priority="33" />
-      <Item value="try" priority="11" />
-      <Item value="MvcContrib" priority="7" />
-      <Item value="ErrorController`0" priority="10" />
+      <Item value="Messages`0" priority="39" />
+      <Item value="try" priority="15" />
+      <Item value="MvcContrib" priority="9" />
+      <Item value="ErrorController`0" priority="11" />
       <Item value="se" priority="0" />
       <Item value="catch" priority="3" />
       <Item value="Exception`0" priority="1" />
-      <Item value="View`0" priority="8" />
-      <Item value="ProjectController`0" priority="9" />
+      <Item value="View`0" priority="10" />
+      <Item value="ProjectController`0" priority="10" />
       <Item value="IProjectService`0" priority="9" />
       <Item value="squareEntities" priority="8" />
-      <Item value="IEnumerable" priority="6" />
+      <Item value="IEnumerable" priority="7" />
       <Item value="SquareTypes" priority="1" />
       <Item value="ProjectDetailsViewModel`0" priority="0" />
-      <Item value="DBNull`0" priority="0" />
-      <Item value="Db" priority="47" />
-      <Item value="b" priority="27" />
+      <Item value="DBNull`0" priority="1" />
+      <Item value="Db" priority="64" />
+      <Item value="b" priority="28" />
       <Item value="c" priority="1" />
       <Item value="t" priority="0" />
-      <Item value="viewModel" priority="57" />
+      <Item value="viewModel" priority="61" />
       <Item value="ProjectDetailsViewModel" priority="0" />
       <Item value="RedirectResult`0" priority="3" />
       <Item value="Step" priority="1" />
-      <Item value="projectId" priority="35" />
+      <Item value="projectId" priority="42" />
       <Item value="Terms" priority="0" />
       <Item value="SecurityStep1ViewModel`0" priority="0" />
       <Item value="stepId" priority="9" />
@@ -251,10 +251,10 @@
       <Item value="definitionObj" priority="2" />
       <Item value="termObj" priority="1" />
       <Item value="ArgumentException" priority="3" />
-      <Item value="Message" priority="24" />
+      <Item value="Message" priority="29" />
       <Item value="SquareClassesDataContext`0" priority="2" />
       <Item value="squareTypeId" priority="3" />
-      <Item value="ErrorMessage" priority="11" />
+      <Item value="ErrorMessage" priority="12" />
       <Item value="IDisposable`0" priority="2" />
       <Item value="HomeController`0" priority="0" />
       <Item value="GuidanceController`0" priority="0" />
@@ -266,25 +266,25 @@
       <Item value="StepId" priority="1" />
       <Item value="ProjectId" priority="3" />
       <Item value="SecurityStep1AddNewTermViewModel`0" priority="1" />
-      <Item value="System" priority="10" />
-      <Item value="Linq" priority="10" />
+      <Item value="System" priority="11" />
+      <Item value="Linq" priority="11" />
       <Item value="predefinedTerms" priority="0" />
       <Item value="ProjectTermController`0" priority="0" />
       <Item value="ExceptionContext`0" priority="1" />
-      <Item value="ModelState" priority="17" />
+      <Item value="ModelState" priority="23" />
       <Item value="out" priority="4" />
       <Item value="FieldAccessException`0" priority="0" />
       <Item value="ValidationErrors`0" priority="0" />
-      <Item value="errors" priority="18" />
+      <Item value="errors" priority="23" />
       <Item value="ValidationErrors" priority="1" />
       <Item value="Field" priority="0" />
       <Item value="field" priority="0" />
-      <Item value="modelState" priority="13" />
+      <Item value="modelState" priority="15" />
       <Item value="Definition`0" priority="0" />
       <Item value="Definitions" priority="0" />
       <Item value="ProjectTermEditViewModel`0" priority="0" />
       <Item value="def" priority="1" />
-      <Item value="projectStep" priority="91" />
+      <Item value="projectStep" priority="95" />
       <Item value="switch" priority="8" />
       <Item value="case" priority="30" />
       <Item value="Step1`0" priority="0" />
@@ -292,8 +292,8 @@
       <Item value="default" priority="1" />
       <Item value="complete" priority="2" />
       <Item value="working" priority="1" />
-      <Item value="Check`0" priority="0" />
-      <Item value="warnings" priority="9" />
+      <Item value="Check`0" priority="1" />
+      <Item value="warnings" priority="10" />
       <Item value="Warnings" priority="0" />
       <Item value="List&lt;string&gt;" priority="1" />
       <Item value="Errors" priority="0" />
@@ -316,8 +316,8 @@
       <Item value="_validationService" priority="9" />
       <Item value="validateForWork" priority="1" />
       <Item value="override" priority="0" />
-      <Item value="AvailableForWorkAttribute`0" priority="5" />
-      <Item value="ValidationService`0" priority="6" />
+      <Item value="AvailableForWorkAttribute`0" priority="6" />
+      <Item value="ValidationService`0" priority="7" />
       <Item value="filterContext" priority="12" />
       <Item value="param" priority="1" />
       <Item value="Convert`0" priority="0" />
@@ -328,7 +328,7 @@
       <Item value="Status" priority="1" />
       <Item value="KeyValuePair&lt;string,string&gt;" priority="3" />
       <Item value="ChangeStatueViewModel`0" priority="0" />
-      <Item value="x" priority="10" />
+      <Item value="x" priority="11" />
       <Item value="enum" priority="3" />
       <Item value="ProjectStepStatus`0" priority="23" />
       <Item value="GetStepStatus`0" priority="3" />
@@ -349,7 +349,7 @@
       <Item value="ChangeStatusProjectStep`0" priority="1" />
       <Item value="ChangeStatusProjectSteps" priority="0" />
       <Item value="List&lt;ChangeStatusProjectStep&gt;" priority="0" />
-      <Item value="ProjectStepId" priority="0" />
+      <Item value="ProjectStepId" priority="1" />
       <Item value="Order" priority="0" />
       <Item value="SquareTypeId" priority="2" />
       <Item value="aspnet_Applications`0" priority="0" />
@@ -358,7 +358,7 @@
       <Item value="CanEdit" priority="0" />
       <Item value="IsStepPending`0" priority="1" />
       <Item value="s" priority="0" />
-      <Item value="HttpPostAttribute`0" priority="5" />
+      <Item value="HttpPostAttribute`0" priority="8" />
       <Item value="projectStepStatus" priority="15" />
       <Item value="Json`0" priority="3" />
       <Item value="changeSteps" priority="2" />
@@ -372,12 +372,12 @@
       <Item value="WarningMessages" priority="0" />
       <Item value="ValidationChangeStatusResult`0" priority="2" />
       <Item value="List&lt;KeyValuePair&lt;int,bool&gt;&gt;" priority="0" />
-      <Item value="RedirectToAction`0" priority="5" />
+      <Item value="RedirectToAction`0" priority="6" />
       <Item value="CssClassPropertyAttribute`0" priority="0" />
       <Item value="Goal`0" priority="15" />
       <Item value="IisTraceListener`0" priority="0" />
-      <Item value="ProjectStep" priority="8" />
-      <Item value="projectStepId" priority="9" />
+      <Item value="ProjectStep" priority="9" />
+      <Item value="projectStepId" priority="14" />
       <Item value="SquareTypes`0" priority="7" />
       <Item value="Step2ViewModel" priority="0" />
       <Item value="GoalTypes`0" priority="2" />
@@ -388,7 +388,7 @@
       <Item value="goal" priority="26" />
       <Item value="GoalType`0" priority="0" />
       <Item value="GoalTypes" priority="0" />
-      <Item value="ModelStateDictionary`0" priority="2" />
+      <Item value="ModelStateDictionary`0" priority="3" />
       <Item value="goalTypes" priority="1" />
       <Item value="GoalTypeId" priority="1" />
       <Item value="Description" priority="0" />
@@ -423,7 +423,7 @@
       <Item value="ShowErrorIcon" priority="0" />
       <Item value="showWarning" priority="1" />
       <Item value="showError" priority="0" />
-      <Item value="MessageModel`0" priority="0" />
+      <Item value="MessageModel`0" priority="1" />
       <Item value="FileContentResult`0" priority="0" />
       <Item value="File`0" priority="2" />
       <Item value="byte" priority="0" />
@@ -431,44 +431,70 @@
       <Item value="stepNum" priority="0" />
       <Item value="IsStepcomplete`0" priority="2" />
       <Item value="assessmentTypes" priority="0" />
-      <Item value="userId" priority="3" />
+      <Item value="userId" priority="5" />
       <Item value="AssessmentType`0" priority="3" />
       <Item value="AssessmentTypes" priority="0" />
       <Item value="Step4ViewModel`0" priority="0" />
-      <Item value="StepViewModelBase`0" priority="5" />
+      <Item value="StepViewModelBase`0" priority="8" />
       <Item value="assessmentType" priority="8" />
       <Item value="GetProject`0" priority="0" />
       <Item value="assessmentTypeId" priority="1" />
-      <Item value="Risk`0" priority="7" />
+      <Item value="Risk`0" priority="13" />
       <Item value="NIST800_30ViewModel`0" priority="0" />
       <Item value="Risks" priority="0" />
       <Item value="ActionNameAttribute`0" priority="0" />
-      <Item value="RiskLevel`0" priority="3" />
+      <Item value="RiskLevel`0" priority="8" />
       <Item value="Impact`0" priority="0" />
       <Item value="NIST800_30EditViewModel`0" priority="1" />
       <Item value="RiskLevelColor" priority="1" />
-      <Item value="RiskLevels" priority="0" />
+      <Item value="RiskLevels" priority="1" />
       <Item value="Impacts" priority="0" />
-      <Item value="Risk" priority="1" />
-      <Item value="risk" priority="32" />
-      <Item value="RiskLevelsEnum`0" priority="3" />
+      <Item value="Risk" priority="5" />
+      <Item value="risk" priority="60" />
+      <Item value="RiskLevelsEnum`0" priority="7" />
       <Item value="NIST800_30Controller`0" priority="2" />
-      <Item value="likelihood" priority="1" />
+      <Item value="likelihood" priority="6" />
       <Item value="impact" priority="1" />
       <Item value="riskCalc" priority="5" />
       <Item value="JsonResult`0" priority="0" />
       <Item value="char" priority="1" />
-      <Item value="CalculateRiskLevel`0" priority="2" />
+      <Item value="CalculateRiskLevel`0" priority="4" />
       <Item value="likelihoodLevel" priority="2" />
       <Item value="impactLevel" priority="0" />
-      <Item value="riskLevel" priority="3" />
+      <Item value="riskLevel" priority="5" />
       <Item value="AllowGet" priority="0" />
       <Item value="level" priority="0" />
       <Item value="magnitude" priority="1" />
       <Item value="magnitudeLevel" priority="2" />
-      <Item value="Validate`0" priority="1" />
-      <Item value="riskId" priority="1" />
+      <Item value="Validate`0" priority="2" />
+      <Item value="riskId" priority="3" />
       <Item value="srcRisk" priority="9" />
+      <Item value="riskControl" priority="5" />
+      <Item value="RiskControl`0" priority="1" />
+      <Item value="rec" priority="2" />
+      <Item value="RiskRecommendation`0" priority="7" />
+      <Item value="riskRecommendation" priority="12" />
+      <Item value="RiskRecommendation" priority="1" />
+      <Item value="require" priority="7" />
+      <Item value="RiskRecommendationViewModel`0" priority="2" />
+      <Item value="Required`0" priority="1" />
+      <Item value="ApplicationController`0" priority="0" />
+      <Item value="interface" priority="0" />
+      <Item value="IRiskAssessmentController`0" priority="1" />
+      <Item value="RiskRecommendationController`0" priority="0" />
+      <Item value="risks" priority="2" />
+      <Item value="count" priority="0" />
+      <Item value="RiskAssessmentViewModel`0" priority="1" />
+      <Item value="PRAUCController`0" priority="2" />
+      <Item value="PRAUCEditViewModel`0" priority="1" />
+      <Item value="damage" priority="3" />
+      <Item value="cost" priority="3" />
+      <Item value="likelihoodDamage" priority="0" />
+      <Item value="ContextStaticAttribute`0" priority="0" />
+      <Item value="ensure" priority="0" />
+      <Item value="origRisk" priority="7" />
+      <Item value="riskLevelId" priority="2" />
+      <Item value="fixed" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Filters.RoleNames">
       <Item value="RoleProjectManager" priority="5" />
@@ -476,18 +502,18 @@
       <Item value="RoleStakeholder" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Web.Mvc.HtmlHelper`1">
-      <Item value="RenderPartial`0" priority="11" />
+      <Item value="RenderPartial`0" priority="17" />
       <Item value="actionLink" priority="0" />
       <Item value="ActionLink`0" priority="12" />
       <Item value="TextBox`0" priority="4" />
       <Item value="BeginForm`0" priority="2" />
-      <Item value="ActionLink`1" priority="24" />
-      <Item value="BeginForm`1" priority="10" />
+      <Item value="ActionLink`1" priority="27" />
+      <Item value="BeginForm`1" priority="12" />
       <Item value="HiddenFor`2" priority="5" />
       <Item value="Hidden`0" priority="20" />
-      <Item value="SubmitButton`0" priority="7" />
-      <Item value="TextBoxFor`2" priority="5" />
-      <Item value="TextAreaFor`2" priority="3" />
+      <Item value="SubmitButton`0" priority="9" />
+      <Item value="TextBoxFor`2" priority="6" />
+      <Item value="TextAreaFor`2" priority="7" />
       <Item value="ValidateFor`2" priority="2" />
       <Item value="ValidationMessageFor`2" priority="3" />
       <Item value="EnableClientValidation`0" priority="2" />
@@ -598,7 +624,7 @@
       <Item value="OrderBy`2" priority="4" />
       <Item value="Where`1" priority="0" />
       <Item value="Distinct`1" priority="1" />
-      <Item value="Count`1" priority="0" />
+      <Item value="Count`1" priority="1" />
       <Item value="FirstOrDefault`1" priority="2" />
       <Item value="Any`1" priority="4" />
       <Item value="Max`2" priority="1" />
@@ -608,21 +634,22 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Linq.IQueryable`1">
       <Item value="Where`1" priority="3" />
-      <Item value="Single`1" priority="32" />
-      <Item value="SingleOrDefault`1" priority="7" />
+      <Item value="Single`1" priority="40" />
+      <Item value="SingleOrDefault`1" priority="8" />
       <Item value="ToList`1" priority="13" />
-      <Item value="FirstOrDefault`1" priority="3" />
+      <Item value="FirstOrDefault`1" priority="5" />
       <Item value="First`1" priority="0" />
       <Item value="Any`1" priority="1" />
       <Item value="Select`2" priority="3" />
-      <Item value="OrderBy`2" priority="0" />
+      <Item value="OrderBy`2" priority="1" />
+      <Item value="OrderByDescending`2" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Castle.Windsor.IWindsorContainer">
       <Item value="AddComponent`2" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Services.IProjectService">
       <Item value="GetByUser`0" priority="1" />
-      <Item value="GetProject`0" priority="11" />
+      <Item value="GetProject`0" priority="13" />
       <Item value="AddTermToProject`0" priority="1" />
       <Item value="UserRoles`0" priority="0" />
       <Item value="HasAccess`0" priority="1" />
@@ -635,8 +662,9 @@
       <Item value="GetProjectSteps`0" priority="0" />
       <Item value="LoadGoal`0" priority="0" />
       <Item value="DeleteGoal`0" priority="0" />
-      <Item value="GetProjectStep`0" priority="4" />
+      <Item value="GetProjectStep`0" priority="7" />
       <Item value="SetAssessmentType`0" priority="0" />
+      <Item value="SaveRiskRecommendation`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Security.Principal.IPrincipal">
       <Item value="Identity" priority="6" />
@@ -680,7 +708,7 @@
     <ItemStatistics item="Qualified:_2SQUARE.Models.Project">
       <Item value="Name" priority="7" />
       <Item value="Description" priority="4" />
-      <Item value="id" priority="32" />
+      <Item value="id" priority="33" />
       <Item value="ProjectWorkers" priority="3" />
       <Item value="ProjectSteps" priority="20" />
       <Item value="ProjectTerms" priority="0" />
@@ -688,8 +716,9 @@
       <Item value="Artifacts" priority="0" />
       <Item value="SecurityAssessmentId" priority="1" />
       <Item value="SecurityAssessmentType" priority="1" />
-      <Item value="PrivacyAssessmentType" priority="0" />
-      <Item value="PrivacyAssessmentId" priority="0" />
+      <Item value="PrivacyAssessmentType" priority="1" />
+      <Item value="PrivacyAssessmentId" priority="1" />
+      <Item value="Risks" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.SquareEntities">
       <Item value="aspnet_Users" priority="1" />
@@ -699,7 +728,7 @@
       <Item value="Steps" priority="1" />
       <Item value="Terms" priority="4" />
       <Item value="ProjectTerms" priority="7" />
-      <Item value="SaveChanges`0" priority="10" />
+      <Item value="SaveChanges`0" priority="13" />
       <Item value="AddToProjectTerms`0" priority="1" />
       <Item value="Definitions" priority="2" />
       <Item value="ProjectWorkers" priority="3" />
@@ -711,32 +740,36 @@
       <Item value="Artifacts" priority="0" />
       <Item value="ArtifactTypes" priority="0" />
       <Item value="AssessmentTypes" priority="3" />
-      <Item value="Risks" priority="3" />
-      <Item value="RiskLevels" priority="4" />
+      <Item value="Risks" priority="7" />
+      <Item value="RiskLevels" priority="12" />
       <Item value="Impacts" priority="0" />
+      <Item value="RiskRecommendations" priority="1" />
+      <Item value="AddToRiskRecommendations`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Objects.ObjectSet`1">
-      <Item value="Where`0" priority="59" />
+      <Item value="Where`0" priority="68" />
       <Item value="ToList`1" priority="5" />
       <Item value="Single`1" priority="1" />
       <Item value="FirstOrDefault`1" priority="0" />
       <Item value="Select`0" priority="1" />
-      <Item value="OrderBy`0" priority="0" />
-      <Item value="AddObject`0" priority="0" />
+      <Item value="OrderBy`0" priority="1" />
+      <Item value="AddObject`0" priority="2" />
+      <Item value="All`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.aspnet_Users">
       <Item value="UserName" priority="6" />
       <Item value="UserId" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Objects.DataClasses.EntityCollection`1">
-      <Item value="Any`1" priority="2" />
+      <Item value="Any`1" priority="5" />
       <Item value="OrderBy`2" priority="0" />
-      <Item value="Where`1" priority="11" />
+      <Item value="Where`1" priority="12" />
       <Item value="Select`2" priority="4" />
       <Item value="Distinct`1" priority="0" />
-      <Item value="Count" priority="0" />
+      <Item value="Count" priority="4" />
       <Item value="Max`2" priority="1" />
       <Item value="ToList`1" priority="2" />
+      <Item value="First`1" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.ProjectWorker">
       <Item value="aspnet_Users" priority="7" />
@@ -745,9 +778,9 @@
       <Item value="aspnet_Roles" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
-      <Item value="Format`0" priority="37" />
-      <Item value="IsNullOrEmpty`0" priority="25" />
-      <Item value="Empty" priority="12" />
+      <Item value="Format`0" priority="46" />
+      <Item value="IsNullOrEmpty`0" priority="26" />
+      <Item value="Empty" priority="13" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Messages">
       <Item value="NoAccess" priority="1" />
@@ -761,11 +794,11 @@
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.ProjectController">
       <Item value="RedirectToAction`0" priority="2" />
       <Item value="Details`0" priority="5" />
-      <Item value="Index`0" priority="1" />
+      <Item value="Index`0" priority="2" />
       <Item value="ChangeStatus`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.ErrorController">
-      <Item value="Security`0" priority="4" />
+      <Item value="Security`0" priority="5" />
       <Item value="Index`0" priority="1" />
       <Item value="InvalidStep`0" priority="2" />
     </ItemStatistics>
@@ -782,35 +815,35 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.SquareType">
       <Item value="Steps" priority="0" />
-      <Item value="Name" priority="30" />
+      <Item value="Name" priority="31" />
       <Item value="id" priority="5" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Step">
       <Item value="Order" priority="22" />
       <Item value="Name" priority="6" />
-      <Item value="SquareType" priority="35" />
+      <Item value="SquareType" priority="36" />
       <Item value="Action" priority="5" />
       <Item value="Controller" priority="5" />
       <Item value="id" priority="12" />
-      <Item value="SquareTypeId" priority="21" />
+      <Item value="SquareTypeId" priority="23" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.ProjectStep">
-      <Item value="Step" priority="82" />
+      <Item value="Step" priority="85" />
       <Item value="Complete" priority="6" />
       <Item value="DateStarted" priority="13" />
-      <Item value="Project" priority="15" />
+      <Item value="Project" priority="16" />
       <Item value="ProjectId" priority="23" />
       <Item value="DateCompleted" priority="6" />
-      <Item value="Id" priority="53" />
+      <Item value="Id" priority="55" />
       <Item value="StepId" priority="6" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.AccountController">
       <Item value="LogOff`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Nullable`1">
-      <Item value="HasValue" priority="10" />
+      <Item value="HasValue" priority="12" />
       <Item value="ToString`0" priority="1" />
-      <Item value="Value" priority="1" />
+      <Item value="Value" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Controllers.SecurityStep1ViewModel">
       <Item value="Create`0" priority="0" />
@@ -828,10 +861,10 @@
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="Select`2" priority="1" />
       <Item value="Contains`0" priority="6" />
-      <Item value="Add`0" priority="19" />
+      <Item value="Add`0" priority="22" />
       <Item value="Where`1" priority="1" />
       <Item value="Count" priority="3" />
-      <Item value="Any`1" priority="1" />
+      <Item value="Any`1" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Term">
       <Item value="Name" priority="6" />
@@ -905,14 +938,14 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.App_GlobalResources.Messages">
       <Item value="InvalidStep" priority="2" />
-      <Item value="Required" priority="11" />
+      <Item value="Required" priority="14" />
       <Item value="NotValidForWork" priority="0" />
       <Item value="Manager_NotValidForWork" priority="2" />
       <Item value="Deleted" priority="1" />
       <Item value="UnabletoLoad" priority="1" />
-      <Item value="Saved" priority="4" />
+      <Item value="Saved" priority="5" />
       <Item value="UnableSave" priority="1" />
-      <Item value="NoAccess" priority="3" />
+      <Item value="NoAccess" priority="4" />
       <Item value="ProjectStepMismatch" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.ProjectTermController">
@@ -922,11 +955,11 @@
       <Item value="EditTerm`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Web.Mvc.ModelStateDictionary">
-      <Item value="IsValid" priority="7" />
-      <Item value="AddModelError`0" priority="11" />
+      <Item value="IsValid" priority="10" />
+      <Item value="AddModelError`0" priority="13" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Helpers.Validation">
-      <Item value="Validate`0" priority="4" />
+      <Item value="Validate`0" priority="5" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Models.ProjectTermEditViewModel">
       <Item value="Create`0" priority="0" />
@@ -992,7 +1025,7 @@
       <Item value="Select`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:MvcContrib.FluentHtml.Elements.Select">
-      <Item value="Options`1" priority="6" />
+      <Item value="Options`1" priority="8" />
       <Item value="Selected`0" priority="3" />
       <Item value="FirstOption`0" priority="2" />
       <Item value="Class`0" priority="1" />
@@ -1066,7 +1099,7 @@
       <Item value="Asset" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Char">
-      <Item value="ToString`0" priority="10" />
+      <Item value="ToString`0" priority="16" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Models.Step2ViewModel">
       <Item value="Create`0" priority="0" />
@@ -1155,6 +1188,7 @@
     <ItemStatistics item="Qualified:System.Linq.IOrderedQueryable`1">
       <Item value="ThenBy`2" priority="0" />
       <Item value="ThenByDescending`2" priority="0" />
+      <Item value="ToList`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Controllers.ArtifactViewModel">
       <Item value="Create`0" priority="0" />
@@ -1190,10 +1224,10 @@
       <Item value="ToShortTimeString`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.AssessmentType">
-      <Item value="Controller" priority="3" />
+      <Item value="Controller" priority="5" />
       <Item value="SquareType" priority="2" />
-      <Item value="SquareTypeId" priority="0" />
-      <Item value="Name" priority="0" />
+      <Item value="SquareTypeId" priority="1" />
+      <Item value="Name" priority="1" />
       <Item value="Source" priority="0" />
       <Item value="id" priority="4" />
     </ItemStatistics>
@@ -1209,29 +1243,36 @@
       <Item value="Create`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Risk">
-      <Item value="ProjectId" priority="2" />
+      <Item value="ProjectId" priority="6" />
       <Item value="SquareType" priority="0" />
-      <Item value="SsquareTypeId" priority="2" />
-      <Item value="Description" priority="1" />
-      <Item value="Name" priority="4" />
+      <Item value="SsquareTypeId" priority="3" />
+      <Item value="Description" priority="5" />
+      <Item value="Name" priority="6" />
       <Item value="Source" priority="4" />
       <Item value="Vulnerability" priority="5" />
-      <Item value="RiskLevel" priority="5" />
-      <Item value="RiskLevelId" priority="5" />
-      <Item value="LikelihoodId" priority="5" />
+      <Item value="RiskLevel" priority="8" />
+      <Item value="RiskLevelId" priority="9" />
+      <Item value="LikelihoodId" priority="8" />
       <Item value="MagnitudeId" priority="2" />
       <Item value="Project" priority="0" />
-      <Item value="AssessmentType" priority="0" />
-      <Item value="Likelihood" priority="1" />
+      <Item value="AssessmentType" priority="3" />
+      <Item value="Likelihood" priority="2" />
       <Item value="Magnitude" priority="2" />
       <Item value="impa" priority="0" />
       <Item value="Impact" priority="2" />
       <Item value="ImpactId" priority="1" />
-      <Item value="id" priority="2" />
+      <Item value="id" priority="6" />
+      <Item value="RiskControls" priority="3" />
+      <Item value="RiskRecommendations" priority="2" />
+      <Item value="Cost" priority="6" />
+      <Item value="AssessmentTypeId" priority="0" />
+      <Item value="Damage" priority="3" />
+      <Item value="DamageId" priority="4" />
+      <Item value="GetHashCode`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.NIST800_30ViewModel">
       <Item value="Risks" priority="1" />
-      <Item value="ProjectStep" priority="0" />
+      <Item value="ProjectStep" priority="2" />
       <Item value="Project" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Controllers.NIST800_30EditViewModel">
@@ -1248,21 +1289,23 @@
       <Item value="Select`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.RiskLevel">
-      <Item value="id" priority="6" />
-      <Item value="Name" priority="6" />
-      <Item value="Order" priority="0" />
+      <Item value="id" priority="16" />
+      <Item value="Name" priority="10" />
+      <Item value="Order" priority="2" />
       <Item value="Color" priority="1" />
       <Item value="SLikelihood" priority="0" />
       <Item value="Impact" priority="1" />
+      <Item value="PLikelihood" priority="0" />
+      <Item value="Damage" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Models.Impact">
       <Item value="id" priority="0" />
       <Item value="Name" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@_2SQUARE.Helpers.RiskLevelsEnum">
-      <Item value="High" priority="2" />
+      <Item value="High" priority="7" />
       <Item value="Medium" priority="2" />
-      <Item value="Low" priority="1" />
+      <Item value="Low" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:_2SQUARE.Controllers.NIST800_30Controller">
       <Item value="Index`0" priority="1" />
@@ -1280,6 +1323,58 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Resources.AssessmentTypes">
       <Item value="NIST800_30" priority="0" />
+      <Item value="PrivacyRiskUbiquitousComputing" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Controllers.RiskControlController">
+      <Item value="Edit`0" priority="1" />
+      <Item value="Create`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Models.RiskControl">
+      <Item value="id" priority="0" />
+      <Item value="Controls" priority="0" />
+      <Item value="Impact" priority="0" />
+      <Item value="Feasibility" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Controllers.RiskRecommendationController">
+      <Item value="RedirectToAction`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@_2SQUARE.Controllers.RiskRecommendationViewModel">
+      <Item value="Create`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Models.RiskRecommendationViewModel">
+      <Item value="RiskRecommendation" priority="2" />
+      <Item value="Risk" priority="6" />
+      <Item value="ProjectStepId" priority="0" />
+      <Item value="GetHashCode`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Models.RiskRecommendation">
+      <Item value="Controls" priority="1" />
+      <Item value="Impact" priority="0" />
+      <Item value="Feasibility" priority="0" />
+      <Item value="id" priority="1" />
+      <Item value="Risk" priority="2" />
+      <Item value="RiskId" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@_2SQUARE.Models.RiskRecommendationViewModel">
+      <Item value="Create`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@_2SQUARE.Models.RiskAssessmentViewModel">
+      <Item value="Create`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@_2SQUARE.Models.PRAUCEditViewModel">
+      <Item value="Create`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Controllers.PRAUCController">
+      <Item value="RedirectToAction`0" priority="1" />
+      <Item value="Index`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:_2SQUARE.Models.PRAUCEditViewModel">
+      <Item value="Risk" priority="2" />
+      <Item value="RiskLevels" priority="1" />
+      <Item value="Project" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ASP.views_prauc_add_aspx">
+      <Item value="Select`0" priority="1" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

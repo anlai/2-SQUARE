@@ -6,13 +6,14 @@ using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Filters;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
+using DesignByContract;
 using MvcContrib;
 using System.Linq;
 
 namespace _2SQUARE.Controllers
 {
     [Authorize]
-    public class SecurityController : ApplicationController
+    public class SecurityController : ApplicationController, ISquareTypeController
     {
         private readonly IProjectService _projectService;
         private readonly IValidationService _validationService;
@@ -150,44 +151,66 @@ namespace _2SQUARE.Controllers
         }
         #endregion
 
-        #region Pending
-
-
-        
-
-        public ActionResult Step5()
+        #region Step 5
+        [AvailableForWork]
+        public ActionResult Step5(int id /*project step id*/, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // load project
+                var project = _projectService.GetProject(projectId, CurrentUserId);
 
-            return View();
+                var viewModel = Step5ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
-        public ActionResult Step6()
+        [HttpPost]
+        public RedirectToRouteResult SelectElicitationType(int id, int projectId, int elicitationId)
         {
-            throw new NotImplementedException();
+            var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
+            var project = _projectService.GetProject(projectId, CurrentUserId);
 
-            return View();
+            Check.Ensure(elicitationType != null, "elicitationType is required.");
+            Check.Ensure(project != null, "project is required.");
+
+            project.SecurityElicitationId = elicitationId;
+
+            Db.SaveChanges();
+
+            return this.RedirectToAction(a => a.Step5(id, projectId));
         }
+        #endregion
 
-        public ActionResult Step7()
+        #region Step 6
+        public ActionResult Step6(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
 
-        public ActionResult Step8()
+        #region Step 7
+        public ActionResult Step7(int id, int projectId)
         {
             throw new NotImplementedException();
-
-            return View();
         }
+        #endregion
 
-        public ActionResult Step9()
+        #region Step 8
+        public ActionResult Step8(int id, int projectId)
         {
             throw new NotImplementedException();
+        }
+        #endregion
 
-            return View();
+        #region Step 9
+        public ActionResult Step9(int id, int projectId)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

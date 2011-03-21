@@ -123,6 +123,7 @@
     <Compile Include="Controllers\GuidanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRiskAssessmentController.cs" />
+    <Compile Include="Controllers\ISquareTypeController.cs" />
     <Compile Include="Controllers\NIST800_30Controller.cs" />
     <Compile Include="Controllers\PRAUCController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Models\Step2ViewModel.cs" />
     <Compile Include="Models\Step3ViewModel.cs" />
     <Compile Include="Models\Step4ViewModel.cs" />
+    <Compile Include="Models\Step5ViewModel.cs" />
     <Compile Include="Models\StepViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteConfigurator.cs" />
@@ -224,6 +226,7 @@
     <Content Include="Views\Security\Step2.aspx" />
     <Content Include="Views\Security\Step3.aspx" />
     <Content Include="Views\Security\Step4.aspx" />
+    <Content Include="Views\Security\Step5.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
@@ -274,6 +277,7 @@
     <EmbeddedResource Include="App_GlobalResources\SquareTypes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SquareTypes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

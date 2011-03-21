@@ -269,6 +269,9 @@ namespace _2SQUARE.Services
         }
         #endregion
 
+        #region Step 5 Methods
+        #endregion
+
         #region Project Status
         /// <summary>
         /// Determines the status of the requested step

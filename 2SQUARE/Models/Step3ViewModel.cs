@@ -16,11 +16,12 @@ namespace _2SQUARE.Models
         {
             Check.Require(db != null, "db is required.");
             Check.Require(projectService != null, "projectService is required.");
+            Check.Require(currentUserId != null, "currentUserId is required.");
 
             var project = projectService.GetProject(projectId, currentUserId);
             var projectStep = db.ProjectSteps.Where(a => a.Id == projectStepId).Single();
 
-            Check.Require(project.id == projectStep.ProjectId, Messages.ProjectStepMismatch);
+            Check.Ensure(project.id == projectStep.ProjectId, Messages.ProjectStepMismatch);
 
             // load the valid type of artifacts
             var viewModel = new Step3ViewModel()

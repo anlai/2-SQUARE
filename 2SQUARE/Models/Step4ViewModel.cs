@@ -13,11 +13,13 @@ namespace _2SQUARE.Models
         public static Step4ViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId)
         {
             Check.Require(db != null, "db is required.");
+            Check.Require(projectService != null, "projectService is required.");
+            Check.Require(userId != null, "userId is required.");
 
             var project = projectService.GetProject(projectId, userId);
             var projectStep = db.ProjectSteps.Where(a => a.Id == projectStepId).Single();
 
-            Check.Require(project.id == projectStep.ProjectId, Messages.ProjectStepMismatch);
+            Check.Ensure(project.id == projectStep.ProjectId, Messages.ProjectStepMismatch);
 
             var viewModel = new Step4ViewModel()
                                 {

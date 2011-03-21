@@ -57,6 +57,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Terms_SquareTypes", "SquareTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Terms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Term), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.aspnet_Users))]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_RiskControls_Risks1", "Risk", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Risk), "RiskRecommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RiskRecommendation), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_ElicitationTypes", "ElicitationType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.ElicitationType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Projects_ElicitationTypes1", "ElicitationType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.ElicitationType), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Project), true)]
 
 #endregion
 
@@ -699,6 +701,22 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<RiskRecommendation> _RiskRecommendations;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ElicitationType> ElicitationTypes
+        {
+            get
+            {
+                if ((_ElicitationTypes == null))
+                {
+                    _ElicitationTypes = base.CreateObjectSet<ElicitationType>("ElicitationTypes");
+                }
+                return _ElicitationTypes;
+            }
+        }
+        private ObjectSet<ElicitationType> _ElicitationTypes;
 
         #endregion
         #region AddTo Methods
@@ -997,6 +1015,14 @@ namespace _2SQUARE.Models
         public void AddToRiskRecommendations(RiskRecommendation riskRecommendation)
         {
             base.AddObject("RiskRecommendations", riskRecommendation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ElicitationTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToElicitationTypes(ElicitationType elicitationType)
+        {
+            base.AddObject("ElicitationTypes", elicitationType);
         }
 
         #endregion
@@ -4811,6 +4837,258 @@ namespace _2SQUARE.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="ElicitationType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ElicitationType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ElicitationType object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
+        /// <param name="controller">Initial value of the Controller property.</param>
+        public static ElicitationType CreateElicitationType(global::System.Int32 id, global::System.String name, global::System.Int32 squareTypeId, global::System.String controller)
+        {
+            ElicitationType elicitationType = new ElicitationType();
+            elicitationType.id = id;
+            elicitationType.Name = name;
+            elicitationType.SquareTypeId = squareTypeId;
+            elicitationType.Controller = controller;
+            return elicitationType;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SquareTypeId
+        {
+            get
+            {
+                return _SquareTypeId;
+            }
+            set
+            {
+                OnSquareTypeIdChanging(value);
+                ReportPropertyChanging("SquareTypeId");
+                _SquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SquareTypeId");
+                OnSquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SquareTypeId;
+        partial void OnSquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSquareTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Controller
+        {
+            get
+            {
+                return _Controller;
+            }
+            set
+            {
+                OnControllerChanging(value);
+                ReportPropertyChanging("Controller");
+                _Controller = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Controller");
+                OnControllerChanged();
+            }
+        }
+        private global::System.String _Controller;
+        partial void OnControllerChanging(global::System.String value);
+        partial void OnControllerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Strengths
+        {
+            get
+            {
+                return _Strengths;
+            }
+            set
+            {
+                OnStrengthsChanging(value);
+                ReportPropertyChanging("Strengths");
+                _Strengths = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Strengths");
+                OnStrengthsChanged();
+            }
+        }
+        private global::System.String _Strengths;
+        partial void OnStrengthsChanging(global::System.String value);
+        partial void OnStrengthsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Weaknesses
+        {
+            get
+            {
+                return _Weaknesses;
+            }
+            set
+            {
+                OnWeaknessesChanging(value);
+                ReportPropertyChanging("Weaknesses");
+                _Weaknesses = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Weaknesses");
+                OnWeaknessesChanged();
+            }
+        }
+        private global::System.String _Weaknesses;
+        partial void OnWeaknessesChanging(global::System.String value);
+        partial void OnWeaknessesChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_ElicitationTypes", "Project")]
+        public EntityCollection<Project> Projects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_ElicitationTypes", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_ElicitationTypes", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_ElicitationTypes1", "Project")]
+        public EntityCollection<Project> Projects1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("SquareModel.FK_Projects_ElicitationTypes1", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("SquareModel.FK_Projects_ElicitationTypes1", "Project", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="Goal")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5558,6 +5836,54 @@ namespace _2SQUARE.Models
         private Nullable<global::System.Int32> _PrivacyAssessmentId;
         partial void OnPrivacyAssessmentIdChanging(Nullable<global::System.Int32> value);
         partial void OnPrivacyAssessmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SecurityElicitationId
+        {
+            get
+            {
+                return _SecurityElicitationId;
+            }
+            set
+            {
+                OnSecurityElicitationIdChanging(value);
+                ReportPropertyChanging("SecurityElicitationId");
+                _SecurityElicitationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SecurityElicitationId");
+                OnSecurityElicitationIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SecurityElicitationId;
+        partial void OnSecurityElicitationIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSecurityElicitationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PrivacyElicitationId
+        {
+            get
+            {
+                return _PrivacyElicitationId;
+            }
+            set
+            {
+                OnPrivacyElicitationIdChanging(value);
+                ReportPropertyChanging("PrivacyElicitationId");
+                _PrivacyElicitationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrivacyElicitationId");
+                OnPrivacyElicitationIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PrivacyElicitationId;
+        partial void OnPrivacyElicitationIdChanging(Nullable<global::System.Int32> value);
+        partial void OnPrivacyElicitationIdChanged();
 
         #endregion
     
@@ -5767,6 +6093,82 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Projects", "Risks", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_ElicitationTypes", "ElicitationType")]
+        public ElicitationType SecurityElicitationType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes", "ElicitationType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes", "ElicitationType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ElicitationType> SecurityElicitationTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes", "ElicitationType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes", "ElicitationType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Projects_ElicitationTypes1", "ElicitationType")]
+        public ElicitationType PrivacyElicitationType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes1", "ElicitationType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes1", "ElicitationType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ElicitationType> PrivacyElicitationTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes1", "ElicitationType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ElicitationType>("SquareModel.FK_Projects_ElicitationTypes1", "ElicitationType", value);
                 }
             }
         }

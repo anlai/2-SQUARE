@@ -37,6 +37,9 @@ namespace _2SQUARE.Services
         RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId);
         #endregion
 
+        #region Step 5 Methods
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);

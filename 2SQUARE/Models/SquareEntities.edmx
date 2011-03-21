@@ -21,6 +21,7 @@
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="SquareModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AssessmentTypes" EntityType="SquareModel.Store.AssessmentTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Definitions" EntityType="SquareModel.Store.Definitions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ElicitationTypes" EntityType="SquareModel.Store.ElicitationTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Goals" EntityType="SquareModel.Store.Goals" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GoalTypes" EntityType="SquareModel.Store.GoalTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Impacts" EntityType="SquareModel.Store.Impacts" store:Type="Tables" Schema="dbo" />
@@ -210,8 +211,16 @@
             <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
             <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
+          <AssociationSet Name="FK_Projects_PrivacyElicitationTypes" Association="SquareModel.Store.FK_Projects_PrivacyElicitationTypes">
+            <End Role="ElicitationTypes" EntitySet="ElicitationTypes" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
           <AssociationSet Name="FK_Projects_SecurityAssessmentTypes" Association="SquareModel.Store.FK_Projects_SecurityAssessmentTypes">
             <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_SecurityElicitationTypes" Association="SquareModel.Store.FK_Projects_SecurityElicitationTypes">
+            <End Role="ElicitationTypes" EntitySet="ElicitationTypes" />
             <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.Store.FK_ProjectSteps_Projects">
@@ -460,6 +469,18 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="TermId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ElicitationTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SquareTypeId" Type="int" Nullable="false" />
+          <Property Name="Controller" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Strengths" Type="varchar(max)" />
+          <Property Name="Weaknesses" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Goals">
           <Key>
             <PropertyRef Name="id" />
@@ -496,6 +517,8 @@
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="SecurityAssessmentId" Type="int" />
           <Property Name="PrivacyAssessmentId" Type="int" />
+          <Property Name="SecurityElicitationId" Type="int" />
+          <Property Name="PrivacyElicitationId" Type="int" />
         </EntityType>
         <EntityType Name="ProjectSteps">
           <Key>
@@ -1018,6 +1041,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Projects_PrivacyElicitationTypes">
+          <End Role="ElicitationTypes" Type="SquareModel.Store.ElicitationTypes" Multiplicity="0..1" />
+          <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElicitationTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="PrivacyElicitationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Projects_SecurityAssessmentTypes">
           <End Role="AssessmentTypes" Type="SquareModel.Store.AssessmentTypes" Multiplicity="0..1" />
           <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
@@ -1027,6 +1062,18 @@
             </Principal>
             <Dependent Role="Projects">
               <PropertyRef Name="SecurityAssessmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_SecurityElicitationTypes">
+          <End Role="ElicitationTypes" Type="SquareModel.Store.ElicitationTypes" Multiplicity="0..1" />
+          <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElicitationTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="SecurityElicitationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1775,6 +1822,15 @@
             <End Role="Risk" EntitySet="Risks" />
             <End Role="RiskRecommendation" EntitySet="RiskRecommendations" />
           </AssociationSet>
+          <EntitySet Name="ElicitationTypes" EntityType="SquareModel.ElicitationType" />
+          <AssociationSet Name="FK_Projects_ElicitationTypes" Association="SquareModel.FK_Projects_ElicitationTypes">
+            <End Role="ElicitationType" EntitySet="ElicitationTypes" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_ElicitationTypes1" Association="SquareModel.FK_Projects_ElicitationTypes1">
+            <End Role="ElicitationType" EntitySet="ElicitationTypes" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Artifact">
           <Key>
@@ -2022,6 +2078,10 @@
           <NavigationProperty Name="ProjectTerms" Relationship="SquareModel.FK_ProjectTerms_Projects" FromRole="Projects" ToRole="ProjectTerms" />
           <NavigationProperty Name="ProjectWorkers" Relationship="SquareModel.FK_ProjectWorkers_Projects" FromRole="Projects" ToRole="ProjectWorkers" />
           <NavigationProperty Name="Risks" Relationship="SquareModel.FK_Risks_Projects" FromRole="Projects" ToRole="Risks" />
+          <Property Type="Int32" Name="SecurityElicitationId" />
+          <Property Type="Int32" Name="PrivacyElicitationId" />
+          <NavigationProperty Name="SecurityElicitationType" Relationship="SquareModel.FK_Projects_ElicitationTypes" FromRole="Project" ToRole="ElicitationType" />
+          <NavigationProperty Name="PrivacyElicitationType" Relationship="SquareModel.FK_Projects_ElicitationTypes1" FromRole="Project" ToRole="ElicitationType" />
         </EntityType>
         <EntityType Name="ProjectStep">
           <Key>
@@ -2758,6 +2818,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ElicitationType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
+          <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Strengths" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Weaknesses" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="SquareModel.FK_Projects_ElicitationTypes" FromRole="ElicitationType" ToRole="Project" />
+          <NavigationProperty Name="Projects1" Relationship="SquareModel.FK_Projects_ElicitationTypes1" FromRole="ElicitationType" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_Projects_ElicitationTypes">
+          <End Type="SquareModel.ElicitationType" Role="ElicitationType" Multiplicity="0..1" />
+          <End Type="SquareModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElicitationType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="SecurityElicitationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_ElicitationTypes1">
+          <End Type="SquareModel.ElicitationType" Role="ElicitationType" Multiplicity="0..1" />
+          <End Type="SquareModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElicitationType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="PrivacyElicitationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2904,7 +3002,9 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Projects"><EntityTypeMapping TypeName="SquareModel.Project"><MappingFragment StoreEntitySet="Projects">
-            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="PrivacyElicitationId" ColumnName="PrivacyElicitationId" />
+                <ScalarProperty Name="SecurityElicitationId" ColumnName="SecurityElicitationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
@@ -3075,6 +3175,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ElicitationTypes">
+            <EntityTypeMapping TypeName="SquareModel.ElicitationType">
+              <MappingFragment StoreEntitySet="ElicitationTypes">
+                <ScalarProperty Name="Weaknesses" ColumnName="Weaknesses" />
+                <ScalarProperty Name="Strengths" ColumnName="Strengths" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3134,13 +3247,17 @@
         <EntityTypeShape EntityType="SquareModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="15.75" PointY="6.875" Height="1.7879850260416674" IsExpanded="true" />
         <AssociationConnector Association="SquareModel.FK_Artifacts_ArtifactTypes" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="12.302643229166666" />
+          <ConnectorPoint PointX="5.5104146666666667" PointY="12.302643229166666" />
+          <ConnectorPoint PointX="5.6770813333333328" PointY="12.302643229166666" />
           <ConnectorPoint PointX="5.916666666666667" PointY="12.302643229166666" />
           <ConnectorPoint PointX="6.083333333333333" PointY="12.302643229166666" />
+          <ConnectorPoint PointX="6.3072941666666669" PointY="12.302643229166666" />
+          <ConnectorPoint PointX="6.4739608333333329" PointY="12.302643229166666" />
           <ConnectorPoint PointX="7.5" PointY="12.302643229166666" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Artifacts_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="14.254547526041668" />
-          <ConnectorPoint PointX="7.5" PointY="14.254547526041668" />
+          <ConnectorPoint PointX="6.75" PointY="13.87500025" />
+          <ConnectorPoint PointX="7.5" PointY="13.87500025" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ArtifactTypes_SquareTypes" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="16.875" />
@@ -3154,6 +3271,10 @@
           <ConnectorPoint PointX="9.4895833333333339" PointY="11.559845877604165" />
           <ConnectorPoint PointX="10.041666666666666" PointY="11.559845877604165" />
           <ConnectorPoint PointX="10.208333333333334" PointY="11.559845877604165" />
+          <ConnectorPoint PointX="12.166666666666666" PointY="11.559845877604165" />
+          <ConnectorPoint PointX="12.333333333333334" PointY="11.559845877604165" />
+          <ConnectorPoint PointX="12.416666666666666" PointY="11.559845877604165" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="11.559845877604165" />
           <ConnectorPoint PointX="13.5" PointY="11.559845877604165" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK__aspnet_Pa__Appli__5AEE82B9" ManuallyRouted="false">
@@ -3210,8 +3331,10 @@
           <ConnectorPoint PointX="3" PointY="15.124746093750002" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Projects_PrivacyAssessmentTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.124746093750002" />
-          <ConnectorPoint PointX="5.25" PointY="15.124746093750002" />
+          <ConnectorPoint PointX="4.5" PointY="15.874619140625002" />
+          <ConnectorPoint PointX="4.916666666666667" PointY="15.874619140625002" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="15.874619140625002" />
+          <ConnectorPoint PointX="5.25" PointY="15.874619140625002" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Projects_SecurityAssessmentTypes" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="14.374873046875" />
@@ -3223,10 +3346,10 @@
           <ConnectorPoint PointX="5" PointY="19.057190755208339" />
           <ConnectorPoint PointX="5.916666666666667" PointY="19.057190755208339" />
           <ConnectorPoint PointX="6.083333333333333" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="10.25" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="10.25" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.453126000000001" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.453126000000001" PointY="18.75" />
+          <ConnectorPoint PointX="10.375" PointY="19.057190755208339" />
+          <ConnectorPoint PointX="10.375" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.5039075" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.5039075" PointY="18.75" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Definitions_Terms" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="25.2112939453125" />
@@ -3250,8 +3373,6 @@
           <ConnectorPoint PointX="2.25" PointY="17.292999674479169" />
           <ConnectorPoint PointX="4.916666666666667" PointY="17.292999674479169" />
           <ConnectorPoint PointX="5.083333333333333" PointY="17.292999674479169" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="17.292999674479169" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="17.292999674479169" />
           <ConnectorPoint PointX="7.5" PointY="17.292999674479169" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_GoalTypes_SquareTypes" ManuallyRouted="false">
@@ -3263,31 +3384,33 @@
           <ConnectorPoint PointX="10.5" PointY="24.163157552083334" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="16.960999348958339" />
-          <ConnectorPoint PointX="6" PointY="21.278595377604169" />
-          <ConnectorPoint PointX="7.5" PointY="21.278595377604169" />
+          <ConnectorPoint PointX="6" PointY="17.730205078125003" />
+          <ConnectorPoint PointX="6" PointY="20.958944033203132" />
+          <ConnectorPoint PointX="7.5" PointY="20.958944033203132" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_Projects" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="15.754547526041668" />
-          <ConnectorPoint PointX="10.104166666666666" PointY="15.754547526041668" />
-          <ConnectorPoint PointX="10.270833333333334" PointY="15.754547526041668" />
+          <ConnectorPoint PointX="10.166666666666666" PointY="15.754547526041668" />
+          <ConnectorPoint PointX="10.333333333333334" PointY="15.754547526041668" />
           <ConnectorPoint PointX="10.5" PointY="15.754547526041668" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectWorkers_Projects" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="13.25" />
           <ConnectorPoint PointX="6" PointY="12.046875" />
+          <ConnectorPoint PointX="6.3072941666666669" PointY="12.046875" />
+          <ConnectorPoint PointX="6.4739608333333329" PointY="12.046875" />
           <ConnectorPoint PointX="10.041666666666666" PointY="12.046875" />
           <ConnectorPoint PointX="10.208333333333334" PointY="12.046875" />
           <ConnectorPoint PointX="10.5" PointY="12.046875" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="14.625000499999999" />
-          <ConnectorPoint PointX="7.25" PointY="14.625000499999999" />
-          <ConnectorPoint PointX="7.25" PointY="15.509095052083335" />
-          <ConnectorPoint PointX="10.1875" PointY="15.509095052083335" />
-          <ConnectorPoint PointX="10.1875" PointY="18.182190755208339" />
-          <ConnectorPoint PointX="10.945311" PointY="18.182190755208339" />
-          <ConnectorPoint PointX="10.945311" PointY="18.75" />
+          <ConnectorPoint PointX="6.75" PointY="15.506818789062507" />
+          <ConnectorPoint PointX="10.25" PointY="15.506818789062507" />
+          <ConnectorPoint PointX="10.25" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.291666666666666" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.458333333333334" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.97070175" PointY="18.182190755208339" />
+          <ConnectorPoint PointX="10.97070175" PointY="18.75" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Steps" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="21.980393066406254" />
@@ -3304,12 +3427,12 @@
           <ConnectorPoint PointX="4.75" PointY="17.085999348958339" />
           <ConnectorPoint PointX="4.916666666666667" PointY="17.085999348958339" />
           <ConnectorPoint PointX="5.083333333333333" PointY="17.085999348958339" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="17.085999348958339" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="17.085999348958339" />
           <ConnectorPoint PointX="7.25" PointY="17.085999348958339" />
           <ConnectorPoint PointX="7.25" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16.812121140624996" />
+          <ConnectorPoint PointX="10.166666666666666" PointY="16.812121140624996" />
+          <ConnectorPoint PointX="10.333333333333334" PointY="16.812121140624996" />
           <ConnectorPoint PointX="10.5" PointY="16.812121140624996" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Damage" ManuallyRouted="false">
@@ -3355,6 +3478,39 @@
         <AssociationConnector Association="SquareModel.FK_RiskControls_Risks1" >
           <ConnectorPoint PointX="12" PointY="24.100657552083334" />
           <ConnectorPoint PointX="12.75" PointY="24.100657552083334" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SquareModel.ElicitationType" Width="1.5" PointX="16.375" PointY="9.75" Height="2.3648893229166674" />
+        <AssociationConnector Association="SquareModel.FK_Projects_ElicitationTypes" >
+          <ConnectorPoint PointX="16.375" PointY="11.12474609375" />
+          <ConnectorPoint PointX="15.25" PointY="11.12474609375" />
+          <ConnectorPoint PointX="15.25" PointY="12.566712239583332" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="12.566712239583332" />
+          <ConnectorPoint PointX="12.416666666666666" PointY="12.566712239583332" />
+          <ConnectorPoint PointX="12.25" PointY="12.566712239583332" />
+          <ConnectorPoint PointX="12.25" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="9.4895833333333339" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="9.3229166666666661" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="6.802083333333333" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="6.635416666666667" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="5.593748" PointY="11.432190755208332" />
+          <ConnectorPoint PointX="5.593748" PointY="13.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="SquareModel.FK_Projects_ElicitationTypes1" >
+          <ConnectorPoint PointX="16.375" PointY="11.843371140624999" />
+          <ConnectorPoint PointX="15.5" PointY="11.843371140624999" />
+          <ConnectorPoint PointX="15.5" PointY="12.816712239583332" />
+          <ConnectorPoint PointX="12.5" PointY="12.816712239583332" />
+          <ConnectorPoint PointX="12.5" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="9.4895833333333339" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="9.3229166666666661" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="6.802083333333333" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="6.635416666666667" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="6.3906275" PointY="11.447815755208332" />
+          <ConnectorPoint PointX="6.3906275" PointY="13.25" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

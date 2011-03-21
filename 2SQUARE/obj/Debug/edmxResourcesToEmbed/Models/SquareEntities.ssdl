@@ -16,6 +16,7 @@
     <EntitySet Name="aspnet_WebEvent_Events" EntityType="SquareModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AssessmentTypes" EntityType="SquareModel.Store.AssessmentTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Definitions" EntityType="SquareModel.Store.Definitions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ElicitationTypes" EntityType="SquareModel.Store.ElicitationTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Goals" EntityType="SquareModel.Store.Goals" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GoalTypes" EntityType="SquareModel.Store.GoalTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Impacts" EntityType="SquareModel.Store.Impacts" store:Type="Tables" Schema="dbo" />
@@ -205,8 +206,16 @@
       <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
       <End Role="Projects" EntitySet="Projects" />
     </AssociationSet>
+    <AssociationSet Name="FK_Projects_PrivacyElicitationTypes" Association="SquareModel.Store.FK_Projects_PrivacyElicitationTypes">
+      <End Role="ElicitationTypes" EntitySet="ElicitationTypes" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
     <AssociationSet Name="FK_Projects_SecurityAssessmentTypes" Association="SquareModel.Store.FK_Projects_SecurityAssessmentTypes">
       <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_SecurityElicitationTypes" Association="SquareModel.Store.FK_Projects_SecurityElicitationTypes">
+      <End Role="ElicitationTypes" EntitySet="ElicitationTypes" />
       <End Role="Projects" EntitySet="Projects" />
     </AssociationSet>
     <AssociationSet Name="FK_ProjectSteps_Projects" Association="SquareModel.Store.FK_ProjectSteps_Projects">
@@ -455,6 +464,18 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="TermId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="ElicitationTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SquareTypeId" Type="int" Nullable="false" />
+    <Property Name="Controller" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Strengths" Type="varchar(max)" />
+    <Property Name="Weaknesses" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="Goals">
     <Key>
       <PropertyRef Name="id" />
@@ -491,6 +512,8 @@
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="SecurityAssessmentId" Type="int" />
     <Property Name="PrivacyAssessmentId" Type="int" />
+    <Property Name="SecurityElicitationId" Type="int" />
+    <Property Name="PrivacyElicitationId" Type="int" />
   </EntityType>
   <EntityType Name="ProjectSteps">
     <Key>
@@ -1013,6 +1036,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Projects_PrivacyElicitationTypes">
+    <End Role="ElicitationTypes" Type="SquareModel.Store.ElicitationTypes" Multiplicity="0..1" />
+    <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ElicitationTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="PrivacyElicitationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Projects_SecurityAssessmentTypes">
     <End Role="AssessmentTypes" Type="SquareModel.Store.AssessmentTypes" Multiplicity="0..1" />
     <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
@@ -1022,6 +1057,18 @@
       </Principal>
       <Dependent Role="Projects">
         <PropertyRef Name="SecurityAssessmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_SecurityElicitationTypes">
+    <End Role="ElicitationTypes" Type="SquareModel.Store.ElicitationTypes" Multiplicity="0..1" />
+    <End Role="Projects" Type="SquareModel.Store.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ElicitationTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="SecurityElicitationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

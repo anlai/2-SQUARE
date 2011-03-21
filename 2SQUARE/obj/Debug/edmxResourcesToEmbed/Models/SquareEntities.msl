@@ -211,6 +211,8 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="SquareModel.Project">
         <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="PrivacyElicitationId" ColumnName="PrivacyElicitationId" />
+          <ScalarProperty Name="SecurityElicitationId" ColumnName="SecurityElicitationId" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -452,6 +454,19 @@
           <ScalarProperty Name="Impact" ColumnName="Impact" />
           <ScalarProperty Name="Controls" ColumnName="Controls" />
           <ScalarProperty Name="RiskId" ColumnName="RiskId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ElicitationTypes">
+      <EntityTypeMapping TypeName="SquareModel.ElicitationType">
+        <MappingFragment StoreEntitySet="ElicitationTypes">
+          <ScalarProperty Name="Weaknesses" ColumnName="Weaknesses" />
+          <ScalarProperty Name="Strengths" ColumnName="Strengths" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
