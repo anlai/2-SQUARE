@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Web;
+using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
@@ -289,6 +290,33 @@ namespace _2SQUARE.Services
             }
 
             db.SaveChanges();
+        }
+        #endregion
+
+        #region Step 6 Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="squareType"></param>
+        /// <param name="requirement"></param>
+        /// <param name="modelState"></param>
+        public void SaveRequirement(int id /* project id */, SquareType squareType, Requirement requirement, ModelStateDictionary modelState)
+        {
+            Check.Require(requirement != null, "requirement is required.");
+            Check.Require(squareType != null, "squareType is required.");
+
+            requirement.ProjectId = id;
+            requirement.SquareTypeId = squareType.id;
+
+            Validation.Validate(requirement, modelState);
+
+            if (modelState.IsValid)
+            {
+                if (requirement.id <= 0) db.Requirements.AddObject(requirement);
+
+                db.SaveChanges();
+            }
         }
         #endregion
 

@@ -592,7 +592,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Requirement" Type="varchar(max)" Nullable="false" />
-          <Property Name="RequirementId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="RequirementId" Type="varchar" MaxLength="10" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="SquareTypeId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" />
@@ -3022,7 +3022,7 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Requirement1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RequirementId" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RequirementId" MaxLength="10" FixedLength="false" Unicode="false" Nullable="true" />
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
           <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
           <Property Type="Int32" Name="CategoryId" />

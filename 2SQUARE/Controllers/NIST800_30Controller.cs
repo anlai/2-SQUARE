@@ -12,7 +12,7 @@ using Resources;
 
 namespace _2SQUARE.Controllers
 {
-    public class NIST800_30Controller : ApplicationController, IRiskAssessmentController
+    public class NIST800_30Controller : ApplicationController, IProcedureController
     {
         private readonly IProjectService _projectService;
 

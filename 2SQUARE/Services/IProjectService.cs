@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 
@@ -39,6 +40,10 @@ namespace _2SQUARE.Services
 
         #region Step 5 Methods
         void SetElicitationType(int id, ElicitationType elicitationType, string rationale, string userId);
+        #endregion
+
+        #region Step 6 Methods
+        void SaveRequirement(int id /* project id */, SquareType squareType, Requirement requirement, ModelStateDictionary modelState);
         #endregion
 
         #region Step Status Methods

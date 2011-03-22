@@ -207,6 +207,24 @@
       <End Role="SquareType" EntitySet="SquareTypes" />
       <End Role="ElicitationType" EntitySet="ElicitationTypes" />
     </AssociationSet>
+    <EntitySet Name="Categories" EntityType="SquareModel.Category" />
+    <EntitySet Name="Requirements" EntityType="SquareModel.Requirement" />
+    <AssociationSet Name="FK_Categories_Projects" Association="SquareModel.FK_Categories_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirements_Categories" Association="SquareModel.FK_Requirements_Categories">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirements_Projects" Association="SquareModel.FK_Requirements_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirements_SquareTypes" Association="SquareModel.FK_Requirements_SquareTypes">
+      <End Role="SquareType" EntitySet="SquareTypes" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artifact">
     <Key>
@@ -460,6 +478,8 @@
     <NavigationProperty Name="PrivacyElicitationType" Relationship="SquareModel.FK_Projects_ElicitationTypes1" FromRole="Project" ToRole="ElicitationType" />
     <Property Type="String" Name="SecurityElicitationRationale" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="PrivacyElicitationRationale" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Categories" Relationship="SquareModel.FK_Categories_Projects" FromRole="Project" ToRole="Category" />
+    <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_Projects" FromRole="Project" ToRole="Requirement" />
   </EntityType>
   <EntityType Name="ProjectStep">
     <Key>
@@ -569,6 +589,7 @@
     <NavigationProperty Name="Steps" Relationship="SquareModel.FK_Steps_RequirementCategories" FromRole="SquareTypes" ToRole="Steps" />
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
     <NavigationProperty Name="ElicitationTypes" Relationship="SquareModel.FK_ElicitationTypes_SquareTypes" FromRole="SquareType" ToRole="ElicitationType" />
+    <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="SquareType" ToRole="Requirement" />
   </EntityType>
   <EntityType Name="Step">
     <Key>
@@ -1244,6 +1265,82 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="ElicitationType">
+        <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="Int32" Name="Order" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="SquareModel.FK_Categories_Projects" FromRole="Category" ToRole="Project" />
+    <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Category" ToRole="Requirement" />
+  </EntityType>
+  <EntityType Name="Requirement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Requirement1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RequirementId" MaxLength="10" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
+    <Property Type="Int32" Name="CategoryId" />
+    <Property Type="Int32" Name="Priority" />
+    <Property Type="Boolean" Name="Essential" />
+    <NavigationProperty Name="Category" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Requirement" ToRole="Category" />
+    <NavigationProperty Name="Project" Relationship="SquareModel.FK_Requirements_Projects" FromRole="Requirement" ToRole="Project" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="Requirement" ToRole="SquareType" />
+  </EntityType>
+  <Association Name="FK_Categories_Projects">
+    <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />
+    <End Type="SquareModel.Category" Role="Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirements_Categories">
+    <End Type="SquareModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="SquareModel.Requirement" Role="Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirements_Projects">
+    <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />
+    <End Type="SquareModel.Requirement" Role="Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirements_SquareTypes">
+    <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="1" />
+    <End Type="SquareModel.Requirement" Role="Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Requirement">
         <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>

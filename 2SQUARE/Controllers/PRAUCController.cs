@@ -14,7 +14,7 @@ using Resources;
 
 namespace _2SQUARE.Controllers
 {
-    public class PRAUCController : ApplicationController, IRiskAssessmentController
+    public class PRAUCController : ApplicationController, IProcedureController
     {
         private readonly IProjectService _projectService;
 

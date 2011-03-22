@@ -931,6 +931,36 @@ ALTER TABLE [dbo].[AssessmentTypes]
 
 
 GO
+PRINT N'Creating [dbo].[Categories]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[Categories] (
+    [id]        INT           IDENTITY (1, 1) NOT NULL,
+    [Name]      VARCHAR (100) NOT NULL,
+    [ProjectId] INT           NOT NULL,
+    [Order]     INT           NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_Categories...';
+
+
+GO
+ALTER TABLE [dbo].[Categories]
+    ADD CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Definitions]...';
 
 
@@ -959,6 +989,39 @@ PRINT N'Creating PK_Definitions...';
 GO
 ALTER TABLE [dbo].[Definitions]
     ADD CONSTRAINT [PK_Definitions] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[ElicitationTypes]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[ElicitationTypes] (
+    [id]           INT           IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (50)  NOT NULL,
+    [SquareTypeId] INT           NOT NULL,
+    [Controller]   VARCHAR (50)  NOT NULL,
+    [Description]  VARCHAR (MAX) NULL,
+    [Strengths]    VARCHAR (MAX) NULL,
+    [Weaknesses]   VARCHAR (MAX) NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_ElicitationTypes...';
+
+
+GO
+ALTER TABLE [dbo].[ElicitationTypes]
+    ADD CONSTRAINT [PK_ElicitationTypes] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
 
 
 GO
@@ -1060,12 +1123,16 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
 
 GO
 CREATE TABLE [dbo].[Projects] (
-    [id]                   INT           IDENTITY (1, 1) NOT NULL,
-    [Name]                 VARCHAR (50)  NOT NULL,
-    [Description]          VARCHAR (MAX) NULL,
-    [DateCreated]          DATETIME      NOT NULL,
-    [SecurityAssessmentId] INT           NULL,
-    [PrivacyAssessmentId]  INT           NULL
+    [id]                           INT           IDENTITY (1, 1) NOT NULL,
+    [Name]                         VARCHAR (50)  NOT NULL,
+    [Description]                  VARCHAR (MAX) NULL,
+    [DateCreated]                  DATETIME      NOT NULL,
+    [SecurityAssessmentId]         INT           NULL,
+    [PrivacyAssessmentId]          INT           NULL,
+    [SecurityElicitationId]        INT           NULL,
+    [SecurityElicitationRationale] VARCHAR (MAX) NULL,
+    [PrivacyElicitationId]         INT           NULL,
+    [PrivacyElicitationRationale]  VARCHAR (MAX) NULL
 );
 
 
@@ -1173,6 +1240,41 @@ PRINT N'Creating PK_ProjectWorkers_1...';
 GO
 ALTER TABLE [dbo].[ProjectWorkers]
     ADD CONSTRAINT [PK_ProjectWorkers_1] PRIMARY KEY CLUSTERED ([UserId] ASC, [ProjectId] ASC, [RoleId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[Requirements]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[Requirements] (
+    [id]            INT           IDENTITY (1, 1) NOT NULL,
+    [Name]          VARCHAR (100) NOT NULL,
+    [Requirement]   VARCHAR (MAX) NOT NULL,
+    [RequirementId] VARCHAR (10)  NOT NULL,
+    [ProjectId]     INT           NOT NULL,
+    [SquareTypeId]  INT           NOT NULL,
+    [CategoryId]    INT           NULL,
+    [Priority]      INT           NULL,
+    [Essential]     BIT           NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_Requirements...';
+
+
+GO
+ALTER TABLE [dbo].[Requirements]
+    ADD CONSTRAINT [PK_Requirements] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
 
 
 GO
@@ -1574,6 +1676,15 @@ ALTER TABLE [dbo].[ProjectSteps]
 
 
 GO
+PRINT N'Creating DF_Requirements_Essential...';
+
+
+GO
+ALTER TABLE [dbo].[Requirements]
+    ADD CONSTRAINT [DF_Requirements_Essential] DEFAULT ((0)) FOR [Essential];
+
+
+GO
 PRINT N'Creating DF_Terms_IsActive...';
 
 
@@ -1718,12 +1829,30 @@ ALTER TABLE [dbo].[AssessmentTypes] WITH NOCHECK
 
 
 GO
+PRINT N'Creating FK_Categories_Projects...';
+
+
+GO
+ALTER TABLE [dbo].[Categories] WITH NOCHECK
+    ADD CONSTRAINT [FK_Categories_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating FK_Definitions_Terms...';
 
 
 GO
 ALTER TABLE [dbo].[Definitions] WITH NOCHECK
     ADD CONSTRAINT [FK_Definitions_Terms] FOREIGN KEY ([TermId]) REFERENCES [dbo].[Terms] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_ElicitationTypes_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[ElicitationTypes] WITH NOCHECK
+    ADD CONSTRAINT [FK_ElicitationTypes_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1772,12 +1901,30 @@ ALTER TABLE [dbo].[Projects] WITH NOCHECK
 
 
 GO
+PRINT N'Creating FK_Projects_PrivacyElicitationTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Projects] WITH NOCHECK
+    ADD CONSTRAINT [FK_Projects_PrivacyElicitationTypes] FOREIGN KEY ([PrivacyElicitationId]) REFERENCES [dbo].[ElicitationTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating FK_Projects_SecurityAssessmentTypes...';
 
 
 GO
 ALTER TABLE [dbo].[Projects] WITH NOCHECK
     ADD CONSTRAINT [FK_Projects_SecurityAssessmentTypes] FOREIGN KEY ([SecurityAssessmentId]) REFERENCES [dbo].[AssessmentTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Projects_SecurityElicitationTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Projects] WITH NOCHECK
+    ADD CONSTRAINT [FK_Projects_SecurityElicitationTypes] FOREIGN KEY ([SecurityElicitationId]) REFERENCES [dbo].[ElicitationTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1841,6 +1988,33 @@ PRINT N'Creating FK_ProjectWorkers_Projects...';
 GO
 ALTER TABLE [dbo].[ProjectWorkers] WITH NOCHECK
     ADD CONSTRAINT [FK_ProjectWorkers_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Requirements_Categories...';
+
+
+GO
+ALTER TABLE [dbo].[Requirements] WITH NOCHECK
+    ADD CONSTRAINT [FK_Requirements_Categories] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Categories] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Requirements_Projects...';
+
+
+GO
+ALTER TABLE [dbo].[Requirements] WITH NOCHECK
+    ADD CONSTRAINT [FK_Requirements_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Requirements_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Requirements] WITH NOCHECK
+    ADD CONSTRAINT [FK_Requirements_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -5857,7 +6031,11 @@ ALTER TABLE [dbo].[ArtifactTypes] WITH CHECK CHECK CONSTRAINT [FK_ArtifactTypes_
 
 ALTER TABLE [dbo].[AssessmentTypes] WITH CHECK CHECK CONSTRAINT [FK_AssessmentTypes_SquareTypes];
 
+ALTER TABLE [dbo].[Categories] WITH CHECK CHECK CONSTRAINT [FK_Categories_Projects];
+
 ALTER TABLE [dbo].[Definitions] WITH CHECK CHECK CONSTRAINT [FK_Definitions_Terms];
+
+ALTER TABLE [dbo].[ElicitationTypes] WITH CHECK CHECK CONSTRAINT [FK_ElicitationTypes_SquareTypes];
 
 ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_GoalTypes];
 
@@ -5869,7 +6047,11 @@ ALTER TABLE [dbo].[GoalTypes] WITH CHECK CHECK CONSTRAINT [FK_GoalTypes_SquareTy
 
 ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_PrivacyAssessmentTypes];
 
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_PrivacyElicitationTypes];
+
 ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_SecurityAssessmentTypes];
+
+ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_SecurityElicitationTypes];
 
 ALTER TABLE [dbo].[ProjectSteps] WITH CHECK CHECK CONSTRAINT [FK_ProjectSteps_Projects];
 
@@ -5884,6 +6066,12 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorker
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_aspnet_Users];
 
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_Projects];
+
+ALTER TABLE [dbo].[Requirements] WITH CHECK CHECK CONSTRAINT [FK_Requirements_Categories];
+
+ALTER TABLE [dbo].[Requirements] WITH CHECK CHECK CONSTRAINT [FK_Requirements_Projects];
+
+ALTER TABLE [dbo].[Requirements] WITH CHECK CHECK CONSTRAINT [FK_Requirements_SquareTypes];
 
 ALTER TABLE [dbo].[RiskRecommendation] WITH CHECK CHECK CONSTRAINT [FK_RiskControls_Risks];
 

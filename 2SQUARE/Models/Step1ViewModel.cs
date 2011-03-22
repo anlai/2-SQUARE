@@ -18,16 +18,9 @@ namespace _2SQUARE.Models
         public static Step1ViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string loginId)
         {
             Check.Require(db != null, "Square Entities is required.");
-            Check.Require(projectService != null, "projectService is required.");
-            Check.Require(loginId != null, "loginId is required.");
 
-            var viewModel = new Step1ViewModel()
-                                {
-                                    ProjectStep = db.ProjectSteps.Where(a=>a.Id == projectStepId).Single(),
-                                    Project = db.Projects.Where(a=>a.id == projectId).Single()
-                                };
-
-            Check.Ensure(viewModel.Project.id == viewModel.ProjectStep.ProjectId, Messages.ProjectStepMismatch);
+            var viewModel = new Step1ViewModel();
+            viewModel.SetProjectInfo(projectService, projectId, projectStepId, loginId);
 
             var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
             viewModel.ProjectTerms = projectTerms;

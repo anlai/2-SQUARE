@@ -12,7 +12,7 @@ namespace _2SQUARE.Helpers
         public static void Validate(ProjectTerm projectTerm, ModelStateDictionary modelState)
         {
             if (string.IsNullOrEmpty(projectTerm.Term)) modelState.AddModelError("Term", Required("Term"));
-            if (string.IsNullOrEmpty(projectTerm.Definition)) modelState.AddModelError("Definition", string.Format( Messages.Required, "Definition"));
+            if (string.IsNullOrEmpty(projectTerm.Definition)) modelState.AddModelError("Definition", Required("Definition"));
             if (string.IsNullOrEmpty(projectTerm.Source)) modelState.AddModelError("Source", Required("Source"));
         }
 
@@ -33,9 +33,19 @@ namespace _2SQUARE.Helpers
             if (string.IsNullOrEmpty(riskRecommendation.Controls)) modelState.AddModelError("Controls", Required("Controls"));
         }
 
+        public static void Validate(Requirement requirement, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrWhiteSpace(requirement.Name)) modelState.AddModelError("Name", Required("Name"));
+            if (string.IsNullOrWhiteSpace(requirement.Requirement1)) modelState.AddModelError("Requirement", Required("Requirement"));
+            //if (string.IsNullOrWhiteSpace(requirement.RequirementId)) modelState.AddModelError("Requirement Id", Required("Requirement Id"));
+
+            if (requirement.Project == null && requirement.ProjectId<=0) modelState.AddModelError("Project", Required("Project"));
+            if (requirement.SquareType == null && requirement.SquareTypeId <=0) modelState.AddModelError("Square Type", Required("Square Type"));
+        }
+
         private static string Required(string field)
         {
-            return Required(field);
+            return string.Format(Messages.Required,field);
         }
     }
 }

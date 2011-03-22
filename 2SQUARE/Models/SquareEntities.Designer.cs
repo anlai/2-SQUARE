@@ -7325,16 +7325,14 @@ namespace _2SQUARE.Models
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="requirement1">Initial value of the Requirement1 property.</param>
-        /// <param name="requirementId">Initial value of the RequirementId property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
         /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
-        public static Requirement CreateRequirement(global::System.Int32 id, global::System.String name, global::System.String requirement1, global::System.String requirementId, global::System.Int32 projectId, global::System.Int32 squareTypeId)
+        public static Requirement CreateRequirement(global::System.Int32 id, global::System.String name, global::System.String requirement1, global::System.Int32 projectId, global::System.Int32 squareTypeId)
         {
             Requirement requirement = new Requirement();
             requirement.id = id;
             requirement.Name = name;
             requirement.Requirement1 = requirement1;
-            requirement.RequirementId = requirementId;
             requirement.ProjectId = projectId;
             requirement.SquareTypeId = squareTypeId;
             return requirement;
@@ -7421,7 +7419,7 @@ namespace _2SQUARE.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String RequirementId
         {
@@ -7433,7 +7431,7 @@ namespace _2SQUARE.Models
             {
                 OnRequirementIdChanging(value);
                 ReportPropertyChanging("RequirementId");
-                _RequirementId = StructuralObject.SetValidValue(value, false);
+                _RequirementId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("RequirementId");
                 OnRequirementIdChanged();
             }
