@@ -26,7 +26,10 @@
         <tbody>
             <% foreach (var a in Model.Requirements) { %>
                 <tr>
-                    <td></td>
+                    <td>
+                        <%: Html.ActionLink<GenericElicitationController>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default"}) %>
+                        <%: Html.ActionLink<GenericElicitationController>(b=>b.Delete(Model.ProjectStep.Id, Model.Project.id, a.id), "Delete", new {@class="button ui-corner-all ui-state-default"}) %>
+                    </td>
                     <td><%: a.RequirementId ?? a.id.ToString() %></td>
                     <td><%: a.Requirement1 %></td>
                 </tr>

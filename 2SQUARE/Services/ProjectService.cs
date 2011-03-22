@@ -318,6 +318,17 @@ namespace _2SQUARE.Services
                 db.SaveChanges();
             }
         }
+
+        public void DeleteRequirement(int id, int requirementId)
+        {
+            var requirement = db.Requirements.Where(a => a.id == requirementId).Single();
+
+            Check.Ensure(requirement.ProjectId == id, "Requirement mismatch, does not match project id.");
+
+            db.DeleteObject(requirement);
+
+            db.SaveChanges();
+        }
         #endregion
 
         #region Project Status

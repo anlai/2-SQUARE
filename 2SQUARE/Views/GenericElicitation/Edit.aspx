@@ -2,12 +2,12 @@
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Add Requirement
+	Edit Requirement
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Add Requirement</h2>
+    <h2>Edit Requirement</h2>
 
     <% Html.RenderPartial("RequirementForm"); %>
 
@@ -17,5 +17,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink<GenericElicitationController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Generic Elicitation Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<GenericElicitationController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Generic Elicitation Home", new {@class="button ui-state-default"}) %>
 </asp:Content>

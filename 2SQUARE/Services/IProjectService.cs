@@ -44,6 +44,7 @@ namespace _2SQUARE.Services
 
         #region Step 6 Methods
         void SaveRequirement(int id /* project id */, SquareType squareType, Requirement requirement, ModelStateDictionary modelState);
+        void DeleteRequirement(int id, int requirementId);
         #endregion
 
         #region Step Status Methods

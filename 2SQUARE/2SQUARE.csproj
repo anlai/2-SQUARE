@@ -197,7 +197,9 @@
     <Content Include="Views\Artifact\Details.aspx" />
     <Content Include="Views\Artifact\Edit.aspx" />
     <Content Include="Views\Error\Security.aspx" />
+    <Content Include="Views\GenericElicitation\Edit.aspx" />
     <Content Include="Views\GenericElicitation\Index.aspx" />
+    <Content Include="Views\GenericElicitation\RequirementForm.ascx" />
     <Content Include="Views\Goal\Add.aspx" />
     <Content Include="Views\Goal\Edit.aspx" />
     <Content Include="Views\Goal\GoalForm.ascx" />
