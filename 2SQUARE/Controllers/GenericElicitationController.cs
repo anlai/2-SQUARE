@@ -11,6 +11,10 @@ using MvcContrib;
 
 namespace _2SQUARE.Controllers
 {
+    /// <summary>
+    /// This is the generic method for just entering/editing/deleting requirements from a project
+    /// It allows people to perform any technique outside of the program and enter the final output here.
+    /// </summary>
     public class GenericElicitationController : ApplicationController, IProcedureController
     {
         private readonly IProjectService _projectService;
