@@ -176,9 +176,24 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 6
+        [AvailableForWork]
         public ActionResult Step6(int id, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var project = _projectService.GetProject(projectId, CurrentUserId);
+
+                if (project.PrivacyElicitationType != null)
+                {
+                    return RedirectToAction("Index", project.PrivacyElicitationType.Controller, new { id = id, projectId = projectId });
+                }
+
+                return this.RedirectToAction<ProjectController>(a => a.Details(projectId));
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
         #endregion
 

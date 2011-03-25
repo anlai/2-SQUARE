@@ -126,12 +126,14 @@
     <Compile Include="Controllers\ISquareTypeController.cs" />
     <Compile Include="Controllers\NIST800_30Controller.cs" />
     <Compile Include="Controllers\PRAUCController.cs" />
+    <Compile Include="Controllers\PRETController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\GenericElicitationController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
     <Compile Include="Models\PRAUCEditViewModel.cs" />
+    <Compile Include="Models\PRETViewModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />
     <Compile Include="Models\RiskAssessmentViewModel.cs" />
     <Compile Include="Models\RiskRecommendationViewModel.cs" />
@@ -215,6 +217,9 @@
     <Content Include="Views\PRAUC\Edit.aspx" />
     <Content Include="Views\PRAUC\Index.aspx" />
     <Content Include="Views\PRAUC\RiskForm.ascx" />
+    <Content Include="Views\PRET\Index.aspx" />
+    <Content Include="Views\PRET\QuestionPartial.ascx" />
+    <Content Include="Views\PRET\Run.aspx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />
     <Content Include="Views\Privacy\Step3.aspx" />
