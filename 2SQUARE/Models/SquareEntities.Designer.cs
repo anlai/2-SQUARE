@@ -64,6 +64,11 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Requirements_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.Category), "Requirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Requirement), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Requirements_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Project), "Requirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Requirement), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Requirements_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Requirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Requirement), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETAnswers_PRETQuestions", "PRETQuestion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETQuestion), "PRETAnswer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETAnswer), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETAnswer), "PRETAnswerXLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETAnswerXLaw), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETLaws", "PRETLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETLaw), "PRETAnswerXLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETAnswerXLaw), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETRequirements_PRETLaws", "PRETLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETLaw), "PRETRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETRequirement), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETQuestions_PRETQuestions", "PRETQuestion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.PRETQuestion), "PRETQuestion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETQuestion), true)]
 
 #endregion
 
@@ -754,6 +759,86 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<Requirement> _Requirements;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRETAnswer> PRETAnswers
+        {
+            get
+            {
+                if ((_PRETAnswers == null))
+                {
+                    _PRETAnswers = base.CreateObjectSet<PRETAnswer>("PRETAnswers");
+                }
+                return _PRETAnswers;
+            }
+        }
+        private ObjectSet<PRETAnswer> _PRETAnswers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRETAnswerXLaw> PRETAnswerXLaws
+        {
+            get
+            {
+                if ((_PRETAnswerXLaws == null))
+                {
+                    _PRETAnswerXLaws = base.CreateObjectSet<PRETAnswerXLaw>("PRETAnswerXLaws");
+                }
+                return _PRETAnswerXLaws;
+            }
+        }
+        private ObjectSet<PRETAnswerXLaw> _PRETAnswerXLaws;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRETLaw> PRETLaws
+        {
+            get
+            {
+                if ((_PRETLaws == null))
+                {
+                    _PRETLaws = base.CreateObjectSet<PRETLaw>("PRETLaws");
+                }
+                return _PRETLaws;
+            }
+        }
+        private ObjectSet<PRETLaw> _PRETLaws;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRETQuestion> PRETQuestions
+        {
+            get
+            {
+                if ((_PRETQuestions == null))
+                {
+                    _PRETQuestions = base.CreateObjectSet<PRETQuestion>("PRETQuestions");
+                }
+                return _PRETQuestions;
+            }
+        }
+        private ObjectSet<PRETQuestion> _PRETQuestions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRETRequirement> PRETRequirements
+        {
+            get
+            {
+                if ((_PRETRequirements == null))
+                {
+                    _PRETRequirements = base.CreateObjectSet<PRETRequirement>("PRETRequirements");
+                }
+                return _PRETRequirements;
+            }
+        }
+        private ObjectSet<PRETRequirement> _PRETRequirements;
 
         #endregion
         #region AddTo Methods
@@ -1076,6 +1161,46 @@ namespace _2SQUARE.Models
         public void AddToRequirements(Requirement requirement)
         {
             base.AddObject("Requirements", requirement);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRETAnswers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRETAnswers(PRETAnswer pRETAnswer)
+        {
+            base.AddObject("PRETAnswers", pRETAnswer);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRETAnswerXLaws EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRETAnswerXLaws(PRETAnswerXLaw pRETAnswerXLaw)
+        {
+            base.AddObject("PRETAnswerXLaws", pRETAnswerXLaw);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRETLaws EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRETLaws(PRETLaw pRETLaw)
+        {
+            base.AddObject("PRETLaws", pRETLaw);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRETQuestions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRETQuestions(PRETQuestion pRETQuestion)
+        {
+            base.AddObject("PRETQuestions", pRETQuestion);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRETRequirements EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRETRequirements(PRETRequirement pRETRequirement)
+        {
+            base.AddObject("PRETRequirements", pRETRequirement);
         }
 
         #endregion
@@ -5942,6 +6067,962 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Risk>("SquareModel.FK_Risks_Impacts", "Risks", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="PRETAnswer")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRETAnswer : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRETAnswer object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="answer">Initial value of the Answer property.</param>
+        /// <param name="questionId">Initial value of the QuestionId property.</param>
+        public static PRETAnswer CreatePRETAnswer(global::System.Int32 id, global::System.String answer, global::System.Int32 questionId)
+        {
+            PRETAnswer pRETAnswer = new PRETAnswer();
+            pRETAnswer.Id = id;
+            pRETAnswer.Answer = answer;
+            pRETAnswer.QuestionId = questionId;
+            return pRETAnswer;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Answer
+        {
+            get
+            {
+                return _Answer;
+            }
+            set
+            {
+                OnAnswerChanging(value);
+                ReportPropertyChanging("Answer");
+                _Answer = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Answer");
+                OnAnswerChanged();
+            }
+        }
+        private global::System.String _Answer;
+        partial void OnAnswerChanging(global::System.String value);
+        partial void OnAnswerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 QuestionId
+        {
+            get
+            {
+                return _QuestionId;
+            }
+            set
+            {
+                OnQuestionIdChanging(value);
+                ReportPropertyChanging("QuestionId");
+                _QuestionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("QuestionId");
+                OnQuestionIdChanged();
+            }
+        }
+        private global::System.Int32 _QuestionId;
+        partial void OnQuestionIdChanging(global::System.Int32 value);
+        partial void OnQuestionIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswers_PRETQuestions", "PRETQuestion")]
+        public PRETQuestion PRETQuestion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETQuestion").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETQuestion").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRETQuestion> PRETQuestionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETQuestion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRETQuestion>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETQuestion", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswerXLaw")]
+        public EntityCollection<PRETAnswerXLaw> PRETAnswerXLaws
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRETAnswerXLaw>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswerXLaw");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRETAnswerXLaw>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswerXLaw", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="PRETAnswerXLaw")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRETAnswerXLaw : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRETAnswerXLaw object.
+        /// </summary>
+        /// <param name="answerId">Initial value of the AnswerId property.</param>
+        /// <param name="lawId">Initial value of the LawId property.</param>
+        /// <param name="groupId">Initial value of the GroupId property.</param>
+        public static PRETAnswerXLaw CreatePRETAnswerXLaw(global::System.Int32 answerId, global::System.Int32 lawId, global::System.Guid groupId)
+        {
+            PRETAnswerXLaw pRETAnswerXLaw = new PRETAnswerXLaw();
+            pRETAnswerXLaw.AnswerId = answerId;
+            pRETAnswerXLaw.LawId = lawId;
+            pRETAnswerXLaw.GroupId = groupId;
+            return pRETAnswerXLaw;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AnswerId
+        {
+            get
+            {
+                return _AnswerId;
+            }
+            set
+            {
+                if (_AnswerId != value)
+                {
+                    OnAnswerIdChanging(value);
+                    ReportPropertyChanging("AnswerId");
+                    _AnswerId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AnswerId");
+                    OnAnswerIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AnswerId;
+        partial void OnAnswerIdChanging(global::System.Int32 value);
+        partial void OnAnswerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LawId
+        {
+            get
+            {
+                return _LawId;
+            }
+            set
+            {
+                if (_LawId != value)
+                {
+                    OnLawIdChanging(value);
+                    ReportPropertyChanging("LawId");
+                    _LawId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("LawId");
+                    OnLawIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LawId;
+        partial void OnLawIdChanging(global::System.Int32 value);
+        partial void OnLawIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid GroupId
+        {
+            get
+            {
+                return _GroupId;
+            }
+            set
+            {
+                if (_GroupId != value)
+                {
+                    OnGroupIdChanging(value);
+                    ReportPropertyChanging("GroupId");
+                    _GroupId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("GroupId");
+                    OnGroupIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _GroupId;
+        partial void OnGroupIdChanging(global::System.Guid value);
+        partial void OnGroupIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer")]
+        public PRETAnswer PRETAnswer
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETAnswer>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETAnswer>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRETAnswer> PRETAnswerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETAnswer>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRETAnswer>("SquareModel.FK_PRETAnswerXLaws_PRETAnswers", "PRETAnswer", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETLaws", "PRETLaw")]
+        public PRETLaw PRETLaw
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETLaw").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETLaw").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRETLaw> PRETLawReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETLaw");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRETLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETLaw", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="PRETLaw")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRETLaw : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRETLaw object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static PRETLaw CreatePRETLaw(global::System.Int32 id, global::System.String name)
+        {
+            PRETLaw pRETLaw = new PRETLaw();
+            pRETLaw.id = id;
+            pRETLaw.Name = name;
+            return pRETLaw;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETLaws", "PRETAnswerXLaw")]
+        public EntityCollection<PRETAnswerXLaw> PRETAnswerXLaws
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRETAnswerXLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETAnswerXLaw");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRETAnswerXLaw>("SquareModel.FK_PRETAnswerXLaws_PRETLaws", "PRETAnswerXLaw", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETRequirements_PRETLaws", "PRETRequirement")]
+        public EntityCollection<PRETRequirement> PRETRequirements
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRETRequirement>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETRequirement");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRETRequirement>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETRequirement", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="PRETQuestion")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRETQuestion : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRETQuestion object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="question">Initial value of the Question property.</param>
+        /// <param name="order">Initial value of the Order property.</param>
+        /// <param name="subquestion">Initial value of the Subquestion property.</param>
+        public static PRETQuestion CreatePRETQuestion(global::System.Int32 id, global::System.String question, global::System.Int32 order, global::System.Boolean subquestion)
+        {
+            PRETQuestion pRETQuestion = new PRETQuestion();
+            pRETQuestion.Id = id;
+            pRETQuestion.Question = question;
+            pRETQuestion.Order = order;
+            pRETQuestion.Subquestion = subquestion;
+            return pRETQuestion;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Question
+        {
+            get
+            {
+                return _Question;
+            }
+            set
+            {
+                OnQuestionChanging(value);
+                ReportPropertyChanging("Question");
+                _Question = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Question");
+                OnQuestionChanged();
+            }
+        }
+        private global::System.String _Question;
+        partial void OnQuestionChanging(global::System.String value);
+        partial void OnQuestionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private global::System.Int32 _Order;
+        partial void OnOrderChanging(global::System.Int32 value);
+        partial void OnOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Subquestion
+        {
+            get
+            {
+                return _Subquestion;
+            }
+            set
+            {
+                OnSubquestionChanging(value);
+                ReportPropertyChanging("Subquestion");
+                _Subquestion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Subquestion");
+                OnSubquestionChanged();
+            }
+        }
+        private global::System.Boolean _Subquestion;
+        partial void OnSubquestionChanging(global::System.Boolean value);
+        partial void OnSubquestionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentQuestion
+        {
+            get
+            {
+                return _ParentQuestion;
+            }
+            set
+            {
+                OnParentQuestionChanging(value);
+                ReportPropertyChanging("ParentQuestion");
+                _ParentQuestion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentQuestion");
+                OnParentQuestionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentQuestion;
+        partial void OnParentQuestionChanging(Nullable<global::System.Int32> value);
+        partial void OnParentQuestionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETAnswers_PRETQuestions", "PRETAnswer")]
+        public EntityCollection<PRETAnswer> PRETAnswers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRETAnswer>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETAnswer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRETAnswer>("SquareModel.FK_PRETAnswers_PRETQuestions", "PRETAnswer", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETQuestions_PRETQuestions", "PRETQuestion1")]
+        public EntityCollection<PRETQuestion> Children
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETQuestions_PRETQuestions", "PRETQuestion")]
+        public PRETQuestion Parent
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRETQuestion> ParentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRETQuestion>("SquareModel.FK_PRETQuestions_PRETQuestions", "PRETQuestion", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="PRETRequirement")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRETRequirement : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRETRequirement object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="requirement">Initial value of the Requirement property.</param>
+        /// <param name="lawId">Initial value of the LawId property.</param>
+        /// <param name="source">Initial value of the Source property.</param>
+        public static PRETRequirement CreatePRETRequirement(global::System.Int32 id, global::System.String name, global::System.String requirement, global::System.Int32 lawId, global::System.String source)
+        {
+            PRETRequirement pRETRequirement = new PRETRequirement();
+            pRETRequirement.id = id;
+            pRETRequirement.Name = name;
+            pRETRequirement.Requirement = requirement;
+            pRETRequirement.LawId = lawId;
+            pRETRequirement.Source = source;
+            return pRETRequirement;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Requirement
+        {
+            get
+            {
+                return _Requirement;
+            }
+            set
+            {
+                OnRequirementChanging(value);
+                ReportPropertyChanging("Requirement");
+                _Requirement = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Requirement");
+                OnRequirementChanged();
+            }
+        }
+        private global::System.String _Requirement;
+        partial void OnRequirementChanging(global::System.String value);
+        partial void OnRequirementChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LawId
+        {
+            get
+            {
+                return _LawId;
+            }
+            set
+            {
+                OnLawIdChanging(value);
+                ReportPropertyChanging("LawId");
+                _LawId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LawId");
+                OnLawIdChanged();
+            }
+        }
+        private global::System.Int32 _LawId;
+        partial void OnLawIdChanging(global::System.Int32 value);
+        partial void OnLawIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Source
+        {
+            get
+            {
+                return _Source;
+            }
+            set
+            {
+                OnSourceChanging(value);
+                ReportPropertyChanging("Source");
+                _Source = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Source");
+                OnSourceChanged();
+            }
+        }
+        private global::System.String _Source;
+        partial void OnSourceChanging(global::System.String value);
+        partial void OnSourceChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_PRETRequirements_PRETLaws", "PRETLaw")]
+        public PRETLaw PRETLaw
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETLaw").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETLaw").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRETLaw> PRETLawReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRETLaw>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETLaw");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRETLaw>("SquareModel.FK_PRETRequirements_PRETLaws", "PRETLaw", value);
                 }
             }
         }
