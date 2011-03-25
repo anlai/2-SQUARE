@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[PRETAnswers]
+    ADD CONSTRAINT [FK_PRETAnswers_PRETQuestions] FOREIGN KEY ([QuestionId]) REFERENCES [dbo].[PRETQuestions] ([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

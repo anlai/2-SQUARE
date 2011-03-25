@@ -1114,6 +1114,155 @@ ALTER TABLE [dbo].[Impacts]
 
 
 GO
+PRINT N'Creating [dbo].[PRETAnswers]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[PRETAnswers] (
+    [Id]         INT           IDENTITY (1, 1) NOT NULL,
+    [Answer]     VARCHAR (MAX) NOT NULL,
+    [QuestionId] INT           NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_PRETAnswers...';
+
+
+GO
+ALTER TABLE [dbo].[PRETAnswers]
+    ADD CONSTRAINT [PK_PRETAnswers] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[PRETAnswerXLaws]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[PRETAnswerXLaws] (
+    [AnswerId] INT              NOT NULL,
+    [LawId]    INT              NOT NULL,
+    [GroupId]  UNIQUEIDENTIFIER NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_PRETAnswerXLaws...';
+
+
+GO
+ALTER TABLE [dbo].[PRETAnswerXLaws]
+    ADD CONSTRAINT [PK_PRETAnswerXLaws] PRIMARY KEY CLUSTERED ([AnswerId] ASC, [LawId] ASC, [GroupId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[PRETLaws]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[PRETLaws] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [Name]        VARCHAR (100) NOT NULL,
+    [Description] VARCHAR (MAX) NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_PRETLaws...';
+
+
+GO
+ALTER TABLE [dbo].[PRETLaws]
+    ADD CONSTRAINT [PK_PRETLaws] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[PRETQuestions]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[PRETQuestions] (
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [Question]       VARCHAR (MAX) NOT NULL,
+    [Order]          INT           NOT NULL,
+    [Subquestion]    BIT           NOT NULL,
+    [ParentQuestion] INT           NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_PRETQuestions...';
+
+
+GO
+ALTER TABLE [dbo].[PRETQuestions]
+    ADD CONSTRAINT [PK_PRETQuestions] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[PRETRequirements]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[PRETRequirements] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [Name]        VARCHAR (100) NOT NULL,
+    [Requirement] VARCHAR (MAX) NOT NULL,
+    [LawId]       INT           NOT NULL,
+    [Source]      VARCHAR (100) NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_PRETRequirements...';
+
+
+GO
+ALTER TABLE [dbo].[PRETRequirements]
+    ADD CONSTRAINT [PK_PRETRequirements] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Projects]...';
 
 
@@ -1255,7 +1404,7 @@ CREATE TABLE [dbo].[Requirements] (
     [id]            INT           IDENTITY (1, 1) NOT NULL,
     [Name]          VARCHAR (100) NOT NULL,
     [Requirement]   VARCHAR (MAX) NOT NULL,
-    [RequirementId] VARCHAR (10)  NOT NULL,
+    [RequirementId] VARCHAR (10)  NULL,
     [ProjectId]     INT           NOT NULL,
     [SquareTypeId]  INT           NOT NULL,
     [CategoryId]    INT           NULL,
@@ -1658,6 +1807,15 @@ ALTER TABLE [dbo].[GoalTypes]
 
 
 GO
+PRINT N'Creating DF_PRETQuestions_Subquestion...';
+
+
+GO
+ALTER TABLE [dbo].[PRETQuestions]
+    ADD CONSTRAINT [DF_PRETQuestions_Subquestion] DEFAULT ((0)) FOR [Subquestion];
+
+
+GO
 PRINT N'Creating DF_Projects_DateCreated...';
 
 
@@ -1889,6 +2047,51 @@ PRINT N'Creating FK_GoalTypes_SquareTypes...';
 GO
 ALTER TABLE [dbo].[GoalTypes] WITH NOCHECK
     ADD CONSTRAINT [FK_GoalTypes_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_PRETAnswers_PRETQuestions...';
+
+
+GO
+ALTER TABLE [dbo].[PRETAnswers] WITH NOCHECK
+    ADD CONSTRAINT [FK_PRETAnswers_PRETQuestions] FOREIGN KEY ([QuestionId]) REFERENCES [dbo].[PRETQuestions] ([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_PRETAnswerXLaws_PRETAnswers...';
+
+
+GO
+ALTER TABLE [dbo].[PRETAnswerXLaws] WITH NOCHECK
+    ADD CONSTRAINT [FK_PRETAnswerXLaws_PRETAnswers] FOREIGN KEY ([AnswerId]) REFERENCES [dbo].[PRETAnswers] ([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_PRETAnswerXLaws_PRETLaws...';
+
+
+GO
+ALTER TABLE [dbo].[PRETAnswerXLaws] WITH NOCHECK
+    ADD CONSTRAINT [FK_PRETAnswerXLaws_PRETLaws] FOREIGN KEY ([LawId]) REFERENCES [dbo].[PRETLaws] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_PRETQuestions_PRETQuestions...';
+
+
+GO
+ALTER TABLE [dbo].[PRETQuestions] WITH NOCHECK
+    ADD CONSTRAINT [FK_PRETQuestions_PRETQuestions] FOREIGN KEY ([ParentQuestion]) REFERENCES [dbo].[PRETQuestions] ([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_PRETRequirements_PRETLaws...';
+
+
+GO
+ALTER TABLE [dbo].[PRETRequirements] WITH NOCHECK
+    ADD CONSTRAINT [FK_PRETRequirements_PRETLaws] FOREIGN KEY ([LawId]) REFERENCES [dbo].[PRETLaws] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -6044,6 +6247,16 @@ ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_Projects];
 ALTER TABLE [dbo].[Goals] WITH CHECK CHECK CONSTRAINT [FK_Goals_SquareTypes];
 
 ALTER TABLE [dbo].[GoalTypes] WITH CHECK CHECK CONSTRAINT [FK_GoalTypes_SquareTypes];
+
+ALTER TABLE [dbo].[PRETAnswers] WITH CHECK CHECK CONSTRAINT [FK_PRETAnswers_PRETQuestions];
+
+ALTER TABLE [dbo].[PRETAnswerXLaws] WITH CHECK CHECK CONSTRAINT [FK_PRETAnswerXLaws_PRETAnswers];
+
+ALTER TABLE [dbo].[PRETAnswerXLaws] WITH CHECK CHECK CONSTRAINT [FK_PRETAnswerXLaws_PRETLaws];
+
+ALTER TABLE [dbo].[PRETQuestions] WITH CHECK CHECK CONSTRAINT [FK_PRETQuestions_PRETQuestions];
+
+ALTER TABLE [dbo].[PRETRequirements] WITH CHECK CHECK CONSTRAINT [FK_PRETRequirements_PRETLaws];
 
 ALTER TABLE [dbo].[Projects] WITH CHECK CHECK CONSTRAINT [FK_Projects_PrivacyAssessmentTypes];
 
