@@ -498,5 +498,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PRETAnswers">
+      <EntityTypeMapping TypeName="SquareModel.PRETAnswer">
+        <MappingFragment StoreEntitySet="PRETAnswers">
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRETAnswerXLaws">
+      <EntityTypeMapping TypeName="SquareModel.PRETAnswerXLaw">
+        <MappingFragment StoreEntitySet="PRETAnswerXLaws">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="LawId" ColumnName="LawId" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRETLaws">
+      <EntityTypeMapping TypeName="SquareModel.PRETLaw">
+        <MappingFragment StoreEntitySet="PRETLaws">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRETQuestions">
+      <EntityTypeMapping TypeName="SquareModel.PRETQuestion">
+        <MappingFragment StoreEntitySet="PRETQuestions">
+          <ScalarProperty Name="ParentQuestion" ColumnName="ParentQuestion" />
+          <ScalarProperty Name="Subquestion" ColumnName="Subquestion" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRETRequirements">
+      <EntityTypeMapping TypeName="SquareModel.PRETRequirement">
+        <MappingFragment StoreEntitySet="PRETRequirements">
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="LawId" ColumnName="LawId" />
+          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

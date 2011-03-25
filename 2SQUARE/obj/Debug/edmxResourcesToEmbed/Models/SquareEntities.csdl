@@ -225,6 +225,31 @@
       <End Role="SquareType" EntitySet="SquareTypes" />
       <End Role="Requirement" EntitySet="Requirements" />
     </AssociationSet>
+    <EntitySet Name="PRETAnswers" EntityType="SquareModel.PRETAnswer" />
+    <EntitySet Name="PRETAnswerXLaws" EntityType="SquareModel.PRETAnswerXLaw" />
+    <EntitySet Name="PRETLaws" EntityType="SquareModel.PRETLaw" />
+    <EntitySet Name="PRETQuestions" EntityType="SquareModel.PRETQuestion" />
+    <EntitySet Name="PRETRequirements" EntityType="SquareModel.PRETRequirement" />
+    <AssociationSet Name="FK_PRETAnswers_PRETQuestions" Association="SquareModel.FK_PRETAnswers_PRETQuestions">
+      <End Role="PRETQuestion" EntitySet="PRETQuestions" />
+      <End Role="PRETAnswer" EntitySet="PRETAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETAnswerXLaws_PRETAnswers" Association="SquareModel.FK_PRETAnswerXLaws_PRETAnswers">
+      <End Role="PRETAnswer" EntitySet="PRETAnswers" />
+      <End Role="PRETAnswerXLaw" EntitySet="PRETAnswerXLaws" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETAnswerXLaws_PRETLaws" Association="SquareModel.FK_PRETAnswerXLaws_PRETLaws">
+      <End Role="PRETLaw" EntitySet="PRETLaws" />
+      <End Role="PRETAnswerXLaw" EntitySet="PRETAnswerXLaws" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETRequirements_PRETLaws" Association="SquareModel.FK_PRETRequirements_PRETLaws">
+      <End Role="PRETLaw" EntitySet="PRETLaws" />
+      <End Role="PRETRequirement" EntitySet="PRETRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETQuestions_PRETQuestions" Association="SquareModel.FK_PRETQuestions_PRETQuestions">
+      <End Role="PRETQuestion" EntitySet="PRETQuestions" />
+      <End Role="PRETQuestion1" EntitySet="PRETQuestions" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artifact">
     <Key>
@@ -1342,6 +1367,122 @@
       </Principal>
       <Dependent Role="Requirement">
         <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PRETAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Answer" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="QuestionId" Nullable="false" />
+    <NavigationProperty Name="PRETQuestion" Relationship="SquareModel.FK_PRETAnswers_PRETQuestions" FromRole="PRETAnswer" ToRole="PRETQuestion" />
+    <NavigationProperty Name="PRETAnswerXLaws" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETAnswers" FromRole="PRETAnswer" ToRole="PRETAnswerXLaw" />
+  </EntityType>
+  <EntityType Name="PRETAnswerXLaw">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+      <PropertyRef Name="LawId" />
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Type="Int32" Name="AnswerId" Nullable="false" />
+    <Property Type="Int32" Name="LawId" Nullable="false" />
+    <Property Type="Guid" Name="GroupId" Nullable="false" />
+    <NavigationProperty Name="PRETAnswer" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETAnswers" FromRole="PRETAnswerXLaw" ToRole="PRETAnswer" />
+    <NavigationProperty Name="PRETLaw" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETLaws" FromRole="PRETAnswerXLaw" ToRole="PRETLaw" />
+  </EntityType>
+  <EntityType Name="PRETLaw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRETAnswerXLaws" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETLaws" FromRole="PRETLaw" ToRole="PRETAnswerXLaw" />
+    <NavigationProperty Name="PRETRequirements" Relationship="SquareModel.FK_PRETRequirements_PRETLaws" FromRole="PRETLaw" ToRole="PRETRequirement" />
+  </EntityType>
+  <EntityType Name="PRETQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Question" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Order" Nullable="false" />
+    <Property Type="Boolean" Name="Subquestion" Nullable="false" />
+    <Property Type="Int32" Name="ParentQuestion" />
+    <NavigationProperty Name="PRETAnswers" Relationship="SquareModel.FK_PRETAnswers_PRETQuestions" FromRole="PRETQuestion" ToRole="PRETAnswer" />
+    <NavigationProperty Name="Children" Relationship="SquareModel.FK_PRETQuestions_PRETQuestions" FromRole="PRETQuestion" ToRole="PRETQuestion1" />
+    <NavigationProperty Name="Parent" Relationship="SquareModel.FK_PRETQuestions_PRETQuestions" FromRole="PRETQuestion1" ToRole="PRETQuestion" />
+  </EntityType>
+  <EntityType Name="PRETRequirement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Requirement" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LawId" Nullable="false" />
+    <Property Type="String" Name="Source" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRETLaw" Relationship="SquareModel.FK_PRETRequirements_PRETLaws" FromRole="PRETRequirement" ToRole="PRETLaw" />
+  </EntityType>
+  <Association Name="FK_PRETAnswers_PRETQuestions">
+    <End Type="SquareModel.PRETQuestion" Role="PRETQuestion" Multiplicity="1" />
+    <End Type="SquareModel.PRETAnswer" Role="PRETAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETAnswer">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETAnswerXLaws_PRETAnswers">
+    <End Type="SquareModel.PRETAnswer" Role="PRETAnswer" Multiplicity="1" />
+    <End Type="SquareModel.PRETAnswerXLaw" Role="PRETAnswerXLaw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETAnswer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETAnswerXLaw">
+        <PropertyRef Name="AnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETAnswerXLaws_PRETLaws">
+    <End Type="SquareModel.PRETLaw" Role="PRETLaw" Multiplicity="1" />
+    <End Type="SquareModel.PRETAnswerXLaw" Role="PRETAnswerXLaw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETLaw">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PRETAnswerXLaw">
+        <PropertyRef Name="LawId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETRequirements_PRETLaws">
+    <End Type="SquareModel.PRETLaw" Role="PRETLaw" Multiplicity="1" />
+    <End Type="SquareModel.PRETRequirement" Role="PRETRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETLaw">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PRETRequirement">
+        <PropertyRef Name="LawId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETQuestions_PRETQuestions">
+    <End Type="SquareModel.PRETQuestion" Role="PRETQuestion" Multiplicity="0..1" />
+    <End Type="SquareModel.PRETQuestion" Role="PRETQuestion1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETQuestion1">
+        <PropertyRef Name="ParentQuestion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

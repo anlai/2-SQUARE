@@ -21,6 +21,11 @@
     <EntitySet Name="Goals" EntityType="SquareModel.Store.Goals" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GoalTypes" EntityType="SquareModel.Store.GoalTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Impacts" EntityType="SquareModel.Store.Impacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRETAnswers" EntityType="SquareModel.Store.PRETAnswers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRETAnswerXLaws" EntityType="SquareModel.Store.PRETAnswerXLaws" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRETLaws" EntityType="SquareModel.Store.PRETLaws" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRETQuestions" EntityType="SquareModel.Store.PRETQuestions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRETRequirements" EntityType="SquareModel.Store.PRETRequirements" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Projects" EntityType="SquareModel.Store.Projects" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectSteps" EntityType="SquareModel.Store.ProjectSteps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectTerms" EntityType="SquareModel.Store.ProjectTerms" store:Type="Tables" Schema="dbo" />
@@ -211,6 +216,26 @@
     <AssociationSet Name="FK_GoalTypes_SquareTypes" Association="SquareModel.Store.FK_GoalTypes_SquareTypes">
       <End Role="SquareTypes" EntitySet="SquareTypes" />
       <End Role="GoalTypes" EntitySet="GoalTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETAnswers_PRETQuestions" Association="SquareModel.Store.FK_PRETAnswers_PRETQuestions">
+      <End Role="PRETQuestions" EntitySet="PRETQuestions" />
+      <End Role="PRETAnswers" EntitySet="PRETAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETAnswerXLaws_PRETAnswers" Association="SquareModel.Store.FK_PRETAnswerXLaws_PRETAnswers">
+      <End Role="PRETAnswers" EntitySet="PRETAnswers" />
+      <End Role="PRETAnswerXLaws" EntitySet="PRETAnswerXLaws" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETAnswerXLaws_PRETLaws" Association="SquareModel.Store.FK_PRETAnswerXLaws_PRETLaws">
+      <End Role="PRETLaws" EntitySet="PRETLaws" />
+      <End Role="PRETAnswerXLaws" EntitySet="PRETAnswerXLaws" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETQuestions_PRETQuestions" Association="SquareModel.Store.FK_PRETQuestions_PRETQuestions">
+      <End Role="PRETQuestions" EntitySet="PRETQuestions" />
+      <End Role="PRETQuestions1" EntitySet="PRETQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRETRequirements_PRETLaws" Association="SquareModel.Store.FK_PRETRequirements_PRETLaws">
+      <End Role="PRETLaws" EntitySet="PRETLaws" />
+      <End Role="PRETRequirements" EntitySet="PRETRequirements" />
     </AssociationSet>
     <AssociationSet Name="FK_Projects_PrivacyAssessmentTypes" Association="SquareModel.Store.FK_Projects_PrivacyAssessmentTypes">
       <End Role="AssessmentTypes" EntitySet="AssessmentTypes" />
@@ -532,6 +557,52 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PRETAnswers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Answer" Type="varchar(max)" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRETAnswerXLaws">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+      <PropertyRef Name="LawId" />
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="AnswerId" Type="int" Nullable="false" />
+    <Property Name="LawId" Type="int" Nullable="false" />
+    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRETLaws">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="PRETQuestions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="varchar(max)" Nullable="false" />
+    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="Subquestion" Type="bit" Nullable="false" />
+    <Property Name="ParentQuestion" Type="int" />
+  </EntityType>
+  <EntityType Name="PRETRequirements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Requirement" Type="varchar(max)" Nullable="false" />
+    <Property Name="LawId" Type="int" Nullable="false" />
+    <Property Name="Source" Type="varchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="Projects">
     <Key>
@@ -1092,6 +1163,66 @@
       </Principal>
       <Dependent Role="GoalTypes">
         <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETAnswers_PRETQuestions">
+    <End Role="PRETQuestions" Type="SquareModel.Store.PRETQuestions" Multiplicity="1" />
+    <End Role="PRETAnswers" Type="SquareModel.Store.PRETAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETQuestions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETAnswers">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETAnswerXLaws_PRETAnswers">
+    <End Role="PRETAnswers" Type="SquareModel.Store.PRETAnswers" Multiplicity="1" />
+    <End Role="PRETAnswerXLaws" Type="SquareModel.Store.PRETAnswerXLaws" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETAnswers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETAnswerXLaws">
+        <PropertyRef Name="AnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETAnswerXLaws_PRETLaws">
+    <End Role="PRETLaws" Type="SquareModel.Store.PRETLaws" Multiplicity="1" />
+    <End Role="PRETAnswerXLaws" Type="SquareModel.Store.PRETAnswerXLaws" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETLaws">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PRETAnswerXLaws">
+        <PropertyRef Name="LawId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETQuestions_PRETQuestions">
+    <End Role="PRETQuestions" Type="SquareModel.Store.PRETQuestions" Multiplicity="0..1" />
+    <End Role="PRETQuestions1" Type="SquareModel.Store.PRETQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETQuestions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PRETQuestions1">
+        <PropertyRef Name="ParentQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRETRequirements_PRETLaws">
+    <End Role="PRETLaws" Type="SquareModel.Store.PRETLaws" Multiplicity="1" />
+    <End Role="PRETRequirements" Type="SquareModel.Store.PRETRequirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRETLaws">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PRETRequirements">
+        <PropertyRef Name="LawId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
