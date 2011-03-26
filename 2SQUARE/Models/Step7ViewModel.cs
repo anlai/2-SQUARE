@@ -18,8 +18,8 @@ namespace _2SQUARE.Models
             var viewModel = new Step7ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
-            viewModel.CategorizedRequirements = viewModel.Project.Requirements.Where(a => a.Category != null && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
-            viewModel.UncategorizedRequirements = viewModel.Project.Requirements.Where(a => a.Category == null && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
+            viewModel.CategorizedRequirements = db.Requirements.Where(a => a.Category != null && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId && a.ProjectId == projectId).ToList();
+            viewModel.UncategorizedRequirements = db.Requirements.Where(a => a.Category == null && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId && a.ProjectId == projectId).ToList();
 
             return viewModel;
         }
