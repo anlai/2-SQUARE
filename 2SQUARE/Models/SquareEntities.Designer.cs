@@ -69,6 +69,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETAnswerXLaws_PRETLaws", "PRETLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETLaw), "PRETAnswerXLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETAnswerXLaw), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETRequirements_PRETLaws", "PRETLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETLaw), "PRETRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETRequirement), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETQuestions_PRETQuestions", "PRETQuestion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.PRETQuestion), "PRETQuestion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETQuestion), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_Categories_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Category), true)]
 
 #endregion
 
@@ -4829,13 +4830,15 @@ namespace _2SQUARE.Models
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
         /// <param name="order">Initial value of the Order property.</param>
-        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 projectId, global::System.Int32 order)
+        /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
+        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 projectId, global::System.Int32 order, global::System.Int32 squareTypeId)
         {
             Category category = new Category();
             category.id = id;
             category.Name = name;
             category.ProjectId = projectId;
             category.Order = order;
+            category.SquareTypeId = squareTypeId;
             return category;
         }
 
@@ -4940,6 +4943,30 @@ namespace _2SQUARE.Models
         private global::System.Int32 _Order;
         partial void OnOrderChanging(global::System.Int32 value);
         partial void OnOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SquareTypeId
+        {
+            get
+            {
+                return _SquareTypeId;
+            }
+            set
+            {
+                OnSquareTypeIdChanging(value);
+                ReportPropertyChanging("SquareTypeId");
+                _SquareTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SquareTypeId");
+                OnSquareTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _SquareTypeId;
+        partial void OnSquareTypeIdChanging(global::System.Int32 value);
+        partial void OnSquareTypeIdChanged();
 
         #endregion
     
@@ -5001,6 +5028,44 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Requirement>("SquareModel.FK_Requirements_Categories", "Requirement", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Categories_SquareTypes", "SquareType")]
+        public SquareType SquareType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Categories_SquareTypes", "SquareType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Categories_SquareTypes", "SquareType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SquareType> SquareTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SquareType>("SquareModel.FK_Categories_SquareTypes", "SquareType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_Categories_SquareTypes", "SquareType", value);
                 }
             }
         }
@@ -10387,6 +10452,28 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Requirement>("SquareModel.FK_Requirements_SquareTypes", "Requirement", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_Categories_SquareTypes", "Category")]
+        public EntityCollection<Category> Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("SquareModel.FK_Categories_SquareTypes", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("SquareModel.FK_Categories_SquareTypes", "Category", value);
                 }
             }
         }
