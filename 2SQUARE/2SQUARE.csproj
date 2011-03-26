@@ -240,6 +240,7 @@
     <Content Include="Views\Privacy\Step4.aspx" />
     <Content Include="Views\Privacy\Step5.aspx" />
     <Content Include="Views\Privacy\Step7.aspx" />
+    <Content Include="Views\Privacy\Step8.aspx" />
     <Content Include="Views\ProjectTerm\EditTerm.aspx" />
     <Content Include="Views\Project\ChangeStatus.aspx" />
     <Content Include="Views\Project\Details.aspx" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Security\Step8.aspx" />
     <Content Include="Views\Shared\CategorizedRequirementsView.ascx" />
     <Content Include="Views\Shared\Message.ascx" />
+    <Content Include="Views\Shared\PrioritizeRequirementsView.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
     <Content Include="Views\Shared\Step3View.ascx" />

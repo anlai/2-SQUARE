@@ -271,58 +271,6 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
         }
-
-        /// <summary>
-        /// Updates the order of the requirements for the square type of a project
-        /// </summary>
-        /// <param name="projectId"></param>
-        /// <param name="squareTypeId"></param>
-        /// <param name="requirements">Ordered list of requirement Ids</param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult UpdateRequirementOrder(int projectId, int squareTypeId, string requirementIds)
-        {
-            try
-            {
-                var reqs = requirementIds.Split(',');
-                var requirements = reqs.Select(a => Convert.ToInt32(a)).ToList();
-
-                for (int i = 0; i < requirements.Count(); i++)
-                {
-                    var reqId = requirements[i];
-                    var req = Db.Requirements.Where(a => a.id == reqId && a.ProjectId == projectId).FirstOrDefault();
-                    req.Order = i;
-                }
-
-                Db.SaveChanges();
-
-                return Json(true);
-            }
-            catch (Exception)
-            {
-                return Json(false);
-            }
-        }
-
-        /// <summary>
-        /// Updates the priority of a requirement
-        /// </summary>
-        /// <param name="requirementId"></param>
-        /// <param name="priority"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult UpdatePriority(int requirementId, int priority)
-        {
-            var requirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
-
-            if (requirement == null) return Json(false);
-
-            requirement.Priority = priority;
-
-            Db.SaveChanges();
-
-            return Json(true);
-        }
         #endregion
 
         #region Step 9
