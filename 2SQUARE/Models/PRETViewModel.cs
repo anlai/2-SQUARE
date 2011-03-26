@@ -6,7 +6,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class PRETViewModel : StepViewModelBase
+    public class PRETViewModel : ViewModelBase
     {
         public IQueryable<PRETQuestion> PretQuestions { get; set; }
         public IList<PRETQuestionAnswer> QuestionAnswers { get; set; }
@@ -33,5 +33,6 @@ namespace _2SQUARE.Models
     {
         public int QuestionId { get; set; }
         public int AnswerId { get; set; }
+        public bool IsSubQuestion { get; set; }
     }
 }

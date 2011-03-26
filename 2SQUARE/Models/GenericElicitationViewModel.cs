@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace _2SQUARE.Models
 {
-    public class GenericElicitationViewModel : StepViewModelBase
+    public class GenericElicitationViewModel : ViewModelBase
     {
         public IEnumerable<Requirement> Requirements { get; set; }
 

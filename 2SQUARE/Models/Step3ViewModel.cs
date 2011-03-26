@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace _2SQUARE.Models
 {
-    public class Step3ViewModel : StepViewModelBase
+    public class Step3ViewModel : ViewModelBase
     {
         public List<Artifact> Artifacts { get; set; }
 

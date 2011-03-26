@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace _2SQUARE.Models
 {
-    public class Step5ViewModel : StepViewModelBase
+    public class Step5ViewModel : ViewModelBase
     {
         public IEnumerable<ElicitationType> ElicitationTypes { get; set; }
 

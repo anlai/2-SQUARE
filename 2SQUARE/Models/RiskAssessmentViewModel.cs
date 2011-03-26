@@ -5,7 +5,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class RiskAssessmentViewModel : StepViewModelBase
+    public class RiskAssessmentViewModel : ViewModelBase
     {
         public IEnumerable<Risk> Risks { get; set; }
 

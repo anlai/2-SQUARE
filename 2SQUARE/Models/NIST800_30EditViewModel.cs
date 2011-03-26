@@ -6,7 +6,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class NIST800_30EditViewModel : StepViewModelBase
+    public class NIST800_30EditViewModel : ViewModelBase
     {
         public IEnumerable<RiskLevel> RiskLevels { get; set; }
         public IEnumerable<Impact> Impacts { get; set; }

@@ -7,7 +7,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class PRAUCEditViewModel : StepViewModelBase
+    public class PRAUCEditViewModel : ViewModelBase
     {
         public Risk Risk { get; set; }
         public IEnumerable<RiskLevel> RiskLevels { get; set; }

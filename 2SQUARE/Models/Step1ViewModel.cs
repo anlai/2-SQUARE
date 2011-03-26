@@ -7,7 +7,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class Step1ViewModel : StepViewModelBase
+    public class Step1ViewModel : ViewModelBase
     {
         public IEnumerable<ProjectTerm> ProjectTerms { get; set; }
 

@@ -3,7 +3,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class RequirementViewModel : StepViewModelBase
+    public class RequirementViewModel : ViewModelBase
     {
         public Requirement Requirement { get; set; }
 

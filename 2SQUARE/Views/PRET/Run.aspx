@@ -51,6 +51,10 @@
                 questionId.attr("id", "pretQuestionAnswers[" + index + "]_QuestionId");
                 questionId.attr("name", "pretQuestionAnswers[" + index + "].QuestionId");
 
+                var subQuestion = $(item).find("#IsSubQuestion");
+                subQuestion.attr("id", "pretQuestionAnswers[" + index + "]_IsSubQuestion");
+                subQuestion.attr("name", "pretQuestionAnswers[" + index + "].IsSubQuestion");
+
                 $.each($(item).find("#AnswerId"), function (index2, item2) {
                     $(item2).attr("id", "pretQuestionAnswers[" + index2 + "]_AnswerId");
                     $(item2).attr("name", "pretQuestionAnswers[" + index + "].AnswerId");

@@ -7,7 +7,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class Step2ViewModel : StepViewModelBase
+    public class Step2ViewModel : ViewModelBase
     {
         // needed for security
         public Goal BusinessGoal { get; set; }

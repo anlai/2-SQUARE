@@ -3,6 +3,7 @@
 <li class="question">
     <%: Model.Question %>
     <%: Html.Hidden("QuestionId", Model.Id) %>
+    <%: Html.Hidden("IsSubQuestion", Model.Subquestion)%>
     <ul>
         <% foreach (var answer in Model.PRETAnswers) { %>
             <li>

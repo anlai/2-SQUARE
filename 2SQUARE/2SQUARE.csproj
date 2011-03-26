@@ -133,6 +133,7 @@
     <Compile Include="Controllers\GenericElicitationController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
     <Compile Include="Models\PRAUCEditViewModel.cs" />
+    <Compile Include="Models\PRETResultViewModel.cs" />
     <Compile Include="Models\PRETViewModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />
     <Compile Include="Models\RiskAssessmentViewModel.cs" />
@@ -174,7 +175,7 @@
     <Compile Include="Models\Step4ViewModel.cs" />
     <Compile Include="Models\Step5ViewModel.cs" />
     <Compile Include="Models\GenericElicitationViewModel.cs" />
-    <Compile Include="Models\StepViewModelBase.cs" />
+    <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteConfigurator.cs" />
     <Compile Include="Services\IProjectService.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\PRAUC\RiskForm.ascx" />
     <Content Include="Views\PRET\Index.aspx" />
     <Content Include="Views\PRET\QuestionPartial.ascx" />
+    <Content Include="Views\PRET\Result.aspx" />
     <Content Include="Views\PRET\Run.aspx" />
     <Content Include="Views\Privacy\Step1.aspx" />
     <Content Include="Views\Privacy\Step2.aspx" />

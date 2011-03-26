@@ -82,9 +82,24 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Displays out the results of the questionaire
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="laws"></param>
+        /// <returns></returns>
         public ActionResult Result(int id,  int projectId, int[] laws)
         {
-            return View();
+            try
+            {
+                var viewModel = PRETResultViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, laws);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));               
+            }
         }
 
         private List<int> DetermineLaws(List<PRETQuestionAnswer> pretQuestionAnswers)
@@ -133,6 +148,4 @@ namespace _2SQUARE.Controllers
             return applicableLaws;
         }
     }
-
-
 }

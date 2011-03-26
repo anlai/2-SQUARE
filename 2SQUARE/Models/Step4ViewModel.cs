@@ -6,7 +6,7 @@ using DesignByContract;
 
 namespace _2SQUARE.Models
 {
-    public class Step4ViewModel : StepViewModelBase
+    public class Step4ViewModel : ViewModelBase
     {
         public IEnumerable<AssessmentType> AssessmentTypes { get; set; }
 

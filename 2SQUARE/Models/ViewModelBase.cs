@@ -3,7 +3,7 @@ using _2SQUARE.Models;
 using _2SQUARE.Services;
 using DesignByContract;
 
-public class StepViewModelBase
+public class ViewModelBase
 {
     public Project Project { get; set; }
     public ProjectStep ProjectStep { get; set; }
