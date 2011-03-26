@@ -255,6 +255,7 @@
     <Content Include="Views\Security\Step4.aspx" />
     <Content Include="Views\Security\Step5.aspx" />
     <Content Include="Views\Security\Step7.aspx" />
+    <Content Include="Views\Shared\CategorizedRequirementsView.ascx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />

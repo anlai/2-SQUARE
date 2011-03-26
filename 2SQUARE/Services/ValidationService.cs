@@ -409,8 +409,21 @@ public class ValidationService : IValidationService
 
     private bool Step7Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (projectStep.Project.Requirements.Any(a => a.SquareTypeId == projectStep.Step.SquareTypeId && (a.CategoryId <= 0 || a.CategoryId == null)))
+        {
+            var count =
+                projectStep.Project.Requirements.Where(
+                    a => a.SquareTypeId == projectStep.Step.SquareTypeId && (a.CategoryId <= 0 || a.CategoryId == null))
+                    .Count();
+
+            errors.Add(string.Format("There are {0} requirements that have not been categorized.", count));
+        }
+
+        return !errors.Any();
     }
 
     /// <summary>
@@ -438,6 +451,10 @@ public class ValidationService : IValidationService
 
     private bool Step8Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
         warnings.Add("Validation has not been added yet.");
         return false;
     }
@@ -466,6 +483,10 @@ public class ValidationService : IValidationService
 
     private bool Step9Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
         warnings.Add("Validation has not been added yet.");
         return false;
     }
