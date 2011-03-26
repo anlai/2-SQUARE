@@ -13,11 +13,11 @@ namespace _2SQUARE.Models
         {
             Check.Require(projectService != null, "projectService is required.");
 
-            var viewModel = new CategoryViewModel();
+            var viewModel = new CategoryViewModel() {};
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
             // extract the categoriest from the project
-            viewModel.Categories = viewModel.Project.Categories.Where(a => a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
+            viewModel.Categories = db.Categories.Where(a => a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId && a.ProjectId == projectId).ToList();
 
             return viewModel;
         }
