@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Security;
 using System.Web;
@@ -71,6 +72,8 @@ namespace _2SQUARE.Services
 
             var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
             var project = db.Projects.Where(a => a.id == id).Single();
+
+            db.Refresh(RefreshMode.StoreWins, project);
 
             if (!project.ProjectWorkers.Any(a => a.aspnet_Users.UserId == user.UserId)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
 

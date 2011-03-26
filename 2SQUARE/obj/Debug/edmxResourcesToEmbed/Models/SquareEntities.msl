@@ -486,6 +486,7 @@
     <EntitySetMapping Name="Requirements">
       <EntityTypeMapping TypeName="SquareModel.Requirement">
         <MappingFragment StoreEntitySet="Requirements">
+          <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="Essential" ColumnName="Essential" />
           <ScalarProperty Name="Priority" ColumnName="Priority" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />

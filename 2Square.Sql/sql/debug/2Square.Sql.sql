@@ -943,7 +943,6 @@ CREATE TABLE [dbo].[Categories] (
     [id]           INT           IDENTITY (1, 1) NOT NULL,
     [Name]         VARCHAR (100) NOT NULL,
     [ProjectId]    INT           NOT NULL,
-    [Order]        INT           NOT NULL,
     [SquareTypeId] INT           NOT NULL
 );
 
@@ -1409,7 +1408,8 @@ CREATE TABLE [dbo].[Requirements] (
     [SquareTypeId]  INT           NOT NULL,
     [CategoryId]    INT           NULL,
     [Priority]      INT           NULL,
-    [Essential]     BIT           NULL
+    [Essential]     BIT           NULL,
+    [Order]         INT           NULL
 );
 
 

@@ -1327,6 +1327,7 @@
     <NavigationProperty Name="Category" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Requirement" ToRole="Category" />
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_Requirements_Projects" FromRole="Requirement" ToRole="Project" />
     <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="Requirement" ToRole="SquareType" />
+    <Property Type="Int32" Name="Order" />
   </EntityType>
   <Association Name="FK_Categories_Projects">
     <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />

@@ -666,6 +666,7 @@
     <Property Name="CategoryId" Type="int" />
     <Property Name="Priority" Type="int" />
     <Property Name="Essential" Type="bit" />
+    <Property Name="Order" Type="int" />
   </EntityType>
   <EntityType Name="RiskLevels">
     <Key>
