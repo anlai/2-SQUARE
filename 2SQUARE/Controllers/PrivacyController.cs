@@ -21,6 +21,12 @@ namespace _2SQUARE.Controllers
         }
 
         #region Step 1
+        /// <summary>
+        /// Agree on Definitions
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step1(int id /* step id */, int projectId)
         {
@@ -42,6 +48,12 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 2
+        /// <summary>
+        /// Identify Assets and Privacy Goals
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step2(int id /* project step id */, int projectId)
         {
@@ -65,6 +77,8 @@ namespace _2SQUARE.Controllers
         /// <summary>
         /// Develop Artifacts
         /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
         /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step3(int id /*project step id*/, int projectId)
@@ -87,6 +101,12 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 4
+        /// <summary>
+        /// Risk Assessment
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step4(int id /*project step id*/, int projectId)
         {
@@ -133,6 +153,12 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 5
+        /// <summary>
+        /// Select Elicitation Technique
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step5(int id, int projectId)
         {
@@ -176,6 +202,12 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 6
+        /// <summary>
+        /// Elicit Privacy Requirements
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [AvailableForWork]
         public ActionResult Step6(int id, int projectId)
         {
@@ -198,23 +230,68 @@ namespace _2SQUARE.Controllers
         #endregion
 
         #region Step 7
+        /// <summary>
+        /// Categorize Requirements
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        [AvailableForWork]
         public ActionResult Step7(int id, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var viewModel = Step7ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
         #endregion
 
         #region Step 8
+        /// <summary>
+        /// Prioritize Requirements
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        [AvailableForWork]
         public ActionResult Step8(int id, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var viewModel = Step8ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
         #endregion
 
         #region Step 9
+        /// <summary>
+        /// Inspect Requirements
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        [AvailableForWork]
         public ActionResult Step9(int id, int projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var viewModel = Step9ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
         #endregion
         

@@ -175,6 +175,9 @@
     <Compile Include="Models\Step4ViewModel.cs" />
     <Compile Include="Models\Step5ViewModel.cs" />
     <Compile Include="Models\GenericElicitationViewModel.cs" />
+    <Compile Include="Models\Step7ViewModel.cs" />
+    <Compile Include="Models\Step8ViewModel.cs" />
+    <Compile Include="Models\Step9ViewModel.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteConfigurator.cs" />
