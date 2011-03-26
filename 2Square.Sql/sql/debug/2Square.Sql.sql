@@ -940,10 +940,11 @@ SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
 
 GO
 CREATE TABLE [dbo].[Categories] (
-    [id]        INT           IDENTITY (1, 1) NOT NULL,
-    [Name]      VARCHAR (100) NOT NULL,
-    [ProjectId] INT           NOT NULL,
-    [Order]     INT           NOT NULL
+    [id]           INT           IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (100) NOT NULL,
+    [ProjectId]    INT           NOT NULL,
+    [Order]        INT           NOT NULL,
+    [SquareTypeId] INT           NOT NULL
 );
 
 
@@ -1992,6 +1993,15 @@ PRINT N'Creating FK_Categories_Projects...';
 GO
 ALTER TABLE [dbo].[Categories] WITH NOCHECK
     ADD CONSTRAINT [FK_Categories_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_Categories_SquareTypes...';
+
+
+GO
+ALTER TABLE [dbo].[Categories] WITH NOCHECK
+    ADD CONSTRAINT [FK_Categories_SquareTypes] FOREIGN KEY ([SquareTypeId]) REFERENCES [dbo].[SquareTypes] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -6234,6 +6244,8 @@ ALTER TABLE [dbo].[ArtifactTypes] WITH CHECK CHECK CONSTRAINT [FK_ArtifactTypes_
 ALTER TABLE [dbo].[AssessmentTypes] WITH CHECK CHECK CONSTRAINT [FK_AssessmentTypes_SquareTypes];
 
 ALTER TABLE [dbo].[Categories] WITH CHECK CHECK CONSTRAINT [FK_Categories_Projects];
+
+ALTER TABLE [dbo].[Categories] WITH CHECK CHECK CONSTRAINT [FK_Categories_SquareTypes];
 
 ALTER TABLE [dbo].[Definitions] WITH CHECK CHECK CONSTRAINT [FK_Definitions_Terms];
 

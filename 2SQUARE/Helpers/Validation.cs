@@ -43,6 +43,11 @@ namespace _2SQUARE.Helpers
             if (requirement.SquareType == null && requirement.SquareTypeId <=0) modelState.AddModelError("Square Type", Required("Square Type"));
         }
 
+        public static void Validate(Category category, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrEmpty(category.Name)) modelState.AddModelError("Name", Required("Name"));
+        }
+
         private static string Required(string field)
         {
             return string.Format(Messages.Required,field);

@@ -118,6 +118,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArtifactController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\GuidanceController.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\GenericElicitationController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\PRAUCEditViewModel.cs" />
     <Compile Include="Models\PRETResultViewModel.cs" />
     <Compile Include="Models\PRETViewModel.cs" />
@@ -202,6 +204,10 @@
     <Content Include="Views\Artifact\ArtifactForm.ascx" />
     <Content Include="Views\Artifact\Details.aspx" />
     <Content Include="Views\Artifact\Edit.aspx" />
+    <Content Include="Views\Category\CategoryForm.ascx" />
+    <Content Include="Views\Category\Create.aspx" />
+    <Content Include="Views\Category\Edit.aspx" />
+    <Content Include="Views\Category\Index.aspx" />
     <Content Include="Views\Error\Security.aspx" />
     <Content Include="Views\GenericElicitation\Edit.aspx" />
     <Content Include="Views\GenericElicitation\Index.aspx" />
@@ -245,6 +251,7 @@
     <Content Include="Views\Security\Step3.aspx" />
     <Content Include="Views\Security\Step4.aspx" />
     <Content Include="Views\Security\Step5.aspx" />
+    <Content Include="Views\Security\Step7.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\ProjectTermsView.ascx" />
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />

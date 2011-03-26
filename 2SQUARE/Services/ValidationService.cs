@@ -373,8 +373,16 @@ public class ValidationService : IValidationService
 
     private bool Step6Complete(ProjectStep projectStep, List<string> warnings, List<string> errors)
     {
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        Check.Require(projectStep != null, "projectStep is required.");
+        Check.Require(warnings != null, "warnings is required.");
+        Check.Require(errors != null, "errors is required.");
+
+        if (!projectStep.Project.Requirements.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Any())
+        {
+            errors.Add("There are no requirements defined.");
+        }
+
+        return !errors.Any();
     }
 
     /// <summary>
