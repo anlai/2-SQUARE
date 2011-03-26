@@ -7,8 +7,11 @@
     [SquareTypeId]  INT           NOT NULL,
     [CategoryId]    INT           NULL,
     [Priority]      INT           NULL,
-    [Essential]     BIT           NULL
+    [Essential]     BIT           NULL,
+    [Order]         INT           NULL
 );
+
+
 
 
 

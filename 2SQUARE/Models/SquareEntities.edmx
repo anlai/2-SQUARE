@@ -671,6 +671,7 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="Priority" Type="int" />
           <Property Name="Essential" Type="bit" />
+          <Property Name="Order" Type="int" />
         </EntityType>
         <EntityType Name="RiskLevels">
           <Key>
@@ -3207,6 +3208,7 @@
           <NavigationProperty Name="Category" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Requirement" ToRole="Category" />
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_Requirements_Projects" FromRole="Requirement" ToRole="Project" />
           <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="Requirement" ToRole="SquareType" />
+          <Property Type="Int32" Name="Order" />
         </EntityType>
         <Association Name="FK_Categories_Projects">
           <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />
@@ -3729,6 +3731,7 @@
           <EntitySetMapping Name="Requirements">
             <EntityTypeMapping TypeName="SquareModel.Requirement">
               <MappingFragment StoreEntitySet="Requirements">
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Essential" ColumnName="Essential" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
