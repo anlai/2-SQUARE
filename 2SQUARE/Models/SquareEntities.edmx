@@ -575,11 +575,9 @@
           <Key>
             <PropertyRef Name="AnswerId" />
             <PropertyRef Name="LawId" />
-            <PropertyRef Name="GroupId" />
           </Key>
           <Property Name="AnswerId" Type="int" Nullable="false" />
           <Property Name="LawId" Type="int" Nullable="false" />
-          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="PRETLaws">
           <Key>
@@ -3250,11 +3248,9 @@
           <Key>
             <PropertyRef Name="AnswerId" />
             <PropertyRef Name="LawId" />
-            <PropertyRef Name="GroupId" />
           </Key>
           <Property Type="Int32" Name="AnswerId" Nullable="false" />
           <Property Type="Int32" Name="LawId" Nullable="false" />
-          <Property Type="Guid" Name="GroupId" Nullable="false" />
           <NavigationProperty Name="PRETAnswer" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETAnswers" FromRole="PRETAnswerXLaw" ToRole="PRETAnswer" />
           <NavigationProperty Name="PRETLaw" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETLaws" FromRole="PRETAnswerXLaw" ToRole="PRETLaw" />
         </EntityType>
@@ -3723,7 +3719,6 @@
           <EntitySetMapping Name="PRETAnswerXLaws">
             <EntityTypeMapping TypeName="SquareModel.PRETAnswerXLaw">
               <MappingFragment StoreEntitySet="PRETAnswerXLaws">
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="LawId" ColumnName="LawId" />
                 <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
               </MappingFragment>
@@ -4153,7 +4148,7 @@
           <ConnectorPoint PointX="10.75" PointY="30.131948242187498" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SquareModel.PRETAnswer" Width="1.5" PointX="15.375" PointY="27.5" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SquareModel.PRETAnswerXLaw" Width="1.5" PointX="17.625" PointY="17.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="SquareModel.PRETAnswerXLaw" Width="1.5" PointX="17.625" PointY="17.5" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SquareModel.PRETLaw" Width="1.5" PointX="15.375" PointY="18.5" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="SquareModel.PRETQuestion" Width="1.5" PointX="13.125" PointY="27.375" Height="2.1725878906250102" />
         <EntityTypeShape EntityType="SquareModel.PRETRequirement" Width="1.5" PointX="17.625" PointY="21.125" Height="2.1725878906249818" />
@@ -4164,14 +4159,14 @@
         <AssociationConnector Association="SquareModel.FK_PRETAnswerXLaws_PRETAnswers" >
           <ConnectorPoint PointX="16.875" PointY="27.5" />
           <ConnectorPoint PointX="17.25" PointY="27.125" />
-          <ConnectorPoint PointX="17.25" PointY="18.490143229166669" />
-          <ConnectorPoint PointX="17.625" PointY="18.490143229166669" />
+          <ConnectorPoint PointX="17.25" PointY="18.189542643001474" />
+          <ConnectorPoint PointX="17.625" PointY="18.189542643001474" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_PRETAnswerXLaws_PRETLaws" >
-          <ConnectorPoint PointX="16.875" PointY="18.990143229166669" />
-          <ConnectorPoint PointX="17.166666666666668" PointY="18.990143229166669" />
-          <ConnectorPoint PointX="17.333333333333332" PointY="18.990143229166669" />
-          <ConnectorPoint PointX="17.625" PointY="18.990143229166669" />
+          <ConnectorPoint PointX="16.875" PointY="18.893992513020834" />
+          <ConnectorPoint PointX="17.166666666666668" PointY="18.893992513020834" />
+          <ConnectorPoint PointX="17.333333333333332" PointY="18.893992513020834" />
+          <ConnectorPoint PointX="17.625" PointY="18.893992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_PRETRequirements_PRETLaws" >
           <ConnectorPoint PointX="16.125" PointY="20.480286458333325" />

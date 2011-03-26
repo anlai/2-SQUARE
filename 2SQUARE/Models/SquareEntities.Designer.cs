@@ -6259,13 +6259,11 @@ namespace _2SQUARE.Models
         /// </summary>
         /// <param name="answerId">Initial value of the AnswerId property.</param>
         /// <param name="lawId">Initial value of the LawId property.</param>
-        /// <param name="groupId">Initial value of the GroupId property.</param>
-        public static PRETAnswerXLaw CreatePRETAnswerXLaw(global::System.Int32 answerId, global::System.Int32 lawId, global::System.Guid groupId)
+        public static PRETAnswerXLaw CreatePRETAnswerXLaw(global::System.Int32 answerId, global::System.Int32 lawId)
         {
             PRETAnswerXLaw pRETAnswerXLaw = new PRETAnswerXLaw();
             pRETAnswerXLaw.AnswerId = answerId;
             pRETAnswerXLaw.LawId = lawId;
-            pRETAnswerXLaw.GroupId = groupId;
             return pRETAnswerXLaw;
         }
 
@@ -6325,33 +6323,6 @@ namespace _2SQUARE.Models
         private global::System.Int32 _LawId;
         partial void OnLawIdChanging(global::System.Int32 value);
         partial void OnLawIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid GroupId
-        {
-            get
-            {
-                return _GroupId;
-            }
-            set
-            {
-                if (_GroupId != value)
-                {
-                    OnGroupIdChanging(value);
-                    ReportPropertyChanging("GroupId");
-                    _GroupId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("GroupId");
-                    OnGroupIdChanged();
-                }
-            }
-        }
-        private global::System.Guid _GroupId;
-        partial void OnGroupIdChanging(global::System.Guid value);
-        partial void OnGroupIdChanged();
 
         #endregion
     
