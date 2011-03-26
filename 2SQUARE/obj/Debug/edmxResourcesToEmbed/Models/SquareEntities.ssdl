@@ -193,6 +193,10 @@
       <End Role="Projects" EntitySet="Projects" />
       <End Role="Categories" EntitySet="Categories" />
     </AssociationSet>
+    <AssociationSet Name="FK_Categories_SquareTypes" Association="SquareModel.Store.FK_Categories_SquareTypes">
+      <End Role="SquareTypes" EntitySet="SquareTypes" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
     <AssociationSet Name="FK_Definitions_Terms" Association="SquareModel.Store.FK_Definitions_Terms">
       <End Role="Terms" EntitySet="Terms" />
       <End Role="Definitions" EntitySet="Definitions" />
@@ -508,7 +512,7 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
-    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="SquareTypeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Definitions">
     <Key>
@@ -1089,6 +1093,18 @@
       </Principal>
       <Dependent Role="Categories">
         <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Categories_SquareTypes">
+    <End Role="SquareTypes" Type="SquareModel.Store.SquareTypes" Multiplicity="1" />
+    <End Role="Categories" Type="SquareModel.Store.Categories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

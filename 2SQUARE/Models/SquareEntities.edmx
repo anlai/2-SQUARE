@@ -517,7 +517,6 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
-          <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="SquareTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Definitions">
@@ -3187,7 +3186,6 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
-          <Property Type="Int32" Name="Order" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="SquareModel.FK_Categories_Projects" FromRole="Category" ToRole="Project" />
           <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Category" ToRole="Requirement" />
           <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
@@ -3722,7 +3720,6 @@
             <EntityTypeMapping TypeName="SquareModel.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -3942,18 +3939,20 @@
           <ConnectorPoint PointX="4.5" PointY="16.030839402343751" />
           <ConnectorPoint PointX="5" PointY="16.030839402343751" />
           <ConnectorPoint PointX="5" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="6.0885406666666668" PointY="19.057190755208339" />
-          <ConnectorPoint PointX="6.2552073333333329" PointY="19.057190755208339" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="19.057190755208339" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="19.057190755208339" />
+          <ConnectorPoint PointX="6.1315091666666666" PointY="19.057190755208339" />
+          <ConnectorPoint PointX="6.2981758333333326" PointY="19.057190755208339" />
           <ConnectorPoint PointX="7.041666666666667" PointY="19.057190755208339" />
           <ConnectorPoint PointX="7.208333333333333" PointY="19.057190755208339" />
           <ConnectorPoint PointX="10" PointY="19.057190755208339" />
           <ConnectorPoint PointX="10" PointY="18.057190755208339" />
           <ConnectorPoint PointX="10.166666666666666" PointY="18.057190755208339" />
           <ConnectorPoint PointX="10.333333333333334" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.468702658691406" PointY="18.057190755208339" />
-          <ConnectorPoint PointX="11.468702658691406" PointY="18.75" />
+          <ConnectorPoint PointX="11.156891915171304" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.323558581837972" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.507801664672851" PointY="18.057190755208339" />
+          <ConnectorPoint PointX="11.507801664672851" PointY="18.75" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Definitions_Terms" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="25.2112939453125" />
@@ -3963,10 +3962,10 @@
           <ConnectorPoint PointX="4.5" PointY="18.72211824228431" />
           <ConnectorPoint PointX="4.916666666666667" PointY="18.72211824228431" />
           <ConnectorPoint PointX="5.208333333333333" PointY="18.72211824228431" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="18.72211824228431" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="18.72211824228431" />
-          <ConnectorPoint PointX="6.0885406666666668" PointY="18.72211824228431" />
-          <ConnectorPoint PointX="6.2552073333333329" PointY="18.72211824228431" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="18.72211824228431" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="18.72211824228431" />
+          <ConnectorPoint PointX="6.1315091666666666" PointY="18.72211824228431" />
+          <ConnectorPoint PointX="6.2981758333333326" PointY="18.72211824228431" />
           <ConnectorPoint PointX="6.8893741016593095" PointY="18.72211824228431" />
           <ConnectorPoint PointX="7.0560407683259756" PointY="18.72211824228431" />
           <ConnectorPoint PointX="7.5" PointY="18.72211824228431" />
@@ -3976,13 +3975,13 @@
           <ConnectorPoint PointX="7.5" PointY="16.826797688802085" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Goals_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="19.147972509347035" />
-          <ConnectorPoint PointX="2.75" PointY="19.147972509347035" />
+          <ConnectorPoint PointX="2.25" PointY="19.11139009999301" />
+          <ConnectorPoint PointX="2.75" PointY="19.11139009999301" />
           <ConnectorPoint PointX="2.75" PointY="20.297587890624996" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="20.297587890624996" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="20.297587890624996" />
-          <ConnectorPoint PointX="6.0885406666666668" PointY="20.297587890624996" />
-          <ConnectorPoint PointX="6.2552073333333329" PointY="20.297587890624996" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="20.297587890624996" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="20.297587890624996" />
+          <ConnectorPoint PointX="6.1315091666666666" PointY="20.297587890624996" />
+          <ConnectorPoint PointX="6.2981758333333326" PointY="20.297587890624996" />
           <ConnectorPoint PointX="7.041666666666667" PointY="20.297587890624996" />
           <ConnectorPoint PointX="7.208333333333333" PointY="20.297587890624996" />
           <ConnectorPoint PointX="7.25" PointY="20.297587890624996" />
@@ -3999,8 +3998,8 @@
           <ConnectorPoint PointX="10.5" PointY="24.163157552083334" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Projects" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.171874" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="6.171874" PointY="21.10773797851563" />
+          <ConnectorPoint PointX="6.2148425" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="6.2148425" PointY="21.10773797851563" />
           <ConnectorPoint PointX="7.041666666666667" PointY="21.10773797851563" />
           <ConnectorPoint PointX="7.208333333333333" PointY="21.10773797851563" />
           <ConnectorPoint PointX="7.5" PointY="21.10773797851563" />
@@ -4029,34 +4028,32 @@
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectSteps_Steps" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="21.980393066406254" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="21.980393066406254" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="21.980393066406254" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="21.980393066406254" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="21.980393066406254" />
           <ConnectorPoint PointX="7.041666666666667" PointY="21.980393066406254" />
           <ConnectorPoint PointX="7.208333333333333" PointY="21.980393066406254" />
           <ConnectorPoint PointX="7.5" PointY="21.980393066406254" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_ProjectTerms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="17.568241127336766" />
-          <ConnectorPoint PointX="2.75" PointY="17.568241127336766" />
+          <ConnectorPoint PointX="2.25" PointY="17.559095524998259" />
+          <ConnectorPoint PointX="2.75" PointY="17.559095524998259" />
           <ConnectorPoint PointX="2.75" PointY="17.375" />
           <ConnectorPoint PointX="4.916666666666667" PointY="17.375" />
           <ConnectorPoint PointX="5.083333333333333" PointY="17.375" />
           <ConnectorPoint PointX="5.125" PointY="17.375" />
           <ConnectorPoint PointX="5.125" PointY="19.088440755208339" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="19.088440755208339" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="19.088440755208339" />
-          <ConnectorPoint PointX="6.0885406666666668" PointY="19.088440755208339" />
-          <ConnectorPoint PointX="6.2552073333333329" PointY="19.088440755208339" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="19.088440755208339" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="19.088440755208339" />
+          <ConnectorPoint PointX="6.1315091666666666" PointY="19.088440755208339" />
+          <ConnectorPoint PointX="6.2981758333333326" PointY="19.088440755208339" />
           <ConnectorPoint PointX="7.041666666666667" PointY="19.088440755208339" />
           <ConnectorPoint PointX="7.208333333333333" PointY="19.088440755208339" />
           <ConnectorPoint PointX="10.25" PointY="19.088440755208339" />
           <ConnectorPoint PointX="10.25" PointY="18.5" />
-          <ConnectorPoint PointX="10.869765996012369" PointY="18.5" />
-          <ConnectorPoint PointX="11.036432662679037" PointY="18.5" />
-          <ConnectorPoint PointX="11.385369325358072" PointY="18.5" />
-          <ConnectorPoint PointX="11.55203599202474" PointY="18.5" />
-          <ConnectorPoint PointX="11.734350829345704" PointY="18.5" />
-          <ConnectorPoint PointX="11.734350829345704" PointY="17.807190755208339" />
+          <ConnectorPoint PointX="10.889315499003091" PointY="18.5" />
+          <ConnectorPoint PointX="11.055982165669759" PointY="18.5" />
+          <ConnectorPoint PointX="11.240225248504638" PointY="18.5" />
+          <ConnectorPoint PointX="11.240225248504638" PointY="17.807190755208339" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Risks_Damage" ManuallyRouted="false">
           <ConnectorPoint PointX="9.75" PointY="27.015355244750975" />
@@ -4084,28 +4081,28 @@
           <ConnectorPoint PointX="2.25" PointY="19.898793945312498" />
           <ConnectorPoint PointX="2.6666666666666665" PointY="19.898793945312498" />
           <ConnectorPoint PointX="2.8333333333333335" PointY="19.898793945312498" />
-          <ConnectorPoint PointX="5.5963516666666671" PointY="19.898793945312498" />
-          <ConnectorPoint PointX="5.7630183333333331" PointY="19.898793945312498" />
-          <ConnectorPoint PointX="6.0885406666666668" PointY="19.898793945312498" />
-          <ConnectorPoint PointX="6.2552073333333329" PointY="19.898793945312498" />
+          <ConnectorPoint PointX="5.6178359166666665" PointY="19.898793945312498" />
+          <ConnectorPoint PointX="5.7845025833333326" PointY="19.898793945312498" />
+          <ConnectorPoint PointX="6.1315091666666666" PointY="19.898793945312498" />
+          <ConnectorPoint PointX="6.2981758333333326" PointY="19.898793945312498" />
           <ConnectorPoint PointX="7.041666666666667" PointY="19.898793945312498" />
           <ConnectorPoint PointX="7.333333333333333" PointY="19.898793945312498" />
           <ConnectorPoint PointX="10.5" PointY="19.898793945312498" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Steps_RequirementCategories" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.55834935546875" PointY="20.393697916666667" />
-          <ConnectorPoint PointX="1.55834935546875" PointY="21.999746093750005" />
-          <ConnectorPoint PointX="1.8520938444010417" PointY="21.999746093750005" />
-          <ConnectorPoint PointX="2.0187605110677085" PointY="21.999746093750005" />
-          <ConnectorPoint PointX="3" PointY="21.999746093750005" />
+          <ConnectorPoint PointX="1.6380314721679687" PointY="20.393697916666667" />
+          <ConnectorPoint PointX="1.6380314721679687" PointY="22.116140913264996" />
+          <ConnectorPoint PointX="1.8919349027506511" PointY="22.116140913264996" />
+          <ConnectorPoint PointX="2.0586015694173176" PointY="22.116140913264996" />
+          <ConnectorPoint PointX="3" PointY="22.116140913264996" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Terms_SquareTypes" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.122922177734375" PointY="20.393697916666667" />
-          <ConnectorPoint PointX="1.122922177734375" PointY="25.211293945312505" />
-          <ConnectorPoint PointX="1.2573024332682292" PointY="25.211293945312505" />
-          <ConnectorPoint PointX="1.4239690999348957" PointY="25.211293945312505" />
-          <ConnectorPoint PointX="1.8520938444010417" PointY="25.211293945312505" />
-          <ConnectorPoint PointX="2.0187605110677085" PointY="25.211293945312505" />
+          <ConnectorPoint PointX="1.0140653833007813" PointY="20.393697916666667" />
+          <ConnectorPoint PointX="1.0140653833007813" PointY="25.211293945312505" />
+          <ConnectorPoint PointX="1.2427150944010419" PointY="25.211293945312505" />
+          <ConnectorPoint PointX="1.4093817610677084" PointY="25.211293945312505" />
+          <ConnectorPoint PointX="1.8919349027506511" PointY="25.211293945312505" />
+          <ConnectorPoint PointX="2.0586015694173176" PointY="25.211293945312505" />
           <ConnectorPoint PointX="3" PointY="25.211293945312505" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.aspnet_UsersInRoles" ManuallyRouted="false">
@@ -4157,22 +4154,22 @@
           <ConnectorPoint PointX="16" PointY="11.220896809895834" />
           <ConnectorPoint PointX="16.375" PointY="11.220896809895834" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SquareModel.Category" Width="1.5" PointX="7.5" PointY="30.75" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="SquareModel.Category" Width="1.5" PointX="7.5" PointY="30.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="SquareModel.Requirement" Width="1.5" PointX="10.75" PointY="27.5" Height="3.3263964843750102" />
         <AssociationConnector Association="SquareModel.FK_Categories_Projects" >
           <ConnectorPoint PointX="6.75" PointY="18.499410807291667" />
           <ConnectorPoint PointX="7.125" PointY="18.874410807291667" />
-          <ConnectorPoint PointX="7.125" PointY="32.028595377604162" />
-          <ConnectorPoint PointX="7.5" PointY="32.028595377604162" />
+          <ConnectorPoint PointX="7.125" PointY="32.3632219208884" />
+          <ConnectorPoint PointX="7.5" PointY="32.3632219208884" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Requirements_Categories" >
-          <ConnectorPoint PointX="9" PointY="32.066794119791666" />
-          <ConnectorPoint PointX="11.5" PointY="32.066794119791666" />
+          <ConnectorPoint PointX="9" PointY="31.970643403645838" />
+          <ConnectorPoint PointX="11.5" PointY="31.970643403645838" />
           <ConnectorPoint PointX="11.5" PointY="30.82639648437501" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Requirements_Projects" >
-          <ConnectorPoint PointX="5.679685" PointY="18.499410807291667" />
-          <ConnectorPoint PointX="5.679685" PointY="23.875" />
+          <ConnectorPoint PointX="5.7011692499999995" PointY="18.499410807291667" />
+          <ConnectorPoint PointX="5.7011692499999995" PointY="23.875" />
           <ConnectorPoint PointX="7.041666666666667" PointY="23.875" />
           <ConnectorPoint PointX="7.208333333333333" PointY="23.875" />
           <ConnectorPoint PointX="8" PointY="23.875" />
@@ -4182,8 +4179,8 @@
           <ConnectorPoint PointX="10.75" PointY="28.784722121093758" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Requirements_SquareTypes" >
-          <ConnectorPoint PointX="1.935427177734375" PointY="20.393697916666667" />
-          <ConnectorPoint PointX="1.935427177734375" PointY="30.131948242187498" />
+          <ConnectorPoint PointX="1.9752682360839844" PointY="20.393697916666667" />
+          <ConnectorPoint PointX="1.9752682360839844" PointY="30.131948242187498" />
           <ConnectorPoint PointX="7.041666666666667" PointY="30.131948242187498" />
           <ConnectorPoint PointX="7.208333333333333" PointY="30.131948242187498" />
           <ConnectorPoint PointX="10.75" PointY="30.131948242187498" />
@@ -4223,11 +4220,11 @@
           <ConnectorPoint PointX="14.103461538461538" PointY="29.932190755208335" />
         </AssociationConnector>
         <AssociationConnector Association="SquareModel.FK_Categories_SquareTypes" >
-          <ConnectorPoint PointX="1.3406357666015625" PointY="20.393697916666667" />
-          <ConnectorPoint PointX="1.3406357666015625" PointY="31.358045188802087" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="31.358045188802087" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="31.358045188802087" />
-          <ConnectorPoint PointX="7.5" PointY="31.358045188802087" />
+          <ConnectorPoint PointX="1.3260484277343752" PointY="20.393697916666667" />
+          <ConnectorPoint PointX="1.3260484277343752" PointY="31.525358460444206" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="31.525358460444206" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="31.525358460444206" />
+          <ConnectorPoint PointX="7.5" PointY="31.525358460444206" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

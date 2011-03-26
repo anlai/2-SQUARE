@@ -476,7 +476,7 @@
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="SquareModel.Category">
         <MappingFragment StoreEntitySet="Categories">
-          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="SquareTypeId" ColumnName="SquareTypeId" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="id" ColumnName="id" />

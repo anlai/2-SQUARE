@@ -4829,15 +4829,13 @@ namespace _2SQUARE.Models
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="projectId">Initial value of the ProjectId property.</param>
-        /// <param name="order">Initial value of the Order property.</param>
         /// <param name="squareTypeId">Initial value of the SquareTypeId property.</param>
-        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 projectId, global::System.Int32 order, global::System.Int32 squareTypeId)
+        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 projectId, global::System.Int32 squareTypeId)
         {
             Category category = new Category();
             category.id = id;
             category.Name = name;
             category.ProjectId = projectId;
-            category.Order = order;
             category.SquareTypeId = squareTypeId;
             return category;
         }
@@ -4919,30 +4917,6 @@ namespace _2SQUARE.Models
         private global::System.Int32 _ProjectId;
         partial void OnProjectIdChanging(global::System.Int32 value);
         partial void OnProjectIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Order
-        {
-            get
-            {
-                return _Order;
-            }
-            set
-            {
-                OnOrderChanging(value);
-                ReportPropertyChanging("Order");
-                _Order = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Order");
-                OnOrderChanged();
-            }
-        }
-        private global::System.Int32 _Order;
-        partial void OnOrderChanging(global::System.Int32 value);
-        partial void OnOrderChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

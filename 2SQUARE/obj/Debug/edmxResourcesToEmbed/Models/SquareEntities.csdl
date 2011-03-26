@@ -250,6 +250,10 @@
       <End Role="PRETQuestion" EntitySet="PRETQuestions" />
       <End Role="PRETQuestion1" EntitySet="PRETQuestions" />
     </AssociationSet>
+    <AssociationSet Name="FK_Categories_SquareTypes" Association="SquareModel.FK_Categories_SquareTypes">
+      <End Role="SquareType" EntitySet="SquareTypes" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artifact">
     <Key>
@@ -615,6 +619,7 @@
     <NavigationProperty Name="Terms" Relationship="SquareModel.FK_Terms_SquareTypes" FromRole="SquareTypes" ToRole="Terms" />
     <NavigationProperty Name="ElicitationTypes" Relationship="SquareModel.FK_ElicitationTypes_SquareTypes" FromRole="SquareType" ToRole="ElicitationType" />
     <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="SquareType" ToRole="Requirement" />
+    <NavigationProperty Name="Categories" Relationship="SquareModel.FK_Categories_SquareTypes" FromRole="SquareType" ToRole="Category" />
   </EntityType>
   <EntityType Name="Step">
     <Key>
@@ -1301,9 +1306,10 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="ProjectId" Nullable="false" />
-    <Property Type="Int32" Name="Order" Nullable="false" />
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_Categories_Projects" FromRole="Category" ToRole="Project" />
     <NavigationProperty Name="Requirements" Relationship="SquareModel.FK_Requirements_Categories" FromRole="Category" ToRole="Requirement" />
+    <Property Type="Int32" Name="SquareTypeId" Nullable="false" />
+    <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Categories_SquareTypes" FromRole="Category" ToRole="SquareType" />
   </EntityType>
   <EntityType Name="Requirement">
     <Key>
@@ -1481,6 +1487,18 @@
       </Principal>
       <Dependent Role="PRETQuestion1">
         <PropertyRef Name="ParentQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Categories_SquareTypes">
+    <End Type="SquareModel.SquareType" Role="SquareType" Multiplicity="1" />
+    <End Type="SquareModel.Category" Role="Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SquareType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="SquareTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
