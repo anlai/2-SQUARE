@@ -15980,7 +15980,7 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_PRETAnswerXLaws]">
+		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_PRETAnswerXLaws_1]">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
 					<Element Type="ISqlIndexedColumnSpecification">
@@ -15996,15 +15996,6 @@ END]]></Value>
 						<Relationship Name="Column">
 							<Entry>
 								<References Name="[dbo].[PRETAnswerXLaws].[LawId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[PRETAnswerXLaws].[GroupId]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -16392,22 +16383,6 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[PRETAnswerXLaws].[GroupId]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
 										</Entry>
 									</Relationship>
 								</Element>

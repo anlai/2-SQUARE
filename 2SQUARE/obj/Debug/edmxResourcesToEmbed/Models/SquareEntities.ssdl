@@ -570,11 +570,9 @@
     <Key>
       <PropertyRef Name="AnswerId" />
       <PropertyRef Name="LawId" />
-      <PropertyRef Name="GroupId" />
     </Key>
     <Property Name="AnswerId" Type="int" Nullable="false" />
     <Property Name="LawId" Type="int" Nullable="false" />
-    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="PRETLaws">
     <Key>

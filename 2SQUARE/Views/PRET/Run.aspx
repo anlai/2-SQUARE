@@ -30,7 +30,7 @@
         <% } %>
     </ol>
     
-    <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
+    <%: Html.SubmitButton("Run", "Run", new {@class="button ui-corner-all ui-state-default"}) %>
     <%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Cancel", new {@class="button ui-state-default ui-corner-all"}) %>
 
     <% } %>

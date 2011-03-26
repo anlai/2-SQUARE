@@ -510,7 +510,6 @@
     <EntitySetMapping Name="PRETAnswerXLaws">
       <EntityTypeMapping TypeName="SquareModel.PRETAnswerXLaw">
         <MappingFragment StoreEntitySet="PRETAnswerXLaws">
-          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
           <ScalarProperty Name="LawId" ColumnName="LawId" />
           <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
         </MappingFragment>

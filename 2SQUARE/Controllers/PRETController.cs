@@ -64,7 +64,7 @@ namespace _2SQUARE.Controllers
         public ActionResult Run(int id, int projectId, List<PRETQuestionAnswer> pretQuestionAnswers)
         {
             // all questions must be answered
-            if (pretQuestionAnswers.Any(a => a.AnswerId == 0))
+            if (pretQuestionAnswers.Any(a => a.AnswerId == 0 && !a.IsSubQuestion))
             {
                 ModelState.AddModelError("Question", "At least one question was not answered.");
             }
@@ -74,8 +74,9 @@ namespace _2SQUARE.Controllers
                 // figure out which laws and redirect to the result page
                 var applicableLaws = DetermineLaws(pretQuestionAnswers);
 
+                TempData["applicableLaws"] = applicableLaws;
                 // redirect to the results
-                return this.RedirectToAction(a => a.Result(id, projectId, applicableLaws.ToArray()));
+                return this.RedirectToAction(a => a.Result(id, projectId));
             }
 
             var viewModel = PRETViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, true, pretQuestionAnswers);
@@ -89,17 +90,50 @@ namespace _2SQUARE.Controllers
         /// <param name="projectId"></param>
         /// <param name="laws"></param>
         /// <returns></returns>
-        public ActionResult Result(int id,  int projectId, int[] laws)
+        public ActionResult Result(int id,  int projectId)
         {
             try
             {
-                var viewModel = PRETResultViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, laws);
+                var laws = (List<int>) TempData["applicableLaws"];
+
+                var viewModel = PRETResultViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, laws.ToArray());
                 return View(viewModel);
             }
             catch (SecurityException)
             {
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));               
             }
+        }
+
+        [HttpPost]
+        public ActionResult Result(int id, int projectId, int[] lawIds)
+        {
+            try
+            {
+                // load all the laws
+                var requirements = Db.PRETRequirements.Where(a => lawIds.Contains(a.PRETLaw.id)).ToList();
+                var reqs = requirements.Select(a => new Requirement()
+                                     {
+                                         ProjectId = projectId,
+                                         Name = a.Name,
+                                         Requirement1 = a.Requirement,
+                                         RequirementId = string.Format("{0}-{1}", a.PRETLaw.id, a.id),
+                                         SquareTypeId = Db.SquareTypes.Where(b=>b.Name ==SquareTypes.Privacy).Select(b=>b.id).First()
+                                     }).ToList();
+
+                foreach(var a in reqs) Db.Requirements.AddObject(a);
+
+                Db.SaveChanges();
+
+                Message = string.Format("{0} requirements have been added to the project.", reqs.Count);
+                return this.RedirectToAction(a => a.Index(id, projectId));
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));               
+            }
+
+            return View();
         }
 
         private List<int> DetermineLaws(List<PRETQuestionAnswer> pretQuestionAnswers)

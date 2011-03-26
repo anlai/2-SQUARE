@@ -1384,11 +1384,9 @@
     <Key>
       <PropertyRef Name="AnswerId" />
       <PropertyRef Name="LawId" />
-      <PropertyRef Name="GroupId" />
     </Key>
     <Property Type="Int32" Name="AnswerId" Nullable="false" />
     <Property Type="Int32" Name="LawId" Nullable="false" />
-    <Property Type="Guid" Name="GroupId" Nullable="false" />
     <NavigationProperty Name="PRETAnswer" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETAnswers" FromRole="PRETAnswerXLaw" ToRole="PRETAnswer" />
     <NavigationProperty Name="PRETLaw" Relationship="SquareModel.FK_PRETAnswerXLaws_PRETLaws" FromRole="PRETAnswerXLaw" ToRole="PRETLaw" />
   </EntityType>

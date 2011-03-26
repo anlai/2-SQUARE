@@ -8,16 +8,21 @@ namespace _2SQUARE.Models
     public class PRETResultViewModel : ViewModelBase
     {
         public IEnumerable<PRETLaw> PretLaws { get; set; }
+        public IEnumerable<PRETRequirement> PretRequirements { get; set; }
 
         public static PRETResultViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId, int[] laws)
         {
             Check.Require(db != null, "db is required.");
             Check.Require(projectService != null, "projectService is required.");
 
+            laws = laws ?? new int[0];
+
             var viewModel = new PRETResultViewModel()
                                 {
-                                    PretLaws = db.PRETLaws.Where(a=>laws.Contains(a.id)).ToList()
+                                    PretLaws = db.PRETLaws.Where(a=>laws.Contains(a.id)).ToList(),
+                                    PretRequirements = db.PRETRequirements.Where(a=>laws.Contains(a.PRETLaw.id)).ToList()
                                 };
+
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
             return viewModel;
         }
