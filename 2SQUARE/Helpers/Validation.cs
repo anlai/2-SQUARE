@@ -37,7 +37,6 @@ namespace _2SQUARE.Helpers
         {
             if (string.IsNullOrWhiteSpace(requirement.Name)) modelState.AddModelError("Name", Required("Name"));
             if (string.IsNullOrWhiteSpace(requirement.Requirement1)) modelState.AddModelError("Requirement", Required("Requirement"));
-            //if (string.IsNullOrWhiteSpace(requirement.RequirementId)) modelState.AddModelError("Requirement Id", Required("Requirement Id"));
 
             if (requirement.Project == null && requirement.ProjectId<=0) modelState.AddModelError("Project", Required("Project"));
             if (requirement.SquareType == null && requirement.SquareTypeId <=0) modelState.AddModelError("Square Type", Required("Square Type"));
@@ -46,6 +45,11 @@ namespace _2SQUARE.Helpers
         public static void Validate(Category category, ModelStateDictionary modelState)
         {
             if (string.IsNullOrEmpty(category.Name)) modelState.AddModelError("Name", Required("Name"));
+        }
+
+        public static void Validate(RequirementDefect defect, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrWhiteSpace(defect.Description)) modelState.AddModelError("Description", Required("Description"));
         }
 
         private static string Required(string field)

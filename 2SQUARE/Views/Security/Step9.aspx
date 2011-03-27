@@ -30,12 +30,16 @@
                 </tr>
                 <% if (a.RequirementDefects.Any()) { %>
                     <% foreach (var b in a.RequirementDefects) { %>
-                        <tr>
+                        <tr style="background-color: #E6DEDE;">
                             <td></td>
-                            <td colspan="2">Defect: <%: b.Description %></td>
+                            <td colspan="2"><strong>Defect:</strong> <%: b.Description %></td>
                             <td>
                                 <% if (!b.Solved) { %>
-                                <%: Html.ActionLink<RequirementDefectController>(c=>c.Resolve(Model.ProjectStep.Id, Model.Project.id, a.id), "Resolve", new {@class="button ui-corner-all ui-state-default"}) %>
+                                    <% using (Html.BeginForm("Resolve", "RequirementDefect", new { id = Model.ProjectStep.Id, projectId = Model.Project.id, defectId = b.id }, FormMethod.Post, new { style = "display:inline-block;" })) { %>
+                                        <%: Html.SubmitButton("Resolve", "Resolve", new {@class="button ui-corner-all ui-state-default"}) %>
+                                    <% } %>
+                                <% } else { %>
+                                    <strong>Resolved</strong>
                                 <% } %>
                             </td>
                         </tr>

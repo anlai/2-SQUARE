@@ -19,7 +19,7 @@
                 <%: Model.Requirement.Requirement1 %>
             </li>
             <li><strong>Defect:</strong>
-                <%: Html.TextAreaFor(a=>a.RequirementDefect.Description) %>
+                <%: Html.TextArea("defect.Description") %>
             </li>
             <li><strong></strong>
                 <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
