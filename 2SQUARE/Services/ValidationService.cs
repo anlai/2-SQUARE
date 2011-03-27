@@ -455,8 +455,12 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        if (projectStep.Project.Requirements.Any(a => a.SquareTypeId == projectStep.Step.SquareTypeId && a.Priority == null))
+        {
+            errors.Add("All requirements need to be prioritizes before completing step 8.");   
+        }
+
+        return !errors.Any();
     }
 
     /// <summary>
@@ -487,8 +491,15 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        warnings.Add("Validation has not been added yet.");
-        return false;
+        // check for any requirements that have active defects
+        var project = projectStep.Project;
+        var reqs = project.Requirements.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).ToList();
+        if (reqs.Any(a => a.RequirementDefects.Any(b => !b.Solved)))
+        {
+            errors.Add("The process cannot be complete when a requirement has at leaset one active defect.");
+        }
+
+        return !errors.Any();
     }
     #endregion
 
