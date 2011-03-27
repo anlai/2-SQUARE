@@ -1391,6 +1391,36 @@ ALTER TABLE [dbo].[ProjectWorkers]
 
 
 GO
+PRINT N'Creating [dbo].[RequirementDefects]...';
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [dbo].[RequirementDefects] (
+    [id]            INT           IDENTITY (1, 1) NOT NULL,
+    [Description]   VARCHAR (MAX) NOT NULL,
+    [RequirementId] INT           NOT NULL,
+    [Solved]        BIT           NOT NULL
+);
+
+
+GO
+SET ANSI_NULLS, QUOTED_IDENTIFIER OFF;
+
+
+GO
+PRINT N'Creating PK_RequirementDefects...';
+
+
+GO
+ALTER TABLE [dbo].[RequirementDefects]
+    ADD CONSTRAINT [PK_RequirementDefects] PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
 PRINT N'Creating [dbo].[Requirements]...';
 
 
@@ -1834,6 +1864,15 @@ ALTER TABLE [dbo].[ProjectSteps]
 
 
 GO
+PRINT N'Creating DF_RequirementDefects_Solved...';
+
+
+GO
+ALTER TABLE [dbo].[RequirementDefects]
+    ADD CONSTRAINT [DF_RequirementDefects_Solved] DEFAULT ((0)) FOR [Solved];
+
+
+GO
 PRINT N'Creating DF_Requirements_Essential...';
 
 
@@ -2200,6 +2239,15 @@ PRINT N'Creating FK_ProjectWorkers_Projects...';
 GO
 ALTER TABLE [dbo].[ProjectWorkers] WITH NOCHECK
     ADD CONSTRAINT [FK_ProjectWorkers_Projects] FOREIGN KEY ([ProjectId]) REFERENCES [dbo].[Projects] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_RequirementDefects_Requirements...';
+
+
+GO
+ALTER TABLE [dbo].[RequirementDefects] WITH NOCHECK
+    ADD CONSTRAINT [FK_RequirementDefects_Requirements] FOREIGN KEY ([RequirementId]) REFERENCES [dbo].[Requirements] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -6290,6 +6338,8 @@ ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorker
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_aspnet_Users];
 
 ALTER TABLE [dbo].[ProjectWorkers] WITH CHECK CHECK CONSTRAINT [FK_ProjectWorkers_Projects];
+
+ALTER TABLE [dbo].[RequirementDefects] WITH CHECK CHECK CONSTRAINT [FK_RequirementDefects_Requirements];
 
 ALTER TABLE [dbo].[Requirements] WITH CHECK CHECK CONSTRAINT [FK_Requirements_Categories];
 

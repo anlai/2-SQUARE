@@ -515,23 +515,6 @@ public class ValidationService : IValidationService
         return steps.Where(a => a.Step.Order == stepNum && a.Complete).Any();
     }
 
-    //public ValidationChangeStatusResult ValidateCompletion(ProjectStep projectStep)
-    //{
-    //    var result = new ValidationChangeStatusResult();
-
-    //    switch (projectStep.Step.Order)
-    //    {
-    //        case 1: result.IsValid = Step1Complete(projectStep, result.Warnings, result.Errors);
-    //            break;
-    //        default:
-    //            result.IsValid = false;
-    //            result.Errors.Add("Validation has not been added for the step.");
-    //            break;
-    //    }
-
-    //    return result;
-    //}
-
     public bool ValidateRoleAccess(List<string> userRoles, ProjectStep projectStep)
     {
         //todo: write in rules for each step on who can access

@@ -547,5 +547,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RequirementDefects">
+      <EntityTypeMapping TypeName="SquareModel.RequirementDefect">
+        <MappingFragment StoreEntitySet="RequirementDefects">
+          <ScalarProperty Name="Solved" ColumnName="Solved" />
+          <ScalarProperty Name="RequirementId" ColumnName="RequirementId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

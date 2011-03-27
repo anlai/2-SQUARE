@@ -133,12 +133,14 @@
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\GenericElicitationController.cs" />
     <Compile Include="Controllers\RequirementController.cs" />
+    <Compile Include="Controllers\RequirementDefectController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\PRAUCEditViewModel.cs" />
     <Compile Include="Models\PRETResultViewModel.cs" />
     <Compile Include="Models\PRETViewModel.cs" />
     <Compile Include="Models\RequirementCategoryViewModel.cs" />
+    <Compile Include="Models\RequirementDefectViewModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />
     <Compile Include="Models\RiskAssessmentViewModel.cs" />
     <Compile Include="Models\RiskRecommendationViewModel.cs" />
@@ -246,6 +248,7 @@
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\GenericElicitation\Add.aspx" />
+    <Content Include="Views\RequirementDefect\Create.aspx" />
     <Content Include="Views\Requirement\Categorize.aspx" />
     <Content Include="Views\RiskRecommendation\Create.aspx" />
     <Content Include="Views\RiskRecommendation\Edit.aspx" />
@@ -259,6 +262,7 @@
     <Content Include="Views\Security\Step5.aspx" />
     <Content Include="Views\Security\Step7.aspx" />
     <Content Include="Views\Security\Step8.aspx" />
+    <Content Include="Views\Security\Step9.aspx" />
     <Content Include="Views\Shared\CategorizedRequirementsView.ascx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\PrioritizeRequirementsView.ascx" />

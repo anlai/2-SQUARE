@@ -254,6 +254,11 @@
       <End Role="SquareType" EntitySet="SquareTypes" />
       <End Role="Category" EntitySet="Categories" />
     </AssociationSet>
+    <EntitySet Name="RequirementDefects" EntityType="SquareModel.RequirementDefect" />
+    <AssociationSet Name="FK_RequirementDefects_Requirements" Association="SquareModel.FK_RequirementDefects_Requirements">
+      <End Role="Requirement" EntitySet="Requirements" />
+      <End Role="RequirementDefect" EntitySet="RequirementDefects" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artifact">
     <Key>
@@ -1328,6 +1333,7 @@
     <NavigationProperty Name="Project" Relationship="SquareModel.FK_Requirements_Projects" FromRole="Requirement" ToRole="Project" />
     <NavigationProperty Name="SquareType" Relationship="SquareModel.FK_Requirements_SquareTypes" FromRole="Requirement" ToRole="SquareType" />
     <Property Type="Int32" Name="Order" />
+    <NavigationProperty Name="RequirementDefects" Relationship="SquareModel.FK_RequirementDefects_Requirements" FromRole="Requirement" ToRole="RequirementDefect" />
   </EntityType>
   <Association Name="FK_Categories_Projects">
     <End Type="SquareModel.Project" Role="Project" Multiplicity="1" />
@@ -1500,6 +1506,28 @@
       </Principal>
       <Dependent Role="Category">
         <PropertyRef Name="SquareTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RequirementDefect">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="RequirementId" Nullable="false" />
+    <Property Type="Boolean" Name="Solved" Nullable="false" />
+    <NavigationProperty Name="Requirement" Relationship="SquareModel.FK_RequirementDefects_Requirements" FromRole="RequirementDefect" ToRole="Requirement" />
+  </EntityType>
+  <Association Name="FK_RequirementDefects_Requirements">
+    <End Type="SquareModel.Requirement" Role="Requirement" Multiplicity="1" />
+    <End Type="SquareModel.RequirementDefect" Role="RequirementDefect" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RequirementDefect">
+        <PropertyRef Name="RequirementId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

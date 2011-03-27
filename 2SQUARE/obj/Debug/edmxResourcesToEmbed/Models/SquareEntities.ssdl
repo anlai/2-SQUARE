@@ -30,6 +30,7 @@
     <EntitySet Name="ProjectSteps" EntityType="SquareModel.Store.ProjectSteps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectTerms" EntityType="SquareModel.Store.ProjectTerms" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectWorkers" EntityType="SquareModel.Store.ProjectWorkers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RequirementDefects" EntityType="SquareModel.Store.RequirementDefects" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Requirements" EntityType="SquareModel.Store.Requirements" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RiskLevels" EntityType="SquareModel.Store.RiskLevels" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RiskRecommendation" EntityType="SquareModel.Store.RiskRecommendation" store:Type="Tables" Schema="dbo" />
@@ -284,6 +285,10 @@
     <AssociationSet Name="FK_ProjectWorkers_Projects" Association="SquareModel.Store.FK_ProjectWorkers_Projects">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectWorkers" EntitySet="ProjectWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementDefects_Requirements" Association="SquareModel.Store.FK_RequirementDefects_Requirements">
+      <End Role="Requirements" EntitySet="Requirements" />
+      <End Role="RequirementDefects" EntitySet="RequirementDefects" />
     </AssociationSet>
     <AssociationSet Name="FK_Requirements_Categories" Association="SquareModel.Store.FK_Requirements_Categories">
       <End Role="Categories" EntitySet="Categories" />
@@ -652,6 +657,15 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequirementDefects">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="RequirementId" Type="int" Nullable="false" />
+    <Property Name="Solved" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Requirements">
     <Key>
@@ -1370,6 +1384,18 @@
       </Principal>
       <Dependent Role="ProjectWorkers">
         <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementDefects_Requirements">
+    <End Role="Requirements" Type="SquareModel.Store.Requirements" Multiplicity="1" />
+    <End Role="RequirementDefects" Type="SquareModel.Store.RequirementDefects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RequirementDefects">
+        <PropertyRef Name="RequirementId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
