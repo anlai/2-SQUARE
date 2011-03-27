@@ -70,6 +70,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETRequirements_PRETLaws", "PRETLaw", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.PRETLaw), "PRETRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETRequirement), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_PRETQuestions_PRETQuestions", "PRETQuestion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(_2SQUARE.Models.PRETQuestion), "PRETQuestion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.PRETQuestion), true)]
 [assembly: EdmRelationshipAttribute("SquareModel", "FK_Categories_SquareTypes", "SquareType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.SquareType), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.Category), true)]
+[assembly: EdmRelationshipAttribute("SquareModel", "FK_RequirementDefects_Requirements", "Requirement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(_2SQUARE.Models.Requirement), "RequirementDefect", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(_2SQUARE.Models.RequirementDefect), true)]
 
 #endregion
 
@@ -840,6 +841,22 @@ namespace _2SQUARE.Models
             }
         }
         private ObjectSet<PRETRequirement> _PRETRequirements;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RequirementDefect> RequirementDefects
+        {
+            get
+            {
+                if ((_RequirementDefects == null))
+                {
+                    _RequirementDefects = base.CreateObjectSet<RequirementDefect>("RequirementDefects");
+                }
+                return _RequirementDefects;
+            }
+        }
+        private ObjectSet<RequirementDefect> _RequirementDefects;
 
         #endregion
         #region AddTo Methods
@@ -1202,6 +1219,14 @@ namespace _2SQUARE.Models
         public void AddToPRETRequirements(PRETRequirement pRETRequirement)
         {
             base.AddObject("PRETRequirements", pRETRequirement);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RequirementDefects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRequirementDefects(RequirementDefect requirementDefect)
+        {
+            base.AddObject("RequirementDefects", requirementDefect);
         }
 
         #endregion
@@ -8789,6 +8814,202 @@ namespace _2SQUARE.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SquareType>("SquareModel.FK_Requirements_SquareTypes", "SquareType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RequirementDefects_Requirements", "RequirementDefect")]
+        public EntityCollection<RequirementDefect> RequirementDefects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RequirementDefect>("SquareModel.FK_RequirementDefects_Requirements", "RequirementDefect");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RequirementDefect>("SquareModel.FK_RequirementDefects_Requirements", "RequirementDefect", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SquareModel", Name="RequirementDefect")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RequirementDefect : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RequirementDefect object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="requirementId">Initial value of the RequirementId property.</param>
+        /// <param name="solved">Initial value of the Solved property.</param>
+        public static RequirementDefect CreateRequirementDefect(global::System.Int32 id, global::System.String description, global::System.Int32 requirementId, global::System.Boolean solved)
+        {
+            RequirementDefect requirementDefect = new RequirementDefect();
+            requirementDefect.id = id;
+            requirementDefect.Description = description;
+            requirementDefect.RequirementId = requirementId;
+            requirementDefect.Solved = solved;
+            return requirementDefect;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RequirementId
+        {
+            get
+            {
+                return _RequirementId;
+            }
+            set
+            {
+                OnRequirementIdChanging(value);
+                ReportPropertyChanging("RequirementId");
+                _RequirementId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RequirementId");
+                OnRequirementIdChanged();
+            }
+        }
+        private global::System.Int32 _RequirementId;
+        partial void OnRequirementIdChanging(global::System.Int32 value);
+        partial void OnRequirementIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Solved
+        {
+            get
+            {
+                return _Solved;
+            }
+            set
+            {
+                OnSolvedChanging(value);
+                ReportPropertyChanging("Solved");
+                _Solved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Solved");
+                OnSolvedChanged();
+            }
+        }
+        private global::System.Boolean _Solved;
+        partial void OnSolvedChanging(global::System.Boolean value);
+        partial void OnSolvedChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SquareModel", "FK_RequirementDefects_Requirements", "Requirement")]
+        public Requirement Requirement
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Requirement>("SquareModel.FK_RequirementDefects_Requirements", "Requirement").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Requirement>("SquareModel.FK_RequirementDefects_Requirements", "Requirement").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Requirement> RequirementReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Requirement>("SquareModel.FK_RequirementDefects_Requirements", "Requirement");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Requirement>("SquareModel.FK_RequirementDefects_Requirements", "Requirement", value);
                 }
             }
         }
