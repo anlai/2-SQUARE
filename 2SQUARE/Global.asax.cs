@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
 using _2SQUARE.Controllers;
@@ -33,6 +34,14 @@ namespace _2SQUARE
             new RouteConfigurator().RegisterRoutes();
 
             IWindsorContainer container = InitializeServiceLocator();
+
+#if debug
+            Database.SetInitializer(new SquareInitializer());
+#else
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
+#endif
+
+
         }
 
         private static IWindsorContainer InitializeServiceLocator()

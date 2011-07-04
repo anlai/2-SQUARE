@@ -8,6 +8,8 @@ namespace _2SQUARE.Controllers
     {
         public SquareEntities Db = new SquareEntities();
             
+        public SquareContext db = new SquareContext();
+
         protected string CurrentUserId
         {
             get { return User.Identity.Name; }
@@ -23,6 +25,13 @@ namespace _2SQUARE.Controllers
         {
             get { return (string) TempData["ErrorMessage"]; }
             set { TempData["ErrorMessage"] = value; }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }
