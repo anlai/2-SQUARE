@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{100FBADC-DFD0-48CA-96D0-C3E4B91BDE68}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_2SQUARE.Core</RootNamespace>
+    <AssemblyName>2SQUARE.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\Artifact.cs" />
+    <Compile Include="Domain\ArtifactType.cs" />
+    <Compile Include="Domain\AssessmentType.cs" />
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\Definition.cs" />
+    <Compile Include="DomainObject.cs" />
+    <Compile Include="Domain\ElicitationType.cs" />
+    <Compile Include="Domain\Goal.cs" />
+    <Compile Include="Domain\GoalType.cs" />
+    <Compile Include="Domain\Impact.cs" />
+    <Compile Include="Domain\Project.cs" />
+    <Compile Include="Domain\ProjectStep.cs" />
+    <Compile Include="Domain\ProjectTerm.cs" />
+    <Compile Include="Domain\ProjectWorker.cs" />
+    <Compile Include="Domain\Requirement.cs" />
+    <Compile Include="Domain\RequirementDefect.cs" />
+    <Compile Include="Domain\Risk.cs" />
+    <Compile Include="Domain\RiskLevel.cs" />
+    <Compile Include="Domain\RiskRecommendation.cs" />
+    <Compile Include="Domain\Role.cs" />
+    <Compile Include="Domain\SquareType.cs" />
+    <Compile Include="Domain\Step.cs" />
+    <Compile Include="Domain\Term.cs" />
+    <Compile Include="PRET\PRETAnswer.cs" />
+    <Compile Include="PRET\PRETLaw.cs" />
+    <Compile Include="PRET\PRETQuestion.cs" />
+    <Compile Include="PRET\PRETRequirements.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

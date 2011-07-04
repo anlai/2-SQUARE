@@ -329,6 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Domain\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\SquareEntities.edmx">
