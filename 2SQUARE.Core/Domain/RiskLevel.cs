@@ -2,8 +2,10 @@
 
 namespace _2SQUARE.Core.Domain
 {
-    public class RiskLevel : DomainObject
+    public class RiskLevel
     {
+        public char Id { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Name { get; set; }

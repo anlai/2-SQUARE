@@ -140,3 +140,7 @@ C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\MvcContrib.xml
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\MvcContrib.FluentHtml.pdb
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\MvcContrib.FluentHtml.xml
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\obj\Debug\2SQUARE.pdb
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\2SQUARE.Core.dll
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\EntityFramework.dll
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\2SQUARE.Core.pdb
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\EntityFramework.xml
