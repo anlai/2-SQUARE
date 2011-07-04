@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace _2SQUARE.Core.Domain
 {
@@ -11,5 +12,7 @@ namespace _2SQUARE.Core.Domain
 
         [Required]
         public SquareType SquareType { get; set; }
+
+        public ICollection<Definition> Definitions { get; set; }
     }
 }

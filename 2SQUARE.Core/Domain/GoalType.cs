@@ -2,8 +2,10 @@
 
 namespace _2SQUARE.Core.Domain
 {
-    public class GoalType : DomainObject
+    public class GoalType
     {
+        public char Id { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Name { get; set; }

@@ -70,10 +70,14 @@ namespace _2SQUARE
 
             AddElicitationTypes(context, security, privacy);
 
+            AddGoalTypes(context, security, privacy);
+
+            AddRiskLevels(context);
+
+            AddTerms(context, security, privacy);
+
             context.SaveChanges();
         }
-
-        
 
         private void AddSecuritySteps(SquareContext context, SquareType security)
         {
@@ -323,7 +327,7 @@ namespace _2SQUARE
             context.AssessmentTypes.Add(at2);
             context.AssessmentTypes.Add(at3);
         }
-
+       
         private void AddElicitationTypes(SquareContext context, SquareType security, SquareType privacy)
         {
             var et1 = new ElicitationType() { Name = "Structured/Unstructured Interviews", SquareType = security, Controller = "GenericElicitation", Description = "" };
@@ -361,6 +365,219 @@ namespace _2SQUARE
             context.ElicitationTypes.Add(et15);
             context.ElicitationTypes.Add(et16);
             context.ElicitationTypes.Add(et17);
+        } 
+        
+        private void AddGoalTypes(SquareContext context, SquareType security, SquareType privacy)
+        {
+            var g1 = new GoalType() {Id = 'S', Name = "Security Goal", IsActive = true, SquareType = security};
+
+            var g2 = new GoalType() {Id = 'P', Name = "Privacy Goal", IsActive = true, SquareType = privacy};
+            var g3 = new GoalType() {Id = 'A', Name = "Asset", IsActive = true, SquareType = privacy };
+
+            var g4 = new GoalType() {Id = 'B', Name = "Business Goal", IsActive = true, SquareType = null};
+
+            context.GoalTypes.Add(g1);
+            context.GoalTypes.Add(g2);
+            context.GoalTypes.Add(g3);
+            context.GoalTypes.Add(g4);
+        }
+
+        private void AddRiskLevels(SquareContext context)
+        {
+            var r1 = new RiskLevel()
+                         {
+                             Id = 'H',
+                             Name = "High",
+                             SLikelihood = 1.0m,
+                             PLikelihood = 3,
+                             Impact = 100,
+                             Damage = 3,
+                             Order = 3,
+                             Color = "Red"
+                         };
+
+            var r2 = new RiskLevel()
+                {
+                    Id = 'L',
+                    Name = "Low",
+                    SLikelihood = 0.1m,
+                    PLikelihood = 1,
+                    Impact = 10,
+                    Damage = 1,
+                    Order = 1,
+                    Color = "Green"
+                };
+
+            var r3 = new RiskLevel()
+                {
+                    Id = 'M',
+                    Name = "Medium",
+                    SLikelihood = 0.5m,
+                    PLikelihood = 2,
+                    Impact = 50,
+                    Damage = 2,
+                    Order = 2,
+                    Color = "Yellow"
+                };
+
+            context.RiskLevels.Add(r1);
+            context.RiskLevels.Add(r2);
+            context.RiskLevels.Add(r3);
+        }
+
+        private void AddTerms(SquareContext context, SquareType security, SquareType privacy)
+        {
+            var terms = new List<Term>();
+            var defs = new List<Definition>();
+
+            var t1 = new Term() { Name = "access control", SquareType = security, IsActive = true };
+            terms.Add(t1);
+            defs.Add(new Definition()
+                {
+                    Description =
+                        "a system which enables an authority to control access to areas and resources in a computer-based information system",
+                    Source = "Wikipedia",
+                    IsActive = true,
+                    Term = t1
+                });
+            defs.Add(new Definition()
+                         {
+                             Description = "Limiting access to information system resources only to authorized users, programs, processes, or other systems.",
+                             Source = "CNSSI 4009",
+                             IsActive = true,
+                             Term = t1
+                         });
+
+            var t2 = new Term() {Name = "access control list (ACL)", SquareType = security, IsActive = true};
+            terms.Add(t2);
+            defs.Add(new Definition()
+                         {
+                             Description = "(ACL) Mechanism implementing discretionary and/or mandatory access control between subjects and objects. ",
+                             Source = "CNSSI 4009",
+                             IsActive = true,
+                             Term = t2
+                         });
+            defs.Add(new Definition()
+            {
+                Description = "a list of permissions attached to an object",
+                Source = "Wikipedia",
+                IsActive = true,
+                Term = t2
+            });
+
+            var t3 = new Term() { Name = "artifact", SquareType = security, IsActive = true };
+            terms.Add(t3);
+            defs.Add(new Definition()
+            {
+                Description = "one of many kinds of tangible by-product produced during the development of software",
+                Source = "Wikipedia",
+                IsActive = true,
+                Term = t3
+            });
+
+            var t4 = new Term() { Name = "asset", SquareType = security, IsActive = true };
+            terms.Add(t4);
+            defs.Add(new Definition()
+            {
+                Description = "A major application, general support system, high impact program, physical plant, mission critical system, personnel, equipment, or a logically related group of systems.",
+                Source = "CNSSI",
+                IsActive = true,
+                Term = t4
+            });
+
+
+            terms.Add(new Term() { Name = "antivirus software", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "artifact", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "asset", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "attack", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "audit", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "authentication", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "availability", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "back door", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "breach", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "brute force", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "buffer overflow", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "cache cramming", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "cache poisoning", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "confidentiality", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "control", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "corruption", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "cracker", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "denial-of-service (DoS) attack", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "disaster recovery plan", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "disclosure", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "disgruntled employee", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "downtime", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "disruption", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "encryption", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "espionage", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "essential services", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "exposure", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "fabrication", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "fault line attacks", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "fault tolerance", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "firewall", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "hacker", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "honey pot", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "impact", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "incident", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "incident handling", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "insider threat", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "integrity", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "interception", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "interruption", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "intrusion", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "intrusion detection system (IDS)", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "liability", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "luring attack", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "malware", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "man-in-the-middle attack", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "masquerade", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "modification", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "non-essential services", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "non-repudiation", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "patch", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "penetration", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "penetration testing", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "physical security", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "port scanning", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "privacy", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "procedure", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "recognition", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "recovery", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "replay attack", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "resilience", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "resistance", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "risk", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "risk assessment", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "security policy", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "script kiddies", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "spoof", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "stakeholder", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "stealthing", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "survivability", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "target", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "threat", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "threat assessment", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "threat model", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "toolkits", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "Trojan", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "trust", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "uptime", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "victim", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "virus", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "vulnerability", SquareType = security, IsActive = true });
+            terms.Add(new Term() { Name = "worm", SquareType = security, IsActive = true });
+
+            foreach (var t in terms)
+            {
+                context.Terms.Add(t);
+            }
+
+            foreach (var d in defs)
+            {
+                context.Definitions.Add(d);
+            }
         }
     }
 }
