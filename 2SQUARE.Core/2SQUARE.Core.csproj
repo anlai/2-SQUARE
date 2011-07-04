@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aspnet\aspnet_Application.cs" />
+    <Compile Include="Aspnet\aspnet_SchemaVersion.cs" />
+    <Compile Include="Aspnet\aspnet_User.cs" />
     <Compile Include="Domain\Artifact.cs" />
     <Compile Include="Domain\ArtifactType.cs" />
     <Compile Include="Domain\AssessmentType.cs" />
