@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Objects;
+using System.Web.Mvc;
 using _2SQUARE.Models;
 
 namespace _2SQUARE.Controllers
@@ -6,7 +7,7 @@ namespace _2SQUARE.Controllers
     public class ApplicationController : Controller
     {
         public SquareEntities Db = new SquareEntities();
-
+            
         protected string CurrentUserId
         {
             get { return User.Identity.Name; }

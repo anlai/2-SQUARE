@@ -45,7 +45,7 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
         }
-        #endregion
+        #endregion  
 
         #region Step 2
         /// <summary>
