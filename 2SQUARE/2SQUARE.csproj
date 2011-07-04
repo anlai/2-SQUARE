@@ -50,6 +50,9 @@
     <Reference Include="Castle.Windsor, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\bin\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -196,6 +199,7 @@
       <DependentUpon>SquareTypes.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ValidationService.cs" />
+    <Compile Include="SQUAREContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PageStyles.css" />
@@ -336,6 +340,15 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SquareEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2SQUARE.Core\2SQUARE.Core.csproj">
+      <Project>{100FBADC-DFD0-48CA-96D0-C3E4B91BDE68}</Project>
+      <Name>2SQUARE.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

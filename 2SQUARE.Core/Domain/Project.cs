@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace _2SQUARE.Core.Domain
@@ -19,5 +20,14 @@ namespace _2SQUARE.Core.Domain
 
         public ElicitationType SecurityElicitationType { get; set; }
         public ElicitationType PrivacyElicitationType { get; set; }
+
+        public ICollection<Artifact> Artifacts { get; set; }
+        public ICollection<Category> Categories { get; set; }
+        public ICollection<Goal> Goals { get; set; }
+        public ICollection<ProjectStep> ProjectSteps { get; set; }
+        public ICollection<ProjectTerm> ProjectTerms { get; set; }
+        public ICollection<ProjectWorker> ProjectWorkers { get; set; }
+        public ICollection<Requirement> Requirements { get; set; }
+        public ICollection<Risk> Risks { get; set; }
     }
 }
