@@ -48,15 +48,6 @@ namespace _2SQUARE
         // insert the default values needed to operate the tool
         protected override void Seed(SquareContext context)
         {
-            //// needed for membership to work
-            //var schema = new aspnet_SchemaVersion()
-            //                 {
-            //                     Feature = "membership",
-            //                     CompatibleSchemaVersion = "1",
-            //                     IsCurrentVersion = true
-            //                 };
-            //context.AspnetSchemaVersions.Add(schema);
-
             // square types
             var security = new SquareType() {Name = "Security"};
             var privacy = new SquareType() {Name = "Privacy"};
@@ -79,8 +70,7 @@ namespace _2SQUARE
 
             AddTerms(context, security, privacy);
 
-            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("Demo", "Demo", "demo@demo.com");
-            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("alan", "password", "alan@fake.com");
+            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
 
             context.SaveChanges();
         }

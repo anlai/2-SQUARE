@@ -94,9 +94,9 @@ body
 
 .box-content
 {
-    width: 100px;
+    /*width: 100px;*/
     margin: 5px 10px 0px 10px;
-    height: 100px;
+    /*height: 100px;*/
 }
 
 .button

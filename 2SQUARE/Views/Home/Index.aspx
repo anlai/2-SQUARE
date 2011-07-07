@@ -23,9 +23,17 @@
             Welcome!
         </div>
         <div class="box-content">
+            
             <p>
-                blah blha blha
+            Welcome to 2-SQUARE!  2-SQUARE is a tool to support Security Quality Requirements Eliciation (SQUARE) Method developed by
+            the Software Engineering Institute (SEI) at Carnegie Mellon University.  This tool supports requirements engineering in
+            the security and privacy fields.
             </p>
+
+            <p>
+            More information on SQUARE can be found <a href="#">here.</a>
+            </p>
+
             <p>
                 <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Projects") %>
             </p>

@@ -16,16 +16,16 @@ namespace _2SQUARE.Controllers
     public class AccountController : Controller
     {
 
-        public IFormsAuthenticationService FormsService { get; set; }
-        public IMembershipService MembershipService { get; set; }
+        //public IFormsAuthenticationService FormsService { get; set; }
+        //public IMembershipService MembershipService { get; set; }
 
-        protected override void Initialize(RequestContext requestContext)
-        {
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+        //protected override void Initialize(RequestContext requestContext)
+        //{
+        //    if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
+        //    if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
 
-            base.Initialize(requestContext);
-        }
+        //    base.Initialize(requestContext);
+        //}
 
         // **************************************
         // URL: /Account/LogOn
@@ -100,7 +100,7 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Register()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            //ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -139,7 +139,7 @@ namespace _2SQUARE.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            //ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
         }
 
@@ -150,7 +150,7 @@ namespace _2SQUARE.Controllers
         [Authorize]
         public ActionResult ChangePassword()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            //ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -160,7 +160,8 @@ namespace _2SQUARE.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
+                if (CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
+                //if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
                 {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
@@ -171,7 +172,7 @@ namespace _2SQUARE.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            //ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
         }
 

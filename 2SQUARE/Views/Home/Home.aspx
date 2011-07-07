@@ -8,8 +8,6 @@
 
     <h2>Home</h2>
 
-
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
