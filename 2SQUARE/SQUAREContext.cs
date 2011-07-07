@@ -10,14 +10,10 @@ namespace _2SQUARE
     {
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // disable the cascading deletes
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
         }
-
-        // set the membership tables
-        //public DbSet<aspnet_Application> AspnetApplications { get; set; }
-        //public DbSet<aspnet_SchemaVersion> AspnetSchemaVersions { get; set; }
-        //public DbSet<aspnet_User> AspnetUsers { get; set; }
 
         // set the primary SQUARE tables
         public DbSet<Artifact> Artifacts { get; set; }
@@ -84,6 +80,7 @@ namespace _2SQUARE
             AddTerms(context, security, privacy);
 
             CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("Demo", "Demo", "demo@demo.com");
+            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("alan", "password", "alan@fake.com");
 
             context.SaveChanges();
         }
