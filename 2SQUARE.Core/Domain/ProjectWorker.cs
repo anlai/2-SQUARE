@@ -1,10 +1,10 @@
-﻿using _2SQUARE.Core.Aspnet;
+﻿using CodeFirstMembershipDemoSharp.Data;
 
 namespace _2SQUARE.Core.Domain
 {
     public class ProjectWorker : DomainObject
     {
-        public aspnet_User User { get; set; }
+        public User User { get; set; }
         public Project Project { get; set; }
         public Role Role { get; set; }
     }

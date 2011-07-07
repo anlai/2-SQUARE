@@ -1,16 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using _2SQUARE.Core.Aspnet;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using _2SQUARE.Core.Domain;
+using CodeFirstMembershipDemoSharp.Data;
 
 namespace _2SQUARE
 {
     public class SquareContext : DbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);
+        }
+
         // set the membership tables
-        public DbSet<aspnet_Application> AspnetApplications { get; set; }
-        public DbSet<aspnet_SchemaVersion> AspnetSchemaVersions { get; set; }
-        public DbSet<aspnet_User> AspnetUsers { get; set; }
+        //public DbSet<aspnet_Application> AspnetApplications { get; set; }
+        //public DbSet<aspnet_SchemaVersion> AspnetSchemaVersions { get; set; }
+        //public DbSet<aspnet_User> AspnetUsers { get; set; }
 
         // set the primary SQUARE tables
         public DbSet<Artifact> Artifacts { get; set; }
@@ -31,10 +38,13 @@ namespace _2SQUARE
         public DbSet<Risk> Risks { get; set; }
         public DbSet<RiskLevel> RiskLevels { get; set; }
         public DbSet<RiskRecommendation> RiskRecommendations { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<SquareType> SquareTypes { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<Term> Terms { get; set; }
+
+        // add the membership
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 
     public class SquareInitializer : DropCreateDatabaseAlways<SquareContext>
@@ -42,14 +52,14 @@ namespace _2SQUARE
         // insert the default values needed to operate the tool
         protected override void Seed(SquareContext context)
         {
-            // needed for membership to work
-            var schema = new aspnet_SchemaVersion()
-                             {
-                                 Feature = "membership",
-                                 CompatibleSchemaVersion = "1",
-                                 IsCurrentVersion = true
-                             };
-            context.AspnetSchemaVersions.Add(schema);
+            //// needed for membership to work
+            //var schema = new aspnet_SchemaVersion()
+            //                 {
+            //                     Feature = "membership",
+            //                     CompatibleSchemaVersion = "1",
+            //                     IsCurrentVersion = true
+            //                 };
+            //context.AspnetSchemaVersions.Add(schema);
 
             // square types
             var security = new SquareType() {Name = "Security"};
@@ -72,6 +82,8 @@ namespace _2SQUARE
             AddRiskLevels(context);
 
             AddTerms(context, security, privacy);
+
+            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("Demo", "Demo", "demo@demo.com");
 
             context.SaveChanges();
         }
@@ -366,12 +378,12 @@ namespace _2SQUARE
         
         private void AddGoalTypes(SquareContext context, SquareType security, SquareType privacy)
         {
-            var g1 = new GoalType() {Id = 'S', Name = "Security Goal", IsActive = true, SquareType = security};
+            var g1 = new GoalType() {Id = "S", Name = "Security Goal", IsActive = true, SquareType = security};
 
-            var g2 = new GoalType() {Id = 'P', Name = "Privacy Goal", IsActive = true, SquareType = privacy};
-            var g3 = new GoalType() {Id = 'A', Name = "Asset", IsActive = true, SquareType = privacy };
+            var g2 = new GoalType() {Id = "P", Name = "Privacy Goal", IsActive = true, SquareType = privacy};
+            var g3 = new GoalType() {Id = "A", Name = "Asset", IsActive = true, SquareType = privacy };
 
-            var g4 = new GoalType() {Id = 'B', Name = "Business Goal", IsActive = true, SquareType = null};
+            var g4 = new GoalType() {Id = "B", Name = "Business Goal", IsActive = true, SquareType = null};
 
             context.GoalTypes.Add(g1);
             context.GoalTypes.Add(g2);
@@ -383,7 +395,7 @@ namespace _2SQUARE
         {
             var r1 = new RiskLevel()
                          {
-                             Id = 'H',
+                             Id = "H",
                              Name = "High",
                              SLikelihood = 1.0m,
                              PLikelihood = 3,
@@ -395,7 +407,7 @@ namespace _2SQUARE
 
             var r2 = new RiskLevel()
                 {
-                    Id = 'L',
+                    Id = "L",
                     Name = "Low",
                     SLikelihood = 0.1m,
                     PLikelihood = 1,
@@ -407,7 +419,7 @@ namespace _2SQUARE
 
             var r3 = new RiskLevel()
                 {
-                    Id = 'M',
+                    Id = "M",
                     Name = "Medium",
                     SLikelihood = 0.5m,
                     PLikelihood = 2,

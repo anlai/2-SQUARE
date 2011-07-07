@@ -41,10 +41,10 @@ namespace _2SQUARE.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                if (CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.Login(model.UserName, model.Password, model.RememberMe))
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
-                    if (!String.IsNullOrEmpty(returnUrl))
+
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
@@ -52,11 +52,29 @@ namespace _2SQUARE.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
+
                 }
                 else
                 {
                     ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 }
+
+                //if (MembershipService.ValidateUser(model.UserName, model.Password))
+                //{
+                //    FormsService.SignIn(model.UserName, model.RememberMe);
+                //    if (!String.IsNullOrEmpty(returnUrl))
+                //    {
+                //        return Redirect(returnUrl);
+                //    }
+                //    else
+                //    {
+                //        return RedirectToAction("Index", "Home");
+                //    }
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                //}
             }
 
             // If we got this far, something failed, redisplay form
@@ -69,7 +87,9 @@ namespace _2SQUARE.Controllers
 
         public ActionResult LogOff()
         {
-            FormsService.SignOut();
+            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.Logout();
+
+            //FormsService.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -89,18 +109,33 @@ namespace _2SQUARE.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                try
+                {
+                    // not sure what this token is for
+                    var token = CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount(model.UserName, model.Password, model.Email);
 
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
+
                 }
-                else
+                catch (MembershipCreateUserException mce)
                 {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    ModelState.AddModelError("", mce.Message);
                 }
+                
+
+
+                // Attempt to register the user
+                //MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+
+                //if (createStatus == MembershipCreateStatus.Success)
+                //{
+                //    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                //}
             }
 
             // If we got this far, something failed, redisplay form
