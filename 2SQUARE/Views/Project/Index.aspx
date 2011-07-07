@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<_2SQUARE.Models.Project>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<Project>>" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -9,20 +9,23 @@
 
     <h2>Projects</h2>
 
+    <% if (Model.Count != 0) { %>
     <% foreach (var a in Model) { %>
 
 
         <div class="button object-list" style="text-align: left;">
-            <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Name) %></h3>
-            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.id), a.Description) %></div>
+            <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Name) %></h3>
+            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Description) %></div>
         </div>
 
         <div class="divider">&nbsp;</div>
-        
-        
 
     <% } %>
+    <% } else { %>
+    
+        <p style="color: red;">You do not have access to a project.  Please create a new one or get added to an existing one.</p>
 
+    <% } %>
 
 
 </asp:Content>

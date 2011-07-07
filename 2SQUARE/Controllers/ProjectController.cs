@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security;
-using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
-using _2SQUARE.Models;
 using _2SQUARE.Services;
-using DesignByContract;
 using MvcContrib;
 using System.Linq;
 
@@ -17,20 +14,31 @@ namespace _2SQUARE.Controllers
     public class ProjectController : ApplicationController
     {
         private readonly IProjectService _projectService;
+        private readonly IProjectsService _projectsService;
         private readonly IValidationService _validationService;
 
-        public ProjectController(IProjectService projectService, IValidationService validationService)
+        public ProjectController(IProjectService projectService, IProjectsService projectsService, IValidationService validationService)
         {
             _projectService = projectService;
+            _projectsService = projectsService;
             _validationService = validationService;
         }
 
+        /// <summary>
+        /// Project Home Page, List of all Projects
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            var projects = _projectService.GetByUser(CurrentUserId);
+            var projects = _projectsService.GetByUser(CurrentUserId);
             return View(projects);
         }
 
+        /// <summary>
+        /// Details of a specific project
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <returns></returns>
         public ActionResult Details(int id)
         {
             // check user's access
@@ -52,6 +60,47 @@ namespace _2SQUARE.Controllers
         }
 
         /// <summary>
+        /// Create a new project
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// POST: /Project/Create
+        /// </summary>
+        /// <param name="project">Project with new information</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Create(Project project)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Edit a project
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <returns></returns>
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// POST: /Project/Edit
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="project">Project with new information</param>
+        /// <returns></returns>
+        public ActionResult Edit(int id, Project project)
+        {
+            return View();
+        }
+
+        /// <summary>
         /// Change the status of a project step
         /// </summary>
         /// <param name="id">Project step id</param>
@@ -65,10 +114,20 @@ namespace _2SQUARE.Controllers
             }
 
             var project = _projectService.GetProject(id, CurrentUserId);
-            var viewModel = ChangeStatusViewModel.Create(project, _projectService);
+            var viewModel = Models.ChangeStatusViewModel.Create(project, _projectService);
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Change the status of the project
+        /// </summary>
+        /// <remarks>
+        /// Used for ajax requests
+        /// </remarks>
+        /// <param name="id">Project Id</param>
+        /// <param name="stepId">Project Step Id</param>
+        /// <param name="projectStepStatus">New Project Step Status</param>
+        /// <returns>Json Result of validation information (blank=good)</returns>
         [HttpPost]
         public JsonResult UpdateStatus(int id /* project id */, int stepId, ProjectStepStatus projectStepStatus)
         {
