@@ -37,6 +37,7 @@ namespace _2SQUARE
         public DbSet<SquareType> SquareTypes { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<Term> Terms { get; set; }
+        public DbSet<ProjectRole> ProjectRoles { get; set; }
 
         // add the membership
         public DbSet<User> Users { get; set; }
@@ -69,6 +70,8 @@ namespace _2SQUARE
             AddRiskLevels(context);
 
             AddTerms(context, security, privacy);
+
+            AddProjectRoles(context);
 
             CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
 
@@ -574,6 +577,13 @@ namespace _2SQUARE
             {
                 context.Definitions.Add(d);
             }
+        }
+
+        private void AddProjectRoles(SquareContext context)
+        {
+            context.ProjectRoles.Add(new ProjectRole() {Id = "PM", Name = "Project Manager"});
+            context.ProjectRoles.Add(new ProjectRole() { Id = "RE", Name = "Requirements Engineer" });
+            context.ProjectRoles.Add(new ProjectRole() { Id = "SH", Name = "Stakeholder" });
         }
     }
 }

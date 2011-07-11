@@ -52,6 +52,12 @@ namespace _2SQUARE.Helpers
             if (string.IsNullOrWhiteSpace(defect.Description)) modelState.AddModelError("Description", Required("Description"));
         }
 
+        public static void Validate(_2SQUARE.Core.Domain.Project project, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrWhiteSpace(project.Name)) modelState.AddModelError("Name", Required("Name"));
+            if (string.IsNullOrWhiteSpace(project.Description)) modelState.AddModelError("Description", Required("Description"));
+        }
+
         private static string Required(string field)
         {
             return string.Format(Messages.Required,field);

@@ -2,10 +2,14 @@
 
 namespace _2SQUARE.Core.Domain
 {
-    //public class Role : DomainObject
-    //{
-    //    [StringLength(50)]
-    //    [Required]
-    //    public string Name { get; set; }
-    //}
+    public class ProjectRole
+    {
+        [StringLength(2)]
+        [Required]
+        public string Id { get; set; }
+
+        [StringLength(50)]
+        [Required]
+        public string Name { get; set; }
+    }
 }

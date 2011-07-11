@@ -7,6 +7,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <%: Html.ActionLink<ProjectController>(a => a.Create(), "Create New Project", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-right: 5px;" })%>
+
     <h2>Projects</h2>
 
     <% if (Model.Count != 0) { %>
