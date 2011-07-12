@@ -29,5 +29,6 @@ namespace _2SQUARE.Core.Domain
         public SquareType SquareType { get; set; }
         public Category Category { get; set; }
 
+        public ICollection<RequirementDefect> RequirementDefects { get; set; }
     }
 }

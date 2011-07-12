@@ -79,11 +79,11 @@ namespace _2SQUARE.Controllers
         
         public ActionResult Create([Bind(Exclude = "Id")]Project project)
         {
-            //Validation.Validate(project, ModelState);
+            ////Validation.Validate(project, ModelState);
 
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                Db.Projects.Add(project);
 
                 Message = "Successfully created the project";
 
@@ -165,7 +165,7 @@ namespace _2SQUARE.Controllers
 
                 // determine if any steps change in their ability to be edited
                 var changeSteps = new List<KeyValuePair<int, bool>>();
-                foreach (var a in Db.ProjectSteps.Where(a => a.ProjectId == id))
+                foreach (var a in Db.ProjectSteps.Where(a => a.Project.Id == id))
                 {
                     validationResult.ChangeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
                 }

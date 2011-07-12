@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -9,7 +10,7 @@ namespace _2SQUARE.Models
     {
         public IEnumerable<Risk> Risks { get; set; }
 
-        public static RiskAssessmentViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string userId)
+        public static RiskAssessmentViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string userId)
         {
             Check.Require(db != null, "db is required.");
 
@@ -19,8 +20,8 @@ namespace _2SQUARE.Models
             {
                 ProjectStep = projectStep,
                 Project = projectService.GetProject(projectId, userId),
-                Risks = db.Risks.Where(a => a.ProjectId == projectStep.ProjectId 
-                                            && a.SsquareTypeId == projectStep.Step.SquareTypeId)
+                Risks = db.Risks.Where(a => a.Project.Id == projectStep.Project.Id 
+                                            && a.SquareType == projectStep.Step.SquareType)
                                             .OrderByDescending(a=>a.RiskLevel.Order).ToList()
             };
 

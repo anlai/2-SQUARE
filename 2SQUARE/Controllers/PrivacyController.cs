@@ -116,7 +116,7 @@ namespace _2SQUARE.Controllers
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 // assesment type picked  out already)
-                if (project.PrivacyAssessmentId.HasValue)
+                if (project.PrivacyAssessmentType != null)
                 {
                     return RedirectToAction("Index", project.PrivacyAssessmentType.Controller, new { id = id, projectId = projectId });
                 }
@@ -134,7 +134,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var assessmentType = Db.AssessmentTypes.Where(a => a.id == assessmentTypeId).Single();
+                var assessmentType = Db.AssessmentTypes.Where(a => a.Id == assessmentTypeId).Single();
 
                 _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
 
@@ -181,7 +181,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
+                var elicitationType = Db.ElicitationTypes.Where(a => a.Id == elicitationId).Single();
 
                 Check.Require(elicitationType != null, "elicitationType is required.");
 
@@ -276,11 +276,11 @@ namespace _2SQUARE.Controllers
         /// Updates the order of the requirements for the square type of a project
         /// </summary>
         /// <param name="projectId"></param>
-        /// <param name="squareTypeId"></param>
+        /// <param name="SquareType"></param>
         /// <param name="requirements">Ordered list of requirement Ids</param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult UpdateRequirementOrder(int projectId, int squareTypeId, string requirementIds)
+        public JsonResult UpdateRequirementOrder(int projectId, int SquareType, string requirementIds)
         {
             try
             {
@@ -290,7 +290,7 @@ namespace _2SQUARE.Controllers
                 for (int i = 0; i < requirements.Count(); i++)
                 {
                     var reqId = requirements[i];
-                    var req = Db.Requirements.Where(a => a.id == reqId && a.ProjectId == projectId).FirstOrDefault();
+                    var req = Db.Requirements.Where(a => a.Id == reqId && a.Project.Id == projectId).FirstOrDefault();
                     req.Order = i;
                 }
 
@@ -313,7 +313,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult UpdatePriority(int requirementId, int priority)
         {
-            var requirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
+            var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
 
             if (requirement == null) return Json(false);
 

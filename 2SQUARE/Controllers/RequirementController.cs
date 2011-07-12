@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
@@ -23,7 +24,7 @@ namespace _2SQUARE.Controllers
             try
             {
                 var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-                var requirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
+                var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
 
                 if (requirement == null)
                 {
@@ -44,7 +45,7 @@ namespace _2SQUARE.Controllers
         public ActionResult Categorize(int id, int projectId, int requirementId, Requirement requirement)
         {
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var origRequirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
+            var origRequirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
 
             if (origRequirement == null)
             {
@@ -52,10 +53,10 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
             }
 
-            origRequirement.CategoryId = requirement.CategoryId;
+            origRequirement.Category = requirement.Category;
             origRequirement.Essential = requirement.Essential;
 
-            if (origRequirement.CategoryId <= 0 || origRequirement.CategoryId == null)
+            if (origRequirement.Category.Id <= 0 || origRequirement.Category == null)
             {
                 ModelState.AddModelError("Category", string.Format(Messages.Required, "Category"));
             }
@@ -63,7 +64,6 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 Db.SaveChanges();
-                Db.Refresh(RefreshMode.StoreWins, origRequirement);
 
                 Message = string.Format(Messages.Saved, "Categorization");
                 return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });

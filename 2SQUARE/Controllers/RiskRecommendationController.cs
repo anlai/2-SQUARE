@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -27,7 +28,7 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Create(int id, int projectStepId)
         {
-            var risk = Db.Risks.Where(a => a.id == id).FirstOrDefault();
+            var risk = Db.Risks.Where(a => a.Id == id).FirstOrDefault();
 
             if (risk == null)
             {
@@ -50,7 +51,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Create(int id, int projectStepId, RiskRecommendation riskRecommendation)
         {
-            var risk = Db.Risks.Where(a => a.id == id).FirstOrDefault();
+            var risk = Db.Risks.Where(a => a.Id == id).FirstOrDefault();
 
             if (risk == null)
             {
@@ -58,13 +59,13 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ProjectController>(a => a.Index());
             }
 
-            Validation.Validate(riskRecommendation, ModelState);
+            //Validation.Validate(riskRecommendation, ModelState);
 
             if (ModelState.IsValid)
             {
                 _projectService.SaveRiskRecommendation(riskRecommendation, id);
                 Message = "Risk recommendation has been saved.";
-                return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.ProjectId });
+                return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.Project.Id });
             }
 
             var viewModel = RiskRecommendationViewModel.Create(projectStepId, risk, riskRecommendation);
@@ -80,7 +81,7 @@ namespace _2SQUARE.Controllers
         public ActionResult Edit(int id, int projectStepId)
         {
             // load the risk control
-            var riskRecommendation = Db.RiskRecommendations.Where(a => a.id == id).FirstOrDefault();
+            var riskRecommendation = Db.RiskRecommendations.Where(a => a.Id == id).FirstOrDefault();
 
             if (riskRecommendation == null)
             {
@@ -103,7 +104,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Edit(int id, int projectStepId, RiskRecommendation riskRecommendation)
         {
-            var risk = Db.Risks.Where(a => a.id == id).FirstOrDefault();
+            var risk = Db.Risks.Where(a => a.Id == id).FirstOrDefault();
 
             if (risk == null)
             {
@@ -111,13 +112,13 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction<ProjectController>(a => a.Index());
             }
 
-            Validation.Validate(riskRecommendation, ModelState);
+            //Validation.Validate(riskRecommendation, ModelState);
 
             if (ModelState.IsValid)
             {
                 _projectService.SaveRiskRecommendation(riskRecommendation, id);
                 Message = "Risk recommendation has been updated.";
-                return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.ProjectId });
+                return RedirectToAction("Index", risk.AssessmentType.Controller, new { id = projectStepId, projectId = risk.Project.Id });
             }
 
             var viewModel = RiskRecommendationViewModel.Create(projectStepId, risk, riskRecommendation);

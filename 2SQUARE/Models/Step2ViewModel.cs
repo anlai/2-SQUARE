@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -17,7 +18,7 @@ namespace _2SQUARE.Models
         public List<Goal> PrivacyGoals { get; set; }
         public List<Goal> Assets { get; set; }
 
-        public static Step2ViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string loginId)
+        public static Step2ViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string loginId)
         {
             Check.Require(db != null, "Repository is required.");
 
@@ -27,15 +28,15 @@ namespace _2SQUARE.Models
             if (viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Security)
             {
                 // load the business goal
-                viewModel.BusinessGoal = viewModel.Project.Goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Business).ToString()).SingleOrDefault();
+                viewModel.BusinessGoal = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Business).ToString()).SingleOrDefault();
 
                 // load the security goals
-                viewModel.SecurityGoals = viewModel.Project.Goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Security).ToString()).ToList();
+                viewModel.SecurityGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Security).ToString()).ToList();
             }
             else if (viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy)
             {
-                viewModel.PrivacyGoals = viewModel.Project.Goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Privacy).ToString()).ToList();
-                viewModel.Assets = viewModel.Project.Goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Asset).ToString()).ToList();
+                viewModel.PrivacyGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Privacy).ToString()).ToList();
+                viewModel.Assets = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Asset).ToString()).ToList();
             }
 
             return viewModel;

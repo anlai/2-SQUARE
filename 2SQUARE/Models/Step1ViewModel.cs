@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Filters;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -15,14 +16,14 @@ namespace _2SQUARE.Models
         public bool Stakeholder { get; set; }
         public bool RequirementsEngineer { get; set; }
 
-        public static Step1ViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string loginId)
+        public static Step1ViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string loginId)
         {
             Check.Require(db != null, "Square Entities is required.");
 
             var viewModel = new Step1ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, loginId);
 
-            var projectTerms = db.ProjectTerms.Where(a => a.ProjectId == projectId && a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId).ToList();
+            var projectTerms = db.ProjectTerms.Where(a => a.Project.Id == projectId && a.SquareType == viewModel.ProjectStep.Step.SquareType).ToList();
             viewModel.ProjectTerms = projectTerms;
 
             var roles = projectService.UserRoles(projectId, loginId);

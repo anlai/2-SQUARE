@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace _2SQUARE.Models
     {
         public List<Artifact> Artifacts { get; set; }
 
-        public static Step3ViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string currentUserId)
+        public static Step3ViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string currentUserId)
         {
             Check.Require(db != null, "db is required.");
 
@@ -22,9 +23,9 @@ namespace _2SQUARE.Models
 
             viewModel.Artifacts = db.Artifacts.Where(
                                     a =>
-                                    a.ProjectId == projectId &&
-                                    a.ArtifactType.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId)
-                                    .OrderBy(a => a.ArtifactTypeId).ThenByDescending(a => a.DateCreated).ToList();
+                                    a.Project.Id == projectId &&
+                                    a.ArtifactType.SquareType == viewModel.ProjectStep.Step.SquareType)
+                                    .OrderBy(a => a.ArtifactType).ThenByDescending(a => a.DateCreated).ToList();
 
             return viewModel;
         }

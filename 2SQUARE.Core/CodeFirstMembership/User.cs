@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using _2SQUARE.Core.Domain;
 
 namespace CodeFirstMembershipDemoSharp.Data
 {
@@ -37,5 +38,6 @@ namespace CodeFirstMembershipDemoSharp.Data
         public virtual string TimeZone { get; set; }
         public virtual string Culture { get; set; }
 
+        public virtual ICollection<ProjectWorker> ProjectWorkers { get; set; }
     }
 }

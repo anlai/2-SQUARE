@@ -5,6 +5,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -60,22 +61,22 @@ namespace _2SQUARE.Controllers
         public ActionResult Add(int id, int projectId, Risk risk)
         {
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var likelihood = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
-            var damage = Db.RiskLevels.Where(a => a.id == risk.DamageId).Single();
+            var likelihood = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
+            var damage = Db.RiskLevels.Where(a => a.Id == risk.Damage.Id).Single();
 
             var riskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
 
             risk.Name = "Created using PRAUC controller";
-            risk.ProjectId = projectId;
-            risk.SsquareTypeId = projectStep.Step.SquareTypeId;
-            risk.AssessmentTypeId = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.PrivacyRiskUbiquitousComputing && a.SquareTypeId == projectStep.Step.SquareTypeId).Select(a => a.id).Single();
-            risk.RiskLevelId = riskLevel.id;
+            risk.Project = projectStep.Project;
+            risk.SquareType = projectStep.Step.SquareType;
+            risk.AssessmentType = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.PrivacyRiskUbiquitousComputing && a.SquareType == projectStep.Step.SquareType).Single();
+            risk.RiskLevel = riskLevel;
 
             Validate(risk, ModelState);
 
             if (ModelState.IsValid)
             {
-                Db.Risks.AddObject(risk);
+                Db.Risks.Add(risk);
                 Db.SaveChanges();
 
                 Message = string.Format(Messages.Saved, "Risk");
@@ -90,7 +91,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var risk = Db.Risks.Where(a => a.id == riskId).Single();
+                var risk = Db.Risks.Where(a => a.Id == riskId).Single();
 
                 var viewModel = PRAUCEditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
 
@@ -105,19 +106,19 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Edit(int id, int projectId, int riskId, Risk risk)
         {
-            var origRisk = Db.Risks.Where(a => a.id == riskId).Single();
+            var origRisk = Db.Risks.Where(a => a.Id == riskId).Single();
 
             // copy in the values that were altered
             origRisk.Description = risk.Description;
-            origRisk.LikelihoodId = risk.LikelihoodId;
-            origRisk.DamageId = risk.DamageId;
+            origRisk.Likelihood = risk.Likelihood;
+            origRisk.Damage = risk.Damage;
             origRisk.Cost = risk.Cost;
 
             // recalculate the new risk level
-            var likelihood = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
-            var damage = Db.RiskLevels.Where(a => a.id == risk.DamageId).Single();
+            var likelihood = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
+            var damage = Db.RiskLevels.Where(a => a.Id == risk.Damage.Id).Single();
             var riskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
-            origRisk.RiskLevelId = riskLevel.id;
+            origRisk.RiskLevel = riskLevel;
 
             Validate(origRisk, ModelState);
 
@@ -165,7 +166,7 @@ namespace _2SQUARE.Controllers
             // if C>=LD then return low
             else riskLevelId = ((char) RiskLevelsEnum.Low).ToString();
 
-            return Db.RiskLevels.Where(a => a.id == riskLevelId).Single();
+            return Db.RiskLevels.Where(a => a.Id == riskLevelId).Single();
         }
 
         /// <summary>
@@ -178,10 +179,10 @@ namespace _2SQUARE.Controllers
             if (string.IsNullOrEmpty(risk.Name))
                 modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));
 
-            if (string.IsNullOrEmpty(risk.LikelihoodId) && risk.Likelihood == null)
+            if (string.IsNullOrEmpty(risk.Likelihood.Id) && risk.Likelihood == null)
                 modelState.AddModelError("Likelihood", string.Format(Messages.Required, "Likelihood"));
 
-            if (string.IsNullOrEmpty(risk.DamageId) && risk.Damage == null)
+            if (string.IsNullOrEmpty(risk.Damage.Id) && risk.Damage == null)
                 modelState.AddModelError("Damage", string.Format(Messages.Required, "Damage"));
 
             if (!risk.Cost.HasValue)

@@ -3,6 +3,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -54,22 +55,22 @@ namespace _2SQUARE.Controllers
         public ActionResult Add(int id /* project step id */, int projectId, Risk risk)
         {
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var likelihoodLevel = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
-            var magnitudeLevel = Db.RiskLevels.Where(a => a.id == risk.MagnitudeId).Single();
+            var likelihoodLevel = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
+            var magnitudeLevel = Db.RiskLevels.Where(a => a.Id == risk.Magnitude.Id).Single();
 
             var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
 
             // set the properties that the user can't set
-            risk.ProjectId = projectId;
-            risk.SsquareTypeId = projectStep.Step.SquareTypeId;
-            risk.RiskLevelId = riskLevel.id;
-            risk.AssessmentTypeId = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30 && a.SquareTypeId == projectStep.Step.SquareTypeId).Select(a => a.id).Single();
+            risk.Project = projectStep.Project;
+            risk.SquareType = projectStep.Step.SquareType;
+            risk.RiskLevel = riskLevel;
+            risk.AssessmentType = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30 && a.SquareType == projectStep.Step.SquareType).Single();
 
             Validate(risk, ModelState);
 
             if (ModelState.IsValid)
             {
-                Db.Risks.AddObject(risk);
+                Db.Risks.Add(risk);
                 Db.SaveChanges();
 
                 Message = string.Format(Messages.Saved, "Risk");
@@ -84,7 +85,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var risk = Db.Risks.Where(a => a.id == riskId).Single();
+                var risk = Db.Risks.Where(a => a.Id == riskId).Single();
 
                 var viewModel = NIST800_30EditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
 
@@ -99,20 +100,20 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Edit(int id /* project step id */, int projectId, int riskId, Risk risk)
         {
-            var srcRisk = Db.Risks.Where(a => a.id == riskId).Single();
+            var srcRisk = Db.Risks.Where(a => a.Id == riskId).Single();
 
             // copy the fields that could have been edited
             srcRisk.Name = risk.Name;
             srcRisk.Source = risk.Source;
             srcRisk.Vulnerability = risk.Vulnerability;
-            srcRisk.LikelihoodId = risk.LikelihoodId;
-            srcRisk.ImpactId = risk.ImpactId;
-            srcRisk.MagnitudeId = risk.MagnitudeId;
+            srcRisk.Likelihood = risk.Likelihood;
+            srcRisk.Impact = risk.Impact;
+            srcRisk.Magnitude = risk.Magnitude;
 
-            var likelihoodLevel = Db.RiskLevels.Where(a => a.id == risk.LikelihoodId).Single();
-            var magnitudeLevel = Db.RiskLevels.Where(a => a.id == risk.MagnitudeId).Single();
+            var likelihoodLevel = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
+            var magnitudeLevel = Db.RiskLevels.Where(a => a.Id == risk.Magnitude.Id).Single();
             var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
-            srcRisk.RiskLevelId = riskLevel.id;
+            srcRisk.RiskLevel = riskLevel;
 
             Validate(srcRisk, ModelState);
 
@@ -129,8 +130,8 @@ namespace _2SQUARE.Controllers
 
         public JsonResult DetermineRiskLevel(string likelihood, string magnitude)
         {
-            var likelihoodLevel = Db.RiskLevels.Where(a => a.id == likelihood).Single();
-            var magnitudeLevel = Db.RiskLevels.Where(a => a.id == magnitude).Single();
+            var likelihoodLevel = Db.RiskLevels.Where(a => a.Id == likelihood).Single();
+            var magnitudeLevel = Db.RiskLevels.Where(a => a.Id == magnitude).Single();
 
             var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
 
@@ -163,7 +164,7 @@ namespace _2SQUARE.Controllers
                 level = ((char) RiskLevelsEnum.Low).ToString();
             }
 
-            return Db.RiskLevels.Where(a => a.id == level).SingleOrDefault();
+            return Db.RiskLevels.Where(a => a.Id == level).SingleOrDefault();
         }
 
         private void Validate(Risk risk, ModelStateDictionary modelState)
@@ -177,13 +178,13 @@ namespace _2SQUARE.Controllers
             if (string.IsNullOrEmpty(risk.Vulnerability))
                 modelState.AddModelError("Vulnerability", string.Format(Messages.Required, "Name"));
 
-            if (string.IsNullOrEmpty(risk.LikelihoodId) && risk.Likelihood == null)
+            if (string.IsNullOrEmpty(risk.Likelihood.Id) && risk.Likelihood == null)
                 modelState.AddModelError("Likelihood", string.Format(Messages.Required, "Likelihood"));
 
-            if (string.IsNullOrEmpty(risk.MagnitudeId) && risk.Magnitude == null)
+            if (string.IsNullOrEmpty(risk.Magnitude.Id) && risk.Magnitude == null)
                 modelState.AddModelError("Magnitude", string.Format(Messages.Required, "Magnitude"));
 
-            if (risk.ImpactId <= 0 && risk.Impact == null)
+            if (risk.Impact.Id <= 0 && risk.Impact == null)
                 modelState.AddModelError("Impact", string.Format(Messages.Required, "Impact"));
         }
     }

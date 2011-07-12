@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -35,7 +36,7 @@ namespace _2SQUARE.Controllers
         public ActionResult Add(int id /* project step id*/, Artifact artifact, HttpPostedFileBase file)
         {
             // only validate hte user's input
-            Validation.Validate(artifact, ModelState);
+            //Validation.Validate(artifact, ModelState);
             
             if (file != null)
             {
@@ -77,10 +78,10 @@ namespace _2SQUARE.Controllers
             // copy the new fields
             existingArtifact.Name = artifact.Name;
             existingArtifact.Description = artifact.Description;
-            existingArtifact.ArtifactTypeId = artifact.ArtifactTypeId;
+            existingArtifact.ArtifactType = artifact.ArtifactType;
 
             // validate user's input
-            Validation.Validate(existingArtifact, ModelState);
+            //Validation.Validate(existingArtifact, ModelState);
 
             // read the file and update if one was provided
             if (file != null)

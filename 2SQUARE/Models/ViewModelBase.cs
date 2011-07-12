@@ -1,4 +1,5 @@
 ﻿using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -18,6 +19,6 @@ public class ViewModelBase
 
         Check.Ensure(this.Project != null, "this.Project is required.");
         Check.Ensure(this.ProjectStep != null, "this.ProjectStep is required.");
-        Check.Ensure(this.Project.id == this.ProjectStep.ProjectId, Messages.ProjectStepMismatch);
+        Check.Ensure(this.Project.Id == this.ProjectStep.Project.Id, Messages.ProjectStepMismatch);
     }
 }

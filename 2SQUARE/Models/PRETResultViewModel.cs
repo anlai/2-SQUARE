@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.PRET;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -10,7 +11,7 @@ namespace _2SQUARE.Models
         public IEnumerable<PRETLaw> PretLaws { get; set; }
         public IEnumerable<PRETRequirement> PretRequirements { get; set; }
 
-        public static PRETResultViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId, int[] laws)
+        public static PRETResultViewModel Create(SquareContext db, IProjectService projectService, int projectId, int projectStepId, string userId, int[] laws)
         {
             Check.Require(db != null, "db is required.");
             Check.Require(projectService != null, "projectService is required.");
@@ -19,8 +20,8 @@ namespace _2SQUARE.Models
 
             var viewModel = new PRETResultViewModel()
                                 {
-                                    PretLaws = db.PRETLaws.Where(a=>laws.Contains(a.id)).ToList(),
-                                    PretRequirements = db.PRETRequirements.Where(a=>laws.Contains(a.PRETLaw.id)).ToList()
+                                    PretLaws = db.PRETLaws.Where(a=>laws.Contains(a.Id)).ToList(),
+                                    PretRequirements = db.PretRequirements.Where(a=>laws.Contains(a.Law.Id)).ToList()
                                 };
 
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);

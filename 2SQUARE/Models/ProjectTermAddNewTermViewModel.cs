@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using _2SQUARE.Core.Domain;
 using DesignByContract;
 
 namespace _2SQUARE.Models
@@ -8,7 +9,7 @@ namespace _2SQUARE.Models
         public Step Step { get; set; }
         public ProjectTerm ProjectTerm { get; set; }
         
-        public static ProjectTermAddNewTermViewModel Create(SquareEntities db, int stepId, ProjectTerm projectTerm)
+        public static ProjectTermAddNewTermViewModel Create(SquareContext db, int stepId, ProjectTerm projectTerm)
         {
             Check.Require(db != null, "Square Entities is required.");
             Check.Require(projectTerm != null, "projectTerm is required.");

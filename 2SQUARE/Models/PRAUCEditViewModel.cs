@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -12,7 +13,7 @@ namespace _2SQUARE.Models
         public Risk Risk { get; set; }
         public IEnumerable<RiskLevel> RiskLevels { get; set; }
 
-        public static PRAUCEditViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string userId, Risk risk = null)
+        public static PRAUCEditViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string userId, Risk risk = null)
         {
             var viewModel = new PRAUCEditViewModel()
                                 {
@@ -22,7 +23,7 @@ namespace _2SQUARE.Models
                                     Risk = risk ?? new Risk()
                                 };
 
-            Check.Ensure(viewModel.Risk.ProjectId == viewModel.Project.id, "Risk does not belong to the intended project.");
+            Check.Ensure(viewModel.Risk.Project.Id == viewModel.Project.Id, "Risk does not belong to the intended project.");
 
             return viewModel;
         }

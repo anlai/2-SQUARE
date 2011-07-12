@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using DesignByContract;
@@ -13,7 +14,7 @@ namespace _2SQUARE.Services
 {
     public class ProjectService : IProjectService
     {
-        SquareEntities db = new SquareEntities();
+        SquareContext db = new SquareContext();
 
         #region Access Methods
         /// <summary>
@@ -26,7 +27,7 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            return db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Any();
+            return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Any();
         }
 
         public List<string> UserRoles(int id, string login)
@@ -34,14 +35,14 @@ namespace _2SQUARE.Services
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
             return
-                db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login).Select(
-                    a => a.aspnet_Roles.RoleName).ToList();
+                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Select(
+                    a => a.Role.RoleName).ToList();
         }
 
         public bool IsInProjectRole(int id /* project id */,string login, string roleName)
         {
             return
-                db.ProjectWorkers.Where(a => a.ProjectId == id && a.aspnet_Users.UserName == login && a.aspnet_Roles.RoleName == roleName)
+                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login && a.Role.RoleName == roleName)
                 .Any();
         }
 
@@ -54,7 +55,7 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
+            var user = db.Users.Where(a => a.Username == login).Single();
 
             return user.ProjectWorkers.Select(a=>a.Project).ToList();
         }
@@ -69,12 +70,10 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
-            var project = db.Projects.Where(a => a.id == id).Single();
+            var user = db.Users.Where(a => a.Username == login).Single();
+            var project = db.Projects.Where(a => a.Id == id).Single();
 
-            db.Refresh(RefreshMode.StoreWins, project);
-
-            if (!project.ProjectWorkers.Any(a => a.aspnet_Users.UserId == user.UserId)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
+            if (!project.ProjectWorkers.Any(a => a.User.UserId == user.UserId)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
 
             return project;
         }
@@ -88,21 +87,21 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login) , "login is required.");
 
-            var user = db.aspnet_Users.Where(a => a.UserName == login).Single();
+            var user = db.Users.Where(a => a.Username == login).Single();
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
 
-            if (!projectStep.Project.ProjectWorkers.Any(a=>a.aspnet_Users.UserId == user.UserId))
+            if (!projectStep.Project.ProjectWorkers.Any(a=>a.User.UserId == user.UserId))
                 throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
 
             return projectStep;
         }
         public IList<ProjectStep> GetProjectSteps(int id, SquareType squareType = null)
         {
-            var query = db.ProjectSteps.Where(a => a.ProjectId == id);
+            var query = db.ProjectSteps.Where(a => a.Project.Id == id);
 
             if (squareType != null)
             {
-                query = query.Where(a => a.Step.SquareTypeId == squareType.id);
+                query = query.Where(a => a.Step.SquareType.Id == squareType.Id);
             }
 
             return query.ToList();
@@ -119,16 +118,19 @@ namespace _2SQUARE.Services
         /// <param name="source"></param>
         /// <param name="termId"></param>
         /// <param name="definitionId"></param>
-        public ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
+        public ProjectTerm AddTermToProject(int id, int SquareType, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
         {
-            // update existing project term
+            var project = db.Projects.Where(a => a.Id == id).FirstOrDefault();
+            var squareType = db.SquareTypes.Where(a => a.Id == SquareType).FirstOrDefault();
+
+            // update existing project term))
             if (termId > 0 && definitionId > 0)
             {
-                var termObj = db.Terms.Where(a => a.id == termId).Single();
-                var definitionObj = db.Definitions.Where(a => a.id == definitionId).Single();
+                var termObj = db.Terms.Where(a => a.Id == termId).Single();
+                var definitionObj = db.Definitions.Where(a => a.Id == definitionId).Single();
 
                 // make sure def matches term
-                if (definitionObj.TermId != termObj.id) throw new ArgumentException("Term/Definition mismatch.");
+                if (definitionObj.Term.Id != termObj.Id) throw new ArgumentException("Term/Definition mismatch.");
 
                 term = termObj.Name;
                 definition = definitionObj.Description;
@@ -137,16 +139,16 @@ namespace _2SQUARE.Services
 
             if (!string.IsNullOrEmpty(term) && !string.IsNullOrEmpty(definition) && !string.IsNullOrEmpty(source))
             {
-                if (id <= 0 || squareTypeId <= 0) throw new ArgumentException("Project or Square Type Id are invalid");
+                if (id <= 0 || SquareType <= 0) throw new ArgumentException("Project or Square Type Id are invalid");
 
                 var projectTerm = new ProjectTerm();
                 projectTerm.Term = term;
                 projectTerm.Definition = definition;
                 projectTerm.Source = source;
-                projectTerm.ProjectId = id;
-                projectTerm.SquareTypeId = squareTypeId;
+                projectTerm.Project = project;
+                projectTerm.SquareType = squareType;
 
-                db.AddToProjectTerms(projectTerm);
+                db.ProjectTerms.Add(projectTerm);
 
                 db.SaveChanges();
 
@@ -160,7 +162,7 @@ namespace _2SQUARE.Services
         #region Step 2 Methods
         public Goal LoadGoal(int id)
         {
-            return db.Goals.Where(a => a.id == id).SingleOrDefault();
+            return db.Goals.Where(a => a.Id == id).SingleOrDefault();
         }
         /// <summary>
         /// Add/Update goal
@@ -173,16 +175,16 @@ namespace _2SQUARE.Services
             // load the project step
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
             // list of goal types for this square type
-            var goalTypes = db.GoalTypes.Where(a=>a.SquareTypeId == projectStep.Step.SquareTypeId).Select(a=>a.id).ToList();
+            var goalTypes = db.GoalTypes.Where(a=>a.SquareType == projectStep.Step.SquareType).Select(a=>a.Id).ToList();
 
             // wrong goal type for the project step
-            if (!goalTypes.Contains(goal.GoalTypeId)) return null;
+            if (!goalTypes.Contains(goal.GoalType.Id)) return null;
 
             // create new
-            if (goal.id <= 0)
+            if (goal.Id <= 0)
             {
-                goal.ProjectId = projectStep.ProjectId;
-                db.AddToGoals(goal);    
+                goal.Project = projectStep.Project;
+                db.Goals.Add(goal);    
             }
 
             db.SaveChanges();
@@ -192,8 +194,8 @@ namespace _2SQUARE.Services
 
         public void DeleteGoal(int id /* goal id */)
         {
-            var goal = db.Goals.Where(a => a.id == id).Single();
-            db.DeleteObject(goal);
+            var goal = db.Goals.Where(a => a.Id == id).Single();
+            db.Goals.Remove(goal);
             db.SaveChanges();
         }
         #endregion
@@ -201,26 +203,26 @@ namespace _2SQUARE.Services
         #region Step 3 Methods
         public Artifact LoadArtifact(int id)
         {
-            return db.Artifacts.Where(a => a.id == id).SingleOrDefault();
+            return db.Artifacts.Where(a => a.Id == id).SingleOrDefault();
         }
 
         public Artifact SaveArtifact(int id, Artifact artifact, string loginId)
         {
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
-            var artifactType = db.ArtifactTypes.Where(a => a.id == artifact.ArtifactTypeId).Single();
+            var artifactType = db.ArtifactTypes.Where(a => a.Id == artifact.ArtifactType.Id).Single();
 
             // incorrect square type
-            if (projectStep.Step.SquareTypeId != artifactType.SquareTypeId) return null;
+            if (projectStep.Step.SquareType != artifactType.SquareType) return null;
 
             artifact.ArtifactType = artifactType;
 
-            if (artifact.id <= 0)
+            if (artifact.Id <= 0)
             {
                 artifact.DateCreated = DateTime.Now;
                 artifact.CreatedBy = loginId;
                 artifact.Project = projectStep.Project;
 
-                db.Artifacts.AddObject(artifact);
+                db.Artifacts.Add(artifact);
             }
 
             db.SaveChanges();
@@ -230,8 +232,8 @@ namespace _2SQUARE.Services
 
         public void DeleteArtifact(int id)
         {
-            var artifact = db.Artifacts.Where(a => a.id == id).Single();
-            db.DeleteObject(artifact);
+            var artifact = db.Artifacts.Where(a => a.Id == id).Single();
+            db.Artifacts.Remove(artifact);
             db.SaveChanges();
         }
         #endregion
@@ -246,11 +248,11 @@ namespace _2SQUARE.Services
 
             if (assessmentType.SquareType.Name == SquareTypes.Security)
             {
-                project.SecurityAssessmentId = assessmentType.id;
+                project.SecurityAssessmentType = assessmentType;
             }
             else if (assessmentType.SquareType.Name == SquareTypes.Privacy)
             {
-                project.PrivacyAssessmentId = assessmentType.id;
+                project.PrivacyAssessmentType = assessmentType;
             }
 
             // save
@@ -259,11 +261,11 @@ namespace _2SQUARE.Services
 
         public RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId)
         {
-            riskRecommendation.RiskId = riskId;
+            riskRecommendation.Risk.Id = riskId;
 
-            if (riskRecommendation.id <= 0)
+            if (riskRecommendation.Id <= 0)
             {
-                db.AddToRiskRecommendations(riskRecommendation);
+                db.RiskRecommendations.Add(riskRecommendation);
             }
 
             db.SaveChanges();
@@ -281,13 +283,13 @@ namespace _2SQUARE.Services
 
             if (elicitationType.SquareType.Name == SquareTypes.Security)
             {
-                project.SecurityElicitationId = elicitationType.id;
+                project.SecurityElicitationType = elicitationType;
                 project.SecurityElicitationRationale = rationale;
             }
 
             if (elicitationType.SquareType.Name == SquareTypes.Privacy)
             {
-                project.PrivacyElicitationId = elicitationType.id;
+                project.PrivacyElicitationType = elicitationType;
                 project.PrivacyElicitationRationale = rationale;
             }
 
@@ -308,14 +310,16 @@ namespace _2SQUARE.Services
             Check.Require(requirement != null, "requirement is required.");
             Check.Require(squareType != null, "squareType is required.");
 
-            requirement.ProjectId = id;
-            requirement.SquareTypeId = squareType.id;
+            var project = db.Projects.Where(a => a.Id == id).FirstOrDefault();
 
-            Validation.Validate(requirement, modelState);
+            requirement.Project = project;
+            requirement.SquareType = squareType;
+
+            //Validation.Validate(requirement, modelState);
 
             if (modelState.IsValid)
             {
-                if (requirement.id <= 0) db.Requirements.AddObject(requirement);
+                if (requirement.Id <= 0) db.Requirements.Add(requirement);
 
                 db.SaveChanges();
             }
@@ -323,11 +327,11 @@ namespace _2SQUARE.Services
 
         public void DeleteRequirement(int id, int requirementId)
         {
-            var requirement = db.Requirements.Where(a => a.id == requirementId).Single();
+            var requirement = db.Requirements.Where(a => a.Id == requirementId).Single();
 
-            Check.Ensure(requirement.ProjectId == id, "Requirement mismatch, does not match project id.");
+            Check.Ensure(requirement.Project.Id == id, "Requirement mismatch, does not match project id.");
 
-            db.DeleteObject(requirement);
+            db.Requirements.Remove(requirement);
 
             db.SaveChanges();
         }

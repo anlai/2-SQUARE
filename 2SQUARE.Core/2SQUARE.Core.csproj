@@ -72,7 +72,7 @@
     <Compile Include="PRET\PRETAnswer.cs" />
     <Compile Include="PRET\PRETLaw.cs" />
     <Compile Include="PRET\PRETQuestion.cs" />
-    <Compile Include="PRET\PRETRequirements.cs" />
+    <Compile Include="PRET\PRETRequirement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

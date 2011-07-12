@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 
 namespace _2SQUARE.Helpers
@@ -15,7 +16,7 @@ namespace _2SQUARE.Helpers
 
             var urlHelper = new UrlHelper(requestContext);
             return urlHelper.Action(step.Action, step.Controller,
-                                         new {id = projectStep.Id, projectId = projectStep.ProjectId});
+                                         new {id = projectStep.Id, projectId = projectStep.Project.Id});
         }
 
         public static RedirectResult CreateRedirectResult(RequestContext requestContext, ProjectStep projectStep)

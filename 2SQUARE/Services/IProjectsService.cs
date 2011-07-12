@@ -18,7 +18,7 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 1 Methods
-        ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0);
+        ProjectTerm AddTermToProject(int id, int SquareType, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0);
         #endregion
 
         #region Step 2 Methods

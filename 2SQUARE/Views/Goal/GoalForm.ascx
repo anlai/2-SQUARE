@@ -9,7 +9,7 @@
 
     <ul class="entry-form">
         <%: Html.HiddenFor(a=>a.Goal.ProjectId) %>
-        <%: Html.HiddenFor(a=>a.Goal.SquareTypeId) %>
+        <%: Html.HiddenFor(a=>a.Goal.SquareType) %>
         <li><strong>Goal:</strong>
             <%: Html.TextAreaFor(a=>a.Goal.Description) %>
         </li>

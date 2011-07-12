@@ -17,7 +17,7 @@ namespace _2SQUARE.Controllers
 
         public ActionResult Index()
         {
-            var steps = db.Steps.ToList();
+            var steps = Db.Steps.ToList();
 
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace _2SQUARE.Core.Domain
 {
@@ -8,7 +9,7 @@ namespace _2SQUARE.Core.Domain
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Cost { get; set; }
+        public int? Cost { get; set; }
         public string Source { get; set; }
         public string Vulnerability { get; set; }
         public string Action { get; set; }
@@ -26,5 +27,7 @@ namespace _2SQUARE.Core.Domain
         public RiskLevel Damage { get; set; }
         public RiskLevel Magnitude { get; set; }
         public RiskLevel RiskLevel { get; set; }
+
+        public ICollection<RiskRecommendation> RiskRecommendations { get; set; }
     }
 }

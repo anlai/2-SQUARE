@@ -1,4 +1,5 @@
-﻿using _2SQUARE.Models;
+﻿using _2SQUARE.Core.Domain;
+using _2SQUARE.Models;
 using DesignByContract;
 
 namespace _2SQUARE.Models

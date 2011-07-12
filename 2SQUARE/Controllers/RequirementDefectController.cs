@@ -5,6 +5,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -26,7 +27,7 @@ namespace _2SQUARE.Controllers
             try
             {
                 var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-                var requirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
+                var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
 
                 if (requirement == null)
                 {
@@ -46,12 +47,12 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Create(int id, int projectId, int requirementId, RequirementDefect defect)
         {
-            defect.RequirementId = requirementId;
-            Validation.Validate(defect, ModelState);
+            defect.Requirement.Id = requirementId;
+            //Validation.Validate(defect, ModelState);
 
             if (ModelState.IsValid)
             {
-                Db.RequirementDefects.AddObject(defect);
+                Db.RequirementDefects.Add(defect);
                 Db.SaveChanges();
 
                 Message = string.Format(Messages.Saved, "Defect");
@@ -60,7 +61,7 @@ namespace _2SQUARE.Controllers
                 return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
             }
 
-            var requirement = Db.Requirements.Where(a => a.id == requirementId).SingleOrDefault();
+            var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
             var viewModel = RequirementDefectViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement, defect);
             return View(viewModel);
         }
@@ -68,7 +69,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public RedirectToRouteResult Resolve(int id, int projectId, int defectId)
         {
-            var defect = Db.RequirementDefects.Where(a => a.id == defectId).SingleOrDefault();
+            var defect = Db.RequirementDefects.Where(a => a.Id == defectId).SingleOrDefault();
             defect.Solved = true;
 
             Db.SaveChanges();

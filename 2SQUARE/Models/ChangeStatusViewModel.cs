@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Services;
 
@@ -31,7 +32,7 @@ namespace _2SQUARE.Models
                                                             {
                                                                 ProjectStepId = a.Id,
                                                                 Order = a.Step.Order,
-                                                                SquareTypeId = a.Step.SquareTypeId,
+                                                                SquareType = a.Step.SquareType.Id,
                                                                 Name = a.Step.Name,
                                                                 CurrentStepStatus = projectService.GetStepStatus(projectStep:a),
                                                                 CanEdit = projectService.CanStepChangeStatus(a.Id)
@@ -45,7 +46,7 @@ namespace _2SQUARE.Models
     {
         public int ProjectStepId { get; set; }
         public int Order { get; set; }
-        public int SquareTypeId { get; set; }
+        public int SquareType { get; set; }
         public string Name { get; set; }
         public ProjectStepStatus CurrentStepStatus { get; set; }
         public bool CanEdit { get; set; }

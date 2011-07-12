@@ -73,7 +73,7 @@ namespace _2SQUARE.Services
             throw new NotImplementedException();
         }
 
-        public ProjectTerm AddTermToProject(int id, int squareTypeId, string term, string definition, string source, int termId, int definitionId)
+        public ProjectTerm AddTermToProject(int id, int SquareType, string term, string definition, string source, int termId, int definitionId)
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@
         <%: Html.ValidationSummary() %>
 
         <%: Html.HiddenFor(a=>a.ProjectTerm.ProjectId) %>
-        <%: Html.HiddenFor(a=>a.ProjectTerm.SquareTypeId) %>
+        <%: Html.HiddenFor(a=>a.ProjectTerm.SquareType) %>
 
         <ul class="entry-form">
             <li>

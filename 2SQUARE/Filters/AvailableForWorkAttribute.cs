@@ -24,10 +24,10 @@ namespace _2SQUARE.Filters
             var id = Convert.ToInt32(filterContext.RouteData.Values["id"]); // project step id
             var logon = filterContext.RequestContext.HttpContext.User.Identity.Name;
 
-            var db = new SquareEntities();
+            var db = new SquareContext();
 
             // load pstep
-            var pStep = db.ProjectSteps.Where(a => a.ProjectId == projectId && a.Id == id).Single();
+            var pStep = db.ProjectSteps.Where(a => a.Project.Id == projectId && a.Id == id).Single();
 
             // figure out if the current user has access
 
@@ -41,13 +41,13 @@ namespace _2SQUARE.Filters
             {
                 // this project is not valid for working
                 // admin needs to change status
-                if (project.ProjectWorkers.Where(a => a.aspnet_Users.UserName == logon 
-                    && a.aspnet_Roles.RoleName == RoleNames.RoleProjectManager).Any())
+                if (project.ProjectWorkers.Where(a => a.User.Username == logon 
+                    && a.Role.RoleName == RoleNames.RoleProjectManager).Any())
                 {
                     filterContext.Controller.TempData["ErrorMessage"] = string.Format(Messages.Manager_NotValidForWork,
                                                                                       pStep.Step.Order,
                                                                                       pStep.Step.SquareType.Name);
-                    filterContext.Result = new RedirectResult(urlHelper.Action("ChangeStatus", "Project", new { id = pStep.ProjectId }));
+                    filterContext.Result = new RedirectResult(urlHelper.Action("ChangeStatus", "Project", new { id = pStep.Project.Id }));
                 }
                 else
                 {

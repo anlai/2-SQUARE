@@ -2,7 +2,7 @@
 
 namespace _2SQUARE.Core.PRET
 {
-    public class PRETRequirements : DomainObject
+    public class PRETRequirement : DomainObject
     {
         [StringLength(100)]
         [Required]

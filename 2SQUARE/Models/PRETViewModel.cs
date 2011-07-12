@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.PRET;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -11,7 +12,7 @@ namespace _2SQUARE.Models
         public IQueryable<PRETQuestion> PretQuestions { get; set; }
         public IList<PRETQuestionAnswer> QuestionAnswers { get; set; }
 
-        public static PRETViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string currentUserId, bool loadQuestions= false, IList<PRETQuestionAnswer> questionAnswers = null)
+        public static PRETViewModel Create(SquareContext db, IProjectService projectService, int projectId, int projectStepId, string currentUserId, bool loadQuestions= false, IList<PRETQuestionAnswer> questionAnswers = null)
         {
             Check.Require(projectService != null, "projectService is required.");
 
@@ -20,7 +21,7 @@ namespace _2SQUARE.Models
 
             if (loadQuestions)
             {
-                viewModel.PretQuestions = db.PRETQuestions;
+                viewModel.PretQuestions = db.PretQuestions;
             }
 
             Check.Ensure(viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy, "PRET only works with privacy.");

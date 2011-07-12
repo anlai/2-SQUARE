@@ -178,11 +178,6 @@
     <Compile Include="Models\ProjectTermAddNewTermViewModel.cs" />
     <Compile Include="Models\ProjectTermEditViewModel.cs" />
     <Compile Include="Models\ProjectTermPredefinedTermsViewModel.cs" />
-    <Compile Include="Models\SquareEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SquareEntities.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Step1ViewModel.cs" />
     <Compile Include="Models\Step2ViewModel.cs" />
     <Compile Include="Models\Step3ViewModel.cs" />
@@ -342,12 +337,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Domain\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\SquareEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SquareEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

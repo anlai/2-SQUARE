@@ -20,7 +20,7 @@
             updateOrder = updateOrder.substring(1, updateOrder.length);
 
             var url = '<%: Url.Action("UpdateRequirementOrder") %>';
-            $.post(url, {projectId:<%: Model.Project.id %>,squareTypeId: <%: Model.ProjectStep.Step.SquareTypeId %>,requirementIds: updateOrder }
+            $.post(url, {projectId:<%: Model.Project.id %>,SquareType: <%: Model.ProjectStep.Step.SquareType %>,requirementIds: updateOrder }
                 , function (result) { 
                     if(result) { alert("save successful"); } else {alert("failed to save");}
                 });

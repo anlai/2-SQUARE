@@ -19,7 +19,7 @@
 
                             <%: Html.Hidden("Id", Model.Step.id) %>
                             <%: Html.Hidden("projectId", Model.Project.id)%>
-                            <%: Html.Hidden("squareTypeId", Model.Step.SquareTypeId)%>
+                            <%: Html.Hidden("SquareType", Model.Step.SquareType)%>
                             <%: Html.Hidden("termId", a.id) %>
                             <%: Html.Hidden("definitionId", b.id) %>
 
@@ -35,7 +35,7 @@
                         
                         <%: Html.Hidden("Id", Model.Step.id) %>
                         <%: Html.Hidden("projectId", Model.Project.id) %>
-                        <%: Html.Hidden("squareTypeId", Model.Step.SquareTypeId) %>
+                        <%: Html.Hidden("SquareType", Model.Step.SquareType) %>
                         <%: Html.Hidden("term", a.Name) %>
                         
                         <td><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>

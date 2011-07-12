@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -39,9 +40,9 @@ namespace _2SQUARE.Controllers
         /// <param name="definitionId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ViewPredefinedTerms(int id /*step id*/, int projectId, int squareTypeId, int termId, int definitionId)
+        public ActionResult ViewPredefinedTerms(int id /*step id*/, int projectId, int SquareType, int termId, int definitionId)
         {
-            _projectService.AddTermToProject(projectId, squareTypeId, termId: termId, definitionId: definitionId);
+            _projectService.AddTermToProject(projectId, SquareType, termId: termId, definitionId: definitionId);
             Message = "Successfully added term to project.";
 
             var viewModel = ProjectTermPredefinedTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
@@ -56,7 +57,8 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult AddNewTerm(int id /*step id*/, int projectId)
         {
-            var projectTerm = new ProjectTerm() { ProjectId = projectId };
+            var project = Db.Projects.Where(a => a.Id == projectId).Single();
+            var projectTerm = new ProjectTerm() { Project = project };
             var viewModel = ProjectTermAddNewTermViewModel.Create(Db, id, projectTerm);
             return View(viewModel);
         }
@@ -70,15 +72,15 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult AddNewTerm(int id /*step id*/, ProjectTerm projectTerm)
         {
-            Validation.Validate(projectTerm, ModelState);
+            //Validation.Validate(projectTerm, ModelState);
 
             if (ModelState.IsValid)
             {
-                 projectTerm = _projectService.AddTermToProject(projectTerm.ProjectId, projectTerm.SquareTypeId, term: projectTerm.Term,
+                 projectTerm = _projectService.AddTermToProject(projectTerm.Project.Id, projectTerm.SquareType.Id, term: projectTerm.Term,
                                                      definition: projectTerm.Definition, source: projectTerm.Source);
                  Message = "Successfully added term to project";
 
-                return RedirectToAction("Step1", projectTerm.SquareType.Name, new {id=id, projectId=projectTerm.ProjectId});
+                return RedirectToAction("Step1", projectTerm.SquareType.Name, new {id=id, projectId=projectTerm.Project.Id});
             }
 
             var viewModel = ProjectTermAddNewTermViewModel.Create(Db, id, projectTerm);
@@ -95,7 +97,7 @@ namespace _2SQUARE.Controllers
         {
             var viewModel = ProjectTermEditViewModel.Create(Db, id, stepId);
 
-            if (!_projectService.HasAccess(viewModel.ProjectTerm.ProjectId, CurrentUserId)) { return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + viewModel.ProjectTerm.ProjectId + ")"))); }
+            if (!_projectService.HasAccess(viewModel.ProjectTerm.Project.Id, CurrentUserId)) { return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + viewModel.ProjectTerm.Project.Id + ")"))); }
 
             return View(viewModel);
         }
@@ -112,7 +114,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult EditTerm(int id /* project term id */, int stepId, int definitionId = -1, string definition = null, string source = null)
         {
-            var projectTerm = Db.ProjectTerms.Single(a => a.id == id);
+            var projectTerm = Db.ProjectTerms.Single(a => a.Id == id);
 
             if (definitionId == -1 && string.IsNullOrEmpty(definition) && string.IsNullOrEmpty(source))
             {
@@ -121,7 +123,7 @@ namespace _2SQUARE.Controllers
 
             if (definitionId > 0)
             {
-                var def = Db.Definitions.Single(a => a.id == definitionId);
+                var def = Db.Definitions.Single(a => a.Id == definitionId);
                 projectTerm.Definition = def.Description;
                 projectTerm.Source = def.Source;
             }
@@ -136,7 +138,7 @@ namespace _2SQUARE.Controllers
                 Db.SaveChanges();
                 Message = string.Format("Definition for {0} has been updated.", projectTerm.Term);
 
-                return this.RedirectToAction("Step1", projectTerm.SquareType.Name, new {id=stepId, projectId=projectTerm.ProjectId});
+                return this.RedirectToAction("Step1", projectTerm.SquareType.Name, new {id=stepId, projectId=projectTerm.Project.Id});
 
             }
 
@@ -155,7 +157,7 @@ namespace _2SQUARE.Controllers
         public RedirectToRouteResult RemoveTerm(int id /*project term id*/, int stepId)
         {
             var step = Db.ProjectSteps.Where(a => a.Id == stepId).SingleOrDefault();
-            var projectTerm = Db.ProjectTerms.Where(a => a.id == id).SingleOrDefault();
+            var projectTerm = Db.ProjectTerms.Where(a => a.Id == id).SingleOrDefault();
             var term = projectTerm.Term;
 
             if (step == null || projectTerm == null)
@@ -163,17 +165,17 @@ namespace _2SQUARE.Controllers
                 ErrorMessage = "Unable to find either step or project term.";
                 return this.RedirectToAction<ErrorController>(a => a.Index());
             }
-            if (projectTerm.ProjectId != step.ProjectId)
+            if (projectTerm.Project.Id != step.Project.Id)
             {
                 ErrorMessage = "Project mismatch, term project does not match step project.";
                 return this.RedirectToAction<ErrorController>(a => a.Index());
             }
 
-            Db.DeleteObject(projectTerm);
+            Db.ProjectTerms.Remove(projectTerm);
             Db.SaveChanges();
 
             Message = string.Format(Messages.Deleted, term);
-            return RedirectToAction(step.Step.Action, step.Step.Controller, new {id=stepId, projectId=step.ProjectId});
+            return RedirectToAction(step.Step.Action, step.Step.Controller, new {id=stepId, projectId=step.Project.Id});
         }
     }
 }

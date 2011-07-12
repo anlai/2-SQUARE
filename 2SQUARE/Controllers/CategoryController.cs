@@ -3,6 +3,7 @@ using System.Data.Objects;
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -53,13 +54,13 @@ namespace _2SQUARE.Controllers
             {
                 var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
-                category.SquareTypeId = projectStep.Step.SquareTypeId;
-                category.ProjectId = projectId;
-                Validation.Validate(category, ModelState);
+                category.SquareType = projectStep.Step.SquareType;
+                category.Project.Id = projectId;
+                //Validation.Validate(category, ModelState);
 
                 if (ModelState.IsValid)
                 {
-                    Db.Categories.AddObject(category);
+                    Db.Categories.Add(category);
                     Db.SaveChanges();
 
                     Message = string.Format(Messages.Saved, "Category");
@@ -79,7 +80,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var category = Db.Categories.Where(a => a.id == categoryId).SingleOrDefault();
+                var category = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
 
                 if (category == null)
                 {
@@ -101,7 +102,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var origCategory = Db.Categories.Where(a => a.id == categoryId).SingleOrDefault();
+                var origCategory = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
 
                 if (origCategory == null)
                 {
@@ -111,12 +112,11 @@ namespace _2SQUARE.Controllers
 
                 origCategory.Name = category.Name;
 
-                Validation.Validate(origCategory, ModelState);
+                //Validation.Validate(origCategory, ModelState);
 
                 if (ModelState.IsValid)
                 {
                     Db.SaveChanges();
-                    Db.Refresh(RefreshMode.StoreWins, origCategory);
 
                     Message = string.Format(Messages.Saved, "Category");
                     return this.RedirectToAction(a => a.Index(id, projectId));
@@ -134,7 +134,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult Delete(int id, int projectId, int categoryId)
         {
-            var category = Db.Categories.Where(a => a.id == categoryId).SingleOrDefault();
+            var category = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
 
             if (category == null)
             {
@@ -142,7 +142,7 @@ namespace _2SQUARE.Controllers
                 return this.RedirectToAction(a => a.Index(id, projectId));
             }
 
-            Db.Categories.DeleteObject(category);
+            Db.Categories.Remove(category);
             Db.SaveChanges();
 
             Message = string.Format(Messages.Deleted, "category");

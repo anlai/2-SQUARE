@@ -5,6 +5,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
@@ -111,17 +112,18 @@ namespace _2SQUARE.Controllers
             try
             {
                 // load all the laws
-                var requirements = Db.PRETRequirements.Where(a => lawIds.Contains(a.PRETLaw.id)).ToList();
+                var requirements = Db.PretRequirements.Where(a => lawIds.Contains(a.Law.Id)).ToList();
+                var project = Db.Projects.Where(a => a.Id == projectId).FirstOrDefault();
                 var reqs = requirements.Select(a => new Requirement()
                                      {
-                                         ProjectId = projectId,
+                                         Project = project,
                                          Name = a.Name,
-                                         Requirement1 = a.Requirement,
-                                         RequirementId = string.Format("{0}-{1}", a.PRETLaw.id, a.id),
-                                         SquareTypeId = Db.SquareTypes.Where(b=>b.Name ==SquareTypes.Privacy).Select(b=>b.id).First()
+                                         //Requirement1 = a.Requirement,
+                                         //RequirementId = string.Format("{0}-{1}", a.PRETLaw.id, a.id),
+                                         //SquareType = Db.SquareTypes.Where(b=>b.Name ==SquareTypes.Privacy).Select(b=>b.id).First()
                                      }).ToList();
 
-                foreach(var a in reqs) Db.Requirements.AddObject(a);
+                foreach(var a in reqs) Db.Requirements.Add(a);
 
                 Db.SaveChanges();
 
@@ -139,45 +141,45 @@ namespace _2SQUARE.Controllers
         private List<int> DetermineLaws(List<PRETQuestionAnswer> pretQuestionAnswers)
         {
             var applicableLaws = new List<int>();
-            var currentLawId = 0;
+            //var currentLawId = 0;
 
-            // get all the laws
-            var laws = Db.PRETLaws.ToList();
+            //// get all the laws
+            //var laws = Db.PRETLaws.ToList();
 
-            // see of we can match the answers for any of the laws
-            foreach (var law in laws)
-            {
-                // set the current law we are looking at
-                currentLawId = law.id;
+            //// see of we can match the answers for any of the laws
+            //foreach (var law in laws)
+            //{
+            //    // set the current law we are looking at
+            //    currentLawId = law.id;
 
-                // get the distinct questions that apply to this law
-                //  some laws may not apply to a specific question
-                // and some questions may have multiple answers that apply to this law
-                // this will only go through questions that have answers that apply to the law, those that don't are ignored
-                foreach (var question in law.PRETAnswerXLaws.Select(a => a.PRETAnswer.PRETQuestion).Distinct())
-                {
-                    // get the answers that apply to the law from this question
-                    var answers = law.PRETAnswerXLaws.Where(a => a.PRETAnswer.PRETQuestion == question)
-                                                     .Select(a => a.PRETAnswer);
+            //    // get the distinct questions that apply to this law
+            //    //  some laws may not apply to a specific question
+            //    // and some questions may have multiple answers that apply to this law
+            //    // this will only go through questions that have answers that apply to the law, those that don't are ignored
+            //    foreach (var question in law.PRETAnswerXLaws.Select(a => a.PRETAnswer.PRETQuestion).Distinct())
+            //    {
+            //        // get the answers that apply to the law from this question
+            //        var answers = law.PRETAnswerXLaws.Where(a => a.PRETAnswer.PRETQuestion == question)
+            //                                         .Select(a => a.PRETAnswer);
 
-                    // get the answer from the user's answer
-                    var userAnswer = pretQuestionAnswers.Where(a => a.QuestionId == question.Id).FirstOrDefault();
+            //        // get the answer from the user's answer
+            //        var userAnswer = pretQuestionAnswers.Where(a => a.QuestionId == question.Id).FirstOrDefault();
 
-                    if (!answers.Any(a => a.Id == userAnswer.AnswerId))
-                    {
-                        // not a valid law
-                        currentLawId = -1;
+            //        if (!answers.Any(a => a.Id == userAnswer.AnswerId))
+            //        {
+            //            // not a valid law
+            //            currentLawId = -1;
 
-                        // exit the loop we are dont
-                        break;
-                    }
-                }
+            //            // exit the loop we are dont
+            //            break;
+            //        }
+            //    }
 
-                if (currentLawId > 0)
-                {
-                    applicableLaws.Add(currentLawId);
-                }
-            }
+            //    if (currentLawId > 0)
+            //    {
+            //        applicableLaws.Add(currentLawId);
+            //    }
+            //}
 
             return applicableLaws;
         }

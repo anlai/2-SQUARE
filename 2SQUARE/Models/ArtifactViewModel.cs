@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using _2SQUARE.Core.Domain;
 using DesignByContract;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace _2SQUARE.Models
 
         public ProjectStep ProjectStep { get; set; }
 
-        public static ArtifactViewModel Create(SquareEntities db, Artifact artifact, int projectStepId)
+        public static ArtifactViewModel Create(SquareContext db, Artifact artifact, int projectStepId)
         {
             Check.Require(db != null, "Repository is required.");
 
@@ -21,7 +22,7 @@ namespace _2SQUARE.Models
 
             var viewModel = new ArtifactViewModel()
                                 {
-                                    ArtifactTypes = db.ArtifactTypes.Where(a=>a.SquareTypeId == projectStep.Step.SquareTypeId).ToList(),
+                                    ArtifactTypes = db.ArtifactTypes.Where(a=>a.SquareType == projectStep.Step.SquareType).ToList(),
                                     ProjectStep = projectStep,
                                     Artifact = artifact ?? new Artifact()
                                 };

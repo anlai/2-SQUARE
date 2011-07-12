@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using _2SQUARE.Core.Domain;
+using _2SQUARE.Core.PRET;
 using CodeFirstMembershipDemoSharp.Data;
 
 namespace _2SQUARE
@@ -38,6 +39,11 @@ namespace _2SQUARE
         public DbSet<Step> Steps { get; set; }
         public DbSet<Term> Terms { get; set; }
         public DbSet<ProjectRole> ProjectRoles { get; set; }
+
+        public DbSet<PRETLaw> PRETLaws { get; set; }
+        public DbSet<PRETAnswer> PretAnswers { get; set; }
+        public DbSet<PRETQuestion> PretQuestions { get; set; }
+        public DbSet<PRETRequirement> PretRequirements { get; set; }
 
         // add the membership
         public DbSet<User> Users { get; set; }

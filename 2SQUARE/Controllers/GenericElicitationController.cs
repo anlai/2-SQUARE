@@ -5,6 +5,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
@@ -67,7 +68,7 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 Message = string.Format(Messages.Saved, "Requirement");
-                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.ProjectId });
+                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
             }
 
             var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
@@ -78,7 +79,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var requirement = Db.Requirements.Where(a => a.id == requirementId).Single();
+                var requirement = Db.Requirements.Where(a => a.Id == requirementId).Single();
 
                 var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
                 return View(viewModel);
@@ -94,11 +95,11 @@ namespace _2SQUARE.Controllers
         {
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
-            var origRequirement = Db.Requirements.Where(a => a.id == requirementId).Single();
+            var origRequirement = Db.Requirements.Where(a => a.Id == requirementId).Single();
 
             // copy the values
             origRequirement.Name = requirement.Name;
-            origRequirement.Requirement1 = requirement.Requirement1;
+            origRequirement.RequirementText = requirement.RequirementText;
             origRequirement.RequirementId = requirement.RequirementId;
 
             // save the requirement
@@ -107,7 +108,7 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 Message = string.Format(Messages.Saved, "Requirement");
-                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.ProjectId });
+                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
             }
 
             var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);

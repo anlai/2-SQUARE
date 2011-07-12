@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -14,7 +15,7 @@ namespace _2SQUARE.Models
 
         public string RiskLevelColor { get; set; }
 
-        public static NIST800_30EditViewModel Create(SquareEntities db, IProjectService projectService, int projectStepId, int projectId, string userId, Risk risk = null)
+        public static NIST800_30EditViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string userId, Risk risk = null)
         {
             Check.Require(db != null, "db is required.");
 
@@ -34,7 +35,7 @@ namespace _2SQUARE.Models
                 viewModel.RiskLevelColor = risk.RiskLevel != null ? risk.RiskLevel.Color : string.Empty;
             }
 
-            Check.Ensure(viewModel.Risk.ProjectId == viewModel.Project.id, "Risk does not belong to the intended project.");
+            Check.Ensure(viewModel.Risk.Project.Id == viewModel.Project.Id, "Risk does not belong to the intended project.");
 
             return viewModel;
         }

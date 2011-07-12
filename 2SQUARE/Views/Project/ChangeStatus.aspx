@@ -32,7 +32,7 @@
         <div class="squaretype-container">
         <strong class="header"><%: a.Name %></strong>
         <ul class="editing-form">
-            <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareTypeId == a.id).OrderBy(b => b.Order)) { %>
+            <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareType == a.id).OrderBy(b => b.Order)) { %>
                 <li>
                     <strong>
                         <select id="<%: b.ProjectStepId %>" class="status" data-id="<%: b.ProjectStepId %>" <%: !b.CanEdit ? "disabled" : string.Empty %> data-origValue="<%: (int)b.CurrentStepStatus %>">

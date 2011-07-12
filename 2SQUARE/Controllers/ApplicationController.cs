@@ -1,14 +1,10 @@
-﻿using System.Data.Objects;
-using System.Web.Mvc;
-using _2SQUARE.Models;
+﻿using System.Web.Mvc;
 
 namespace _2SQUARE.Controllers
 {
     public class ApplicationController : Controller
     {
-        public SquareEntities Db = new SquareEntities();
-            
-        public SquareContext db = new SquareContext();
+        public SquareContext Db = new SquareContext();
 
         protected string CurrentUserId
         {
@@ -29,7 +25,7 @@ namespace _2SQUARE.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            Db.Dispose();
 
             base.Dispose(disposing);
         }

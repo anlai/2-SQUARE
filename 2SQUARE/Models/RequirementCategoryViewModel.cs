@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -10,7 +11,7 @@ namespace _2SQUARE.Models
         public Requirement Requirement { get; set; }
         public IEnumerable<Category> Categories { get; set; }
 
-        public static RequirementCategoryViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId, Requirement requirement)
+        public static RequirementCategoryViewModel Create(SquareContext db, IProjectService projectService, int projectId, int projectStepId, string userId, Requirement requirement)
         {
             Check.Require(db != null, "db is required.");
             Check.Require(projectService != null, "projectService is required.");
@@ -19,7 +20,7 @@ namespace _2SQUARE.Models
             var viewModel = new RequirementCategoryViewModel() {Requirement = requirement};
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
-            viewModel.Categories = db.Categories.Where(a => a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId && a.ProjectId == projectId).ToList();
+            viewModel.Categories = db.Categories.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType && a.Project.Id == projectId).ToList();
 
             return viewModel;
         }

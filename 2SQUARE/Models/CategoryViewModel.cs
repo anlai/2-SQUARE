@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
 
@@ -9,7 +10,7 @@ namespace _2SQUARE.Models
     {
         public IEnumerable<Category> Categories { get; set; }
 
-        public static CategoryViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId)
+        public static CategoryViewModel Create(SquareContext db, IProjectService projectService, int projectId, int projectStepId, string userId)
         {
             Check.Require(projectService != null, "projectService is required.");
 
@@ -17,7 +18,7 @@ namespace _2SQUARE.Models
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
             // extract the categoriest from the project
-            viewModel.Categories = db.Categories.Where(a => a.SquareTypeId == viewModel.ProjectStep.Step.SquareTypeId && a.ProjectId == projectId).ToList();
+            viewModel.Categories = db.Categories.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType && a.Project.Id == projectId).ToList();
 
             return viewModel;
         }
@@ -27,7 +28,7 @@ namespace _2SQUARE.Models
     {
         public Category Category { get; set; }
 
-        public static CategoryEditViewModel Create(SquareEntities db, IProjectService projectService, int projectId, int projectStepId, string userId, Category category = null)
+        public static CategoryEditViewModel Create(SquareContext db, IProjectService projectService, int projectId, int projectStepId, string userId, Category category = null)
         {
             Check.Require(projectService != null, "projectService is required.");
 

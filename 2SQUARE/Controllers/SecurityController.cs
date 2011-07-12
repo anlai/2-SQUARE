@@ -121,7 +121,7 @@ namespace _2SQUARE.Controllers
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 // assesment type picked  out already)
-                if (project.SecurityAssessmentId.HasValue)
+                if (project.SecurityAssessmentType == null)
                 {
                     return RedirectToAction("Index", project.SecurityAssessmentType.Controller, new {id=id,projectId=projectId});
                 }
@@ -139,7 +139,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var assessmentType = Db.AssessmentTypes.Where(a => a.id == assessmentTypeId).Single();
+                var assessmentType = Db.AssessmentTypes.Where(a => a.Id == assessmentTypeId).Single();
 
                 _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
 
@@ -183,7 +183,7 @@ namespace _2SQUARE.Controllers
         {
             try
             {
-                var elicitationType = Db.ElicitationTypes.Where(a => a.id == elicitationId).Single();
+                var elicitationType = Db.ElicitationTypes.Where(a => a.Id == elicitationId).Single();
 
                 Check.Require(elicitationType != null, "elicitationType is required.");
 

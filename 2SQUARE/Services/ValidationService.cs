@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
@@ -120,7 +121,7 @@ public class ValidationService : IValidationService
         Check.Require(errors != null, "errors is required.");
 
         // this is the only exit criteria, there are a set of terms
-        if (projectStep.Project.ProjectTerms.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Count() <= 0)
+        if (projectStep.Project.ProjectTerms.Where(a => a.SquareType == projectStep.Step.SquareType).Count() <= 0)
         {
             errors.Add(string.Format("There are no definitions for {0} in this project.", projectStep.Step.SquareType.Name));
             return false;
@@ -175,13 +176,13 @@ public class ValidationService : IValidationService
         if (projectStep.Step.SquareType.Name == SquareTypes.Security)
         {
             // check for business goal
-            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Business).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Business).ToString()).Any())
             {
                 errors.Add("No business goal was found.");
             }
 
             // check for security goal
-            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Security).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Security).ToString()).Any())
             {
                 errors.Add("No security goals were found.");
             }
@@ -196,13 +197,13 @@ public class ValidationService : IValidationService
         // deal with privacy
         if (projectStep.Step.SquareType.Name == SquareTypes.Privacy)
         {
-            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Privacy).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Privacy).ToString()).Any())
             {
                 errors.Add("No privacy goals were found.");
                 return false;
             }
 
-            if (!goals.Where(a => a.GoalTypeId == ((char)GoalTypes.Asset).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Asset).ToString()).Any())
             {
                 errors.Add("No assets were found.");
                 return false;
@@ -248,7 +249,7 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        if (!projectStep.Project.Artifacts.Where(a => a.ArtifactType.SquareTypeId == projectStep.Step.SquareTypeId).Any())
+        if (!projectStep.Project.Artifacts.Where(a => a.ArtifactType.SquareType == projectStep.Step.SquareType).Any())
         {
             errors.Add("No artifacts have been added.");
         }
@@ -286,7 +287,7 @@ public class ValidationService : IValidationService
 
         // load up all risk's and recommendations
         var project = projectStep.Project;
-        var risks = project.Risks.Where(a=>a.SquareType.id == projectStep.Step.SquareTypeId);
+        var risks = project.Risks.Where(a=>a.SquareType == projectStep.Step.SquareType);
 
         // if no risks exist
         if (risks.Count() == 0) errors.Add(string.Format("There are no {0} risks identified for this project.", projectStep.Step.SquareType.Name));
@@ -377,7 +378,7 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        if (!projectStep.Project.Requirements.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).Any())
+        if (!projectStep.Project.Requirements.Where(a => a.SquareType == projectStep.Step.SquareType).Any())
         {
             errors.Add("There are no requirements defined.");
         }
@@ -413,11 +414,11 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        if (projectStep.Project.Requirements.Any(a => a.SquareTypeId == projectStep.Step.SquareTypeId && (a.CategoryId <= 0 || a.CategoryId == null)))
+        if (projectStep.Project.Requirements.Any(a => a.SquareType == projectStep.Step.SquareType && (a.Category.Id <= 0 || a.Category.Id == null)))
         {
             var count =
                 projectStep.Project.Requirements.Where(
-                    a => a.SquareTypeId == projectStep.Step.SquareTypeId && (a.CategoryId <= 0 || a.CategoryId == null))
+                    a => a.SquareType == projectStep.Step.SquareType && (a.Category.Id <= 0 || a.Category == null))
                     .Count();
 
             errors.Add(string.Format("There are {0} requirements that have not been categorized.", count));
@@ -455,7 +456,7 @@ public class ValidationService : IValidationService
         Check.Require(warnings != null, "warnings is required.");
         Check.Require(errors != null, "errors is required.");
 
-        if (projectStep.Project.Requirements.Any(a => a.SquareTypeId == projectStep.Step.SquareTypeId && a.Priority == null))
+        if (projectStep.Project.Requirements.Any(a => a.SquareType == projectStep.Step.SquareType && a.Priority == null))
         {
             errors.Add("All requirements need to be prioritizes before completing step 8.");   
         }
@@ -493,7 +494,7 @@ public class ValidationService : IValidationService
 
         // check for any requirements that have active defects
         var project = projectStep.Project;
-        var reqs = project.Requirements.Where(a => a.SquareTypeId == projectStep.Step.SquareTypeId).ToList();
+        var reqs = project.Requirements.Where(a => a.SquareType == projectStep.Step.SquareType).ToList();
         if (reqs.Any(a => a.RequirementDefects.Any(b => !b.Solved)))
         {
             errors.Add("The process cannot be complete when a requirement has at leaset one active defect.");
@@ -511,7 +512,7 @@ public class ValidationService : IValidationService
     /// <returns></returns>
     private bool IsStepcomplete(ProjectStep projectStep, int stepNum)
     {
-        var steps = _projectService.GetProjectSteps(projectStep.ProjectId, projectStep.Step.SquareType);
+        var steps = _projectService.GetProjectSteps(projectStep.Project.Id, projectStep.Step.SquareType);
         return steps.Where(a => a.Step.Order == stepNum && a.Complete).Any();
     }
 
