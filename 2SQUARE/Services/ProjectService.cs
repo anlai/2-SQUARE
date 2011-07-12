@@ -27,7 +27,7 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Any();
+            return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username.ToLower() == login.ToLower()).Any();
         }
 
         public List<string> UserRoles(int id, string login)
@@ -35,14 +35,13 @@ namespace _2SQUARE.Services
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
             return
-                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Select(
-                    a => a.Role.RoleName).ToList();
+                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Select(a => a.Role.Name).ToList();
         }
 
         public bool IsInProjectRole(int id /* project id */,string login, string roleName)
         {
             return
-                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login && a.Role.RoleName == roleName)
+                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login && a.Role.Name == roleName)
                 .Any();
         }
 

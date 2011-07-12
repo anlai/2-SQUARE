@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 
 namespace _2SQUARE.Core.Domain
 {
     public class Artifact : DomainObject
     {
+        public Artifact()
+        {
+            DateCreated = DateTime.Now;
+        }
+
         [StringLength(100)]
         [Required]
         public string Name { get; set; }

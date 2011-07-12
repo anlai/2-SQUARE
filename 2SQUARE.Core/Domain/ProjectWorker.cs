@@ -6,6 +6,6 @@ namespace _2SQUARE.Core.Domain
     {
         public User User { get; set; }
         public Project Project { get; set; }
-        public Role Role { get; set; }
+        public ProjectRole Role { get; set; }
     }
 }

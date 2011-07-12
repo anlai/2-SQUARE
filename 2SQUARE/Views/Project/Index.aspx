@@ -17,7 +17,7 @@
 
         <div class="button object-list" style="text-align: left;">
             <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Name) %></h3>
-            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Description) %></div>
+            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Description ?? "n/a") %></div>
         </div>
 
         <div class="divider">&nbsp;</div>

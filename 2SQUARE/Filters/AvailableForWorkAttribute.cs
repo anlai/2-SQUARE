@@ -42,7 +42,7 @@ namespace _2SQUARE.Filters
                 // this project is not valid for working
                 // admin needs to change status
                 if (project.ProjectWorkers.Where(a => a.User.Username == logon 
-                    && a.Role.RoleName == RoleNames.RoleProjectManager).Any())
+                    && a.Role.Name == RoleNames.RoleProjectManager).Any())
                 {
                     filterContext.Controller.TempData["ErrorMessage"] = string.Format(Messages.Manager_NotValidForWork,
                                                                                       pStep.Step.Order,

@@ -4,6 +4,11 @@ namespace _2SQUARE.Core.Domain
 {
     public class GoalType
     {
+        public GoalType()
+        {
+            IsActive = true;
+        }
+
         [Key]
         [StringLength(1)]
         [Required]

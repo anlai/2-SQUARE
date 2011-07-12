@@ -4,6 +4,11 @@ namespace _2SQUARE.Core.Domain
 {
     public class Definition : DomainObject
     {
+        public Definition()
+        {
+            IsActive = true;
+        }
+
         [Required]
         public string Description { get; set; }
         [StringLength(200)]

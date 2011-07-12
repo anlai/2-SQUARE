@@ -6,6 +6,20 @@ namespace _2SQUARE.Core.Domain
 {
     public class Project : DomainObject
     {
+        public Project()
+        {
+            DateCreated = DateTime.Now;
+
+            Artifacts = new List<Artifact>();
+            Categories = new List<Category>();
+            Goals = new List<Goal>();
+            ProjectSteps = new List<ProjectStep>();
+            ProjectTerms = new List<ProjectTerm>();
+            ProjectWorkers = new List<ProjectWorker>();
+            Requirements = new List<Requirement>();
+            Risks = new List<Risk>();
+        }
+
         [StringLength(50)]
         [Required]
         public string Name { get; set; }

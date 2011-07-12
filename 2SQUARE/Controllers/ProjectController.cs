@@ -2,11 +2,13 @@
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
+using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
 using System.Linq;
+using Resources;
 using Project = _2SQUARE.Core.Domain.Project;
 using ProjectWorker = _2SQUARE.Core.Domain.ProjectWorker;
 
@@ -76,14 +78,17 @@ namespace _2SQUARE.Controllers
         /// <param name="project">Project with new information</param>
         /// <returns></returns>
         [HttpPost]
-        
         public ActionResult Create([Bind(Exclude = "Id")]Project project)
         {
-            ////Validation.Validate(project, ModelState);
-
             if (ModelState.IsValid)
             {
+                var user = Db.Users.Where(a => a.Username == CurrentUserId).Single();
+                var role = Db.ProjectRoles.Where(a => a.Id == ProjectRoles.ProjectManager).Single();
+                var worker = new ProjectWorker() {Project = project, Role = role, User = user};
+                project.ProjectWorkers.Add(worker);
+
                 Db.Projects.Add(project);
+                Db.SaveChanges();
 
                 Message = "Successfully created the project";
 

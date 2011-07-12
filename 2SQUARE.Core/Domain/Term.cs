@@ -5,6 +5,11 @@ namespace _2SQUARE.Core.Domain
 {
     public class Term : DomainObject
     {
+        public Term()
+        {
+            Definitions = new List<Definition>();
+        }
+
         [StringLength(100)]
         [Required]
         public string Name { get; set; }

@@ -5,6 +5,11 @@ namespace _2SQUARE.Core.Domain
 {
     public class ProjectStep : DomainObject
     {
+        public ProjectStep()
+        {
+            Complete = false;
+        }
+
         [Required]
         public Project Project { get; set; }
 

@@ -5,6 +5,12 @@ namespace _2SQUARE.Core.Domain
 {
     public class Risk : DomainObject
     {
+        public Risk()
+        {
+
+            RiskRecommendations = new List<RiskRecommendation>();
+        }
+
         [StringLength(100)]
         [Required]
         public string Name { get; set; }
