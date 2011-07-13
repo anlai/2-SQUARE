@@ -9,19 +9,19 @@ namespace _2SQUARE.Models
     {
         public ProjectTerm ProjectTerm { get; set; }
         public IEnumerable<Definition> Definitions { get; set; }
-        public int StepId { get; set; }
+        public int ProjectStepId { get; set; }
 
-        public static ProjectTermEditViewModel Create(SquareContext db, int projectTermId, int stepId)
+        public static ProjectTermEditViewModel Create(SquareContext db, int projectTermId, int projectStepId)
         {
             Check.Require(db != null, "Square Entities is required.");
 
-            var projectTerm = db.ProjectTerms.Where(a => a.Id == projectTermId).Single();
+            var projectTerm = db.ProjectTerms.Include("Project").Include("SquareType").Where(a => a.Id == projectTermId).Single();
 
             var viewModel = new ProjectTermEditViewModel()
                                 {
                                     ProjectTerm = projectTerm,
                                     Definitions = db.Definitions.Where(a => a.Term.Name == projectTerm.Term).ToList(),
-                                    StepId = stepId
+                                    ProjectStepId = projectStepId
                                 };
 
             return viewModel;

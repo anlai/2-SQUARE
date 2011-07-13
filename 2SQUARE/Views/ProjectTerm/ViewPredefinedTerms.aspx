@@ -17,6 +17,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%--<%: Html.ActionLink<SecurityController>(a=>a.Step1(Model.Step.id, Model.Project.id), "Back To Step 1", new {@class="button ui-state-default"}) %>--%>
-    <%: Html.ActionLink("Back to Step 1", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.id, projectId=Model.Project.id}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 1", "Step1", Model.ProjectStep.Step.SquareType.Name, new {id=Model.ProjectStep.Step.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default"}) %>
 </asp:Content>

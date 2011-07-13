@@ -8,11 +8,11 @@ namespace _2SQUARE.Models
 {
     public class ProjectTermPredefinedTermsViewModel
     {
-        public Step Step { get; set; }
+        public ProjectStep ProjectStep { get; set; }
         public Project Project { get; set; }
         public IEnumerable<Term> PredefinedTerms { get; set; }
 
-        public static ProjectTermPredefinedTermsViewModel Create(SquareContext db, IProjectService projectService, int stepId, int projectId, string loginId)
+        public static ProjectTermPredefinedTermsViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, int projectId, string loginId)
         {
             Check.Require(db != null, "Square Entities is required.");
             Check.Require(projectService != null, "projectService is required.");
@@ -20,13 +20,21 @@ namespace _2SQUARE.Models
 
             var viewModel = new ProjectTermPredefinedTermsViewModel()
                                 {
-                                    Step = db.Steps.Where(a => a.Id == stepId && a.Order == 1).Single(),
+                                    ProjectStep = db.ProjectSteps.Include("Step").Include("Step.SquareType").Where(a => a.Id == projectStepId).Single(),
                                     Project = db.Projects.Where(a => a.Id == projectId).Single()
                                 };
 
-            var projectTerms = db.ProjectTerms.Where(a => a.Project.Id == projectId && a.SquareType == viewModel.Step.SquareType).ToList();
+            // load the project step
+            var projectStep = viewModel.ProjectStep;
+
+            // load all terms used in project
+            var projectTerms = db.ProjectTerms.Where(a => a.Project.Id == projectId && a.SquareType.Id == projectStep.Step.SquareType.Id).ToList();
+
+            // load all terms
             var pt = projectTerms.Select(a => a.Term).ToList();
-            var predefinedTerms = db.Terms.Where(a => !pt.Contains(a.Name) && a.IsActive && a.SquareType == viewModel.Step.SquareType).ToList();
+
+            // terms that have not been used
+            var predefinedTerms = db.Terms.Include("Definitions").Where(a => !pt.Contains(a.Name) && a.IsActive && a.SquareType.Id == projectStep.Step.SquareType.Id).ToList();
 
             viewModel.PredefinedTerms = predefinedTerms;
 

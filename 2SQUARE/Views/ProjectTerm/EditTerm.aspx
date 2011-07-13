@@ -12,24 +12,23 @@
 
     <fieldset>
         <legend>Current Definition</legend>
-
-
-
-        <ul style="list-style:none;">
+        
+        
+        <ul class="entry-form">
             <%  using (Html.BeginForm()) { %>
-                <%: Html.Hidden("id", Model.ProjectTerm.id)%>
-                <%: Html.Hidden("StepId", Model.StepId) %>    
-                <li><%: Html.TextArea("definition", Model.ProjectTerm.Definition, new {cols=95}) %></li>
-                <li><strong style="margin-right: 20px;">Source:</strong><%: Html.TextBox("source", Model.ProjectTerm.Source) %></li>
-                <li style="margin-top: 10px;">
-                    <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-                    <% } %>
-                    <% using (Html.BeginForm("RemoveTerm", "ProjectTerm", FormMethod.Post, new {style="display:inline;"})) { %>
-                        <%: Html.Hidden("id", Model.ProjectTerm.id)%>
-                        <%: Html.Hidden("StepId", Model.StepId) %>                           
-                        <%: Html.SubmitButton("Delete", "Delete", new {@class="button ui-corner-all ui-state-default"}) %>
-                    <% } %>
-                </li>
+            <li><strong>&nbsp;</strong><%: Html.TextArea("definition", Model.ProjectTerm.Definition, new {cols=95}) %></li>
+            <li><strong>Source:</strong><%: Html.TextBox("source", Model.ProjectTerm.Source) %></li>
+            <li style="margin-top: 10px;">
+                <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
+                <% } %>
+                <% using (Html.BeginForm("RemoveTerm", "ProjectTerm", FormMethod.Post, new {style="display:inline;"})) { %>
+                        
+                    <%: Html.Hidden("id", Model.ProjectTerm.Id) %>
+                    <%: Html.Hidden("projectStepId", Model.ProjectStepId)%>
+
+                    <%: Html.SubmitButton("Delete", "Delete", new {@class="button ui-corner-all ui-state-default"}) %>
+                <% } %>
+            </li>
         </ul>
        
 
@@ -50,9 +49,7 @@
                 <tr class="definition-row">
                     <% using (Html.BeginForm()) { %>
 
-                        <%: Html.Hidden("id", Model.ProjectTerm.id)%>
-                        <%: Html.Hidden("definitionId", a.id) %>
-                        <%: Html.Hidden("stepId", Model.StepId) %>
+                        <%: Html.Hidden("definitionId", a.Id) %>
 
                         <td class="button-cell"><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
                         <td class="source-cell">[<%: a.Source %>]</td>
@@ -71,5 +68,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink("Back to Step 1", "Step1", Model.ProjectTerm.SquareType.Name, new {id=Model.StepId, projectId=Model.ProjectTerm.ProjectId}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 1", "Step1", Model.ProjectTerm.SquareType.Name, new {id=Model.ProjectStepId, projectId=Model.ProjectTerm.Project.Id}, new {@class="button ui-state-default"}) %>
 </asp:Content>

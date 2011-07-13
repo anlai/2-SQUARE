@@ -23,7 +23,7 @@ namespace _2SQUARE.Models
             var viewModel = new Step1ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, loginId);
 
-            var projectTerms = db.ProjectTerms.Where(a => a.Project.Id == projectId && a.SquareType == viewModel.ProjectStep.Step.SquareType).ToList();
+            var projectTerms = db.ProjectTerms.Where(a => a.Project.Id == projectId && a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id).ToList();
             viewModel.ProjectTerms = projectTerms;
 
             var roles = projectService.UserRoles(projectId, loginId);

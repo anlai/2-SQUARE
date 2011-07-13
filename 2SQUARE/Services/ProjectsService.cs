@@ -119,7 +119,9 @@ namespace _2SQUARE.Services
 
             using (var db = new SquareContext())
             {
-                var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
+                var projectStep = db.ProjectSteps.Include("Project")
+                                                 .Include("Step").Include("Step.SquareType")
+                                                 .Where(a => a.Id == id).Single();
 
                 if (HasAccess(projectStep.Project.Id, login))
                 {
@@ -256,6 +258,63 @@ namespace _2SQUARE.Services
 
             return null;
         }
+
+        /// <summary>
+        /// Updates a project's temr
+        /// </summary>
+        /// <param name="id">project term Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="term"></param>
+        /// <param name="definition"></param>
+        /// <param name="source"></param>
+        /// <param name="definitionId"></param>
+        /// <returns></returns>
+        public ProjectTerm UpdateProjectTerm(int id, int projectId, ModelStateDictionary modelState, string term = null, string definition = null, string source = null, int? definitionId = null)
+        {
+            using (var db = new SquareContext())
+            {
+                var projectTerm = db.ProjectTerms.Include("Project").Include("SquareType").Where(a => a.Id == id).Single();
+                
+                if (definitionId.HasValue)
+                {
+                    // load the definition
+                    var def = db.Definitions.Include("Term").Where(a => a.Id == definitionId.Value).Single();
+
+                    if (def.Term.Name != projectTerm.Term)
+                    {
+                        modelState.AddModelError("", "Definition/Term mismatch.");
+                    }
+                    else
+                    {
+                        // update the values
+                        projectTerm.Definition = def.Description;
+                        projectTerm.Source = def.Source;    
+                    }
+
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(term) || string.IsNullOrWhiteSpace(definition) || string.IsNullOrWhiteSpace(source))
+                    {
+                        modelState.AddModelError("", "Term/Definition/Source is empty.");
+                    }
+                    else
+                    {
+                        projectTerm.Term = term;
+                        projectTerm.Definition = definition;
+                        projectTerm.Source = source;
+                    }
+                }
+
+                if (modelState.IsValid)
+                {
+                    db.SaveChanges();
+                }
+            }
+
+            return null;
+        }
+
         #endregion
 
         // **************************************************

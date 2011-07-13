@@ -17,11 +17,8 @@
                     <tr class="definition-row">
                         <% using (Html.BeginForm()) { %>
 
-                            <%: Html.Hidden("Id", Model.Step.id) %>
-                            <%: Html.Hidden("projectId", Model.Project.id)%>
-                            <%: Html.Hidden("SquareType", Model.Step.SquareType)%>
-                            <%: Html.Hidden("termId", a.id) %>
-                            <%: Html.Hidden("definitionId", b.id) %>
+                            <%: Html.Hidden("termId", a.Id) %>
+                            <%: Html.Hidden("definitionId", b.Id) %>
 
                             <td class="button-cell"><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
                             <td class="source-cell">[<%: b.Source %>]</td>
@@ -33,11 +30,10 @@
                 <tr>
                     <% using (Html.BeginForm()) { %>
                         
-                        <%: Html.Hidden("Id", Model.Step.id) %>
-                        <%: Html.Hidden("projectId", Model.Project.id) %>
-                        <%: Html.Hidden("SquareType", Model.Step.SquareType) %>
-                        <%: Html.Hidden("term", a.Name) %>
-                        
+                        <%--<%: Html.Hidden("term", a.Name) %>--%>
+
+                        <%: Html.Hidden("termId", a.Id) %>
+
                         <td><%: Html.SubmitButton("Submit", "Select", new { @class = "button ui-corner-all ui-state-default" })%></td>
                         <td class="source-cell"><%: Html.TextBox("source") %></td>
                         <td><%: Html.TextBox("definition", string.Empty, new {style="width:100%;"}) %></td>

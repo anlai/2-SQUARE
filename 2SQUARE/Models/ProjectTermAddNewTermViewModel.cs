@@ -14,7 +14,7 @@ namespace _2SQUARE.Models
             Check.Require(db != null, "Square Entities is required.");
             Check.Require(projectTerm != null, "projectTerm is required.");
 
-            var projectStep = db.ProjectSteps.Where(a => a.Id == stepId).Single();
+            var projectStep = db.ProjectSteps.Include("Step").Include("Step.SquareType").Where(a => a.Id == stepId).Single();
             projectTerm.SquareType = projectStep.Step.SquareType;
             var viewModel = new ProjectTermAddNewTermViewModel() {Step = projectStep.Step, ProjectTerm = projectTerm};
 

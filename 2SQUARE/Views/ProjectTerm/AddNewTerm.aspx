@@ -15,8 +15,8 @@
 
         <%: Html.ValidationSummary() %>
 
-        <%: Html.HiddenFor(a=>a.ProjectTerm.ProjectId) %>
-        <%: Html.HiddenFor(a=>a.ProjectTerm.SquareType) %>
+        <%: Html.HiddenFor(a => a.ProjectTerm.Project) %>
+        <%: Html.HiddenFor(a => a.ProjectTerm.SquareType) %>
 
         <ul class="entry-form">
             <li>
@@ -34,7 +34,7 @@
             <li>
                 <strong></strong>
                 <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-                <%: Html.ActionLink("Cancel", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.id, projectId=Model.ProjectTerm.ProjectId}, new {@class="button ui-state-default"}) %>
+                <%: Html.ActionLink("Cancel", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="button ui-state-default"}) %>
             </li>
         </ul>
 
@@ -45,5 +45,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink("Back to Step 1", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.id, projectId=Model.ProjectTerm.ProjectId}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 1", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="button ui-state-default"}) %>
 </asp:Content>

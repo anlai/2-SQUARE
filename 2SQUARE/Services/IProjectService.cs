@@ -21,6 +21,7 @@ namespace _2SQUARE.Services
 
         #region Step 1 Methods
         ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0);
+        ProjectTerm UpdateProjectTerm(int id, int projectId, ModelStateDictionary modelState, string term = null, string definition = null, string source = null, int? definitionId = null);
         #endregion
 
         #region Step 2 Methods

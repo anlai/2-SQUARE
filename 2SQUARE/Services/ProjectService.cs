@@ -221,6 +221,12 @@ namespace _2SQUARE.Services
 
             return null;
         }
+
+        public ProjectTerm UpdateProjectTerm(int id, int projectId, ModelStateDictionary modelState, string term, string definition, string source, int? definitionId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         // **************************************************
