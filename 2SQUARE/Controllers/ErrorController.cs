@@ -25,5 +25,17 @@ namespace _2SQUARE.Controllers
         {
             return View(message);
         }
+
+        /// <summary>
+        /// Not authorized to access a project resource
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Notauthorized(int id)
+        {
+            ViewData["ProjectId"] = id;
+
+            return View();
+        }
     }
 }

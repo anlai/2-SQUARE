@@ -18,13 +18,11 @@ namespace _2SQUARE.Controllers
     public class ProjectController : ApplicationController
     {
         private readonly IProjectService _projectService;
-        private readonly IProjectsService _projectsService;
         private readonly IValidationService _validationService;
 
-        public ProjectController(IProjectService projectService, IProjectsService projectsService, IValidationService validationService)
+        public ProjectController(IProjectService projectService, IValidationService validationService)
         {
             _projectService = projectService;
-            _projectsService = projectsService;
             _validationService = validationService;
         }
 
@@ -34,7 +32,7 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var projects = _projectsService.GetByUser(CurrentUserId);
+            var projects = _projectService.GetByUser(CurrentUserId);
             return View(projects);
         }
 
@@ -48,7 +46,7 @@ namespace _2SQUARE.Controllers
             // check user's access
             if (!_projectService.HasAccess(id, CurrentUserId))
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + id + ")")));
+                return this.RedirectToAction<ErrorController>(a => a.Notauthorized(id));
             }
 
             try
@@ -82,13 +80,7 @@ namespace _2SQUARE.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = Db.Users.Where(a => a.Username == CurrentUserId).Single();
-                var role = Db.ProjectRoles.Where(a => a.Id == ProjectRoles.ProjectManager).Single();
-                var worker = new ProjectWorker() {Project = project, Role = role, User = user};
-                project.ProjectWorkers.Add(worker);
-
-                Db.Projects.Add(project);
-                Db.SaveChanges();
+                _projectService.CreateProject(project.Name, project.Description, CurrentUserId);
 
                 Message = "Successfully created the project";
 
@@ -129,11 +121,11 @@ namespace _2SQUARE.Controllers
             // check user's access
             if (!_projectService.HasAccess(id, CurrentUserId))
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "Project(" + id + ")")));
+                return this.RedirectToAction<ErrorController>(a => a.Notauthorized(id));
             }
 
             var project = _projectService.GetProject(id, CurrentUserId);
-            var viewModel = Models.ChangeStatusViewModel.Create(project, _projectService);
+            var viewModel = ChangeStatusViewModel.Create(project, _projectService);
             return View(viewModel);
         }
 
@@ -151,6 +143,8 @@ namespace _2SQUARE.Controllers
         public JsonResult UpdateStatus(int id /* project id */, int stepId, ProjectStepStatus projectStepStatus)
         {
             var validationResult = new ValidationChangeStatusResult() {IsValid = true};
+            
+            // load the project step
             var step = Db.ProjectSteps.Where(a => a.Id == stepId).SingleOrDefault();
 
             if (step == null)
@@ -160,25 +154,31 @@ namespace _2SQUARE.Controllers
                 return Json(validationResult);
             }
 
-            // run validation on the step and the status to change to
-            validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
+            _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
 
-            // if still valid, run the update
-            if (validationResult.IsValid)
-            {
-                step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
-
-                // determine if any steps change in their ability to be edited
-                var changeSteps = new List<KeyValuePair<int, bool>>();
-                foreach (var a in Db.ProjectSteps.Where(a => a.Project.Id == id))
-                {
-                    validationResult.ChangeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
-                }
-
-            }
-
-            // add the project step id
             validationResult.ProjectStepId = stepId;
+
+
+
+            // run validation on the step and the status to change to
+            //validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
+
+            //// if still valid, run the update
+            //if (validationResult.IsValid)
+            //{
+            //    step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
+
+            //    // determine if any steps change in their ability to be edited
+            //    var changeSteps = new List<KeyValuePair<int, bool>>();
+            //    foreach (var a in Db.ProjectSteps.Where(a => a.Project.Id == id))
+            //    {
+            //        validationResult.ChangeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
+            //    }
+
+            //}
+
+            //// add the project step id
+            //validationResult.ProjectStepId = stepId;
 
             return Json(validationResult);
         }

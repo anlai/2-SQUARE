@@ -12,24 +12,16 @@ namespace _2SQUARE.Models
         public IEnumerable<SquareType> SquareTypes { get; set; }
         public IEnumerable<ProjectStep> ProjectSteps { get; set; }
 
-        public static ProjectDetailsViewModel Create(SquareContext SquareContext, IProjectService projectService, int id, string loginId)
+        public static ProjectDetailsViewModel Create(SquareContext db, IProjectService projectService, int id, string loginId)
         {
-            //var project = projectService.GetProject(id, loginId);
-
-            //var viewModel = new ProjectDetailsViewModel();
-
-            //viewModel.Project = project;
-            //viewModel.SquareTypes = SquareContext.SquareTypes.ToList();
-            //viewModel.ProjectSteps = SquareContext.ProjectSteps.Where(a => a.ProjectId == project.id).ToList();
-
-            Check.Require(SquareContext != null, "SquareContext is required.");
+            Check.Require(db != null, "SquareContext is required.");
             Check.Require(projectService != null, "Project service is required.");
             Check.Require(!string.IsNullOrEmpty(loginId), "login id is required.");
 
             var viewModel = new ProjectDetailsViewModel()
                                 {
                                     Project = projectService.GetProject(id, loginId),
-                                    SquareTypes = SquareContext.SquareTypes.ToList()
+                                    SquareTypes = db.SquareTypes.ToList()
                                     //ProjectSteps = SquareContext.ProjectSteps.Where(a=>a.Project.id == id).ToList()
                                 };
 

@@ -13,7 +13,7 @@
         <%: Model.Project.Description %>
     </div>
 
-    <%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.id), "Change Status", new { @class = "button ui-state-default ui-corner-all", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
+    <%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.Id), "Change Status", new { @class = "button ui-state-default ui-corner-all", style = "float:right; margin-right: 5px;" })%>
 
     <h3>SQUARE Steps</h3>
 
@@ -25,17 +25,20 @@
                 <%: a.Name %>
             </div>
 
-            <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.id == a.id).OrderBy(c => c.Step.Order)) { %>            
+            <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.Id == a.Id).OrderBy(c => c.Step.Order)) { %>            
                 
-                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.Id, projectId=b.ProjectId}) %>">
+                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.Id, projectId=b.Project.Id}) %>">
 
-                <div class="step button ui-corner-all">
+                
 
                 <% if (!b.DateStarted.HasValue) { %>
-                <span class="icon ui-icon ui-icon-circle-minus"></span>
+                    <div class="step button ui-corner-all pending">
+                    <span class="icon ui-icon ui-icon-circle-minus"></span>
                 <% } else if (b.Complete) { %>
+                    <div class="step button ui-corner-all complete">
                     <span class="icon ui-icon ui-icon-check"></span>
                 <% } else { %>
+                    <div class="step button ui-corner-all working">
                     <span class="icon ui-icon ui-icon-play"></span>
                 <% } %>
                 
@@ -56,4 +59,11 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+
+    <style type="text/css">
+        .pending{border-color: Yellow;}
+        .working{border-color: Green;}
+        .complete{border-color: Red;}
+    </style>
+
 </asp:Content>

@@ -8,9 +8,7 @@ namespace _2SQUARE
     {
         public static void AddComponentsTo(IWindsorContainer container)
         {
-            container.AddComponent("projectsService", typeof(IProjectsService), typeof(ProjectsService));
-
-            container.AddComponent("projectService", typeof (IProjectService), typeof (ProjectService));
+            container.AddComponent("projectService", typeof (IProjectService), typeof (ProjectsService));
             container.AddComponent("validationService", typeof (IValidationService), typeof (ValidationService));
         }
     }

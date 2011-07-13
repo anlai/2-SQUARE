@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Objects;
 using System.Linq;
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
-using _2SQUARE.Models;
 using DesignByContract;
+using Resources;
 
 namespace _2SQUARE.Services
 {
@@ -18,7 +17,7 @@ namespace _2SQUARE.Services
 
         #region Access Methods
         /// <summary>
-        /// 
+        /// Deterrmines if a user has access to a project
         /// </summary>
         /// <param name="id">Project Id</param>
         /// <param name="login"></param>
@@ -30,18 +29,30 @@ namespace _2SQUARE.Services
             return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username.ToLower() == login.ToLower()).Any();
         }
 
+        /// <summary>
+        /// not sure how necessary this is, review when looking at step 1
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public List<string> UserRoles(int id, string login)
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            return
-                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Select(a => a.Role.Name).ToList();
+            return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login).Select(a => a.Role.Name).ToList();
         }
 
-        public bool IsInProjectRole(int id /* project id */,string login, string roleName)
+        /// <summary>
+        /// Does the user have the necessary role in the project
+        /// </summary>
+        /// <param name="id">project id</param>
+        /// <param name="login">user login</param>
+        /// <param name="project role id">project role id</param>
+        /// <returns></returns>
+        public bool IsInProjectRole(int id,string login, string roleId)
         {
             return
-                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login && a.Role.Name == roleName)
+                db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username == login && a.Role.Id == roleId)
                 .Any();
         }
 
@@ -56,7 +67,12 @@ namespace _2SQUARE.Services
 
             var user = db.Users.Where(a => a.Username == login).Single();
 
-            return user.ProjectWorkers.Select(a=>a.Project).ToList();
+            return user.ProjectWorkers.Select(a=>a.Project).Distinct().ToList();
+        }
+
+        public Project GetProject(SquareContext db, int id, string login)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -69,15 +85,17 @@ namespace _2SQUARE.Services
         {
             Check.Require(!string.IsNullOrEmpty(login), "login is required.");
 
-            var user = db.Users.Where(a => a.Username == login).Single();
-            var project = db.Projects.Where(a => a.Id == id).Single();
+            if (HasAccess(id, login))
+            {
+                var project = db.Projects.Where(a => a.Id == id).Single();
+                return project;
+            }
 
-            if (!project.ProjectWorkers.Any(a => a.User.UserId == user.UserId)) throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
-
-            return project;
+            throw new SecurityException(string.Format(Messages.NoAccess, "Project(id=" + id + ")"));
         }
+
         /// <summary>
-        /// 
+        /// Gets a project step
         /// </summary>
         /// <param name="id">Project Step Id</param>
         /// <param name="login"></param>
@@ -85,44 +103,83 @@ namespace _2SQUARE.Services
         public ProjectStep GetProjectStep(int id, string login)
         {
             Check.Require(!string.IsNullOrEmpty(login) , "login is required.");
-
-            var user = db.Users.Where(a => a.Username == login).Single();
+            
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();
 
-            if (!projectStep.Project.ProjectWorkers.Any(a=>a.User.UserId == user.UserId))
-                throw new SecurityException(string.Format(Messages.NoAccess, "Project(id="+id+")"));
+            if (HasAccess(projectStep.Project.Id, login))
+            {
+                return projectStep;
+            }
 
-            return projectStep;
+            throw new SecurityException(string.Format(Messages.NoAccess, "Project Step(id="+id+")"));
         }
+
+        /// <summary>
+        /// Gets all the project steps for a given project
+        /// </summary>
+        /// <remarks>Does not validate permissions</remarks>
+        /// <param name="id">Project Id</param>
+        /// <param name="squareType">Square Type</param>
+        /// <returns></returns>
         public IList<ProjectStep> GetProjectSteps(int id, SquareType squareType = null)
         {
             var query = db.ProjectSteps.Where(a => a.Project.Id == id);
 
             if (squareType != null)
             {
-                query = query.Where(a => a.Step.SquareType.Id == squareType.Id);
+                query = query.Where(a => a.Step.SquareType == squareType);
             }
 
             return query.ToList();
         }
+
         #endregion
+
+        public Project CreateProject(string name, string description, string login)
+        {
+            // load objects
+            var user = db.Users.Where(a => a.Username == login).Single();
+            var role = db.ProjectRoles.Where(a => a.Id == ProjectRoles.ProjectManager).Single();
+            var steps = db.Steps;
+            var squareTypes = db.SquareTypes;
+
+            var project = new Project(){Name = name, Description = description};
+
+            // create the worker for current user
+            var worker = new ProjectWorker() { Project = project, Role = role, User = user };
+            project.ProjectWorkers.Add(worker);
+
+            // fill in all the project steps
+            foreach (var squareType in squareTypes)
+            {
+                foreach (var step in steps.Where(a => a.SquareType == squareType))
+                {
+                    var pstep = new ProjectStep() {Project = project, Step = step};
+                    project.ProjectSteps.Add(pstep);
+                }
+            }
+
+            return project;
+        }
 
         #region Step 1 Methods
         /// <summary>
-        /// 
+        /// Add a term to a project
         /// </summary>
+        /// <remarks>Does not validate access</remarks>
         /// <param name="id">Project Id</param>
+        /// <param name="squareTypeId">Square Type Id</param>
         /// <param name="term"></param>
         /// <param name="definition"></param>
         /// <param name="source"></param>
         /// <param name="termId"></param>
         /// <param name="definitionId"></param>
-        public ProjectTerm AddTermToProject(int id, int SquareType, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
+        public ProjectTerm AddTermToProject(int id, int squareTypeId, string term = null, string definition = null, string source = null, int termId = 0, int definitionId = 0)
         {
-            var project = db.Projects.Where(a => a.Id == id).FirstOrDefault();
-            var squareType = db.SquareTypes.Where(a => a.Id == SquareType).FirstOrDefault();
+            var project = db.Projects.Where(a => a.Id == id).Single();
+            var squareType = db.SquareTypes.Where(a => a.Id == squareTypeId).Single();
 
-            // update existing project term))
+            // update the parameters with the values from the database
             if (termId > 0 && definitionId > 0)
             {
                 var termObj = db.Terms.Where(a => a.Id == termId).Single();
@@ -131,15 +188,23 @@ namespace _2SQUARE.Services
                 // make sure def matches term
                 if (definitionObj.Term.Id != termObj.Id) throw new ArgumentException("Term/Definition mismatch.");
 
+                // set the parameters, so it can be generated
                 term = termObj.Name;
                 definition = definitionObj.Description;
                 source = definitionObj.Source;
             }
 
-            if (!string.IsNullOrEmpty(term) && !string.IsNullOrEmpty(definition) && !string.IsNullOrEmpty(source))
+            // add the term to the project
+            if (!string.IsNullOrWhiteSpace(term) && !string.IsNullOrWhiteSpace(definition) && !string.IsNullOrWhiteSpace(source))
             {
-                if (id <= 0 || SquareType <= 0) throw new ArgumentException("Project or Square Type Id are invalid");
+                // not project or square type, wtf?
+                // shouldn't happen if null, would have thrown exception in .single() above.
+                if (project == null || squareType == null)
+                {
+                    throw new ArgumentException("Project or Square Type Id are invalid");
+                }
 
+                // create the new term
                 var projectTerm = new ProjectTerm();
                 projectTerm.Term = term;
                 projectTerm.Definition = definition;
@@ -147,8 +212,8 @@ namespace _2SQUARE.Services
                 projectTerm.Project = project;
                 projectTerm.SquareType = squareType;
 
+                // add the project term to the db
                 db.ProjectTerms.Add(projectTerm);
-
                 db.SaveChanges();
 
                 return projectTerm;
@@ -157,6 +222,10 @@ namespace _2SQUARE.Services
             return null;
         }
         #endregion
+
+        // **************************************************
+        // below this is not validated against the database
+        // **************************************************
 
         #region Step 2 Methods
         public Goal LoadGoal(int id)

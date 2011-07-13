@@ -10,6 +10,8 @@ namespace _2SQUARE.Core.Domain
             Complete = false;
         }
 
+        public int Id { get; set; }
+
         [Required]
         public Project Project { get; set; }
 

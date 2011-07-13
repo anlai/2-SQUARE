@@ -35,7 +35,7 @@ namespace _2SQUARE.Models
                                                                 SquareType = a.Step.SquareType.Id,
                                                                 Name = a.Step.Name,
                                                                 CurrentStepStatus = projectService.GetStepStatus(projectStep:a),
-                                                                CanEdit = projectService.CanStepChangeStatus(a.Id)
+                                                                CanEdit = true
                                                             }).ToList();
 
             return viewModel;

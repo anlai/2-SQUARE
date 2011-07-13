@@ -32,7 +32,7 @@
         <div class="squaretype-container">
         <strong class="header"><%: a.Name %></strong>
         <ul class="editing-form">
-            <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareType == a.id).OrderBy(b => b.Order)) { %>
+            <% foreach (var b in Model.ChangeStatusProjectSteps.Where(b => b.SquareType == a.Id).OrderBy(b => b.Order)) { %>
                 <li>
                     <strong>
                         <select id="<%: b.ProjectStepId %>" class="status" data-id="<%: b.ProjectStepId %>" <%: !b.CanEdit ? "disabled" : string.Empty %> data-origValue="<%: (int)b.CurrentStepStatus %>">
@@ -55,7 +55,7 @@
 
     <script type="text/javascript">
 
-        var projectId = '<%: Model.Project.id %>';
+        var projectId = '<%: Model.Project.Id %>';
         var updateUrl = '<%: Url.Action("UpdateStatus", "Project") %>';
 
         $(function () {
@@ -84,10 +84,6 @@
                     if (result.IsValid) {
                         $.each(result.ChangeSteps, function (index, item) {
                             var $select = $('select[data-id="' + item.Key + '"]');
-
-                            if (item.Value) $select.attr("disabled", "");
-                            else $select.attr("disabled", "disabled");
-
                         });
                     }
                     else {
@@ -133,5 +129,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
 </asp:Content>

@@ -1,4 +1,5 @@
-﻿using _2SQUARE.App_GlobalResources;
+﻿using _2SQUARE;
+using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
