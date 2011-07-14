@@ -331,7 +331,7 @@ namespace _2SQUARE.Services
         /// <param name="goal">Goal (Description and GoalType should be populated)</param>
         /// <param name="goalId">Goal Id for exisitng</param>
         /// <returns></returns>
-        public Goal SaveGoal(int id, Goal goal, int? goalId)
+        public Goal SaveGoal(int id, Goal goal, int? goalId = null, string goalTypeId = null)
         {
             using (var db = new SquareContext())
             {
@@ -344,33 +344,34 @@ namespace _2SQUARE.Services
                 // list of goal types for this square type
                 var goalTypes = db.GoalTypes.Where(a => a.SquareType.Id == projectStep.Step.SquareType.Id).Select(a => a.Id).ToList();
 
-                // wrong goal type for the project step
-                if (!goalTypes.Contains(goal.GoalType.Id) && (goal.GoalType.Id != GoalTypes.Business)) return null;
+                var goalType = goal.GoalType ?? db.GoalTypes.Where(a => a.Id == goalTypeId).Single();
 
-                Goal goalToSave = new Goal();
+                // wrong goal type for the project step
+                if (!goalTypes.Contains(goalType.Id) && (goalType.Id != GoalTypes.Business)) return null;
 
                 // updating an existing goal
                 if (goalId.HasValue)
                 {
-                    goalToSave = db.Goals.Include("SquareType").Include("Project").Include("GoalType")
+                    var goalToSave = db.Goals.Include("SquareType").Include("Project").Include("GoalType")
                                    .Where(a => a.Id == goalId.Value).Single();
 
                     goalToSave.Description = goal.Description;
+                    goal = goalToSave;
                 }
                 else
                 {
-                    goalToSave.Description = goal.Description;
-                    goalToSave.SquareType = projectStep.Step.SquareType;
-                    goalToSave.Project = projectStep.Project;
-                    goalToSave.GoalType = goal.GoalType;
+                    goal.Description = goal.Description;
+                    goal.SquareType = projectStep.Step.SquareType;
+                    goal.Project = projectStep.Project;
+                    goal.GoalType = goalType;
 
-                    db.Goals.Add(goalToSave);
+                    db.Goals.Add(goal);
                 }
                 
 
                 db.SaveChanges();
 
-                return goalToSave;    
+                return goal;    
             }
         }
 

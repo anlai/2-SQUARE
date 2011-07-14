@@ -21,20 +21,38 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
+        /// <summary>
+        /// Add a goal
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <returns></returns>
         public ActionResult Add(int id /*project step id*/)
         {
             var viewModel = GoalViewModel.Create(Db, id);
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Add a goal
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(int id /*project step id*/, Goal goal)
+        public ActionResult Add(int id, [Bind(Exclude="Id, GoalType")]Goal goal, string goalTypeId)
         {
-            //Validation.Validate(goal, ModelState);
+            ModelState.Remove("goal.Project");
+            ModelState.Remove("goal.SquareType");
+            ModelState.Remove("goal.GoalType");
+
+            if (!Db.GoalTypes.Where(a => a.Id == goalTypeId).Any())
+            {
+                ModelState.AddModelError("GoalType", "Goal type is required.");
+            }
 
             if (ModelState.IsValid)
             {
-                _projectService.SaveGoal(id, goal);
+                _projectService.SaveGoal(id, goal, null, goalTypeId);
                 Message = string.Format(Messages.Saved, "Goal");
                 return RedirectToAction("Step2", goal.SquareType.Name, new {id = id, projectId=goal.Project.Id});
             }
@@ -69,47 +87,6 @@ namespace _2SQUARE.Controllers
 
                 _projectService.SaveGoal(id, goal, goal.Id);
             }
-
-
-            //var projectStep = Db.ProjectSteps
-            //                    .Include("Project.Goals").Include("Project.Goals.GoalType")
-            //                    .Include("Step").Include("Step.SquareType")
-            //                    .Where(a => a.Id == id).Single();      
-            
-            //var goal = projectStep.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Business).SingleOrDefault();
-
-            //// if goal == null, then no current business goal, save as new
-            //if (goal == null)
-            //{
-            //    var goalTypeId = (GoalTypes.Business).ToString();
-            //    var goalType = Db.GoalTypes.Where(a => a.Id == goalTypeId).Single();
-
-            //    goal = new Goal()
-            //               {
-            //                   Description = businessGoal,
-            //                   GoalType = goalType,
-            //                   Project = projectStep.Project, 
-            //                   SquareType = projectStep.Step.SquareType
-            //               };
-            //    Db.Goals.Add(goal);
-            //}
-            //// if existing update
-            //else
-            //{
-            //    goal.Description = businessGoal;
-            //}
-
-            ////Validation.Validate(goal, ModelState);
-
-            //if (ModelState.IsValid)
-            //{
-            //    Db.SaveChanges();
-            //    Message = string.Format(Messages.Saved, "Business goal");
-            //}
-            //else
-            //{
-            //    ErrorMessage = string.Format(Messages.UnableSave, "business goal");
-            //}))))
 
             return RedirectToAction("Step2", projectStep.Step.SquareType.Name, new { id = id, projectId = projectStep.Project.Id });
         }

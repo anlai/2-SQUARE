@@ -238,6 +238,17 @@ namespace _2SQUARE.Services
         {
             return db.Goals.Where(a => a.Id == id).SingleOrDefault();
         }
+
+        public Goal SaveGoal(int id, Goal goal, int? goalId, string goalTypeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Goal SaveGoal(int id, Goal goal, int? goalId, int? goalTypeId)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Add/Update goal
         /// </summary>

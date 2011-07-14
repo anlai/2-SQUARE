@@ -15,7 +15,9 @@ namespace _2SQUARE.Models
         {
             Check.Require(db != null, "db is required.");
 
-            var projectStep = db.ProjectSteps.Where(a => a.Id == projectStepId).Single();
+            var projectStep = db.ProjectSteps
+                                .Include("Project").Include("Step").Include("Step.SquareType")
+                                .Where(a => a.Id == projectStepId).Single();
 
             if (goal == null)
             {
@@ -30,7 +32,7 @@ namespace _2SQUARE.Models
                                 {
                                     ProjectStep = projectStep,
                                     Goal = goal,
-                                    GoalTypes = db.GoalTypes.Where(a=>a.SquareType == projectStep.Step.SquareType).ToList()
+                                    GoalTypes = db.GoalTypes.Include("SquareType").Where(a=>a.SquareType.Id == projectStep.Step.SquareType.Id).ToList()
                                 };
 
             return viewModel;
