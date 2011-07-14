@@ -159,6 +159,7 @@ namespace _2SQUARE.Controllers
 
             ErrorMessage = string.Format(Messages.UnableSave, "goal");
             var viewModel = GoalViewModel.Create(Db, _projectService, id, CurrentUserId, existingGoal);
+            viewModel.Goal.GoalType = Db.GoalTypes.Where(a => a.Id == goalTypeId).Single();
             return View(viewModel);
         }
 

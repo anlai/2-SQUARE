@@ -323,7 +323,7 @@ namespace _2SQUARE.Services
         {
             using (var db = new SquareContext())
             {
-                return db.Goals.Where(a => a.Id == id).SingleOrDefault();
+                return db.Goals.Include("GoalType").Where(a => a.Id == id).SingleOrDefault();
             }
         }
 
@@ -359,6 +359,7 @@ namespace _2SQUARE.Services
                                    .Where(a => a.Id == goalId.Value).Single();
 
                     goalToSave.Description = goal.Description;
+                    goalToSave.GoalType = goalType;
                     goal = goalToSave;
                 }
                 else
