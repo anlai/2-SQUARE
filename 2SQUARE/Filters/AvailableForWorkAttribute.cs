@@ -27,7 +27,11 @@ namespace _2SQUARE.Filters
             var db = new SquareContext();
 
             // load pstep
-            var pStep = db.ProjectSteps.Where(a => a.Project.Id == projectId && a.Id == id).Single();
+            var pStep = db.ProjectSteps.Include("Project").Include("Project.ProjectWorkers")
+                                       .Include("Project.ProjectWorkers.User")
+                                       .Include("Project.ProjectWorkers.Role")
+                                       .Include("Step").Include("Step.SquareType")
+                                       .Where(a => a.Project.Id == projectId && a.Id == id).Single();
 
             // figure out if the current user has access
 
