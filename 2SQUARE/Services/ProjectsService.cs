@@ -99,6 +99,7 @@ namespace _2SQUARE.Services
                     var project = db.Projects.Include("ProjectSteps")
                                              .Include("ProjectSteps.Step")
                                              .Include("ProjectSteps.Step.SquareType")
+                                             .Include("Goals").Include("Goals.GoalType")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }
@@ -317,24 +318,73 @@ namespace _2SQUARE.Services
 
         #endregion
 
-        // **************************************************
-        // below this is not validated against the database
-        // **************************************************
-
+        #region Step 2
         public Goal LoadGoal(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Goal SaveGoal(int id, Goal goal)
+        /// <summary>
+        /// Save a goal
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="goal">Goal (Description and GoalType should be populated)</param>
+        /// <param name="goalId">Goal Id for exisitng</param>
+        /// <returns></returns>
+        public Goal SaveGoal(int id, Goal goal, int? goalId)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                // load the project step
+                var projectStep = db.ProjectSteps
+                                    .Include("Step").Include("Step.SquareType")
+                                    .Include("Project")
+                                    .Where(a => a.Id == id).Single();
+
+                // list of goal types for this square type
+                var goalTypes = db.GoalTypes.Where(a => a.SquareType.Id == projectStep.Step.SquareType.Id).Select(a => a.Id).ToList();
+
+                // wrong goal type for the project step
+                if (!goalTypes.Contains(goal.GoalType.Id) && (goal.GoalType.Id != GoalTypes.Business)) return null;
+
+                Goal goalToSave = new Goal();
+
+                // updating an existing goal
+                if (goalId.HasValue)
+                {
+                    goalToSave = db.Goals.Include("SquareType").Include("Project").Include("GoalType")
+                                   .Where(a => a.Id == goalId.Value).Single();
+
+                    goalToSave.Description = goal.Description;
+                }
+                else
+                {
+                    goalToSave.Description = goal.Description;
+                    goalToSave.SquareType = projectStep.Step.SquareType;
+                    goalToSave.Project = projectStep.Project;
+                    goalToSave.GoalType = goal.GoalType;
+
+                    db.Goals.Add(goalToSave);
+                }
+                
+
+                db.SaveChanges();
+
+                return goalToSave;    
+            }
         }
 
         public void DeleteGoal(int id)
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+        // **************************************************
+        // below this is not validated against the database
+        // **************************************************
+
+
 
         public Artifact LoadArtifact(int id)
         {

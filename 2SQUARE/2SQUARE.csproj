@@ -117,6 +117,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssessmentTypes.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\GoalTypes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GoalTypes.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\ProjectRoles.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -328,6 +333,10 @@
     <Content Include="App_GlobalResources\AssessmentTypes.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AssessmentTypes.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\GoalTypes.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>GoalTypes.Designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="App_GlobalResources\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

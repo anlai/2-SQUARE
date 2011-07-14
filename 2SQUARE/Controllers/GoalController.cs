@@ -8,6 +8,7 @@ using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
 using System.Linq;
+using Resources;
 
 namespace _2SQUARE.Controllers
 {
@@ -42,41 +43,73 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Save the business goal for security
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="businessGoal">The Business goal text</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SaveBusinessGoal(int id /*project step id*/, string businessGoal)
         {
-            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
-            var goal = projectStep.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Business).ToString()).SingleOrDefault();
+            var projectStep = Db.ProjectSteps.Include("Step").Include("Step.SquareType").Include("Project").Where(a => a.Id == id).Single();
+            var goal = Db.Goals.Include("GoalType").Where(a => a.GoalType.Id == GoalTypes.Business).SingleOrDefault();
 
-            // if goal == null, then no current business goal, save as new
+            // creating new goal
             if (goal == null)
             {
-                goal = new Goal()
-                           {
-                               Description = businessGoal,
-                               GoalType = Db.GoalTypes.Where(a=>a.Id == ((char)GoalTypes.Business).ToString()).Single(),
-                               Project = projectStep.Project, 
-                               SquareType = projectStep.Step.SquareType
-                           };
-                Db.Goals.Add(goal);
+                var goalType = Db.GoalTypes.Where(a => a.Id == GoalTypes.Business).Single();
+                goal = new Goal(){Description = businessGoal, GoalType = goalType};
+
+                _projectService.SaveGoal(id, goal);
             }
-            // if existing update
-            else
+            // updating the existing goal
             {
                 goal.Description = businessGoal;
+
+                _projectService.SaveGoal(id, goal, goal.Id);
             }
 
-            //Validation.Validate(goal, ModelState);
 
-            if (ModelState.IsValid)
-            {
-                Db.SaveChanges();
-                Message = string.Format(Messages.Saved, "Business goal");
-            }
-            else
-            {
-                ErrorMessage = string.Format(Messages.UnableSave, "business goal");
-            }
+            //var projectStep = Db.ProjectSteps
+            //                    .Include("Project.Goals").Include("Project.Goals.GoalType")
+            //                    .Include("Step").Include("Step.SquareType")
+            //                    .Where(a => a.Id == id).Single();      
+            
+            //var goal = projectStep.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Business).SingleOrDefault();
+
+            //// if goal == null, then no current business goal, save as new
+            //if (goal == null)
+            //{
+            //    var goalTypeId = (GoalTypes.Business).ToString();
+            //    var goalType = Db.GoalTypes.Where(a => a.Id == goalTypeId).Single();
+
+            //    goal = new Goal()
+            //               {
+            //                   Description = businessGoal,
+            //                   GoalType = goalType,
+            //                   Project = projectStep.Project, 
+            //                   SquareType = projectStep.Step.SquareType
+            //               };
+            //    Db.Goals.Add(goal);
+            //}
+            //// if existing update
+            //else
+            //{
+            //    goal.Description = businessGoal;
+            //}
+
+            ////Validation.Validate(goal, ModelState);
+
+            //if (ModelState.IsValid)
+            //{
+            //    Db.SaveChanges();
+            //    Message = string.Format(Messages.Saved, "Business goal");
+            //}
+            //else
+            //{
+            //    ErrorMessage = string.Format(Messages.UnableSave, "business goal");
+            //}))))
 
             return RedirectToAction("Step2", projectStep.Step.SquareType.Name, new { id = id, projectId = projectStep.Project.Id });
         }

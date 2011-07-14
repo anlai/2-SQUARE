@@ -7,6 +7,7 @@ using _2SQUARE.Models;
 using _2SQUARE.Services;
 using DesignByContract;
 using System.Linq;
+using Resources;
 
 public class ValidationService : IValidationService
 {
@@ -176,13 +177,13 @@ public class ValidationService : IValidationService
         if (projectStep.Step.SquareType.Name == SquareTypes.Security)
         {
             // check for business goal
-            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Business).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == GoalTypes.Business).Any())
             {
                 errors.Add("No business goal was found.");
             }
 
             // check for security goal
-            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Security).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == GoalTypes.Security).Any())
             {
                 errors.Add("No security goals were found.");
             }
@@ -197,13 +198,13 @@ public class ValidationService : IValidationService
         // deal with privacy
         if (projectStep.Step.SquareType.Name == SquareTypes.Privacy)
         {
-            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Privacy).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == GoalTypes.Privacy).Any())
             {
                 errors.Add("No privacy goals were found.");
                 return false;
             }
 
-            if (!goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Asset).ToString()).Any())
+            if (!goals.Where(a => a.GoalType.Id == GoalTypes.Asset).Any())
             {
                 errors.Add("No assets were found.");
                 return false;

@@ -26,7 +26,7 @@ namespace _2SQUARE.Services
 
         #region Step 2 Methods
         Goal LoadGoal(int id);
-        Goal SaveGoal(int id /* projectStep Id */, Goal goal);
+        Goal SaveGoal(int id /* projectStep Id */, Goal goal, int? goalId = null);
         void DeleteGoal(int id /* goal id */);
         #endregion
         

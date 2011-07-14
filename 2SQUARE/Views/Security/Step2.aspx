@@ -45,8 +45,8 @@
                 <% foreach (var a in Model.SecurityGoals) { %>
                     <tr class="definition-row">
                         <td class="button-cell" style="width: 135px;">
-                            <%: Html.ActionLink<GoalController>(b=>b.Edit(Model.ProjectStep.Id, a.id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %>
-                            <%: Html.ActionLink<GoalController>(b=>b.Delete(Model.ProjectStep.Id, a.id), "Delete", new {@class="button ui-state-default ui-corner-all"}) %>
+                            <%: Html.ActionLink<GoalController>(b=>b.Edit(Model.ProjectStep.Id, a.Id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %>
+                            <%: Html.ActionLink<GoalController>(b=>b.Delete(Model.ProjectStep.Id, a.Id), "Delete", new {@class="button ui-state-default ui-corner-all"}) %>
                         </td>
                         <td style="width: 700px;"><%: a.Description %></td>
                     </tr>
@@ -72,6 +72,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>

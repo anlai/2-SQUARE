@@ -242,9 +242,10 @@ namespace _2SQUARE.Services
         /// Add/Update goal
         /// </summary>
         /// <param name="id">Project Step Id</param>
-        /// <param name="goal"></param>
+        /// <param name="goal">Goal</param>
+        /// <param name="goalId">Goal Id for saving update</param>
         /// <returns></returns>
-        public Goal SaveGoal(int id /* projectStep Id */, Goal goal)
+        public Goal SaveGoal(int id /* projectStep Id */, Goal goal, int? goalId)
         {
             // load the project step
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();

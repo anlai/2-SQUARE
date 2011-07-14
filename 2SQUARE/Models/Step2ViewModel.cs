@@ -5,6 +5,7 @@ using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
 using _2SQUARE.Services;
 using DesignByContract;
+using Resources;
 
 namespace _2SQUARE.Models
 {
@@ -28,15 +29,15 @@ namespace _2SQUARE.Models
             if (viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Security)
             {
                 // load the business goal
-                viewModel.BusinessGoal = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Business).ToString()).SingleOrDefault();
+                viewModel.BusinessGoal = viewModel.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Business).SingleOrDefault();
 
                 // load the security goals
-                viewModel.SecurityGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Security).ToString()).ToList();
+                viewModel.SecurityGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Security).ToList();
             }
             else if (viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy)
             {
-                viewModel.PrivacyGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Privacy).ToString()).ToList();
-                viewModel.Assets = viewModel.Project.Goals.Where(a => a.GoalType.Id == ((char)GoalTypes.Asset).ToString()).ToList();
+                viewModel.PrivacyGoals = viewModel.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Privacy).ToList();
+                viewModel.Assets = viewModel.Project.Goals.Where(a => a.GoalType.Id == GoalTypes.Asset).ToList();
             }
 
             return viewModel;
