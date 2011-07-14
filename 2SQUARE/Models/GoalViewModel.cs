@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _2SQUARE.Core.Domain;
+using _2SQUARE.Services;
 using DesignByContract;
 
 namespace _2SQUARE.Models
@@ -11,13 +12,11 @@ namespace _2SQUARE.Models
         public Goal Goal { get; set; }
         public IEnumerable<GoalType> GoalTypes { get; set; }
 
-        public static GoalViewModel Create(SquareContext db, int projectStepId, Goal goal = null)
+        public static GoalViewModel Create(SquareContext db, IProjectService projectService, int projectStepId, string login, Goal goal = null)
         {
             Check.Require(db != null, "db is required.");
 
-            var projectStep = db.ProjectSteps
-                                .Include("Project").Include("Step").Include("Step.SquareType")
-                                .Where(a => a.Id == projectStepId).Single();
+            var projectStep = projectService.GetProjectStep(projectStepId, login);
 
             if (goal == null)
             {

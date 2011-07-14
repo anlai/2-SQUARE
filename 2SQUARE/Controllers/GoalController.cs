@@ -28,7 +28,10 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Add(int id /*project step id*/)
         {
-            var viewModel = GoalViewModel.Create(Db, id);
+            // validate access
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
+            var viewModel = GoalViewModel.Create(Db, _projectService, id, CurrentUserId);
             return View(viewModel);
         }
 
@@ -45,6 +48,8 @@ namespace _2SQUARE.Controllers
             ModelState.Remove("goal.SquareType");
             ModelState.Remove("goal.GoalType");
 
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
             if (!Db.GoalTypes.Where(a => a.Id == goalTypeId).Any())
             {
                 ModelState.AddModelError("GoalType", "Goal type is required.");
@@ -57,7 +62,7 @@ namespace _2SQUARE.Controllers
                 return RedirectToAction("Step2", goal.SquareType.Name, new {id = id, projectId=goal.Project.Id});
             }
 
-            var viewModel = GoalViewModel.Create(Db, id, goal);
+            var viewModel = GoalViewModel.Create(Db, _projectService, id, CurrentUserId, goal);
             return View(viewModel);
         }
 
@@ -70,7 +75,7 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public ActionResult SaveBusinessGoal(int id /*project step id*/, string businessGoal)
         {
-            var projectStep = Db.ProjectSteps.Include("Step").Include("Step.SquareType").Include("Project").Where(a => a.Id == id).Single();
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
             var goal = Db.Goals.Include("GoalType").Where(a => a.GoalType.Id == GoalTypes.Business).SingleOrDefault();
 
             // creating new goal
@@ -82,6 +87,7 @@ namespace _2SQUARE.Controllers
                 _projectService.SaveGoal(id, goal);
             }
             // updating the existing goal
+            else
             {
                 goal.Description = businessGoal;
 
@@ -95,9 +101,9 @@ namespace _2SQUARE.Controllers
         /// Edit a goal
         /// </summary>
         /// <param name="id">Project step id</param>
-        /// <param name="goalId"></param>
+        /// <param name="goalId">Id of goal to edit</param>
         /// <returns></returns>
-        public ActionResult Edit(int id /* project step id */, int goalId)
+        public ActionResult Edit(int id, int goalId)
         {
             var goal = _projectService.LoadGoal(goalId);
             var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
@@ -109,21 +115,32 @@ namespace _2SQUARE.Controllers
                                         new {id = projectStep.Id, projectId = projectStep.Project.Id});
             }
 
-            var viewModel = GoalViewModel.Create(Db, id, goal);
+            var viewModel = GoalViewModel.Create(Db, _projectService, id, CurrentUserId, goal);
             return View(viewModel);
         }
 
         /// <summary>
         /// Edit a goal
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="goal"></param>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="goalId">Id of goal to edit</param>
+        /// <param name="goal">goal with new values</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id /* project step id */, int goalId, Goal goal)
+        public ActionResult Edit(int id /* project step id */, int goalId, [Bind(Exclude="Id, GoalType")]Goal goal, string goalTypeId)
         {
+            ModelState.Remove("goal.Project");
+            ModelState.Remove("goal.SquareType");
+            ModelState.Remove("goal.GoalType");
+
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
+            if (!Db.GoalTypes.Where(a => a.Id == goalTypeId).Any())
+            {
+                ModelState.AddModelError("GoalType", "Goal type is required.");
+            }
+            
             var existingGoal = _projectService.LoadGoal(goalId);
-            var projectStep = Db.ProjectSteps.Where(a => a.Id == id).Single();
 
             if (existingGoal == null)
             {
@@ -132,27 +149,28 @@ namespace _2SQUARE.Controllers
                                         new { id = projectStep.Id, projectId = projectStep.Project.Id });                
             }
 
-            existingGoal.Description = goal.Description;
-            existingGoal.GoalType = goal.GoalType;
-
-            //Validation.Validate(existingGoal, ModelState);
-
-            // if function does not return null, we are good for save);
             if (ModelState.IsValid)
             {
-                _projectService.SaveGoal(id, existingGoal);
+                _projectService.SaveGoal(id, goal, goalId, goalTypeId);
                 Message = string.Format(Messages.Saved, "Goal");
                 return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller,
-                                             new {id = projectStep.Id, projectId = projectStep.Project.Id});
+                                             new { id = projectStep.Id, projectId = projectStep.Project.Id });
             }
 
             ErrorMessage = string.Format(Messages.UnableSave, "goal");
-            var viewModel = GoalViewModel.Create(Db, id, existingGoal);
+            var viewModel = GoalViewModel.Create(Db, _projectService, id, CurrentUserId, existingGoal);
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Delete a goal
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="goalId">Goal Id to delete</param>
+        /// <returns></returns>
         public RedirectToRouteResult Delete(int id /*project step id*/, int goalId)
         {
+            // this validates the security as well
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
             _projectService.DeleteGoal(goalId);

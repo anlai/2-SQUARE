@@ -321,7 +321,10 @@ namespace _2SQUARE.Services
         #region Step 2
         public Goal LoadGoal(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                return db.Goals.Where(a => a.Id == id).SingleOrDefault();
+            }
         }
 
         /// <summary>
@@ -377,7 +380,16 @@ namespace _2SQUARE.Services
 
         public void DeleteGoal(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                var goal = db.Goals.Where(a => a.Id == id).SingleOrDefault();
+
+                if (goal != null)
+                {
+                    db.Goals.Remove(goal);
+                    db.SaveChanges();
+                }
+            }
         }
         #endregion
 
