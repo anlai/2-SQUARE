@@ -292,6 +292,16 @@ namespace _2SQUARE.Services
             return db.Artifacts.Where(a => a.Id == id).SingleOrDefault();
         }
 
+        public Artifact SaveArtifact(int id, Artifact artifact, int? artifactId, int? artifactTypeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Artifact SaveArtifact(int id, Artifact artifact, int? artifactId, string artifactTypeId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Artifact SaveArtifact(int id, Artifact artifact, string loginId)
         {
             var projectStep = db.ProjectSteps.Where(a => a.Id == id).Single();

@@ -10,13 +10,13 @@
             <%: Html.TextAreaFor(a=>a.Artifact.Description) %>
         </li>
         <li><strong>Artifact Type:</strong>
-            <%= this.Select("Artifact.ArtifactTypeId").Options(Model.ArtifactTypes,x=>x.id, x=>x.Name).Selected(Model.Artifact != null ? Model.Artifact.ArtifactTypeId.ToString() : string.Empty) %>
+            <%= this.Select("ArtifactTypeId").Options(Model.ArtifactTypes,x=>x.Id, x=>x.Name).Selected(Model.Artifact.ArtifactType != null ? Model.Artifact.ArtifactType.Id.ToString() : string.Empty) %>
         </li>
         <li><strong>File:</strong>
             <input type='file' name='file' id='file' />
         </li>
         <li><strong></strong>
             <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-            <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.ProjectId}, new {@class="button ui-corner-all ui-state-default"}) %>
+            <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button ui-corner-all ui-state-default"}) %>
         </li>
     </ul>

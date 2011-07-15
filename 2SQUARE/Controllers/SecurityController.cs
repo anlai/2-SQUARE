@@ -84,9 +84,11 @@ namespace _2SQUARE.Controllers
         /// <summary>
         /// Develop Artifacts
         /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
         /// <returns></returns>
         [AvailableForWork]
-        public ActionResult Step3(int id /*project step id*/, int projectId)
+        public ActionResult Step3(int id, int projectId)
         {
             try
             {

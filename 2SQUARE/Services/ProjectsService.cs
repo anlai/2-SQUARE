@@ -394,26 +394,81 @@ namespace _2SQUARE.Services
         }
         #endregion
 
-        // **************************************************
-        // below this is not validated against the database
-        // **************************************************
-
-
+        #region Step 3
 
         public Artifact LoadArtifact(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Artifact SaveArtifact(int id, Artifact artifact, string loginId)
+        /// <summary>
+        /// Save an artifact
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifact"></param>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
+        public Artifact SaveArtifact(int id, Artifact artifact, int? artifactId, int? artifactTypeId)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                // load the project step
+                var projectStep = db.ProjectSteps
+                                    .Include("Step").Include("Step.SquareType")
+                                    .Include("Project")
+                                    .Where(a => a.Id == id).Single();
+
+                // list of artifact types for this square type
+                var artifactTypes = db.ArtifactTypes.Where(a => a.SquareType.Id == projectStep.Step.SquareType.Id).Select(a => a.Id).ToList();
+
+                var artifactType = artifact.ArtifactType ?? db.ArtifactTypes.Where(a => a.Id == artifactTypeId).Single();
+
+                // wrong artifact type for the project step
+                if (!artifactTypes.Contains(artifactType.Id)) return null;
+
+                // update an existing artifact
+                if (artifactId.HasValue)
+                {
+                    var artifactToSave = db.Artifacts.Where(a => a.Id == artifactId).Single();
+
+                    artifactToSave.Name = artifact.Name;
+                    artifactToSave.Description = artifact.Description;
+                    artifactToSave.ArtifactType = artifactType;
+                    artifactToSave.ContentType = artifact.ContentType;
+                    artifactToSave.Data = artifact.Data;
+
+                    artifact = artifactToSave;
+                }
+                // fill in the new artifact
+                else
+                {
+                    artifact.ArtifactType = artifactType;
+                    artifact.Project = projectStep.Project;
+
+                    db.Artifacts.Add(artifact);
+                }
+
+                db.SaveChanges();
+
+                return artifact;
+            }
         }
 
         public void DeleteArtifact(int id)
         {
             throw new NotImplementedException();
         }
+        
+        #endregion
+
+
+        // **************************************************
+        // below this is not validated against the database
+        // **************************************************
+
+
+
+
 
         public void SetAssessmentType(int id, AssessmentType assessmentType, string userId)
         {

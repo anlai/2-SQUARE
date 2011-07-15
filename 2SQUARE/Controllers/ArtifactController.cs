@@ -28,33 +28,49 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Add(int id)
         {
-            var viewModel = ArtifactViewModel.Create(Db, null, id);
+            var viewModel = ArtifactViewModel.Create(Db, _projectService, null, id, CurrentUserId);
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Create an artifact
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifact">Artifact Object</param>
+        /// <param name="artifactTypeId">Artifact Type Id</param>
+        /// <param name="file">File</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(int id /* project step id*/, Artifact artifact, HttpPostedFileBase file)
+        public ActionResult Add(int id, Artifact artifact, int artifactTypeId, HttpPostedFileBase file)
         {
-            // only validate hte user's input
-            //Validation.Validate(artifact, ModelState);
-            
-            if (file != null)
+            // validate access and load project step
+            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
+            ModelState.Remove("artifact.ArtifactType");
+            ModelState.Remove("artifact.Project");
+            ModelState.Remove("artifact.CreatedBy");
+
+            if (file == null) ModelState.AddModelError("File", "File is required.");
+            if (!Db.ArtifactTypes.Where(a => a.Id == artifactTypeId).Any())
+                ModelState.AddModelError("Artifact Type", "Artifact Type is Required");
+
+
+            if (ModelState.IsValid)
             {
+                artifact.CreatedBy = CurrentUserId;
+
                 // read the file
                 var reader = new BinaryReader(file.InputStream);
                 var data = reader.ReadBytes(file.ContentLength);
                 artifact.Data = data;
                 artifact.ContentType = file.ContentType;
-            }
 
-            if (ModelState.IsValid)
-            {
+                _projectService.SaveArtifact(id, artifact, null, artifactTypeId);
                 Message = string.Format(Messages.Saved, "Artifact");
-                _projectService.SaveArtifact(id, artifact, CurrentUserId);
                 return LinkGenerator.CreateRedirectResult(Request.RequestContext, _projectService.GetProjectStep(id, CurrentUserId));
             }
 
-            var viewModel = ArtifactViewModel.Create(Db, artifact, id);
+            var viewModel = ArtifactViewModel.Create(Db, _projectService, artifact, id, CurrentUserId);
             return View(viewModel);
         }
 
@@ -65,12 +81,12 @@ namespace _2SQUARE.Controllers
 
             if (artifact == null) return LinkGenerator.CreateRedirectResult(Request.RequestContext, projectStep);
 
-            var viewModel = ArtifactViewModel.Create(Db, artifact, id);
+            var viewModel = ArtifactViewModel.Create(Db, _projectService, artifact, id, CurrentUserId);
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id /* project step id */, int artifactId, Artifact artifact, HttpPostedFileBase file)
+        public ActionResult Edit(int id /* project step id */, int artifactId, Artifact artifact, int artifactTypeId, HttpPostedFileBase file)
         {
             // load existing
             var existingArtifact = _projectService.LoadArtifact(artifactId);
@@ -95,11 +111,11 @@ namespace _2SQUARE.Controllers
             if (ModelState.IsValid)
             {
                 Message = string.Format(Messages.Saved, "Artifact");
-                _projectService.SaveArtifact(id, existingArtifact, CurrentUserId);
+                _projectService.SaveArtifact(id, existingArtifact, artifactId, artifactTypeId);
                 return LinkGenerator.CreateRedirectResult(Request.RequestContext, _projectService.GetProjectStep(id, CurrentUserId));
             }
 
-            var viewModel = ArtifactViewModel.Create(Db, existingArtifact, id);
+            var viewModel = ArtifactViewModel.Create(Db, _projectService, existingArtifact, id, CurrentUserId);
             return View(viewModel);
         }
 
@@ -124,7 +140,7 @@ namespace _2SQUARE.Controllers
 
             if (artifact == null) return LinkGenerator.CreateRedirectResult(Request.RequestContext, projectStep);
 
-            var viewModel = ArtifactViewModel.Create(Db, artifact, id);
+            var viewModel = ArtifactViewModel.Create(Db, _projectService, artifact, id, CurrentUserId);
             return View(viewModel);
         }
 

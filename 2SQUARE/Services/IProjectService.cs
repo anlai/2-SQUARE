@@ -32,7 +32,7 @@ namespace _2SQUARE.Services
         
         #region Step 3 Methods
         Artifact LoadArtifact(int id);
-        Artifact SaveArtifact(int id /* project step id */, Artifact artifact, string loginId);
+        Artifact SaveArtifact(int id, Artifact artifact, int? artifactId = null, int? artifactTypeId = null);
         void DeleteArtifact(int id /* artifact id*/);
         #endregion
 

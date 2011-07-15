@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using _2SQUARE.App_GlobalResources;
+﻿using System.Collections.Generic;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Services;
 using DesignByContract;
@@ -21,11 +18,13 @@ namespace _2SQUARE.Models
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, currentUserId);
 
 
-            viewModel.Artifacts = db.Artifacts.Where(
-                                    a =>
-                                    a.Project.Id == projectId &&
-                                    a.ArtifactType.SquareType == viewModel.ProjectStep.Step.SquareType)
-                                    .OrderBy(a => a.ArtifactType).ThenByDescending(a => a.DateCreated).ToList();
+            viewModel.Artifacts = db.Artifacts
+                                    .Include("ArtifactType")
+                                    .Where(
+                                        a =>
+                                        a.Project.Id == projectId &&
+                                        a.ArtifactType.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id)
+                                    .OrderBy(a => a.ArtifactType.Name).ThenByDescending(a => a.DateCreated).ToList();
 
             return viewModel;
         }

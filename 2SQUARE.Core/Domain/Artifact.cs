@@ -18,7 +18,9 @@ namespace _2SQUARE.Core.Domain
         
         public string ContentType { get; set; }
         
+        [Required]
         public ArtifactType ArtifactType { get; set; }
+        [Required]
         public Project Project { get; set; }
         
         [StringLength(50)]
