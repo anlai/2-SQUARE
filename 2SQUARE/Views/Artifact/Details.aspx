@@ -13,10 +13,10 @@
 
         <% if (Model.Artifact.ContentType.StartsWith("image")) { %>
             <!-- Embed the image -->
-            <img src="<%: Url.Action("GetFile", "Artifact", new {id=Model.Artifact.id}) %>" />
+            <img src="<%: Url.Action("GetFile", "Artifact", new {id=Model.Artifact.Id}) %>" />
         <% } else { %>
             <!-- Not sure how to handle the file, so just give download link -->
-            <a href="<%: Url.Action("GetFile", "Artifact", new {id=Model.Artifact.id}) %>">Download File</a>
+            <a href="<%: Url.Action("GetFile", "Artifact", new {id=Model.Artifact.Id}) %>">Download File</a>
         <% } %>
 
 
@@ -45,6 +45,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink("Back to Step 3", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.ProjectId}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 3", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>

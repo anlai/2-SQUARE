@@ -155,7 +155,13 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
-        public RedirectResult Delete(int id /* project step id */, int artifactId)
+        /// <summary>
+        /// Delete an artifact
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifactId">Artifact Id</param>
+        /// <returns></returns>
+        public RedirectResult Delete(int id, int artifactId)
         {
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
@@ -169,7 +175,13 @@ namespace _2SQUARE.Controllers
             return LinkGenerator.CreateRedirectResult(Request.RequestContext, projectStep);
         }
 
-        public ActionResult Details(int id /* project step id */, int artifactId)
+        /// <summary>
+        /// Artifact Details
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifactId">Artifact Id</param>
+        /// <returns></returns>
+        public ActionResult Details(int id, int artifactId)
         {
             var artifact = _projectService.LoadArtifact(artifactId);
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
@@ -191,7 +203,13 @@ namespace _2SQUARE.Controllers
 
             if (artifact == null) return File(new byte[0], string.Empty);
 
-            return File(artifact.Data, artifact.ContentType);
+            // validate access before returning file
+            if (_projectService.HasAccess(artifact.Project.Id, CurrentUserId))
+            {
+                return File(artifact.Data, artifact.ContentType, string.Format("{0}.pdf", id));    
+            }
+
+            return File(new byte[0], string.Empty);
         }
     }
 }

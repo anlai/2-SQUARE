@@ -410,7 +410,7 @@ namespace _2SQUARE.Services
         {
             using (var db = new SquareContext())
             {
-                return db.Artifacts.Include("ArtifactType").Where(a => a.Id == id).SingleOrDefault();
+                return db.Artifacts.Include("ArtifactType").Include("Project").Where(a => a.Id == id).SingleOrDefault();
             }
         }
 
