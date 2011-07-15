@@ -50,10 +50,12 @@ namespace _2SQUARE.Controllers
             ModelState.Remove("artifact.Project");
             ModelState.Remove("artifact.CreatedBy");
 
+            ModelState.Remove("artifact.Data");
+            ModelState.Remove("artifact.ContentType");
+
             if (file == null) ModelState.AddModelError("File", "File is required.");
             if (!Db.ArtifactTypes.Where(a => a.Id == artifactTypeId).Any())
                 ModelState.AddModelError("Artifact Type", "Artifact Type is Required");
-
 
             if (ModelState.IsValid)
             {
@@ -74,7 +76,13 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Edit(int id /* project step id */, int artifactId)
+        /// <summary>
+        /// Edit artifacts
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifactId">Artifact Id</param>
+        /// <returns></returns>
+        public ActionResult Edit(int id, int artifactId)
         {
             var artifact = _projectService.LoadArtifact(artifactId);
             var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
@@ -85,33 +93,61 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Edit artifact
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="artifactId">Artifact Id</param>
+        /// <param name="artifact">Artifact with new values</param>
+        /// <param name="artifactTypeId">Artifact Type Id</param>
+        /// <param name="file">Posted File</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id /* project step id */, int artifactId, Artifact artifact, int artifactTypeId, HttpPostedFileBase file)
+        public ActionResult Edit(int id, int artifactId, Artifact artifact, int artifactTypeId, HttpPostedFileBase file)
         {
-            // load existing
+            ModelState.Remove("artifact.ArtifactType");
+            ModelState.Remove("artifact.Project");
+            ModelState.Remove("artifact.CreatedBy");
+            ModelState.Remove("artifact.Data");
+            ModelState.Remove("artifact.ContentType");
+
+            // load the existing one
             var existingArtifact = _projectService.LoadArtifact(artifactId);
 
-            // copy the new fields
-            existingArtifact.Name = artifact.Name;
-            existingArtifact.Description = artifact.Description;
-            existingArtifact.ArtifactType = artifact.ArtifactType;
-
-            // validate user's input
-            //Validation.Validate(existingArtifact, ModelState);
-
-            // read the file and update if one was provided
-            if (file != null)
+            if (existingArtifact == null)
             {
-                // read the file
-                var reader = new BinaryReader(file.InputStream);
-                var data = reader.ReadBytes(file.ContentLength);
-                existingArtifact.Data = data;
+                ModelState.AddModelError("Artifact", "Unable to load artifact.");
+            }
+
+            if (!Db.ArtifactTypes.Where(a => a.Id == artifactTypeId).Any())
+            {
+                ModelState.AddModelError("Artifact Type", "Artifact Type is Required");
             }
 
             if (ModelState.IsValid)
             {
+                // load in the file if there is one
+                if (file != null)
+                {
+                    // read the file
+                    var reader = new BinaryReader(file.InputStream);
+                    var data = reader.ReadBytes(file.ContentLength);
+                    artifact.Data = data;
+                    artifact.ContentType = file.ContentType;
+                }
+                else
+                {
+                    artifact.Data = null;
+                    artifact.ContentType = null;
+                }
+
+                // save the artifact
+                _projectService.SaveArtifact(id, artifact, artifactId, artifactTypeId);
+
+                // display message
                 Message = string.Format(Messages.Saved, "Artifact");
-                _projectService.SaveArtifact(id, existingArtifact, artifactId, artifactTypeId);
+
+                // redirect
                 return LinkGenerator.CreateRedirectResult(Request.RequestContext, _projectService.GetProjectStep(id, CurrentUserId));
             }
 

@@ -127,7 +127,7 @@ namespace _2SQUARE.Controllers
         /// <param name="goal">goal with new values</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id /* project step id */, int goalId, [Bind(Exclude="Id, GoalType")]Goal goal, string goalTypeId)
+        public ActionResult Edit(int id, int goalId, [Bind(Exclude="Id, GoalType")]Goal goal, string goalTypeId)
         {
             ModelState.Remove("goal.Project");
             ModelState.Remove("goal.SquareType");

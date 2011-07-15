@@ -14,8 +14,10 @@ namespace _2SQUARE.Core.Domain
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [Required]
         public byte[] Data { get; set; }
-        
+        [Required]
         public string ContentType { get; set; }
         
         [Required]

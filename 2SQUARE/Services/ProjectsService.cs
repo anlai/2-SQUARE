@@ -319,6 +319,11 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 2
+        /// <summary>
+        /// Loads a goal
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Goal LoadGoal(int id)
         {
             using (var db = new SquareContext())
@@ -396,9 +401,17 @@ namespace _2SQUARE.Services
 
         #region Step 3
 
+        /// <summary>
+        /// Loads an artifact
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Artifact LoadArtifact(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                return db.Artifacts.Include("ArtifactType").Where(a => a.Id == id).SingleOrDefault();
+            }
         }
 
         /// <summary>
@@ -421,7 +434,7 @@ namespace _2SQUARE.Services
                 // list of artifact types for this square type
                 var artifactTypes = db.ArtifactTypes.Where(a => a.SquareType.Id == projectStep.Step.SquareType.Id).Select(a => a.Id).ToList();
 
-                var artifactType = artifact.ArtifactType ?? db.ArtifactTypes.Where(a => a.Id == artifactTypeId).Single();
+                var artifactType = artifact.ArtifactType ?? db.ArtifactTypes.Include("SquareType").Where(a => a.Id == artifactTypeId).Single();
 
                 // wrong artifact type for the project step
                 if (!artifactTypes.Contains(artifactType.Id)) return null;
@@ -434,10 +447,13 @@ namespace _2SQUARE.Services
                     artifactToSave.Name = artifact.Name;
                     artifactToSave.Description = artifact.Description;
                     artifactToSave.ArtifactType = artifactType;
-                    artifactToSave.ContentType = artifact.ContentType;
-                    artifactToSave.Data = artifact.Data;
 
-                    artifact = artifactToSave;
+                    // only update file contents if there is a new file, otherwise keep old contents
+                    if (artifact.ContentType != null && artifact.Data != null)
+                    {
+                        artifactToSave.ContentType = artifact.ContentType;
+                        artifactToSave.Data = artifact.Data;    
+                    }
                 }
                 // fill in the new artifact
                 else
@@ -454,9 +470,22 @@ namespace _2SQUARE.Services
             }
         }
 
+        /// <summary>
+        /// Delete artifact
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteArtifact(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new SquareContext())
+            {
+                var artifact = db.Artifacts.Where(a => a.Id == id).SingleOrDefault();
+
+                if (artifact != null)
+                {
+                    db.Artifacts.Remove(artifact);
+                    db.SaveChanges();
+                }
+            }
         }
         
         #endregion

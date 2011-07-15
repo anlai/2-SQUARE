@@ -11,7 +11,9 @@
     <% Html.EnableClientValidation(); %>
 
     <% using (Html.BeginForm("Edit", "Artifact", FormMethod.Post, new { enctype = "multipart/form-data" })) { %>
-        <%: Html.Hidden("artifactId", Model.Artifact.id) %>
+
+        <%: Html.Hidden("artifactId", Model.Artifact.Id) %>
+
         <% Html.RenderPartial("ArtifactForm"); %>
     <% } %>
 
@@ -22,6 +24,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink("Back to Step 3", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.ProjectId}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 3", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>
