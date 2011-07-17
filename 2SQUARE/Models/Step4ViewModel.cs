@@ -17,7 +17,7 @@ namespace _2SQUARE.Models
 
             var viewModel = new Step4ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
-            viewModel.AssessmentTypes = db.AssessmentTypes.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType);
+            viewModel.AssessmentTypes = db.AssessmentTypes.Include("SquareType").Where(a => a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id);
             return viewModel;
         }
     }

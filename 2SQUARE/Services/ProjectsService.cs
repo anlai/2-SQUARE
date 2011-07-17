@@ -490,6 +490,49 @@ namespace _2SQUARE.Services
         
         #endregion
 
+        #region Step 4
+
+        /// <summary>
+        /// Set the assessment type on the project
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="assessmentType">Assessment Type</param>
+        /// <param name="userId">User Login</param>
+        public void SetAssessmentType(int id, int assessmentTypeId, string userId)
+        {
+
+            using (var db = new SquareContext())
+            {
+
+                var project = db.Projects.Where(a => a.Id == id).Single();
+                var assessmentType = db.AssessmentTypes.Include("SquareType").Where(a => a.Id == assessmentTypeId).Single();
+
+                if (assessmentType.SquareType.Name == SquareTypes.Security)
+                {
+                    project.SecurityAssessmentType = assessmentType;
+                }
+                else if (assessmentType.SquareType.Name == SquareTypes.Privacy)
+                {
+                    project.PrivacyAssessmentType = assessmentType;
+                }
+                else
+                {
+                    // incorrect assessment type
+                    throw new Exception("Something funny with the assessment type.");
+                }
+
+                db.SaveChanges();
+
+            }
+
+        }
+
+        public RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
         // **************************************************
         // below this is not validated against the database
@@ -499,15 +542,9 @@ namespace _2SQUARE.Services
 
 
 
-        public void SetAssessmentType(int id, AssessmentType assessmentType, string userId)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void SetElicitationType(int id, ElicitationType elicitationType, string rationale, string userId)
         {

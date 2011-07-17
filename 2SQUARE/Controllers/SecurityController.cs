@@ -115,7 +115,7 @@ namespace _2SQUARE.Controllers
         /// <param name="projectId"></param>
         /// <returns></returns>
         [AvailableForWork]
-        public ActionResult Step4(int id /*project step id*/, int projectId)
+        public ActionResult Step4(int id, int projectId)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace _2SQUARE.Controllers
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 // assesment type picked  out already)
-                if (project.SecurityAssessmentType == null)
+                if (project.SecurityAssessmentType != null)
                 {
                     return RedirectToAction("Index", project.SecurityAssessmentType.Controller, new {id=id,projectId=projectId});
                 }
@@ -137,13 +137,24 @@ namespace _2SQUARE.Controllers
             }
         }
 
-        public RedirectToRouteResult SelectAssessmentType(int id /* project step id */, int projectId, int assessmentTypeId)
+        /// <summary>
+        /// Set the assessment type for security on the project
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="assessmentTypeId">Assessment Type Id</param>
+        /// <returns></returns>
+        public RedirectToRouteResult SelectAssessmentType(int id, int projectId, int assessmentTypeId)
         {
             try
             {
+                // load project and validate access
+                var project = _projectService.GetProject(projectId, CurrentUserId);
+
+                // load the assessment type
                 var assessmentType = Db.AssessmentTypes.Where(a => a.Id == assessmentTypeId).Single();
 
-                _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
+                _projectService.SetAssessmentType(projectId, assessmentTypeId, CurrentUserId);
 
                 return RedirectToAction("Index", assessmentType.Controller, new { id = id, projectId = projectId });
             }

@@ -136,7 +136,7 @@ namespace _2SQUARE.Controllers
             {
                 var assessmentType = Db.AssessmentTypes.Where(a => a.Id == assessmentTypeId).Single();
 
-                _projectService.SetAssessmentType(projectId, assessmentType, CurrentUserId);
+                _projectService.SetAssessmentType(projectId, assessmentTypeId, CurrentUserId);
 
                 return RedirectToAction("Index", assessmentType.Controller, new { id = id, projectId = projectId });
             }

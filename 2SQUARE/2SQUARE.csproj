@@ -127,6 +127,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectRoles.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\RiskLevels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RiskLevels.resx</DependentUpon>
+    </Compile>
     <Compile Include="ComponentRegistrar.asax.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -345,6 +350,10 @@
     <Content Include="App_GlobalResources\ProjectRoles.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>ProjectRoles.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\RiskLevels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RiskLevels.Designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="App_GlobalResources\SquareTypes.resx">
       <Generator>ResXFileCodeGenerator</Generator>

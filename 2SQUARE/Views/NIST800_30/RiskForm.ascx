@@ -13,8 +13,8 @@
 
                 var url = '<%: Url.Action("DetermineRiskLevel", "NIST800_30") %>';
 
-                var likelihood = $("#Risk_LikelihoodId").val();
-                var magnitude = $("#Risk_MagnitudeId").val();
+                var likelihood = $("#likelihoodId").val();
+                var magnitude = $("#magnitudeId").val();
 
                 if (likelihood == "" || magnitude == "") return;
 
@@ -46,15 +46,15 @@
 
     <h3>Likelihood</h3>
 
-    <%= this.Select("Risk.LikelihoodId").Class("risk-level-calc").Options(Model.RiskLevels, x=>x.id, x=>x.Name).FirstOption("--Select a Likelihood Level--") %>
+    <%= this.Select("likelihoodId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Likelihood Level--").Selected(Model.Risk.Likelihood.Id)%>
 
     <h3>Impact</h3>
 
     <strong>Impact on Security Goal</strong>
-    <%= this.Select("Risk.ImpactId").Options(Model.Impacts,x=>x.id, x=>x.Name).FirstOption("--Select an Impact--") %>
+    <%= this.Select("impactId").Options(Model.Impacts, x => x.Id, x => x.Name).FirstOption("-1", "--Select an Impact--").Selected(Model.Risk.Impact.Id.ToString()) %>
     <br />
     <strong>Magnitude of Impact</strong>
-    <%= this.Select("Risk.MagnitudeId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.id, x => x.Name).FirstOption("--Select a Magnitude of Impact--")%>
+    <%= this.Select("magnitudeId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Magnitude of Impact--").Selected(Model.Risk.Magnitude.Id) %>
 
     <h3>Risk Level</h3>
 
@@ -65,6 +65,6 @@
     <h3>&nbsp;</h3>
     <p>
     <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-    <%: Html.ActionLink<NIST800_30Controller>(a => a.Index(Model.ProjectStep.Id, Model.Project.id), "Cancel", new { @class = "button ui-state-default ui-corner-all" })%>
+    <%: Html.ActionLink<NIST800_30Controller>(a => a.Index(Model.ProjectStep.Id, Model.Project.Id), "Cancel", new { @class = "button ui-state-default ui-corner-all" })%>
     </p>
     <% } %>

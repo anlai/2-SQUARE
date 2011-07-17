@@ -20,8 +20,9 @@ namespace _2SQUARE.Models
             {
                 ProjectStep = projectStep,
                 Project = projectService.GetProject(projectId, userId),
-                Risks = db.Risks.Where(a => a.Project.Id == projectStep.Project.Id 
-                                            && a.SquareType == projectStep.Step.SquareType)
+                Risks = db.Risks.Include("Likelihood").Include("Impact").Include("Magnitude").Include("RiskLevel")
+                                .Where(a => a.Project.Id == projectStep.Project.Id 
+                                            && a.SquareType.Id == projectStep.Step.SquareType.Id)
                                             .OrderByDescending(a=>a.RiskLevel.Order).ToList()
             };
 

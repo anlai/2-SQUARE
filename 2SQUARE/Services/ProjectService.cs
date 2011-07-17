@@ -332,6 +332,12 @@ namespace _2SQUARE.Services
             db.Artifacts.Remove(artifact);
             db.SaveChanges();
         }
+
+        public void SetAssessmentType(int id, int assessmentTypeId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Step 4 Methods

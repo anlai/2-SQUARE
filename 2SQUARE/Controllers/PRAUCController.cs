@@ -162,9 +162,9 @@ namespace _2SQUARE.Controllers
             string riskLevelId = string.Empty;
 
             // if C<LD then return high
-            if (cost < likelihoodDamage) riskLevelId = ((char)RiskLevelsEnum.High).ToString();
+            if (cost < likelihoodDamage) riskLevelId = RiskLevels.High;
             // if C>=LD then return low
-            else riskLevelId = ((char) RiskLevelsEnum.Low).ToString();
+            else riskLevelId = RiskLevels.Low;
 
             return Db.RiskLevels.Where(a => a.Id == riskLevelId).Single();
         }

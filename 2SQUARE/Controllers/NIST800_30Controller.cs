@@ -22,7 +22,13 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
-        public ActionResult Index(int id /* project step id */, int projectId)
+        /// <summary>
+        /// Display for all risk assessment work for this module
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
+        public ActionResult Index(int id, int projectId)
         {
             try
             {
@@ -37,7 +43,13 @@ namespace _2SQUARE.Controllers
             
         }
 
-        public ActionResult Add(int id /* project step id */, int projectId)
+        /// <summary>
+        /// Add an identified risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
+        public ActionResult Add(int id, int projectId)
         {
             try
             {
@@ -51,25 +63,59 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Add an identified risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="risk">Risk</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(int id /* project step id */, int projectId, Risk risk)
+        public ActionResult Add(int id, int projectId, Risk risk, string likelihoodId, int impactId, string magnitudeId)
         {
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var likelihoodLevel = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
-            var magnitudeLevel = Db.RiskLevels.Where(a => a.Id == risk.Magnitude.Id).Single();
+            // validate access
+            if (!_projectService.HasAccess(projectId, CurrentUserId))
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
 
-            var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
+            // remove modelstate validation
+            ModelState.Remove("risk.Project");
+            ModelState.Remove("risk.SquareType");
+            ModelState.Remove("risk.AssessmentType");
 
-            // set the properties that the user can't set
-            risk.Project = projectStep.Project;
-            risk.SquareType = projectStep.Step.SquareType;
-            risk.RiskLevel = riskLevel;
-            risk.AssessmentType = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.NIST800_30 && a.SquareType == projectStep.Step.SquareType).Single();
+            // load all the objects
+            var projectStep = Db.ProjectSteps.Include("Project").Include("Project.SecurityAssessmentType")
+                                             .Include("Project.PrivacyAssessmentType").Include("Step")
+                                             .Include("Step.SquareType").Where(a => a.Id == id).Single();
+            var likelihood = Db.RiskLevels.Where(a => a.Id == likelihoodId).SingleOrDefault();
+            var impact = Db.Impacts.Where(a => a.Id == impactId).SingleOrDefault();
+            var magnitude = Db.RiskLevels.Where(a => a.Id == magnitudeId).SingleOrDefault();
 
-            Validate(risk, ModelState);
+            // set up the object
+            if (likelihood == null) ModelState.AddModelError("Likelihood", "Likelihood is required.");
+            if (impact == null) ModelState.AddModelError("Impact", "Impact is required.");
+            if (magnitude == null) ModelState.AddModelError("Magnitude", "Magnitude is required.");
 
             if (ModelState.IsValid)
             {
+                risk.Likelihood = likelihood;
+                risk.Impact = impact;
+                risk.Magnitude = magnitude;
+
+                risk.Project = projectStep.Project;
+                risk.SquareType = projectStep.Step.SquareType;
+                risk.RiskLevel = CalculateRiskLevel(likelihood, magnitude);
+
+                if (projectStep.Step.SquareType.Name == SquareTypes.Security)
+                {
+                    risk.AssessmentType = projectStep.Project.SecurityAssessmentType;
+                }
+                else
+                {
+                    risk.AssessmentType = projectStep.Project.PrivacyAssessmentType;
+                }
+
                 Db.Risks.Add(risk);
                 Db.SaveChanges();
 
@@ -81,11 +127,18 @@ namespace _2SQUARE.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Edit(int id /* project step id */, int projectId, int riskId)
+        /// <summary>
+        /// Edit an identified risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="riskId">Risk id to edit</param>
+        /// <returns></returns>
+        public ActionResult Edit(int id, int projectId, int riskId)
         {
             try
             {
-                var risk = Db.Risks.Where(a => a.Id == riskId).Single();
+                var risk = Db.Risks.Include("Likelihood").Include("Impact").Include("Magnitude").Where(a => a.Id == riskId).Single();
 
                 var viewModel = NIST800_30EditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
 
@@ -97,25 +150,50 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit the identified risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="riskId">Id of Risk</param>
+        /// <param name="risk">Risk</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id /* project step id */, int projectId, int riskId, Risk risk)
+        public ActionResult Edit(int id, int projectId, int riskId, Risk risk, string likelihoodId, int impactId, string magnitudeId)
         {
+            // validate access
+            if (!_projectService.HasAccess(projectId, CurrentUserId))
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
+
+            // remove modelstate validation
+            ModelState.Remove("risk.Project");
+            ModelState.Remove("risk.SquareType");
+            ModelState.Remove("risk.AssessmentType");
+
+            // load all the objects
             var srcRisk = Db.Risks.Where(a => a.Id == riskId).Single();
+            var projectStep = Db.ProjectSteps.Include("Project").Include("Project.SecurityAssessmentType")
+                                 .Include("Project.PrivacyAssessmentType").Include("Step")
+                                 .Include("Step.SquareType").Where(a => a.Id == id).Single();
+            var likelihood = Db.RiskLevels.Where(a => a.Id == likelihoodId).SingleOrDefault();
+            var impact = Db.Impacts.Where(a => a.Id == impactId).SingleOrDefault();
+            var magnitude = Db.RiskLevels.Where(a => a.Id == magnitudeId).SingleOrDefault();
+
+            // set up the object
+            if (likelihood == null) ModelState.AddModelError("Likelihood", "Likelihood is required.");
+            if (impact == null) ModelState.AddModelError("Impact", "Impact is required.");
+            if (magnitude == null) ModelState.AddModelError("Magnitude", "Magnitude is required.");
 
             // copy the fields that could have been edited
             srcRisk.Name = risk.Name;
             srcRisk.Source = risk.Source;
             srcRisk.Vulnerability = risk.Vulnerability;
-            srcRisk.Likelihood = risk.Likelihood;
-            srcRisk.Impact = risk.Impact;
-            srcRisk.Magnitude = risk.Magnitude;
-
-            var likelihoodLevel = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
-            var magnitudeLevel = Db.RiskLevels.Where(a => a.Id == risk.Magnitude.Id).Single();
-            var riskLevel = CalculateRiskLevel(likelihoodLevel, magnitudeLevel);
-            srcRisk.RiskLevel = riskLevel;
-
-            Validate(srcRisk, ModelState);
+            srcRisk.Likelihood = likelihood;
+            srcRisk.Impact = impact;
+            srcRisk.Magnitude = magnitude;
+            srcRisk.RiskLevel = CalculateRiskLevel(likelihood, magnitude);
 
             if (ModelState.IsValid)
             {
@@ -153,39 +231,18 @@ namespace _2SQUARE.Controllers
 
             if (50 < riskCalc && riskCalc <= 100)
             {
-                level = ((char)RiskLevelsEnum.High).ToString();
+                level = RiskLevels.High;
             }
             if (10 < riskCalc && riskCalc <= 50)
             {
-                level = ((char)RiskLevelsEnum.Medium).ToString();
+                level = RiskLevels.Medium;
             }
             if (1 <= riskCalc && riskCalc <= 10)
             {
-                level = ((char) RiskLevelsEnum.Low).ToString();
+                level = RiskLevels.Low;
             }
 
             return Db.RiskLevels.Where(a => a.Id == level).SingleOrDefault();
-        }
-
-        private void Validate(Risk risk, ModelStateDictionary modelState)
-        {
-            if (string.IsNullOrEmpty(risk.Name))
-                modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));
-
-            if (string.IsNullOrEmpty(risk.Source))
-                modelState.AddModelError("Threat Source", string.Format(Messages.Required, "Name"));
-
-            if (string.IsNullOrEmpty(risk.Vulnerability))
-                modelState.AddModelError("Vulnerability", string.Format(Messages.Required, "Name"));
-
-            if (string.IsNullOrEmpty(risk.Likelihood.Id) && risk.Likelihood == null)
-                modelState.AddModelError("Likelihood", string.Format(Messages.Required, "Likelihood"));
-
-            if (string.IsNullOrEmpty(risk.Magnitude.Id) && risk.Magnitude == null)
-                modelState.AddModelError("Magnitude", string.Format(Messages.Required, "Magnitude"));
-
-            if (risk.Impact.Id <= 0 && risk.Impact == null)
-                modelState.AddModelError("Impact", string.Format(Messages.Required, "Impact"));
         }
     }
 }

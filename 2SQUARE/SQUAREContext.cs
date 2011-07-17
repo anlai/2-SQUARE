@@ -622,6 +622,8 @@ namespace _2SQUARE
 
             AddProjectRoles(context);
 
+            AddImpacts(context);
+
             CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
 
             context.SaveChanges();
@@ -1134,6 +1136,13 @@ namespace _2SQUARE
             context.ProjectRoles.Add(new ProjectRole() { Id = "RE", Name = "Requirements Engineer" });
             context.ProjectRoles.Add(new ProjectRole() { Id = "SH", Name = "Stakeholder" });
         }    
+
+        private void AddImpacts(SquareContext context)
+        {
+            context.Impacts.Add(new Impact() {Name = "Loss of Integrity"});
+            context.Impacts.Add(new Impact() {Name = "Loss of Availability"});
+            context.Impacts.Add(new Impact() {Name = "Loss of Confidentiality"});
+        }
     }
 
 }

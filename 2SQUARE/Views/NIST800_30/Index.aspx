@@ -8,7 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%: Html.ActionLink<NIST800_30Controller>(a=>a.Add(Model.ProjectStep.Id, Model.Project.id), "Add Risk", new {@class="button ui-corner-all ui-state-default", style="float:right;"}) %>
+    <%: Html.ActionLink<NIST800_30Controller>(a=>a.Add(Model.ProjectStep.Id, Model.Project.Id), "Add Risk", new {@class="button ui-corner-all ui-state-default", style="float:right;"}) %>
 
     <h2>Identified Risks</h2>
 
@@ -20,12 +20,12 @@
         
             <div class="risk">
         
-                <%: Html.ActionLink<NIST800_30Controller>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -.5em;"}) %>
+                <%: Html.ActionLink<NIST800_30Controller>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -.5em;"}) %>
 
                 <% if (a.RiskRecommendations.Any()) { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().Id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
                 <% } else { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.Id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -.5em; margin-right: 5px;" })%>
                 <% } %>
 
                 <h3><%: a.Name %></h3>
@@ -97,6 +97,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>
