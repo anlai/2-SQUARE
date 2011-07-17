@@ -116,9 +116,9 @@ namespace _2SQUARE.Controllers
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 // assesment type picked  out already)
-                if (project.PrivacyAssessmentType != null)
+                if (project.SecurityAssessmentType != null)
                 {
-                    return RedirectToAction("Index", project.PrivacyAssessmentType.Controller, new { id = id, projectId = projectId });
+                    return RedirectToAction("Index", project.SecurityAssessmentType.Controller, new { id = id, projectId = projectId });
                 }
 
                 var viewModel = Step4ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);
@@ -130,7 +130,14 @@ namespace _2SQUARE.Controllers
             }
         }
 
-        public RedirectToRouteResult SelectAssessmentType(int id /* project step id */, int projectId, int assessmentTypeId)
+        /// <summary>
+        /// Assessment Type is selected
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="assessmentTypeId">Assessment Type</param>
+        /// <returns></returns>
+        public RedirectToRouteResult SelectAssessmentType(int id, int projectId, int assessmentTypeId)
         {
             try
             {

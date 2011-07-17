@@ -18,6 +18,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<PRAUCController>(a=>a.Index(Model.ProjectStep.Id,Model.Project.id), "PRAUC Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<PRAUCController>(a=>a.Index(Model.ProjectStep.Id,Model.Project.Id), "PRAUC Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>

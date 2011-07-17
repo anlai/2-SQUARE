@@ -27,8 +27,8 @@ namespace _2SQUARE.Controllers
         /// <summary>
         /// Displays a list of the identified risks, sort them according to the risk level (high first,  low second)
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="projectId"></param>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
         /// <returns></returns>
         public ActionResult Index(int id, int projectId)
         {
@@ -43,6 +43,12 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Add a risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public ActionResult Add(int id, int projectId)
         {
             try
@@ -57,34 +63,68 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Add a risk
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="risk">Risk</param>
+        /// <param name="likelihoodId">Likelihood Id</param>
+        /// <param name="damageId">Damage Id</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(int id, int projectId, Risk risk)
+        public ActionResult Add(int id, int projectId, Risk risk, string likelihoodId, string damageId)
         {
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var likelihood = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
-            var damage = Db.RiskLevels.Where(a => a.Id == risk.Damage.Id).Single();
+            // clear the modelstate errors
+            ModelState.Remove("risk.Name");
+            ModelState.Remove("risk.Project");
+            ModelState.Remove("risk.SquareType");
+            ModelState.Remove("risk.AssessmentType");
 
-            var riskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
-
-            risk.Name = "Created using PRAUC controller";
-            risk.Project = projectStep.Project;
-            risk.SquareType = projectStep.Step.SquareType;
-            risk.AssessmentType = Db.AssessmentTypes.Where(a => a.Controller == AssessmentTypes.PrivacyRiskUbiquitousComputing && a.SquareType == projectStep.Step.SquareType).Single();
-            risk.RiskLevel = riskLevel;
-
-            Validate(risk, ModelState);
-
-            if (ModelState.IsValid)
+            if (!_projectService.HasAccess(projectId, CurrentUserId))
             {
-                Db.Risks.Add(risk);
-                Db.SaveChanges();
-
-                Message = string.Format(Messages.Saved, "Risk");
-                return this.RedirectToAction(a => a.Index(id, projectId));
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
 
-            var viewModel = PRAUCEditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
-            return View(viewModel);
+            try
+            {
+                var project = Db.Projects.Include("SecurityAssessmentType").Include("PrivacyAssessmentType").Where(a => a.Id == projectId).Single();
+                var projectStep = Db.ProjectSteps.Include("Step").Include("Step.SquareType").Where(a => a.Id == id).Single();
+                var likelihood = Db.RiskLevels.Where(a => a.Id == likelihoodId).Single();
+                var damage = Db.RiskLevels.Where(a => a.Id == damageId).Single();
+
+                risk.Project = project;
+                risk.SquareType = projectStep.Step.SquareType;
+
+                if (projectStep.Step.SquareType.Name == SquareTypes.Security)
+                {
+                    risk.AssessmentType = project.SecurityAssessmentType;
+                }
+                else
+                {
+                    risk.AssessmentType = project.PrivacyAssessmentType;
+                }
+
+                risk.Likelihood = likelihood;
+                risk.Damage = damage;
+                risk.RiskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
+                risk.Name = "Created using PRAUC controller";
+
+                if (ModelState.IsValid)
+                {
+                    Db.Risks.Add(risk);
+                    Db.SaveChanges();
+                    Message = string.Format(Messages.Saved, "Risk");
+                    return this.RedirectToAction(a => a.Index(id, projectId));
+                }
+
+                var viewModel = PRAUCEditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, risk);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }           
         }
 
         public ActionResult Edit(int id, int projectId, int riskId)

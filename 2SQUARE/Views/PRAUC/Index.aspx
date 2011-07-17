@@ -2,6 +2,7 @@
 <%@ Import Namespace="_2SQUARE.Models" %>
 <%@ Import Namespace="_2SQUARE.Controllers" %>
 <%@ Import Namespace="_2SQUARE.Helpers" %>
+<%@ Import Namespace="Resources" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Privacy Risk Analysis for Ubiquitous Computing - Risk Assessment Module
@@ -9,7 +10,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%: Html.ActionLink<PRAUCController>(a=>a.Add(Model.ProjectStep.Id, Model.Project.id), "Add Risk", new {@class="button ui-corner-all ui-state-default", style="float:right;"}) %>
+    <%: Html.ActionLink<PRAUCController>(a=>a.Add(Model.ProjectStep.Id, Model.Project.Id), "Add Risk", new {@class="button ui-corner-all ui-state-default", style="float:right;"}) %>
 
     <h2>Identified Risks</h2>
 
@@ -22,12 +23,12 @@
             <fieldset>
             <div class="risk">
         
-                <%: Html.ActionLink<PRAUCController>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -1.5em;"}) %>
+                <%: Html.ActionLink<PRAUCController>(b=>b.Edit(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Edit", new {@class="button ui-corner-all ui-state-default", style="float:right; top: -1.5em;"}) %>
 
                 <% if (a.RiskRecommendations.Any()) { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Edit(a.RiskRecommendations.First().Id, Model.ProjectStep.Id), "Edit Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
                 <% } else { %>
-                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
+                    <%: Html.ActionLink<RiskRecommendationController>(b => b.Create(a.Id, Model.ProjectStep.Id), "Create Recommendation", new { @class = "button ui-corner-all ui-state-default", style = "float:right; top: -1.5em; margin-right: 5px;" })%>
                 <% } %>
 
                 <ul class="entry-form">
@@ -45,7 +46,7 @@
                     <%: a.Cost %>
                 </li>
                 <li><strong>Implement Protection:</strong>
-                    <% if (a.RiskLevelId == ((char)RiskLevelsEnum.High).ToString()) { %>
+                    <% if (a.RiskLevel.Id == RiskLevels.High) { %>
                         Recommended
                     <% } else { %>
                         Not Necessary, Cost does not outweight Likelihood and Damage
@@ -98,6 +99,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>
