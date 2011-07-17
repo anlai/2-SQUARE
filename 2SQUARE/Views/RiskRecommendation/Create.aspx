@@ -17,6 +17,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink("Back to " + Model.Risk.AssessmentType.Name, "Index", Model.Risk.AssessmentType.Controller, new {id=Model.ProjectStepId, projectId=Model.Risk.ProjectId}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to " + Model.Risk.AssessmentType.Name, "Index", Model.Risk.AssessmentType.Controller, new {id=Model.ProjectStepId, projectId=Model.Risk.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>

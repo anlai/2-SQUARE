@@ -19,7 +19,7 @@
         </li>
         <li><strong></strong>
             <%: Html.SubmitButton("Save", "Save", new { @class = "button ui-corner-all ui-state-default" })%>
-            <%: Html.ActionLink("Cancel", "Index", Model.Risk.AssessmentType.Controller, new {id=Model.ProjectStepId, projectId=Model.Risk.ProjectId}, new {@class="button ui-state-default ui-corner-all"}) %>
+            <%: Html.ActionLink("Cancel", "Index", Model.Risk.AssessmentType.Controller, new {id=Model.ProjectStepId, projectId=Model.Risk.Project.Id}, new {@class="button ui-state-default ui-corner-all"}) %>
         </li>
     </ul>
     <% } %>

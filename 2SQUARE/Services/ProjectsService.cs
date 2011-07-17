@@ -100,6 +100,8 @@ namespace _2SQUARE.Services
                                              .Include("ProjectSteps.Step")
                                              .Include("ProjectSteps.Step.SquareType")
                                              .Include("Goals").Include("Goals.GoalType")
+                                             .Include("SecurityAssessmentType")
+                                             .Include("PrivacyAssessmentType")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }
@@ -525,11 +527,6 @@ namespace _2SQUARE.Services
 
             }
 
-        }
-
-        public RiskRecommendation SaveRiskRecommendation(RiskRecommendation riskRecommendation, int riskId)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
