@@ -108,7 +108,7 @@ namespace _2SQUARE.Controllers
         /// <param name="projectId"></param>
         /// <returns></returns>
         [AvailableForWork]
-        public ActionResult Step4(int id /*project step id*/, int projectId)
+        public ActionResult Step4(int id, int projectId)
         {
             try
             {
@@ -116,9 +116,9 @@ namespace _2SQUARE.Controllers
                 var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 // assesment type picked  out already)
-                if (project.SecurityAssessmentType != null)
+                if (project.PrivacyAssessmentType != null)
                 {
-                    return RedirectToAction("Index", project.SecurityAssessmentType.Controller, new { id = id, projectId = projectId });
+                    return RedirectToAction("Index", project.PrivacyAssessmentType.Controller, new { id = id, projectId = projectId });
                 }
 
                 var viewModel = Step4ViewModel.Create(Db, _projectService, projectId, id, CurrentUserId);

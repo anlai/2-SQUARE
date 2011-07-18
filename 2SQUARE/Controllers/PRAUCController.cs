@@ -127,6 +127,13 @@ namespace _2SQUARE.Controllers
             }           
         }
 
+        /// <summary>
+        /// Edit a risk
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="riskId"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id, int projectId, int riskId)
         {
             try
@@ -143,35 +150,55 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit a risk
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="riskId"></param>
+        /// <param name="risk"></param>
+        /// <param name="likelihoodId"></param>
+        /// <param name="damageId"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id, int projectId, int riskId, Risk risk)
+        public ActionResult Edit(int id, int projectId, int riskId, Risk risk, string likelihoodId, string damageId)
         {
-            var origRisk = Db.Risks.Where(a => a.Id == riskId).Single();
-
-            // copy in the values that were altered
-            origRisk.Description = risk.Description;
-            origRisk.Likelihood = risk.Likelihood;
-            origRisk.Damage = risk.Damage;
-            origRisk.Cost = risk.Cost;
-
-            // recalculate the new risk level
-            var likelihood = Db.RiskLevels.Where(a => a.Id == risk.Likelihood.Id).Single();
-            var damage = Db.RiskLevels.Where(a => a.Id == risk.Damage.Id).Single();
-            var riskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
-            origRisk.RiskLevel = riskLevel;
-
-            Validate(origRisk, ModelState);
-
-            if (ModelState.IsValid)
+            // clear the modelstate errors
+            ModelState.Remove("risk.Name");
+            ModelState.Remove("risk.Project");
+            ModelState.Remove("risk.SquareType");
+            ModelState.Remove("risk.AssessmentType");
+            
+            try
             {
-                Db.SaveChanges();
+                // load objects
+                var origRisk = Db.Risks.Include("Project").Include("Likelihood").Include("Damage").Where(a => a.Id == riskId).Single();
+                var likelihood = Db.RiskLevels.Where(a => a.Id == likelihoodId).Single();
+                var damage = Db.RiskLevels.Where(a => a.Id == damageId).Single();
 
-                Message = string.Format(Messages.Saved, "Risk");
-                return this.RedirectToAction(a => a.Index(id, projectId));
+                // copy in the values that were altered
+                origRisk.Description = risk.Description;
+                origRisk.Cost = risk.Cost;
+                origRisk.Likelihood = likelihood;
+                origRisk.Damage = damage;
+                origRisk.RiskLevel = CalculateRiskLevel(likelihood, damage, risk.Cost);
+
+                // valid go ahead and save
+                if (ModelState.IsValid)
+                {
+                    Db.SaveChanges();
+                    Message = string.Format(Messages.Saved, "Risk");
+                    return this.RedirectToAction(a => a.Index(id, projectId));
+                }
+
+                // failed, go back to the view
+                var viewModel = PRAUCEditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, origRisk);
+                return View(viewModel);
             }
-
-            var viewModel = PRAUCEditViewModel.Create(Db, _projectService, id, projectId, CurrentUserId, origRisk);
-            return View(viewModel);
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
         /// <summary>
@@ -207,26 +234,6 @@ namespace _2SQUARE.Controllers
             else riskLevelId = RiskLevels.Low;
 
             return Db.RiskLevels.Where(a => a.Id == riskLevelId).Single();
-        }
-
-        /// <summary>
-        /// Validate the properties for the risk for this object
-        /// </summary>
-        /// <param name="risk"></param>
-        /// <param name="modelState"></param>
-        private void Validate(Risk risk, ModelStateDictionary modelState)
-        {
-            if (string.IsNullOrEmpty(risk.Name))
-                modelState.AddModelError("Name", string.Format(Messages.Required, "Name"));
-
-            if (string.IsNullOrEmpty(risk.Likelihood.Id) && risk.Likelihood == null)
-                modelState.AddModelError("Likelihood", string.Format(Messages.Required, "Likelihood"));
-
-            if (string.IsNullOrEmpty(risk.Damage.Id) && risk.Damage == null)
-                modelState.AddModelError("Damage", string.Format(Messages.Required, "Damage"));
-
-            if (!risk.Cost.HasValue)
-                modelState.AddModelError("Cost", string.Format(Messages.Required, "Cost"));
         }
     }
 }
