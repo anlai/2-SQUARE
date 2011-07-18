@@ -102,6 +102,8 @@ namespace _2SQUARE.Services
                                              .Include("Goals").Include("Goals.GoalType")
                                              .Include("SecurityAssessmentType")
                                              .Include("PrivacyAssessmentType")
+                                             .Include("SecurityElicitationType")
+                                             .Include("PrivacyElicitationType")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }
@@ -535,18 +537,51 @@ namespace _2SQUARE.Services
         // below this is not validated against the database
         // **************************************************
 
+        #region Step 5
 
-
-
-
-        
-
-        
-
-        public void SetElicitationType(int id, ElicitationType elicitationType, string rationale, string userId)
+        /// <summary>
+        /// Set the requirements elicitation type
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="elicitationTypeId">Elicitation Type Id</param>
+        /// <param name="rationale">Rationale for selecting elicitation type</param>
+        /// <param name="userId">User login id</param>
+        public void SetElicitationType(int id, int elicitationTypeId, string rationale, string userId)
         {
-            throw new NotImplementedException();
+            if (!HasAccess(id, userId)) throw new SecurityException("Not authorzied for project.");
+
+            using (var db = new SquareContext())
+            {
+
+                // load the objects
+                var project = db.Projects.Where(a => a.Id == id).Single();
+                var elicitationType = db.ElicitationTypes.Include("SquareType").Where(a => a.Id == elicitationTypeId).Single();
+
+                // set the elicitation type
+                if (elicitationType.SquareType.Name == SquareTypes.Security)
+                {
+                    project.SecurityElicitationType = elicitationType;
+                    project.SecurityElicitationRationale = rationale;
+                }
+                else
+                {
+                    project.PrivacyElicitationType = elicitationType;
+                    project.PrivacyElicitationRationale = rationale;
+                }
+
+                db.SaveChanges();
+            }
         }
+
+        #endregion
+
+
+
+
+
+
+
+        
 
         public void SaveRequirement(int id, SquareType squareType, Requirement requirement, ModelStateDictionary modelState)
         {

@@ -17,7 +17,7 @@ namespace _2SQUARE.Models
 
             var viewModel = new Step5ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
-            viewModel.ElicitationTypes = db.ElicitationTypes.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType).ToList();
+            viewModel.ElicitationTypes = db.ElicitationTypes.Include("SquareType").Where(a => a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id).ToList();
 
             return viewModel;
         }

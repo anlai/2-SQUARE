@@ -157,29 +157,7 @@ namespace _2SQUARE.Controllers
             _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
 
             validationResult.ProjectStepId = stepId;
-
-
-
-            // run validation on the step and the status to change to
-            //validationResult = _validationService.ValidateChangeStatus(step, projectStepStatus==ProjectStepStatus.Complete, projectStepStatus == ProjectStepStatus.Working);
-
-            //// if still valid, run the update
-            //if (validationResult.IsValid)
-            //{
-            //    step = _projectService.UpdateStatus(stepId, projectStepStatus, CurrentUserId);
-
-            //    // determine if any steps change in their ability to be edited
-            //    var changeSteps = new List<KeyValuePair<int, bool>>();
-            //    foreach (var a in Db.ProjectSteps.Where(a => a.Project.Id == id))
-            //    {
-            //        validationResult.ChangeSteps.Add(new KeyValuePair<int, bool>(a.Id, _projectService.CanStepChangeStatus(id: a.Id)));
-            //    }
-
-            //}
-
-            //// add the project step id
-            //validationResult.ProjectStepId = stepId;
-
+        
             return Json(validationResult);
         }
     }

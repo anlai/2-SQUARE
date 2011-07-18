@@ -41,7 +41,7 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Step 5 Methods
-        void SetElicitationType(int id, ElicitationType elicitationType, string rationale, string userId);
+        void SetElicitationType(int id, int elicitationTypeId, string rationale, string userId);
         #endregion
 
         #region Step 6 Methods

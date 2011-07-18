@@ -338,6 +338,11 @@ namespace _2SQUARE.Services
             throw new NotImplementedException();
         }
 
+        public void SetElicitationType(int id, int elicitationTypeId, string rationale, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Step 4 Methods

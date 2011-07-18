@@ -178,7 +178,7 @@ namespace _2SQUARE.Controllers
         /// <param name="projectId"></param>
         /// <returns></returns>
         [AvailableForWork]
-        public ActionResult Step5(int id /*project step id*/, int projectId)
+        public ActionResult Step5(int id, int projectId)
         {
             try
             {
@@ -191,16 +191,20 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Select Elicitation Technique
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="elicitationId">Elicitation Type Id</param>
+        /// <param name="rationale">Rationale for selecting technique</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Step5(int id, int projectId, int elicitationId, string rationale)
         {
             try
             {
-                var elicitationType = Db.ElicitationTypes.Where(a => a.Id == elicitationId).Single();
-
-                Check.Require(elicitationType != null, "elicitationType is required.");
-
-                _projectService.SetElicitationType(projectId, elicitationType, rationale, CurrentUserId);
+                _projectService.SetElicitationType(projectId, elicitationId, rationale, CurrentUserId);
 
                 return this.RedirectToAction(a => a.Step5(id, projectId));
             }

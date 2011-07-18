@@ -19,9 +19,9 @@
         <fieldset>
             <legend><%: a.Name %></legend>
 
-            <% if (a.id != Model.Project.SecurityElicitationId) { %>
+            <% if (a.Id != (Model.Project.SecurityAssessmentType != null ? Model.Project.SecurityAssessmentType.Id : -1)) { %>
 
-                <input type="button" class="select_elicitation button ui-corner-all ui-state-default" style="float:right; top: -.5em;" value="Save" data-id='<%: a.id %>' data-name='<%: a.Name %>' />
+                <input type="button" class="select_elicitation button ui-corner-all ui-state-default" style="float:right; top: -.5em;" value="Save" data-id='<%: a.Id %>' data-name='<%: a.Name %>' />
 
             <% } %>
 
@@ -42,7 +42,7 @@
         <% using (Html.BeginForm()) { %>
 
         <%: Html.Hidden("id", Model.ProjectStep.Id) %>
-        <%: Html.Hidden("projectId", Model.Project.id) %>
+        <%: Html.Hidden("projectId", Model.Project.Id) %>
         <%: Html.Hidden("elicitationId") %>
 
         <strong>Technique: </strong><span id="elicitation_name"></span>
@@ -78,6 +78,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>

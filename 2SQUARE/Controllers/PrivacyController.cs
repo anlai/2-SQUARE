@@ -183,16 +183,20 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Select the elicitation type
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="elicitationId"></param>
+        /// <param name="rationale"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Step5(int id, int projectId, int elicitationId, string rationale)
         {
             try
             {
-                var elicitationType = Db.ElicitationTypes.Where(a => a.Id == elicitationId).Single();
-
-                Check.Require(elicitationType != null, "elicitationType is required.");
-
-                _projectService.SetElicitationType(projectId, elicitationType, rationale, CurrentUserId);
+                _projectService.SetElicitationType(projectId, elicitationId, rationale, CurrentUserId);
 
                 return this.RedirectToAction(a => a.Step5(id, projectId));
             }
@@ -203,7 +207,7 @@ namespace _2SQUARE.Controllers
             catch (Exception)
             {
                 ErrorMessage = "Unable to assign assessment type to project.";
-                return this.RedirectToAction<PrivacyController>(a => a.Step5(id, projectId));
+                return this.RedirectToAction<SecurityController>(a => a.Step5(id, projectId));
             }
         }
         #endregion
