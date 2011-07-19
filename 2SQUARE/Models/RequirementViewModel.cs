@@ -14,7 +14,7 @@ namespace _2SQUARE.Models
 
             var viewModel = new RequirementViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
-            viewModel.Requirement = requirement ?? new Requirement();
+            viewModel.Requirement = requirement ?? new Requirement(){RequirementId = string.Format("R{0}", viewModel.Project.Requirements.Count + 1)};
 
             return viewModel;
         }

@@ -343,6 +343,21 @@ namespace _2SQUARE.Services
             throw new NotImplementedException();
         }
 
+        public void SaveRequirement(int id, int squareTypeId, Requirement requirement, int? requirementId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteRequirement(int id, int requirementId, string loginId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveRequirement(int id, int squareTypeId, Requirement requirement)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Step 4 Methods
@@ -601,5 +616,9 @@ namespace _2SQUARE.Services
         }
 
         #endregion
+    }
+
+    class ProjectServiceImpl : ProjectService
+    {
     }
 }

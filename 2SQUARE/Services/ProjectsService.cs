@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Security;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
@@ -104,6 +105,7 @@ namespace _2SQUARE.Services
                                              .Include("PrivacyAssessmentType")
                                              .Include("SecurityElicitationType")
                                              .Include("PrivacyElicitationType")
+                                             .Include("Requirements")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }
@@ -575,6 +577,85 @@ namespace _2SQUARE.Services
 
         #endregion
 
+        #region Step 6
+
+        /// <summary>
+        /// Save a Requirement
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="squareType">Square Type Id</param>
+        /// <param name="requirement"></param>
+        /// <param name="modelState"></param>
+        public void SaveRequirement(int id, int squareTypeId, Requirement requirement, int? requirementId = null)
+        {
+            using (var db = new SquareContext())
+            {
+                var project = db.Projects.Where(a => a.Id == id).Single();
+                var squareType = db.SquareTypes.Where(a => a.Id == squareTypeId).Single();
+
+                // adding a new one
+                if (!requirementId.HasValue)
+                {
+                    requirement.Project = project;
+                    requirement.SquareType = squareType;
+                    
+                    db.Requirements.Add(requirement);
+                }
+                // updating an existing one
+                else
+                {
+                    // load the existing one
+                    var existingReq = db.Requirements.Where(a => a.Id == requirementId.Value).Single();
+
+                    // update the values
+                    existingReq.RequirementId = requirement.RequirementId;
+                    existingReq.Name = requirement.Name;
+                    existingReq.RequirementText = requirement.RequirementText;
+
+                    existingReq.Project = project;
+                    existingReq.SquareType = squareType;
+                }
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    
+                    throw;
+                }
+                
+            }
+
+        }
+
+        /// <summary>
+        /// Delete the requirement
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <param name="login">Login Id</param>
+        public void DeleteRequirement(int id, int requirementId, string login)
+        {
+            var project = GetProject(id, login);
+
+            using (var db = new SquareContext())
+            {
+                
+                // load the requirement
+                var requirement = db.Requirements.Where(a => a.Id == requirementId && a.Project.Id == project.Id).Single();
+
+                // delete the requirement
+                db.Requirements.Remove(requirement);
+
+                // save
+                db.SaveChanges();
+            }
+        }
+        
+        #endregion
+
 
 
 
@@ -582,16 +663,6 @@ namespace _2SQUARE.Services
 
 
         
-
-        public void SaveRequirement(int id, SquareType squareType, Requirement requirement, ModelStateDictionary modelState)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRequirement(int id, int requirementId)
-        {
-            throw new NotImplementedException();
-        }
 
 
         #region Project Status

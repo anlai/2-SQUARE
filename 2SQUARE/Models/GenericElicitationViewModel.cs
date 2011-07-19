@@ -16,7 +16,7 @@ namespace _2SQUARE.Models
 
             var viewModel = new GenericElicitationViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
-            viewModel.Requirements = viewModel.Project.Requirements.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType).ToList();
+            viewModel.Requirements = viewModel.Project.Requirements.Where(a => a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id).ToList();
 
             return viewModel;
         }

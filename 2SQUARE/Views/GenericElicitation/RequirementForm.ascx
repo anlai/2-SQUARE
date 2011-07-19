@@ -13,11 +13,11 @@
                 <%:Html.TextBoxFor(a => a.Requirement.Name)%>
             </li>
             <li><strong>Requirement:</strong>
-                <%:Html.TextAreaFor(a => a.Requirement.Requirement1)%>
+                <%:Html.TextAreaFor(a => a.Requirement.RequirementText)%>
             </li>
             <li><strong></strong>
                 <%:Html.SubmitButton("Save", "Save", new {@class = "button ui-corner-all ui-state-default"})%>
-                <%:Html.ActionLink("Cancel", "Index", new {id=Model.ProjectStep.Id, projectId=Model.Project.id}, new {@class="button ui-state-default ui-corner-all"}) %>
+                <%:Html.ActionLink("Cancel", "Index", new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default ui-corner-all"}) %>
             </li>
         </ul>
     <% } %>

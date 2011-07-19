@@ -26,7 +26,7 @@ namespace _2SQUARE.Controllers
         }
 
         /// <summary>
-        /// 
+        /// View a list of the requirements
         /// </summary>
         /// <param name="id">Project Step Id</param>
         /// <param name="projectId">Project Id</param>
@@ -44,6 +44,12 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Add a new requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public ActionResult Add(int id, int projectId)
         {
             try
@@ -57,24 +63,48 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Add in the new requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirement">Requirement to save</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Add(int id, int projectId, Requirement requirement)
         {
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+            ModelState.Remove("requirement.Project");
+            ModelState.Remove("requirement.SquareType");
 
-            // save the requirement
-            _projectService.SaveRequirement(projectId, projectStep.Step.SquareType, requirement, ModelState);
-
-            if (ModelState.IsValid)
+            try
             {
-                Message = string.Format(Messages.Saved, "Requirement");
-                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
-            }
+                // load the project step
+                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
-            var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
-            return View(viewModel);
+                if (ModelState.IsValid)
+                {
+                    _projectService.SaveRequirement(projectId, projectStep.Step.SquareType.Id, requirement);
+
+                    Message = string.Format(Messages.Saved, "requirements");
+                    return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
+                }
+
+                var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
+        /// <summary>
+        /// Edit the requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <returns></returns>
         public ActionResult Edit(int id, int projectId, int requirementId)
         {
             try
@@ -90,39 +120,62 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit the requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <param name="requirement">Requirement</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int id, int projectId, int requirementId, Requirement requirement)
         {
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-
-            var origRequirement = Db.Requirements.Where(a => a.Id == requirementId).Single();
-
-            // copy the values
-            origRequirement.Name = requirement.Name;
-            origRequirement.RequirementText = requirement.RequirementText;
-            origRequirement.RequirementId = requirement.RequirementId;
-
-            // save the requirement
-            _projectService.SaveRequirement(projectId, projectStep.Step.SquareType, origRequirement, ModelState);
-
-            if (ModelState.IsValid)
+            ModelState.Remove("requirement.Project");
+            ModelState.Remove("requirement.SquareType");
+            
+            try
             {
-                Message = string.Format(Messages.Saved, "Requirement");
-                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
-            }
+                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
 
-            var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
-            return View(viewModel);
+                if (ModelState.IsValid)
+                {
+                    _projectService.SaveRequirement(projectId, projectStep.Step.SquareType.Id, requirement, requirementId);
+
+                    Message = string.Format(Messages.Saved, "Requirement");
+                    return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = projectStep.Id, projectId = projectStep.Project.Id });
+                }
+
+                var viewModel = RequirementViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
+                return View(viewModel);
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
+        /// <summary>
+        /// Delete a requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <returns></returns>
         public RedirectToRouteResult Delete(int id, int projectId, int requirementId)
         {
-            _projectService.DeleteRequirement(projectId, requirementId);
+            try
+            {
+                _projectService.DeleteRequirement(projectId, requirementId, CurrentUserId);
 
-            Message = string.Format(Messages.Deleted, "Requirement");
+                Message = string.Format(Messages.Deleted, "Requirement");
 
-            return this.RedirectToAction(a => a.Index(id, projectId));
-
+                return this.RedirectToAction(a => a.Index(id, projectId));
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
     }
 }
