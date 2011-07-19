@@ -126,7 +126,7 @@ namespace _2SQUARE.Controllers
             try
             {
                 // load all the laws
-                var requirements = Db.PretRequirements.Where(a => lawIds.Contains(a.Law.Id)).ToList();
+                var requirements = Db.PretRequirements.Include("Law").Where(a => lawIds.Contains(a.Law.Id)).ToList();
                 var project = Db.Projects.Where(a => a.Id == projectId).FirstOrDefault();
                 var reqs = requirements.Select(a => new Requirement()
                                      {
@@ -152,13 +152,18 @@ namespace _2SQUARE.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Determine which laws apply
+        /// </summary>
+        /// <param name="pretQuestionAnswers"></param>
+        /// <returns></returns>
         private List<int> DetermineLaws(List<PRETQuestionAnswer> pretQuestionAnswers)
         {
             var applicableLaws = new List<int>();
             var currentLawId = 0;
 
             // get all the laws
-            var laws = Db.PRETLaws.Include("Answers").Include("Answers.Questions");
+            var laws = Db.PRETLaws.Include("Answers").Include("Answers.Question");
 
             // see of we can match the answers for any of the laws
             foreach (var law in laws)
