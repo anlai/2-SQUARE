@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Validation;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Core.PRET;
 using CodeFirstMembershipDemoSharp.Data;
@@ -79,9 +81,20 @@ namespace _2SQUARE
 
             AddProjectRoles(context);
 
+            AddPRET(context);
+
             CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
 
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                
+                throw;
+            }
+            
         }
 
         private void AddSecuritySteps(SquareContext context, SquareType security)
@@ -591,6 +604,189 @@ namespace _2SQUARE
             context.ProjectRoles.Add(new ProjectRole() { Id = "RE", Name = "Requirements Engineer" });
             context.ProjectRoles.Add(new ProjectRole() { Id = "SH", Name = "Stakeholder" });
         }
+
+        private void AddPRET(SquareContext context)
+        {
+            var q1 = new PRETQuestion()
+            {
+                Question = "Does the service provider process personal information?",
+                Order = 1,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q1);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q1 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q1 });
+
+            var q2 = new PRETQuestion()
+            {
+                Question = "In which country or area is the service provided?",
+                Order = 2,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q2);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "USA", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "EU", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Canada", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Japan", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other", Question = q2 });
+
+            var q3 = new PRETQuestion()
+            {
+                Question = "What type of service provider?",
+                Order = 3,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q3);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Indistrial", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Governmental", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Academic", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other", Question = q3 });
+
+            var q4 = new PRETQuestion()
+            {
+                Question = "If Industrial, does the service provider belong to any of these fields?",
+                Order = 1,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q4);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Medicine", Question = q4 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Communication", Question = q4 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Education", Question = q4 });
+
+            var q5 = new PRETQuestion()
+            {
+                Question = "If Governmental, does the service provider belong to any of these fields",
+                Order = 2,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q5);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Military Branch", Question = q5 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Nonmilitary Branch", Question = q5 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Research Body", Question = q5 });
+
+            var q6 = new PRETQuestion()
+            {
+                Question = "Is the purpose of the service related to journalism, literary work, academic studies, religious activities, or political activities?",
+                Order = 3,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q6);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q6 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q6 });
+
+            var q7 = new PRETQuestion()
+            {
+                Question = "What kind of personal information does the service provider process?",
+                Order = 4,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q7);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Point of Contact", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Social Identification", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Personal Identity Data", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Demographic Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Age, Education", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Health Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Financial Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Personal Information of Children", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other Sensitive Personal Information", Question = q7 });
+
+            var q8 = new PRETQuestion()
+            {
+                Question = "How does the service provider obtain personal information?",
+                Order = 5,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q8);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Provided by Users", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Provided by Third Parties", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Collected Automatically from Users", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Collected Automatically from Thirs Parties", Question = q8 });
+
+            var q9 = new PRETQuestion()
+            {
+                Question = "Where does the service provider store personal information",
+                Order = 6,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q9);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Client Side", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Server Side", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Third Party Client", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Third PArty Server Side", Question = q9 });
+
+            var q10 = new PRETQuestion()
+            {
+                Question = "How long does the service provider store personal information?",
+                Order = 7,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q10);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Does Not Store", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "One Transaction", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Certain Period of Time", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Forever", Question = q10 });
+
+            var q11 = new PRETQuestion()
+            {
+                Question = "Does the service provider use personal information for another purpose?",
+                Order = 8,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q11);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q11 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q11 });
+
+            var q12 = new PRETQuestion()
+            {
+                Question = "Does the service provider share personal information with others?",
+                Order = 9,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q12);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q12 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q12 });
+
+            var q13 = new PRETQuestion()
+            {
+                Question = "What privacy protection level does the service provider set?",
+                Order = 10,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q13);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "High", Question = q13 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Mid", Question = q13 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Low", Question = q13 });
+        }
     }
 
     public class SquareInitializer : DropCreateDatabaseIfModelChanges<SquareContext>
@@ -624,9 +820,20 @@ namespace _2SQUARE
 
             AddImpacts(context);
 
+            AddPRET(context);
+
             CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
 
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                
+                throw;
+            }
+            
         }
 
         private void AddSecuritySteps(SquareContext context, SquareType security)
@@ -1142,6 +1349,189 @@ namespace _2SQUARE
             context.Impacts.Add(new Impact() {Name = "Loss of Integrity"});
             context.Impacts.Add(new Impact() {Name = "Loss of Availability"});
             context.Impacts.Add(new Impact() {Name = "Loss of Confidentiality"});
+        }
+
+        private void AddPRET(SquareContext context)
+        {
+            var q1 = new PRETQuestion()
+            {
+                Question = "Does the service provider process personal information?",
+                Order = 1,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q1);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q1 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q1 });
+
+            var q2 = new PRETQuestion()
+            {
+                Question = "In which country or area is the service provided?",
+                Order = 2,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q2);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "USA", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "EU", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Canada", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Japan", Question = q2 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other", Question = q2 });
+
+            var q3 = new PRETQuestion()
+            {
+                Question = "What type of service provider?",
+                Order = 3,
+                SubQuestion = false
+            };
+            
+            context.PretQuestions.Add(q3);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Indistrial", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Governmental", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Academic", Question = q3 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other", Question = q3 });
+
+            var q4 = new PRETQuestion()
+            {
+                Question = "If Industrial, does the service provider belong to any of these fields?",
+                Order = 1,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q4);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Medicine", Question = q4 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Communication", Question = q4 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Education", Question = q4 });
+
+            var q5 = new PRETQuestion()
+            {
+                Question = "If Governmental, does the service provider belong to any of these fields",
+                Order = 2,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q5);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Military Branch", Question = q5 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Nonmilitary Branch", Question = q5 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Research Body", Question = q5 });
+
+            var q6 = new PRETQuestion()
+            {
+                Question = "Is the purpose of the service related to journalism, literary work, academic studies, religious activities, or political activities?",
+                Order = 3,
+                SubQuestion = true,
+                ParentQuestion = q3
+            };
+
+            context.PretQuestions.Add(q6);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q6 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q6 });
+
+            var q7 = new PRETQuestion()
+            {
+                Question = "What kind of personal information does the service provider process?",
+                Order = 4,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q7);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Point of Contact", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Social Identification", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Personal Identity Data", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Demographic Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Age, Education", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Health Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Financial Information", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Personal Information of Children", Question = q7 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Other Sensitive Personal Information", Question = q7 });
+
+            var q8 = new PRETQuestion()
+            {
+                Question = "How does the service provider obtain personal information?",
+                Order = 5,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q8);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Provided by Users", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Provided by Third Parties", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Collected Automatically from Users", Question = q8 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Collected Automatically from Thirs Parties", Question = q8 });
+
+            var q9 = new PRETQuestion()
+            {
+                Question = "Where does the service provider store personal information",
+                Order = 6,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q9);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Client Side", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Server Side", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Third Party Client", Question = q9 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Third PArty Server Side", Question = q9 });
+
+            var q10 = new PRETQuestion()
+            {
+                Question = "How long does the service provider store personal information?",
+                Order = 7,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q10);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Does Not Store", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "One Transaction", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Certain Period of Time", Question = q10 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Forever", Question = q10 });
+            
+            var q11 = new PRETQuestion()
+            {
+                Question = "Does the service provider use personal information for another purpose?",
+                Order = 8,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q11);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q11 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q11 });
+
+            var q12 = new PRETQuestion()
+            {
+                Question = "Does the service provider share personal information with others?",
+                Order = 9,
+                SubQuestion = false
+            };
+            
+            context.PretQuestions.Add(q12);
+            
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Yes", Question = q12 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "No", Question = q12 });
+            
+            var q13 = new PRETQuestion()
+            {
+                Question = "What privacy protection level does the service provider set?",
+                Order = 10,
+                SubQuestion = false
+            };
+
+            context.PretQuestions.Add(q13);
+
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "High", Question = q13 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Mid", Question = q13 });
+            context.PretAnswers.Add(new PRETAnswer() { Answer = "Low", Question = q13 });
         }
     }
 
