@@ -45,8 +45,8 @@ namespace _2SQUARE.Controllers
         /// Presents the questions to the user to ask the questions
         /// to figure out which laws apply to the project
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="projectId"></param>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
         /// <returns></returns>
         public ActionResult Run(int id, int projectId)
         {
@@ -61,6 +61,13 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Takes in the values and runs processing/saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="pretQuestionAnswers"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Run(int id, int projectId, List<PRETQuestionAnswer> pretQuestionAnswers)
         {
@@ -106,6 +113,13 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Determined laws have been accepted, add the requirements
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="lawIds"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Result(int id, int projectId, int[] lawIds)
         {
@@ -118,9 +132,9 @@ namespace _2SQUARE.Controllers
                                      {
                                          Project = project,
                                          Name = a.Name,
-                                         //Requirement1 = a.Requirement,
-                                         //RequirementId = string.Format("{0}-{1}", a.PRETLaw.id, a.id),
-                                         //SquareType = Db.SquareTypes.Where(b=>b.Name ==SquareTypes.Privacy).Select(b=>b.id).First()
+                                         RequirementText = a.Requirement,
+                                         RequirementId =  string.Format("{0}-{1}", a.Law.Id, a.Id),
+                                         SquareType = Db.SquareTypes.Where(b => b.Name == SquareTypes.Privacy).Single()
                                      }).ToList();
 
                 foreach(var a in reqs) Db.Requirements.Add(a);
@@ -141,45 +155,48 @@ namespace _2SQUARE.Controllers
         private List<int> DetermineLaws(List<PRETQuestionAnswer> pretQuestionAnswers)
         {
             var applicableLaws = new List<int>();
-            //var currentLawId = 0;
+            var currentLawId = 0;
 
-            //// get all the laws
-            //var laws = Db.PRETLaws.ToList();
+            // get all the laws
+            var laws = Db.PRETLaws.Include("Answers").Include("Answers.Questions");
 
-            //// see of we can match the answers for any of the laws
-            //foreach (var law in laws)
-            //{
-            //    // set the current law we are looking at
-            //    currentLawId = law.id;
+            // see of we can match the answers for any of the laws
+            foreach (var law in laws)
+            {
 
-            //    // get the distinct questions that apply to this law
-            //    //  some laws may not apply to a specific question
-            //    // and some questions may have multiple answers that apply to this law
-            //    // this will only go through questions that have answers that apply to the law, those that don't are ignored
-            //    foreach (var question in law.PRETAnswerXLaws.Select(a => a.PRETAnswer.PRETQuestion).Distinct())
-            //    {
-            //        // get the answers that apply to the law from this question
-            //        var answers = law.PRETAnswerXLaws.Where(a => a.PRETAnswer.PRETQuestion == question)
-            //                                         .Select(a => a.PRETAnswer);
+                // set the current law we are looking at
+                currentLawId = law.Id;
 
-            //        // get the answer from the user's answer
-            //        var userAnswer = pretQuestionAnswers.Where(a => a.QuestionId == question.Id).FirstOrDefault();
+                var lawQuestions = law.Answers.Select(a => a.Question).Distinct();
 
-            //        if (!answers.Any(a => a.Id == userAnswer.AnswerId))
-            //        {
-            //            // not a valid law
-            //            currentLawId = -1;
+                // get the distinct questions that apply to current law
+                //      some laws may not apply to a specific question
+                //      and some questions may have multiple answers that apply to this law
+                //      this will only go through questions that have answers that apply to this law))
+                foreach (var question in lawQuestions)
+                {
+                    // get the answers that apply to the current law from that question
+                    var answers = question.PretAnswers.Where(a => a.Laws.Contains(law));
 
-            //            // exit the loop we are dont
-            //            break;
-            //        }
-            //    }
+                    // get the answer from the user's answer
+                    var userAnswer = pretQuestionAnswers.Where(a => a.QuestionId == question.Id).FirstOrDefault();
 
-            //    if (currentLawId > 0)
-            //    {
-            //        applicableLaws.Add(currentLawId);
-            //    }
-            //}
+                    // no match to a law
+                    if (!answers.Any(a => a.Id == userAnswer.AnswerId))
+                    {
+                        // not a valid law
+                        currentLawId = -1;
+
+                        // exit the loop we are done
+                        break;
+                    }
+                }
+
+                if (currentLawId > 0)
+                {
+                    applicableLaws.Add(currentLawId);
+                }
+            }
 
             return applicableLaws;
         }

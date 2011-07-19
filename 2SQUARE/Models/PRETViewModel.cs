@@ -21,7 +21,7 @@ namespace _2SQUARE.Models
 
             if (loadQuestions)
             {
-                viewModel.PretQuestions = db.PretQuestions;
+                viewModel.PretQuestions = db.PretQuestions.Include("PretAnswers").Include("ParentQuestion").Include("Children").Include("Children.PretAnswers");
             }
 
             Check.Ensure(viewModel.ProjectStep.Step.SquareType.Name == SquareTypes.Privacy, "PRET only works with privacy.");

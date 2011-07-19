@@ -12,7 +12,7 @@
     <dl>
     <% foreach (var a in Model.PretLaws) { %>
         <dt><%: a.Name %></dt>
-        <dd><%: a.Description%></dd>
+        <dd><%: a.Description %></dd>
     <% } %>
     </dl>
 
@@ -29,21 +29,23 @@
             <% foreach (var a in Model.PretRequirements) { %>
                 <tr>
                     <td><%: a.Requirement%></td>
-                    <td><%: a.PRETLaw.Name %></td>
+                    <td><%: a.Law.Name %></td>
                     <td><%: a.Source %></td>
                 </tr>
             <% } %>
         </tbody>
     </table>
 
+    <div style="margin-top: 2em;">
     <% using (Html.BeginForm()) { %>
         <% foreach (var a in Model.PretLaws) { %>
-            <%: Html.Hidden("lawIds", a.id) %>
+            <%: Html.Hidden("lawIds", a.Id) %>
         <% } %>
 
         <%: Html.SubmitButton("Accept", "Accept Law(s)", new {@class="button ui-state-default ui-corner-all"}) %>
-        <%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Cancel", new {@class="button ui-state-default ui-corner-all"}) %>
+        <%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Cancel", new {@class="button ui-state-default ui-corner-all"}) %>
     <% } %>
+    </div>
 
 </asp:Content>
 

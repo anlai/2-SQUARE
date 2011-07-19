@@ -15,7 +15,7 @@
 
     <% using (Html.BeginForm()) { %>
     <ol>
-        <% foreach (var a in Model.PretQuestions.Where(b=>!b.Subquestion).OrderBy(b => b.Order)) { %>
+        <% foreach (var a in Model.PretQuestions.Where(b=>!b.SubQuestion).OrderBy(b => b.Order)) { %>
             <% Html.RenderPartial("QuestionPartial", a); %>
 
             <% if (a.Children.Any()) { %>
@@ -31,7 +31,7 @@
     </ol>
     
     <%: Html.SubmitButton("Run", "Run", new {@class="button ui-corner-all ui-state-default"}) %>
-    <%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Cancel", new {@class="button ui-state-default ui-corner-all"}) %>
+    <%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Cancel", new {@class="button ui-state-default ui-corner-all"}) %>
 
     <% } %>
 
@@ -68,6 +68,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-<%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Back to PRET Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<PRETController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Back to PRET Home", new {@class="button ui-state-default"}) %>
 
 </asp:Content>
