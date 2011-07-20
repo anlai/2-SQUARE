@@ -18,10 +18,10 @@
             <% foreach (var a in Model.CategorizedRequirements) { %>
                 <tr>
                     <td style="width: 105px;">
-                        <%: Html.ActionLink<RequirementController>(b=>b.Categorize(Model.ProjectStep.Id, Model.Project.id, a.id), "Categorize", new {@class="button ui-state-default ui-corner-all"}) %>
+                        <%: Html.ActionLink<RequirementController>(b=>b.Categorize(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Categorize", new {@class="button ui-state-default ui-corner-all"}) %>
                     </td>
                     <td><%: a.RequirementId %></td>
-                    <td><%: a.Requirement1 %></td>
+                    <td><%: a.RequirementText %></td>
                     <td><%: a.Category.Name %></td>
                     <td><%: a.Essential %></td>
                 </tr>
@@ -43,10 +43,10 @@
             <% foreach (var a in Model.UncategorizedRequirements) { %>
                 <tr>
                     <td style="width: 105px;">
-                        <%: Html.ActionLink<RequirementController>(b=>b.Categorize(Model.ProjectStep.Id, Model.Project.id, a.id), "Categorize", new {@class="button ui-state-default ui-corner-all"}) %>
+                        <%: Html.ActionLink<RequirementController>(b=>b.Categorize(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Categorize", new {@class="button ui-state-default ui-corner-all"}) %>
                     </td>
                     <td><%: a.RequirementId %></td>
-                    <td><%: a.Requirement1 %></td>
+                    <td><%: a.RequirementText %></td>
                     <td><%: a.Essential %></td>
                 </tr>
             <% } %>

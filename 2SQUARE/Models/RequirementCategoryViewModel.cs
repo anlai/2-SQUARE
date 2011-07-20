@@ -20,7 +20,7 @@ namespace _2SQUARE.Models
             var viewModel = new RequirementCategoryViewModel() {Requirement = requirement};
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
-            viewModel.Categories = db.Categories.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType && a.Project.Id == projectId).ToList();
+            viewModel.Categories = db.Categories.Where(a => a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id && a.Project.Id == projectId).ToList();
 
             return viewModel;
         }

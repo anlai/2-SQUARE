@@ -18,6 +18,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-<%= Html.ActionLink<CategoryController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.id), "Back to List", new {@class="button ui-state-default"}) %>
+<%= Html.ActionLink<CategoryController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Back to List", new {@class="button ui-state-default"}) %>
 
 </asp:Content>

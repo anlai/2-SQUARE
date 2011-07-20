@@ -16,7 +16,7 @@
             <%: Model.Requirement.Name %>
         </li>
         <li><strong>Requirement:</strong>
-            <%: Model.Requirement.Requirement1 %>
+            <%: Model.Requirement.RequirementText %>
         </li>
     </ul>
 
@@ -25,14 +25,14 @@
     <% using (Html.BeginForm()) { %>
         <ul class="entry-form">
             <li><strong>Category:</strong>
-                <%= this.Select("Requirement.CategoryId").Options(Model.Categories,x=>x.id,x=>x.Name).Selected(Model.Requirement.CategoryId).FirstOption("--Select a Category") %>
+                <%= this.Select("Requirement.CategoryId").Options(Model.Categories,x=>x.Id,x=>x.Name).Selected(Model.Requirement.Category != null ? Model.Requirement.Category.Id.ToString() : string.Empty).FirstOption("--Select a Category") %>
             </li>
             <li><strong>Essential:</strong>
                 <%: Html.CheckBox("Requirement.Essential", Model.Requirement.Essential) %>
             </li>
             <li><strong></strong>
                 <%: Html.SubmitButton("Svae", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-                <%: Html.ActionLink("Back to List", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id,projectId=Model.Project.id}, new {@class="button ui-state-default ui-state-default"}) %>
+                <%: Html.ActionLink("Back to List", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id,projectId=Model.Project.Id}, new {@class="button ui-state-default ui-state-default"}) %>
             </li>
         </ul>
     <% } %>
@@ -44,6 +44,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink("Back to List", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id,projectId=Model.Project.id}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to List", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id,projectId=Model.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>

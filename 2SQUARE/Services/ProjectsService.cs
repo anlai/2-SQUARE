@@ -653,10 +653,55 @@ namespace _2SQUARE.Services
                 db.SaveChanges();
             }
         }
-        
+
         #endregion
 
+        #region Step 7 Methods
+        public void SaveCategory(int id, Category category, int? categoryId)
+        {
+            using (var db = new SquareContext())
+            {
+                var projectStep = db.ProjectSteps.Include("Project")
+                                                 .Include("Step")
+                                                 .Include("Step.SquareType")
+                                                 .Where(a => a.Id == id).Single();
 
+                // update existing category
+                if (categoryId.HasValue)
+                {
+                    var categoryToSave = db.Categories.Where(a => a.Id == categoryId).Single();
+
+                    categoryToSave.Name = category.Name;
+                }
+                // setting an existing one
+                else
+                {
+                    category.Project = projectStep.Project;
+                    category.SquareType = projectStep.Step.SquareType;
+
+                    db.Categories.Add(category);
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteCategory(int id, int categoryId, string loginId)
+        {
+            var project = GetProject(id, loginId);
+
+            using (var db = new SquareContext())
+            {
+
+                var category = db.Categories.Where(a => a.Id == categoryId).Single();
+
+                db.Categories.Remove(category);
+                db.SaveChanges();
+            }
+        }
+
+        #endregion
+        
 
 
 

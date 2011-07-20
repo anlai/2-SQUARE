@@ -12,8 +12,8 @@ namespace _2SQUARE.Filters
 {
     public class AvailableForWorkAttribute : ActionFilterAttribute
     {
-        private IProjectService _projectService = new ProjectService();
-        private IValidationService _validationService = new ValidationService(new ProjectService());
+        private IProjectService _projectService = new ProjectsService();
+        private IValidationService _validationService = new ValidationService(new ProjectsService());
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

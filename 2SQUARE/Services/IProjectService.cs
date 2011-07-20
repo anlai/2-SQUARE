@@ -49,6 +49,23 @@ namespace _2SQUARE.Services
         void DeleteRequirement(int id, int requirementId, string loginId);
         #endregion
 
+        #region Step 7 Methods
+        /// <summary>
+        /// Save a requirement category
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="category">Category</param>
+        /// <param name="categoryId">Category Id, used if updating</param>
+        void SaveCategory(int id, Category category, int? categoryId = null);
+        /// <summary>
+        /// Delete a requirement category
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="categoryId">Category Id to Delete</param>
+        /// <param name="loginId">User's Login Id</param>
+        void DeleteCategory(int id, int categoryId, string loginId);
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);

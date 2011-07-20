@@ -21,6 +21,12 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
+        /// <summary>
+        /// Displays a list of categories for the current project
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
         public ActionResult Index(int id, int projectId)
         {
             try
@@ -34,6 +40,12 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new category
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
         public ActionResult Create(int id, int projectId)
         {
             try
@@ -47,24 +59,26 @@ namespace _2SQUARE.Controllers
             }
         }
         
+        /// <summary>
+        /// Create a new category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(int id, int projectId, Category category)
         {
             try
             {
-                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-
-                category.SquareType = projectStep.Step.SquareType;
-                category.Project.Id = projectId;
-                //Validation.Validate(category, ModelState);
+                var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 if (ModelState.IsValid)
                 {
-                    Db.Categories.Add(category);
-                    Db.SaveChanges();
+                    _projectService.SaveCategory(id, category);
 
                     Message = string.Format(Messages.Saved, "Category");
-                    return this.RedirectToAction(a => a.Index(id, projectId));
+                    return this.RedirectToAction(a => a.Index(id, projectId));    
                 }
 
                 var viewModel = CategoryEditViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, category);
@@ -76,17 +90,18 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit a requirement category
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="categoryId">Category Id to edit</param>
+        /// <returns></returns>
         public ActionResult Edit(int id, int projectId, int categoryId)
         {
             try
             {
-                var category = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
-
-                if (category == null)
-                {
-                    Message = string.Format(Messages.UnabletoLoad, "category", categoryId);
-                    return this.RedirectToAction(a => a.Index(id, projectId));
-                }
+                var category = Db.Categories.Where(a => a.Id == categoryId).Single();
 
                 var viewModel = CategoryEditViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, category);
                 return View(viewModel);
@@ -97,32 +112,30 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit a requirement category
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="categoryId">Category Id to edit</param>
+        /// <param name="category">Category (containing new value)</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int id, int projectId, int categoryId, Category category)
         {
             try
             {
-                var origCategory = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
-
-                if (origCategory == null)
-                {
-                    Message = string.Format(Messages.UnabletoLoad, "category", categoryId);
-                    return this.RedirectToAction(a => a.Index(id, projectId));
-                }
-
-                origCategory.Name = category.Name;
-
-                //Validation.Validate(origCategory, ModelState);
+                var project = _projectService.GetProject(projectId, CurrentUserId);
 
                 if (ModelState.IsValid)
                 {
-                    Db.SaveChanges();
+                    _projectService.SaveCategory(id, category, categoryId);
 
                     Message = string.Format(Messages.Saved, "Category");
                     return this.RedirectToAction(a => a.Index(id, projectId));
                 }
 
-                var viewModel = CategoryEditViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, origCategory);
+                var viewModel = CategoryEditViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, category);
                 return View(viewModel);
             }
             catch (SecurityException)
@@ -131,23 +144,20 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete the category
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="categoryId">Category Id</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int id, int projectId, int categoryId)
         {
-            var category = Db.Categories.Where(a => a.Id == categoryId).SingleOrDefault();
-
-            if (category == null)
-            {
-                Message = string.Format(Messages.UnabletoLoad, "category", categoryId);
-                return this.RedirectToAction(a => a.Index(id, projectId));
-            }
-
-            Db.Categories.Remove(category);
-            Db.SaveChanges();
+            _projectService.DeleteCategory(projectId, categoryId, CurrentUserId);
 
             Message = string.Format(Messages.Deleted, "category");
             return this.RedirectToAction(a => a.Index(id, projectId));
-
         }
 
     }

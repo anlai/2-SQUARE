@@ -18,7 +18,7 @@ namespace _2SQUARE.Models
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
 
             // extract the categoriest from the project
-            viewModel.Categories = db.Categories.Where(a => a.SquareType == viewModel.ProjectStep.Step.SquareType && a.Project.Id == projectId).ToList();
+            viewModel.Categories = db.Categories.Include("SquareType").Where(a => a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id && a.Project.Id == projectId).ToList();
 
             return viewModel;
         }

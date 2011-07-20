@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%= Html.ActionLink<CategoryController>(a=>a.Create(Model.ProjectStep.Id, Model.Project.id), "Create Category", new {@class="button ui-state-default ui-corner-all", style="float:right;"}) %>
+    <%= Html.ActionLink<CategoryController>(a=>a.Create(Model.ProjectStep.Id, Model.Project.Id), "Create Category", new {@class="button ui-state-default ui-corner-all", style="float:right;"}) %>
 
     <h2>Requirement Categories</h2>
 
@@ -23,8 +23,8 @@
             <% foreach (var a in Model.Categories) { %>
                 <tr>
                     <td style="width: 150px;">
-                        <%= Html.ActionLink<CategoryController>(b => b.Edit(Model.ProjectStep.Id, Model.Project.id, a.id), "Edit", new { @class = "button ui-corner-all ui-state-default" })%>
-                        <% using(Html.BeginForm("Delete", "Category", new {id=Model.ProjectStep.Id, projectId=Model.Project.id, categoryId=a.id}, FormMethod.Post, new {style="display:inline-block;"})) { %>
+                        <%= Html.ActionLink<CategoryController>(b => b.Edit(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Edit", new { @class = "button ui-corner-all ui-state-default" })%>
+                        <% using(Html.BeginForm("Delete", "Category", new {id=Model.ProjectStep.Id, projectId=Model.Project.Id, categoryId=a.Id}, FormMethod.Post, new {style="display:inline-block;"})) { %>
                             <%: Html.SubmitButton("Delete", "Delete", new {@class="button ui-corner-all ui-state-default"}) %>
                         <% } %>
                     </td>
@@ -42,6 +42,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink(string.Format("Back to {0} Step 7", Model.ProjectStep.Step.SquareType.Name), Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.id}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink(string.Format("Back to {0} Step 7", Model.ProjectStep.Step.SquareType.Name), Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>
