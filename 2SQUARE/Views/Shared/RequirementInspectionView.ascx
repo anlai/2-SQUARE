@@ -16,10 +16,10 @@
             <% foreach (var a in Model.Requirements.OrderBy(b => b.Order)) { %>
                 <tr>
                     <td style="width: 110px;">
-                        <%: Html.ActionLink<RequirementDefectController>(b=>b.Create(Model.ProjectStep.Id, Model.Project.id, a.id), "Add Defect", new {@class="button ui-corner-all ui-state-default"}) %>
+                        <%: Html.ActionLink<RequirementDefectController>(b=>b.Create(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Add Defect", new {@class="button ui-corner-all ui-state-default"}) %>
                     </td>
                     <td><%: a.RequirementId %></td>
-                    <td><%: a.Requirement1 %></td>
+                    <td><%: a.RequirementText %></td>
                     <td><%: a.Category.Name %></td>
                 </tr>
                 <% if (a.RequirementDefects.Any()) { %>
@@ -29,7 +29,7 @@
                             <td colspan="2"><strong>Defect:</strong> <%: b.Description %></td>
                             <td>
                                 <% if (!b.Solved) { %>
-                                    <% using (Html.BeginForm("Resolve", "RequirementDefect", new { id = Model.ProjectStep.Id, projectId = Model.Project.id, defectId = b.id }, FormMethod.Post, new { style = "display:inline-block;" })) { %>
+                                    <% using (Html.BeginForm("Resolve", "RequirementDefect", new { id = Model.ProjectStep.Id, projectId = Model.Project.Id, defectId = b.Id }, FormMethod.Post, new { style = "display:inline-block;" })) { %>
                                         <%: Html.SubmitButton("Resolve", "Resolve", new {@class="button ui-corner-all ui-state-default"}) %>
                                     <% } %>
                                 <% } else { %>

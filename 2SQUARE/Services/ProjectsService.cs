@@ -652,7 +652,7 @@ namespace _2SQUARE.Services
 
         #endregion
 
-        #region Step 7 Methods
+        #region Step 7
         public void SaveCategory(int id, Category category, int? categoryId)
         {
             using (var db = new SquareContext())
@@ -755,9 +755,39 @@ namespace _2SQUARE.Services
                 db.SaveChanges();
             }
         }
+
         #endregion
 
+        #region Step 9
+        public void SaveDefect(int projectId, int requirementId, string defectText, string loginId)
+        {
+            var project = GetProject(projectId, loginId);
 
+            using (var db = new SquareContext())
+            {
+                var requirement = db.Requirements.Where(a => a.Id == requirementId).Single();
+
+                var defect = new RequirementDefect() {Description = defectText, Requirement = requirement};
+
+                db.RequirementDefects.Add(defect);
+                db.SaveChanges();
+            }
+        }
+
+        public void ResolveDefect(int projectId, int defectId, string loginId)
+        {
+            var project = GetProject(projectId, loginId);
+
+            using (var db = new SquareContext())
+            {
+                var defect = db.RequirementDefects.Include("Requirement").Where(a => a.Id == defectId).Single();
+
+                defect.Solved = true;
+
+                db.SaveChanges();
+            }
+        }
+        #endregion
 
 
 

@@ -8,22 +8,25 @@
 
     <h2>Create Requirement Defect</h2>
 
-    <%: Html.ValidationMessage("Please correct the following errors:") %>
+    
 
     <% using (Html.BeginForm()) { %>
+    
+        <%: Html.ValidationMessage("") %>
+    
         <ul class="entry-form">
             <li><strong>Requirement Id:</strong>
                 <%: Model.Requirement.RequirementId %>
             </li>
             <li><strong>Requirement:</strong>
-                <%: Model.Requirement.Requirement1 %>
+                <%: Model.Requirement.RequirementText %>
             </li>
             <li><strong>Defect:</strong>
-                <%: Html.TextArea("defect.Description") %>
+                <%: Html.TextArea("defect") %>
             </li>
             <li><strong></strong>
                 <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-                <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.id}, new {@class="button ui-state-default ui-corner-all"}) %>
+                <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default ui-corner-all"}) %>
             </li>
         </ul>
     <% } %>
@@ -35,6 +38,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink("Back to Step 9", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.id}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 9", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default"}) %>
 
 </asp:Content>

@@ -18,8 +18,8 @@ namespace _2SQUARE.Models
             var viewModel = new Step9ViewModel();
             viewModel.SetProjectInfo(projectService, projectId, projectStepId, userId);
             viewModel.Requirements =
-                db.Requirements.Where(
-                    a => a.Project.Id == projectId && a.SquareType == viewModel.ProjectStep.Step.SquareType).ToList();
+                db.Requirements.Include("Category").Include("RequirementDefects")
+                  .Where(a => a.Project.Id == projectId && a.SquareType.Id == viewModel.ProjectStep.Step.SquareType.Id).ToList();
 
             return viewModel;
         }

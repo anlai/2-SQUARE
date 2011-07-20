@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security;
-using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Core.Domain;
-using _2SQUARE.Helpers;
 using _2SQUARE.Models;
 using _2SQUARE.Services;
 using MvcContrib;
@@ -22,6 +19,13 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
+        /// <summary>
+        /// Creates a new requirement defect
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <returns></returns>
         public ActionResult Create(int id, int projectId, int requirementId)
         {
             try
@@ -44,39 +48,68 @@ namespace _2SQUARE.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new requirement defect
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <param name="defect">Defect</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(int id, int projectId, int requirementId, RequirementDefect defect)
+        public ActionResult Create(int id, int projectId, int requirementId, string defect)
         {
-            defect.Requirement.Id = requirementId;
-            //Validation.Validate(defect, ModelState);
+            ModelState.Clear();
 
-            if (ModelState.IsValid)
+            try
             {
-                Db.RequirementDefects.Add(defect);
-                Db.SaveChanges();
+                if (string.IsNullOrWhiteSpace(defect)) ModelState.AddModelError("", "No defect description given.");
 
-                Message = string.Format(Messages.Saved, "Defect");
+                if (ModelState.IsValid)
+                {
+                    _projectService.SaveDefect(projectId, requirementId, defect, CurrentUserId);
 
-                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+                    Message = string.Format(Messages.Saved, "Defect");
+                    var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+                    return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+                }
+
+                var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
+                var viewModel = RequirementDefectViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement, new RequirementDefect(){Description = defect});
+                return View(viewModel);
+
             }
-
-            var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
-            var viewModel = RequirementDefectViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement, defect);
-            return View(viewModel);
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
         }
 
+        /// <summary>
+        /// Mark a defect as resolved
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="projectId"></param>
+        /// <param name="defectId"></param>
+        /// <returns></returns>
         [HttpPost]
         public RedirectToRouteResult Resolve(int id, int projectId, int defectId)
         {
-            var defect = Db.RequirementDefects.Where(a => a.Id == defectId).SingleOrDefault();
-            defect.Solved = true;
+            try
+            {
+                _projectService.ResolveDefect(projectId, defectId, CurrentUserId);
 
-            Db.SaveChanges();
+                Message = string.Format(Messages.Saved, "Defect");
+                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+                return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+            }
 
-            Message = string.Format(Messages.Saved, "Defect");
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            return RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+            // unknown error
+            return this.RedirectToAction<ErrorController>(a => a.Index());
         }
     }
 }

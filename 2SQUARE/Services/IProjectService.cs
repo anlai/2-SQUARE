@@ -91,6 +91,24 @@ namespace _2SQUARE.Services
         void UpdateRequirementPriority(int id, int? priorityTypeId, string loginId);
         #endregion
 
+        #region Step 9 Methods
+        /// <summary>
+        /// Save a requirement defect
+        /// </summary>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <param name="defect">Identified Defect</param>
+        /// <param name="loginId">User's Login</param>
+        void SaveDefect(int projectId, int requirementId, string defect, string loginId);
+        /// <summary>
+        /// Resolves an associated defect
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <param name="defectId"></param>
+        /// <param name="loginId"></param>
+        void ResolveDefect(int projectId, int defectId, string loginId);
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);
