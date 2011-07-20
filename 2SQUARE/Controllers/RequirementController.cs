@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
 using System.Security;
@@ -71,6 +72,47 @@ namespace _2SQUARE.Controllers
 
             var viewModel = RequirementCategoryViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
             return View(viewModel);
+        }
+
+        /// <summary>
+        /// Update the order of the requirements
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpdateRequirementOrder(int projectId, int squareTypeId, string requirements)
+        {
+            try
+            {
+                var reqIds = requirements.Split(',');
+                var ids = reqIds.Select(a => Convert.ToInt32(a)).ToArray();
+
+                _projectService.UpdateRequirementOrder(projectId, squareTypeId, ids, CurrentUserId);
+
+                return Json(true);
+            }
+            catch (SecurityException)
+            {
+                return Json(false);
+            }
+        }
+
+        /// <summary>
+        /// Update the priority of the requirements
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpdatePriority(int requirementId, int? priority)
+        {
+            try
+            {
+                _projectService.UpdateRequirementPriority(requirementId, priority, CurrentUserId);
+
+                return Json(true);
+            }
+            catch (Exception)
+            {
+                return Json(false);
+            }
         }
     }
 }

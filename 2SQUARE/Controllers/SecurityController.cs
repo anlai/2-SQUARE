@@ -274,7 +274,7 @@ namespace _2SQUARE.Controllers
         /// Prioritize Requirements
         /// </summary>
         /// <param name="id">Project Step Id</param>
-        /// <param name="projectId"></param>
+        /// <param name="projectId">Project Id</param>
         /// <returns></returns>
         public ActionResult Step8(int id, int projectId)
         {

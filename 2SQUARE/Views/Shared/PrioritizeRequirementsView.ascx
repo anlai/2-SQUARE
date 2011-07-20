@@ -19,8 +19,8 @@
             // strip out the first ","
             updateOrder = updateOrder.substring(1, updateOrder.length);
 
-            var url = '<%: Url.Action("UpdateRequirementOrder") %>';
-            $.post(url, {projectId:<%: Model.Project.id %>,SquareType: <%: Model.ProjectStep.Step.SquareType %>,requirementIds: updateOrder }
+            var url = '<%: Url.Action("UpdateRequirementOrder", "Requirement") %>';
+            $.post(url, {projectId:<%: Model.Project.Id %>,squareTypeId: <%: Model.ProjectStep.Step.SquareType.Id %>, requirements: updateOrder }
                 , function (result) { 
                     if(result) { alert("save successful"); } else {alert("failed to save");}
                 });
@@ -28,7 +28,7 @@
         });
 
         $(".priority").blur(function(){
-            var url = '<%: Url.Action("UpdatePriority") %>';
+            var url = '<%: Url.Action("UpdatePriority", "Requirement") %>';
 
             var reqId = $(this).data("id");
             var priority = $(this).val();
@@ -55,13 +55,13 @@
     </thead>
     <tbody>
         <% foreach (var a in Model.Requirements.OrderBy(b=>b.Order)) { %>
-            <tr data-id='<%: a.id %>'>
+            <tr data-id='<%: a.Id %>'>
                 <td><%: a.RequirementId %></td>
-                <td><%: a.Requirement1 %></td>
+                <td><%: a.RequirementText %></td>
                 <td><%: a.Essential %></td>
                 <td><%: a.Category.Name %></td>
                 <td>
-                    <input type="text" class="priority" data-id="<%: a.id %>" value="<%: a.Priority %>" />
+                    <input type="text" class="priority" data-id="<%: a.Id %>" value="<%: a.Priority %>" />
                 </td>
             </tr>
         <% } %>

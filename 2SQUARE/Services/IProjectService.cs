@@ -75,6 +75,22 @@ namespace _2SQUARE.Services
         void CategorizeRequirement(int id, int categoryId, int requirementId, bool essential, string loginId);
         #endregion
 
+        #region Step 8 Methods
+        /// <summary>
+        /// Set the order of requirements for a project's square type
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="squareTypeId">Square Type Id</param>
+        /// <param name="requirementIds">List of reuqirements ids in order</param>
+        void UpdateRequirementOrder(int id, int squareTypeId, int[] requirementIds, string loginId);
+        /// <summary>
+        /// Update a requirement's id
+        /// </summary>
+        /// <param name="id">Requirement Id</param>
+        /// <param name="priorityTypeId">Priority Type Id</param>
+        void UpdateRequirementPriority(int id, int? priorityTypeId, string loginId);
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);

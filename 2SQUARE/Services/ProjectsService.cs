@@ -714,13 +714,53 @@ namespace _2SQUARE.Services
         }
 
         #endregion
-        
+
+        #region Step 8
+        public void UpdateRequirementOrder(int id, int squareTypeId, int[] requirementIds, string loginId)
+        {
+            var project = GetProject(id, loginId);
+
+            using (var db = new SquareContext())
+            {
+
+                for (int i = 0; i < requirementIds.Length; i++ )
+                {
+                    var reqId = requirementIds.ElementAt(i);
+                    // load the requirement
+                    var req = db.Requirements.Include("Project").Include("SquareType").Where(a => a.Id == reqId).Single();
+
+                    // validate that we have a valid project and square type for this requirment
+                    if (req.Project.Id != id && req.SquareType.Id != req.SquareType.Id)
+                    {
+                        throw new Exception("Invalid requirement for project and square type.");
+                    }
+
+                    // update the order field
+                    req.Order = i;
+
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateRequirementPriority(int id, int? priority, string loginId)
+        {
+            using (var db = new SquareContext())
+            {
+                var requirement = db.Requirements.Include("Project").Include("SquareType").Where(a => a.Id == id).Single();
+
+                requirement.Priority = priority;
+
+                db.SaveChanges();
+            }
+        }
+        #endregion
 
 
 
 
 
-        
 
 
         #region Project Status
