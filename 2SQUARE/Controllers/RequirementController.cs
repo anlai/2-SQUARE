@@ -1,4 +1,5 @@
-﻿using System.Data.Objects;
+﻿using System;
+using System.Data.Objects;
 using System.Linq;
 using System.Security;
 using System.Web.Mvc;
@@ -19,18 +20,19 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
+        /// <summary>
+        /// Categorize a requirement
+        /// </summary>
+        /// <param name="id">Project Step Id</param>
+        /// <param name="projectId">Project Id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <returns></returns>
         public ActionResult Categorize(int id, int projectId, int requirementId)
         {
             try
             {
                 var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-                var requirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
-
-                if (requirement == null)
-                {
-                    Message = string.Format(Messages.UnabletoLoad, "requirement", requirementId);
-                    return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
-                }
+                var requirement = Db.Requirements.Include("Category").Where(a => a.Id == requirementId).Single();
 
                 var viewModel = RequirementCategoryViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
                 return View(viewModel);
@@ -42,34 +44,32 @@ namespace _2SQUARE.Controllers
         }
 
         [HttpPost]
-        public ActionResult Categorize(int id, int projectId, int requirementId, Requirement requirement)
+        public ActionResult Categorize(int id, int projectId, int requirementId, int? categoryId, bool essential)
         {
-            var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
-            var origRequirement = Db.Requirements.Where(a => a.Id == requirementId).SingleOrDefault();
+            // no category selected
+            if (!categoryId.HasValue) ModelState.AddModelError("Category", "Category is required.");
 
-            if (origRequirement == null)
+            try
             {
-                Message = string.Format(Messages.UnabletoLoad, "requirement", requirementId);
-                return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+                var projectStep = _projectService.GetProjectStep(id, CurrentUserId);
+
+                if (ModelState.IsValid)
+                {
+                    _projectService.CategorizeRequirement(projectId, categoryId.Value, requirementId, essential, CurrentUserId);
+
+                    Message = string.Format(Messages.Saved, "Categorization");
+                    return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
+                }
+
+            }
+            catch (SecurityException)
+            {
+                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
             }
 
-            origRequirement.Category = requirement.Category;
-            origRequirement.Essential = requirement.Essential;
+            var requirement = Db.Requirements.Include("Category").Where(a => a.Id == requirementId).Single();
 
-            if (origRequirement.Category.Id <= 0 || origRequirement.Category == null)
-            {
-                ModelState.AddModelError("Category", string.Format(Messages.Required, "Category"));
-            }
-
-            if (ModelState.IsValid)
-            {
-                Db.SaveChanges();
-
-                Message = string.Format(Messages.Saved, "Categorization");
-                return this.RedirectToAction(projectStep.Step.Action, projectStep.Step.Controller, new { id = id, projectId = projectId });
-            }
-
-            var viewModel = RequirementCategoryViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, origRequirement);
+            var viewModel = RequirementCategoryViewModel.Create(Db, _projectService, projectId, id, CurrentUserId, requirement);
             return View(viewModel);
         }
     }

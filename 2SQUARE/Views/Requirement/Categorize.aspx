@@ -20,15 +20,18 @@
         </li>
     </ul>
 
-    <%: Html.ValidationMessage("Please correct the following errors:") %>
+    
 
     <% using (Html.BeginForm()) { %>
+
+        <%: Html.ValidationMessage("") %>
+    
         <ul class="entry-form">
             <li><strong>Category:</strong>
-                <%= this.Select("Requirement.CategoryId").Options(Model.Categories,x=>x.Id,x=>x.Name).Selected(Model.Requirement.Category != null ? Model.Requirement.Category.Id.ToString() : string.Empty).FirstOption("--Select a Category") %>
+                <%= this.Select("CategoryId").Options(Model.Categories,x=>x.Id,x=>x.Name).Selected(Model.Requirement.Category != null ? Model.Requirement.Category.Id.ToString() : string.Empty).FirstOption("--Select a Category") %>
             </li>
             <li><strong>Essential:</strong>
-                <%: Html.CheckBox("Requirement.Essential", Model.Requirement.Essential) %>
+                <%: Html.CheckBox("Essential", Model.Requirement.Essential) %>
             </li>
             <li><strong></strong>
                 <%: Html.SubmitButton("Svae", "Save", new {@class="button ui-corner-all ui-state-default"}) %>

@@ -64,6 +64,15 @@ namespace _2SQUARE.Services
         /// <param name="categoryId">Category Id to Delete</param>
         /// <param name="loginId">User's Login Id</param>
         void DeleteCategory(int id, int categoryId, string loginId);
+        /// <summary>
+        /// Set the category for a requirement
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="categoryId">Category id</param>
+        /// <param name="requirementId">Requirement Id</param>
+        /// <param name="essential">Is this requirement essential?</param>
+        /// <param name="loginId">User's Login Id</param>
+        void CategorizeRequirement(int id, int categoryId, int requirementId, bool essential, string loginId);
         #endregion
 
         #region Step Status Methods

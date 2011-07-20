@@ -535,10 +535,6 @@ namespace _2SQUARE.Services
 
         #endregion
 
-        // **************************************************
-        // below this is not validated against the database
-        // **************************************************
-
         #region Step 5
 
         /// <summary>
@@ -700,6 +696,23 @@ namespace _2SQUARE.Services
             }
         }
 
+        public void CategorizeRequirement(int id, int categoryId, int requirementId, bool essential, string loginId)
+        {
+            var project = GetProject(id, loginId);
+
+            using (var db = new SquareContext())
+            {
+                // load objects
+                var category = db.Categories.Where(a => a.Id == categoryId).Single();
+                var requirement = db.Requirements.Include("Project").Include("SquareType").Where(a => a.Id == requirementId).Single();
+
+                requirement.Category = category;
+                requirement.Essential = essential;
+
+                db.SaveChanges();                
+            }
+        }
+
         #endregion
         
 
@@ -733,22 +746,22 @@ namespace _2SQUARE.Services
 
         public bool IsStepWorking(int id)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool IsStepPending(int id)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool IsStepComplete(int id)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool CanStepChangeStatus(int id, ProjectStep projectStep)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public ProjectStep UpdateStatus(int id, ProjectStepStatus projectStepStatus, string login)
