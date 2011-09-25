@@ -16,7 +16,8 @@ namespace _2SQUARE.Controllers
 
         public JsonResult SaveFile(int id, string notes, HttpPostedFileBase filedata)
         {
-            var req = Request.Files;
+
+            var req = Request;
 
             throw new NotImplementedException();
         }
