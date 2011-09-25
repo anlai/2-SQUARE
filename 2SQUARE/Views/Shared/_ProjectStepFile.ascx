@@ -35,7 +35,6 @@
     </form>
 </div>
 
-
 <link href="<%: Url.Content("~/Scripts/uploadify-v2.1.4/uploadify.css") %>" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="<%: Url.Content("~/Scripts/uploadify-v2.1.4/swfobject.js") %>"></script>
 <script type="text/javascript" src="<%: Url.Content("~/Scripts/uploadify-v2.1.4/jquery.uploadify.v2.1.4.min.js") %>"></script>
