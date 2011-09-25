@@ -23,7 +23,7 @@ namespace _2SQUARE.Controllers
                 // call the save if it hasn't thrown an exception yet
                 var psfile = _projectService.AddFileToProjectStep(id, notes, filedata, CurrentUserId);
 
-                return Json(new {id=psfile.Id, notes=psfile.Notes, dateCreated=psfile.DateCreated.ToString("d")});
+                return Json(new {id=psfile.Id, notes=psfile.Notes, dateCreated=psfile.DateCreated.ToString("d"), fileName=psfile.FileName});
             }
             catch (Exception ex)
             {
