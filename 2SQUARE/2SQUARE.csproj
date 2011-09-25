@@ -148,6 +148,7 @@
     <Compile Include="Controllers\IProcedureController.cs" />
     <Compile Include="Controllers\ISquareTypeController.cs" />
     <Compile Include="Controllers\NIST800_30Controller.cs" />
+    <Compile Include="Controllers\ProjectStepFileController.cs" />
     <Compile Include="Controllers\ProjectStepNoteController.cs" />
     <Compile Include="Controllers\PRAUCController.cs" />
     <Compile Include="Controllers\PRETController.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Images\branding.jpg" />
     <Content Include="Images\Logo.PNG" />
     <Content Include="Images\title_bar_bg.png" />
+    <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.min.js" />
     <Content Include="Scripts\jquery.tablednd_0_5.js" />
@@ -282,6 +284,15 @@
     <Content Include="Scripts\plupload\plupload.js" />
     <Content Include="Scripts\plupload\plupload.silverlight.js" />
     <Content Include="Scripts\plupload\plupload.silverlight.xap" />
+    <Content Include="Scripts\uploadify-v2.1.4\cancel.png" />
+    <Content Include="Scripts\uploadify-v2.1.4\expressInstall.swf" />
+    <Content Include="Scripts\uploadify-v2.1.4\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\uploadify-v2.1.4\jquery.uploadify.v2.1.4.js" />
+    <Content Include="Scripts\uploadify-v2.1.4\jquery.uploadify.v2.1.4.min.js" />
+    <Content Include="Scripts\uploadify-v2.1.4\swfobject.js" />
+    <Content Include="Scripts\uploadify-v2.1.4\uploadify.allglyphs.swf" />
+    <Content Include="Scripts\uploadify-v2.1.4\uploadify.css" />
+    <Content Include="Scripts\uploadify-v2.1.4\uploadify.swf" />
     <Content Include="Views\Artifact\Add.aspx" />
     <Content Include="Views\Artifact\ArtifactForm.ascx" />
     <Content Include="Views\Artifact\Details.aspx" />
@@ -350,6 +361,7 @@
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
     <Content Include="Views\Shared\RequirementInspectionView.ascx" />
     <Content Include="Views\Shared\Step3View.ascx" />
+    <Content Include="Views\Shared\_ProjectStepFile.ascx" />
     <Content Include="Views\Shared\_ProjectStepNotes.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -415,6 +427,69 @@
       <Project>{100FBADC-DFD0-48CA-96D0-C3E4B91BDE68}</Project>
       <Name>2SQUARE.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\uploadify-v2.1.4\check.php" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\air\logging\FileTarget.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\HMAC.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\MD5.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\MD5Stream.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\SHA1.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\SHA224.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\SHA256.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\crypto\WSSEUsernameToken.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\errors\IllegalStateError.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\fileformats\vcard\Address.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\fileformats\vcard\Email.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\fileformats\vcard\Phone.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\fileformats\vcard\VCard.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\fileformats\vcard\VCardParser.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\images\BitString.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\images\JPGEncoder.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\images\PNGEncoder.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\DynamicURLLoader.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\IURIResolver.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\MimeTypeMap.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\proxies\RFC2817Socket.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\URI.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\net\URIEncodingBitmap.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\Database.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\Definition.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\Dict.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\DictionaryServer.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\ConnectedEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\DatabaseEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\DefinitionEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\DefinitionHeaderEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\DictionaryServerEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\DisconnectedEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\ErrorEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\MatchEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\MatchStrategiesEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\events\NoMatchEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\MatchStrategy.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\Response.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\util\CompleteResponseEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\protocols\dict\util\SocketHelper.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSON.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONDecoder.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONEncoder.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONParseError.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONToken.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONTokenizer.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\serialization\json\JSONTokenType.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\ArrayUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\DateUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\DictionaryUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\IntUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\NumberFormatter.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\StringUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\utils\XMLUtil.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\webapis\events\ServiceEvent.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\webapis\ServiceBase.as" />
+    <None Include="Scripts\uploadify-v2.1.4\com\adobe\webapis\URLLoaderBase.as" />
+    <None Include="Scripts\uploadify-v2.1.4\uploadify.fla" />
+    <None Include="Scripts\uploadify-v2.1.4\uploadify.php" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

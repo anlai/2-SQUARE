@@ -53,5 +53,7 @@
 
     <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
 
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
+
 </asp:Content>
 
