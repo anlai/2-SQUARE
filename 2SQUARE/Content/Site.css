@@ -25,10 +25,10 @@ body
 #footer { border-top: 1px solid lightgray; margin-top: 20px; text-align:center; padding: 10px 0px 10px 0px; color:#585858;}
 
 /* Nav bar */
-#nav { height: 30px; border-bottom: 1px solid lightgray; position:relative; padding: 0; }
+#nav { height: 30px; border-bottom: 1px solid lightgray; position:relative; padding: 0;padding-bottom: 1em; }
 #nav-container {width: 925px; margin: 15px auto; }
-#logout-container {float:right;}
-
+.nav-button { padding: .5em;border: 1px solid #DDDDDD;margin: 0 -5px 0 0;font-size: 13px;}
+.nav-button:hover { border: 1px solid #BBBBBB;background-color: #EEEEEE;}
 
 /* Main body of the pages */
 .page

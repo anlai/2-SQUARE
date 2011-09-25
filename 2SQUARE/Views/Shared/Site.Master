@@ -35,19 +35,24 @@
             <img src="<%= Url.Content("~/Images/logo.png") %>" alt="UC Davis" />
         </span>
     </div>
+    
     <div id="nav">
         <div id="nav-container">
-            <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Home", new {@class="ui-corner-left button ui-state-default"}) %>
-            <asp:ContentPlaceHolder runat="server" ID="NavContents"></asp:ContentPlaceHolder>
-            <%: Html.ActionLink<GuidanceController>(a=>a.Index(), "Square Guidance", new {@class="button ui-state-default"}) %>
-            <%: Html.ActionLink<HomeController>(a=>a.About(), "About", new {@class="ui-corner-right button ui-state-default"}) %>
-
-            <div id="logout-container">
+            
+            <div class="col1">
+                <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Home", new {@class="nav-button ui-corner-left"}) %>
+                <asp:ContentPlaceHolder runat="server" ID="NavContents"></asp:ContentPlaceHolder>
+                <%: Html.ActionLink<GuidanceController>(a=>a.Index(), "Square Guidance", new {@class="nav-button"}) %>
+                <%: Html.ActionLink<HomeController>(a=>a.About(), "About", new {@class="nav-button ui-corner-right"}) %>
+            </div>
+            <div class="col2">
                 <%: Page.User.Identity.Name %>
                 <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logoff", new {@class="ui-corner-all button ui-state-default"}) %>
             </div>
+
         </div>
     </div>
+
     <div class=page>
     
         <% if (!string.IsNullOrEmpty((string)TempData["Message"])) { Html.RenderPartial("Message", new MessageModel(message: (string)TempData["Message"], showWarning:true)); } %>
