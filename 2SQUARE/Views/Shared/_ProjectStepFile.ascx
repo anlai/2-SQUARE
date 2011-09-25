@@ -89,7 +89,7 @@
             }
         });
 
-        $(".delete-file").click(function() {
+        $(".delete-file").live("click", function() {
 
             var $that = $(this);
             
