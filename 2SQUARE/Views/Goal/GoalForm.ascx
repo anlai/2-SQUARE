@@ -17,7 +17,8 @@
     </li>
     <li><strong></strong>
         <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-        <%: Html.ActionLink<SecurityController>(a=>a.Step2(Model.ProjectStep.Id, Model.ProjectStep.Project.Id), "Cancel", new {@class="button ui-corner-all ui-state-default"}) %>
+        <%--<%: Html.ActionLink<SecurityController>(a=>a.Step2(Model.ProjectStep.Id, Model.ProjectStep.Project.Id), "Cancel", new {@class="button ui-corner-all ui-state-default"}) %>--%>
+        <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button"}) %>
     </li>
 </ul>
 
