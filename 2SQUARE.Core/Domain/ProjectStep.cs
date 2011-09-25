@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace _2SQUARE.Core.Domain
@@ -8,6 +9,9 @@ namespace _2SQUARE.Core.Domain
         public ProjectStep()
         {
             Complete = false;
+
+            ProjectStepNotes = new List<ProjectStepNote>();
+            ProjectStepFiles = new List<ProjectStepFile>();
         }
 
         public int Id { get; set; }
@@ -20,5 +24,8 @@ namespace _2SQUARE.Core.Domain
         public DateTime? DateStarted { get; set; }
         public DateTime? DateCompleted { get; set; }
         public bool Complete { get; set; }
+
+        public ICollection<ProjectStepNote> ProjectStepNotes { get; set; }
+        public ICollection<ProjectStepFile> ProjectStepFiles { get; set; }
     }
 }

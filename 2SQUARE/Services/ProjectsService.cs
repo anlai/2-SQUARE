@@ -128,6 +128,7 @@ namespace _2SQUARE.Services
             {
                 var projectStep = db.ProjectSteps.Include("Project")
                                                  .Include("Step").Include("Step.SquareType")
+                                                 .Include("ProjectStepNotes").Include("ProjectStepFiles")
                                                  .Where(a => a.Id == id).Single();
 
                 if (HasAccess(projectStep.Project.Id, login))
@@ -790,7 +791,24 @@ namespace _2SQUARE.Services
         #endregion
 
 
+        #region Notes
+        public ProjectStepNote AddNoteToProjectStep(int id, string note, string userId)
+        {
+            using (var db = new SquareContext())
+            {
+                var projectStep = db.ProjectSteps.Where(a => a.Id == id).FirstOrDefault();
+                var psNote = new ProjectStepNote() { Description = note, ProjectStep = projectStep, UserId = userId };
 
+                db.ProjectStepNotes.Add(psNote);
+                db.SaveChanges();
+
+                return psNote;
+            }
+        }
+        #endregion
+
+        #region Files
+        #endregion
 
 
         #region Project Status

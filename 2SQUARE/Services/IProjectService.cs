@@ -109,6 +109,10 @@ namespace _2SQUARE.Services
         void ResolveDefect(int projectId, int defectId, string loginId);
         #endregion
 
+        #region Notes
+        ProjectStepNote AddNoteToProjectStep(int id, string note, string userId);
+        #endregion
+
         #region Step Status Methods
         ProjectStepStatus GetStepStatus(int id = -1, ProjectStep projectStep = null);
         bool IsStepWorking(int id);

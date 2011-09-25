@@ -56,6 +56,8 @@
     <Compile Include="Domain\Goal.cs" />
     <Compile Include="Domain\GoalType.cs" />
     <Compile Include="Domain\Impact.cs" />
+    <Compile Include="Domain\ProjectStepFile.cs" />
+    <Compile Include="Domain\ProjectStepNote.cs" />
     <Compile Include="Domain\Project.cs" />
     <Compile Include="Domain\ProjectStep.cs" />
     <Compile Include="Domain\ProjectTerm.cs" />

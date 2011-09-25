@@ -41,6 +41,8 @@ namespace _2SQUARE
         public DbSet<Step> Steps { get; set; }
         public DbSet<Term> Terms { get; set; }
         public DbSet<ProjectRole> ProjectRoles { get; set; }
+        public DbSet<ProjectStepNote> ProjectStepNotes { get; set; }
+        public DbSet<ProjectStepFile> ProjectStepFiles { get; set; }
 
         public DbSet<PRETLaw> PRETLaws { get; set; }
         public DbSet<PRETAnswer> PretAnswers { get; set; }
