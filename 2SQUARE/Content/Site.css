@@ -251,7 +251,7 @@ textarea
 Sections
 */
 
-.section-container {}
+.section-container { margin-bottom: 2em;border: 1px solid #DDDDDD;padding: .5em;}
 .section-header { border-bottom: 1px solid #DDDDDD;margin-bottom: 1em;}
 .col1, .col2 { width: 49%;display: inline-block;}
 .col2 { text-align: right;}

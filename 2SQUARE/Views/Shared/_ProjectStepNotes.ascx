@@ -1,33 +1,46 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ProjectStep>" %>
 
-<%--<%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.Id), "View Predefined Terms", new {@class="button ui-corner-all ui-state-default", style="float:right;"}) %>--%>
+<div class="section-container">
 
-<input type="button" class="button" id="ps-add-note" value="Add Note" style="float:right;"/>
+    <div class="section-header">
+        
+        <div class="col1">
+            <h3>Project Step Notes</h3>
+        </div>
+        <div class="col2">
+            <input type="button" class="button" id="ps-add-note" value="Add Note"/>
+        </div>
 
-<h3>Project Step Notes</h3>
+    </div>    
 
-<table id="project-step-notes">
-    <thead>
-        <tr>
-            <td></td>
-            <td>Note</td>
-            <td>Date</td>
-            <td>User</td>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="section-contents">
+
+        <table id="project-step-notes">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Note</td>
+                    <td>Date</td>
+                    <td>User</td>
+                </tr>
+            </thead>
+            <tbody>
     
-        <% foreach (var note in Model.ProjectStepNotes) { %>
-            <tr>
-                <td><input type="button" class="button delete-note" value="Delete" data-id=<%: note.Id %> /></td>
-                <td><%: note.Description %></td>
-                <td><%: note.DateCreated.ToString("d") %></td>
-                <td><%: note.UserId %></td>
-            </tr>
-        <% } %>
+                <% foreach (var note in Model.ProjectStepNotes) { %>
+                    <tr>
+                        <td><input type="button" class="button delete-note" value="Delete" data-id=<%: note.Id %> /></td>
+                        <td><%: note.Description %></td>
+                        <td><%: note.DateCreated.ToString("d") %></td>
+                        <td><%: note.UserId %></td>
+                    </tr>
+                <% } %>
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 
 <div id="ps-note-dialog" title="Add Note">
 <textarea id="ps-note"></textarea>

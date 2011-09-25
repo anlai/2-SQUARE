@@ -9,48 +9,31 @@
 </asp:Content>
 
 <asp:Content ID="content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="nav-button"}) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%: Html.ActionLink<GuidanceController>(a=>a.SecurityStep1(), "Guidance", new {@class = "button ui-corner-all ui-state-default", style="float:right;"}) %>
-
     <h2>Privacy Step 1 - Agree on Definitions</h2>
 
-    <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
-        <h3>Responsiblities</h3>
-    <% } %>
+    <div class="section-container">
 
-    <% if (Model.ProjectManager) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a project manager.
-            </p>
+        <div class="section-header">
+        
+            <div class="col1">
+                <h3>Selected Definitions</h3>
+            </div>
+            <div class="col2">
+                <%: Html.ActionLink<ProjectTermController>(a => a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.Id), "View Predefined Terms", new { @class = "button" })%>
+                <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.ProjectStep.Id, Model.Project.Id), "Add New Term", new { @class = "button"})%>
+            </div>
+
+        </div>    
+
+        <div class="section-contents">
+            <% Html.RenderPartial("ProjectTermsView"); %>
         </div>
-    <% } %>
-    <% if (Model.RequirementsEngineer) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a requirements engineer.
-            </p>
-        </div>
-    <% } %>    
-    <% if (Model.Stakeholder) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a stake holder.
-            </p>
-        </div>
-    <% } %>
 
-    <%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.Id), "View Predefined Terms", new {@class="button ui-corner-all ui-state-default", style="float:right; margin-top: 8px;"}) %>
-    <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.ProjectStep.Id, Model.Project.Id), "Add New Term", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-top: 8px; margin-right: 5px;" })%>
-
-    <h3>Selected Definitions</h3>
-
-    <% Html.RenderPartial("ProjectTermsView"); %>
-
+    </div>
 
 </asp:Content>
-

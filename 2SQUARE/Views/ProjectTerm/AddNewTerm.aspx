@@ -34,7 +34,7 @@
             <li>
                 <strong></strong>
                 <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-                <%: Html.ActionLink("Cancel", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="button ui-state-default"}) %>
+                <%: Html.ActionLink("Cancel", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="button"}) %>
             </li>
         </ul>
 
@@ -45,5 +45,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink("Back to Step 1", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink("Back to Step 1", "Step1", Model.Step.SquareType.Name, new {id=Model.Step.Id, projectId=Model.ProjectTerm.Project.Id}, new {@class="nav-button"}) %>
 </asp:Content>

@@ -9,16 +9,51 @@
 </asp:Content>
 
 <asp:Content ID="content4" ContentPlaceHolderID="NavContents" runat="server">
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="nav-button"}) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%: Html.ActionLink<GuidanceController>(a=>a.SecurityStep1(), "Guidance", new {@class = "button ui-corner-all ui-state-default", style="float:right;"}) %>
+    <div class="section-container">
 
-    <h2>Security Step 1 - Agree on Definitions</h2>
+        <div class="section-header">
+        
+            <div class="col1">
+                <h2>Security Step 1 - Agree on Definitions</h2>
+            </div>
+            <div class="col2">
+                <%: Html.ActionLink<GuidanceController>(a=>a.SecurityStep1(), "Guidance", new {@class = "button"}) %>
+            </div>
 
-    <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
+        </div>    
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
+
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div class="col1">
+                <h3>Selected Definitions</h3>
+            </div>
+            <div class="col2">
+                <%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.Id), "View Predefined Terms", new {@class="button"}) %>
+                <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.ProjectStep.Id, Model.Project.Id), "Add New Term", new { @class = "button" })%>
+            </div>
+
+        </div>    
+
+        <div class="section-contents">
+            <% Html.RenderPartial("ProjectTermsView"); %>
+        </div>
+
+    </div>
+
+<%--    <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
         <h3>Responsiblities</h3>
     <% } %>
 
@@ -42,14 +77,7 @@
                 This is your guidance as a stake holder.
             </p>
         </div>
-    <% } %>
-
-    <%: Html.ActionLink<ProjectTermController>(a=>a.ViewPredefinedTerms(Model.ProjectStep.Id, Model.Project.Id), "View Predefined Terms", new {@class="button", style="float:right;"}) %>
-    <%: Html.ActionLink<ProjectTermController>(a => a.AddNewTerm(Model.ProjectStep.Id, Model.Project.Id), "Add New Term", new { @class = "button", style = "float:right; margin-right: 5px;" })%>
-
-    <h3>Selected Definitions</h3>
-
-    <% Html.RenderPartial("ProjectTermsView"); %>
+    <% } %>--%>
 
     <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
 

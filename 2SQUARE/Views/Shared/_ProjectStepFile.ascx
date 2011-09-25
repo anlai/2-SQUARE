@@ -1,31 +1,44 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ProjectStep>" %>
 
-<input type="button" class="button" id="ps-add-file" value="Add File" style="float:right;"/>
+<div class="section-container">
 
-<h3>Project Step Files</h3>
+    <div class="section-header">
+        
+        <div class="col1">
+            <h3>Project Step Files</h3>
+        </div>
+        <div class="col2">
+            <input type="button" class="button" id="ps-add-file" value="Add File"/>
+        </div>
 
-<table id="ps-files">
-    <thead>
-        <tr>
-            <td></td>
-            <td>File Name</td>
-            <td>Notes</td>
-            <td>Date Created</td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        <% foreach (var file in Model.ProjectStepFiles) { %>
-            <tr>    
-                <td>View</td>
-                <td><%: file.FileName %></td>
-                <td><%: file.Notes %></td>
-                <td><%: file.DateCreated.ToString("d") %></td>
-                <td><button class="button delete-file" data-id="<%: file.Id %>">Delete</button></td>
-            </tr>
-        <% } %>
-    </tbody>
-</table>
+    </div>    
+
+    <div class="section-contents">
+        <table id="ps-files">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>File Name</td>
+                    <td>Notes</td>
+                    <td>Date Created</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <% foreach (var file in Model.ProjectStepFiles) { %>
+                    <tr>    
+                        <td>View</td>
+                        <td><%: file.FileName %></td>
+                        <td><%: file.Notes %></td>
+                        <td><%: file.DateCreated.ToString("d") %></td>
+                        <td><button class="button delete-file" data-id="<%: file.Id %>">Delete</button></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 <div id="ps-file-dialog" title="Upload Project Step File">
     <form action="<%: Url.Action("SaveFile", "ProjectStepFile") %>" method="POST" enctype="multipart/form-data">
