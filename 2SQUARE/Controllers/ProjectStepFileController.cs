@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.Services;
@@ -16,15 +18,48 @@ namespace _2SQUARE.Controllers
 
         public JsonResult SaveFile(int id, string notes, HttpPostedFileBase filedata)
         {
+            try
+            {
+                // call the save if it hasn't thrown an exception yet
+                var psfile = _projectService.AddFileToProjectStep(id, notes, filedata, CurrentUserId);
 
-            var req = Request;
+                return Json(new {id=psfile.Id, notes=psfile.Notes, dateCreated=psfile.DateCreated.ToString("d")});
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
 
-            throw new NotImplementedException();
+            return Json(false);
         }
 
-        public JsonResult DeleteFile()
+        /// <summary>
+        /// Delete a project step file
+        /// </summary>
+        /// <param name="id">Project Step ID</param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult DeleteFile(int id, int fileId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ps = _projectService.GetProjectStep(id, CurrentUserId);
+
+                var file = Db.ProjectStepFiles.Where(a => a.Id == fileId).FirstOrDefault();
+                if (file != null)
+                {
+                    Db.ProjectStepFiles.Remove(file);
+                    Db.SaveChanges();
+                    return Json(true);
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false);
+            }
+
+            return Json(false);
         }
 
         public FileResult GetFile()

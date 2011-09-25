@@ -8,6 +8,7 @@ using _2SQUARE.Services;
 
 namespace _2SQUARE.Controllers
 {
+    [Authorize]
     public class ProjectStepNoteController : ApplicationController
     {
         private readonly IProjectService _projectService;

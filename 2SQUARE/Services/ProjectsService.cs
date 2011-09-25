@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Security;
+using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Core.Domain;
@@ -808,6 +809,22 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Files
+        public ProjectStepFile AddFileToProjectStep(int id, string note, HttpPostedFileBase file, string userId)
+        {
+            using (var db = new SquareContext())
+            {
+                var projectStep = db.ProjectSteps.Where(a => a.Id == id).FirstOrDefault();
+                var psFile = new ProjectStepFile() { Notes = note, ContentType = file.ContentType, FileName = file.FileName, ProjectStep = projectStep};
+
+                psFile.Contents = new byte[file.ContentLength];
+                file.InputStream.Read(psFile.Contents, 0, file.ContentLength);
+
+                db.ProjectStepFiles.Add(psFile);
+                db.SaveChanges();
+
+                return psFile;
+            }
+        }
         #endregion
 
 

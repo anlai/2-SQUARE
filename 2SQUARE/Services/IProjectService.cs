@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
@@ -111,6 +112,10 @@ namespace _2SQUARE.Services
 
         #region Notes
         ProjectStepNote AddNoteToProjectStep(int id, string note, string userId);
+        #endregion
+
+        #region Project Step File
+        ProjectStepFile AddFileToProjectStep(int id, string note, HttpPostedFileBase file, string userId);
         #endregion
 
         #region Step Status Methods
