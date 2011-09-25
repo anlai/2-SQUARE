@@ -7,27 +7,38 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%: Html.ActionLink<ProjectController>(a => a.Create(), "Create New Project", new { @class = "button ui-corner-all ui-state-default", style = "float:right; margin-right: 5px;" })%>
-
-    <h2>Projects</h2>
-
-    <% if (Model.Count != 0) { %>
-    <% foreach (var a in Model) { %>
-
-
-        <div class="button object-list" style="text-align: left;">
-            <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Name) %></h3>
-            <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Description ?? "n/a") %></div>
+    <div class="section-container">
+    
+        <div class="section-header">
+        <div class="col1"><h2>Projects</h2></div>
+        <div class="col2"><%: Html.ActionLink<ProjectController>(a => a.Create(), "Create New Project", new { @class = "button"})%></div>
         </div>
 
-        <div class="divider">&nbsp;</div>
+        <div class="section-contents">
+        
+            <% if (Model.Count != 0) { %>
+            <% foreach (var a in Model) { %>
 
-    <% } %>
-    <% } else { %>
+                <div class="object-list ui-corner-all shadow" style="text-align: left;">
+                    <h3><%: Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Name) %></h3>
+                    <div><%= Html.ActionLink<ProjectController>(b=>b.Details(a.Id), a.Description ?? "n/a") %></div>
+                </div>
+
+                <div class="divider">&nbsp;</div>
+
+            <% } %>
+            <% } else { %>
     
-        <p style="color: red;">You do not have access to a project.  Please create a new one or get added to an existing one.</p>
+                <p style="color: red;">You do not have access to a project.  Please create a new one or get added to an existing one.</p>
 
-    <% } %>
+            <% } %>
+
+        </div>
+
+    </div>
+
+
+
 
 
 </asp:Content>

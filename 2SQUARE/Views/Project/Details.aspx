@@ -7,63 +7,74 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%: Model.Project.Name %></h2>
+    <div class="section-container">
+    
+        <div class="section-header">
+            <h2><%: Model.Project.Name %></h2>    
+        </div>
 
-    <div id="description">
-        <%: Model.Project.Description %>
+        <div class="section-contents">
+            <%: Model.Project.Description %>
+        </div>
+
     </div>
-
-    <%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.Id), "Change Status", new { @class = "button ui-state-default ui-corner-all", style = "float:right; margin-right: 5px;" })%>
-
-    <h3>SQUARE Steps</h3>
-
-    <% foreach (var a in Model.SquareTypes) { %>
-
-        <div class="steps-container">
-            
-            <div class="ui-widget-header box-header ui-corner-all">
-                <%: a.Name %>
-            </div>
-
-            <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.Id == a.Id).OrderBy(c => c.Step.Order)) { %>            
-                
-                <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.Id, projectId=b.Project.Id}) %>">
-
-                
-
-                <% if (!b.DateStarted.HasValue) { %>
-                    <div class="step button ui-corner-all pending">
-                    <span class="icon ui-icon ui-icon-circle-minus"></span>
-                <% } else if (b.Complete) { %>
-                    <div class="step button ui-corner-all complete">
-                    <span class="icon ui-icon ui-icon-check"></span>
-                <% } else { %>
-                    <div class="step button ui-corner-all working">
-                    <span class="icon ui-icon ui-icon-play"></span>
-                <% } %>
-                
-                <span class="step-text">
-                    <%: b.Step.Name %>
-                </span>
-                </div>
-
-                </a>
-            <% } %>
+    
+    <div class="section-container">
+    
+        <div class="section-header">
+        
+            <div class="col1"><h3>SQUARE Steps</h3></div>
+            <div class="col2"><%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.Id), "Change Status", new { @class = "button"})%></div>
 
         </div>
 
-    <% } %>
-    
-    <div style="clear:both;"></div>
+        <div class="section-contents">
+        
+            <% foreach (var a in Model.SquareTypes) { %>
+
+                <div class="steps-container">
+            
+                    <div class="ui-widget-header box-header ui-corner-all">
+                        <%: a.Name %>
+                    </div>
+
+                    <% foreach (var b in Model.Project.ProjectSteps.Where(c => c.Step.SquareType.Id == a.Id).OrderBy(c => c.Step.Order)) { %>            
+                
+                        <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.Id, projectId=b.Project.Id}) %>">
+
+<%--                            <span class="button" style="width: 270px; margin-top: .5em; text-align: left;">
+                                <span class="icon ui-icon ui-icon-circle-minus" style="display: inline-block;"></span>
+                                <%: b.Step.Name %>
+                            </span>--%>
+
+                            <% if (!b.DateStarted.HasValue) { %>
+                                <span class="button pending" style="width: 270px; margin-top: .5em; text-align: left;">
+                                <span class="icon ui-icon ui-icon-circle-minus" style="display: inline-block;"></span>
+                            <% } else if (b.Complete) { %>
+                                <span class="button complete" style="width: 270px; margin-top: .5em; text-align: left;">
+                                <span class="icon ui-icon ui-icon-check" style="display: inline-block;"></span>
+                            <% } else { %>
+                                <span class="button working" style="width: 270px; margin-top: .5em; text-align: left;">
+                                <span class="icon ui-icon ui-icon-play" style="display: inline-block;"></span>
+                            <% } %>
+                
+                                <%: b.Step.Name %>
+                            </span>
+                        </a>
+                    <% } %>
+
+                </div>
+
+            <% } %>
+
+            <div style="clear:both;"></div>
+
+        </div>
+
+    </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
-
-    <style type="text/css">
-        .pending{border-color: Yellow;}
-        .working{border-color: Green;}
-        .complete{border-color: Red;}
-    </style>
 
 </asp:Content>

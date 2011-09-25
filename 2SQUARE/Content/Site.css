@@ -99,6 +99,7 @@ body
     /*height: 100px;*/
 }
 
+/*
 .button
 {
     cursor: pointer;
@@ -119,7 +120,7 @@ body
     color:#212121;
     font-weight:normal;
 }
-
+*/
 .shadow
 {
     -moz-box-shadow: 3px 3px 4px #000;
@@ -133,18 +134,20 @@ body
 
 a {text-decoration: none;}
 
+/*
 h2
 {
     border-bottom: 1px solid lightgray;
     padding-bottom: .5em;
 }
 
+
 h3 
 {
     border-bottom: 1px solid lightgray;
     padding-bottom: .5em;
 }
-
+*/
 h4
 {
     border-bottom: 1px solid lightgray;
@@ -242,3 +245,16 @@ textarea
 {
     width: 200px;
 }
+
+
+/*
+Sections
+*/
+
+.section-container {}
+.section-header { border-bottom: 1px solid #DDDDDD;margin-bottom: 1em;}
+.col1, .col2 { width: 49%;display: inline-block;}
+.col2 { text-align: right;}
+
+.section-contents {}
+

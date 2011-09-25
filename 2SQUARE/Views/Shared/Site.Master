@@ -6,11 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>2Square | <asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
+    <link href="<%: Url.Content("~/Content/smoothness/jquery-ui-1.8.13.custom.css") %>" rel="stylesheet" type="text/css" />
     <link href="<%: Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
     <link href="<%: Url.Content("~/Content/PageStyles.css") %>" rel="stylesheet" type="text/css" />
-
-    <link href="<%: Url.Content("~/Content/smoothness/jquery-ui-1.8.13.custom.css") %>" rel="stylesheet" type="text/css" />
-
 
     <%--<script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
@@ -54,24 +52,6 @@
     
         <% if (!string.IsNullOrEmpty((string)TempData["Message"])) { Html.RenderPartial("Message", new MessageModel(message: (string)TempData["Message"], showWarning:true)); } %>
         <% if (!string.IsNullOrEmpty((string)TempData["ErrorMessage"])) { Html.RenderPartial("Message", new MessageModel(message: (string)TempData["ErrorMessage"], showError:true)); } %>
-
-<%--            <div class="ui-widget messages" style='<%: string.IsNullOrEmpty((string)TempData["Message"]) ? "display:none;" : string.Empty %>'>
-                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; margin-bottom: 10px; padding: 0pt 0.7em;">
-                    <p>
-                        <span class="ui-icon ui-icon-alert" style="float:left; margin-right: 0.3em;"></span>
-                        <span id="message-container"><%: (string)TempData["Message"] %></span>
-                    </p>
-                </div>
-            </div>
-            <div class="ui-widget messages" style='<%: string.IsNullOrEmpty((string)TempData["ErrorMessage"]) ? "display:none;" : string.Empty %>'>
-                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; margin-bottom: 10px; padding: 0pt 0.7em;">
-                    <p>
-                        <span class="ui-icon ui-icon-info" style="float:left; margin-right: 0.3em;"></span>
-                        <span id="errormessage-container"><%: (string)TempData["ErrorMessage"] %></span>
-                    </p>
-                </div>
-            </div>--%>
-
 
         <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
 

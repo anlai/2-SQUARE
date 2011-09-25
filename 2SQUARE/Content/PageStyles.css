@@ -1,6 +1,12 @@
-﻿.object-list {cursor: default;}
+﻿/*
+Project List
+*/
+.object-list {cursor: default;margin: .5em;padding: .5em;border: 1px solid #DDDDDD;}
 .object-list a { text-decoration:  none;  }
 
+/*
+Not sure right now
+*/
 .responsibility-box
 {
     border: 1px dotted lightgray;
@@ -25,6 +31,11 @@
 {
     margin: 5px 0px 0px 10px;
 }
+
+/* Colors for the steps working status */
+.pending{border-color: Yellow;}
+.working{border-color: Green;}
+.complete{border-color: Red;}
 
 /* security/step1 and privacy/step1 */
 .source-cell{width: 150px;}
