@@ -324,6 +324,7 @@
     <Content Include="Views\ProjectTerm\ViewPredefinedTerms.aspx" />
     <Content Include="Views\Shared\RequirementInspectionView.ascx" />
     <Content Include="Views\Shared\Step3View.ascx" />
+    <Content Include="Views\Shared\_ProjectStepCollaboration.ascx" />
     <Content Include="Views\Shared\_ProjectStepFile.ascx" />
     <Content Include="Views\Shared\_ProjectStepNotes.ascx" />
     <Content Include="Web.config">

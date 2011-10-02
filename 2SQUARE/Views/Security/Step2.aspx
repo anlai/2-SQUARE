@@ -86,11 +86,7 @@
         </div>
     </div>
 
-    <div class="pstep-container">
-    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
-
-    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
-    </div>
+    <% Html.RenderPartial("_ProjectStepCollaboration", Model.ProjectStep); %>
 
 </asp:Content>
 
