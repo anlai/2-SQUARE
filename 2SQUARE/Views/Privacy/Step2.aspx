@@ -7,7 +7,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Privacy Step 2 - Identify Assets and Privacy Goals</h2>
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div><h2>Privacy Step 2 - Identify Assets and Privacy Goals</h2></div>
+
+        </div>    
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
 
     <div class="section-container">
 
@@ -97,6 +109,11 @@
 
     </div>
 
+    <div class="pstep-container">
+    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
+
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

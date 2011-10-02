@@ -16,6 +16,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), string.Format("{0} Home", Model.Project.Name), new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), string.Format("{0} Home", Model.Project.Name), new {@class="nav-button"}) %>
 
 </asp:Content>

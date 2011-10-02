@@ -8,35 +8,59 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Security Step 5 - Select Elicitation Technique</h2>
+    <div class="section-container">
 
-    <% if (Model.Project.SecurityElicitationType != null) { %>
-        <% Html.RenderPartial("Message", new MessageModel(message: string.Format("{0} is the selected elicitation technique.<br/><br/><strong>Rationale:</strong><br/>{1}", Model.Project.SecurityElicitationType.Name, Model.Project.SecurityElicitationRationale), encode: false)); %>
-    <% } %>
+        <div class="section-header">
+        
+            <div class="col1"><h2>Security Step 5 - Select Elicitation Technique</h2></div>
+            <div class="col2"></div>
 
-    <%foreach (var a in Model.ElicitationTypes) { %>
-    
-        <fieldset>
-            <legend><%: a.Name %></legend>
+        </div>    
 
-            <% if (a.Id != (Model.Project.SecurityAssessmentType != null ? Model.Project.SecurityAssessmentType.Id : -1)) { %>
-
-                <input type="button" class="select_elicitation button ui-corner-all ui-state-default" style="float:right; top: -.5em;" value="Save" data-id='<%: a.Id %>' data-name='<%: a.Name %>' />
-
+        <div class="section-contents">
+            <% if (Model.Project.SecurityElicitationType != null) { %>
+                <% Html.RenderPartial("Message", new MessageModel(message: string.Format("{0} is the selected elicitation technique.<br/><br/><strong>Rationale:</strong><br/>{1}", Model.Project.SecurityElicitationType.Name, Model.Project.SecurityElicitationRationale), encode: false)); %>
             <% } %>
+        </div>
 
-            <h3>Description:</h3>
-            <%: a.Description %>
+    </div>
 
-            <h3>Strengths:</h3>
-            <%: a.Strengths %>
+    <div class="section-container">
 
-            <h3>Weaknesses:</h3>
-            <%: a.Weaknesses %>
+        <div class="section-header">
+        
+            <div class="col1"><h3>Available Techniques</h3></div>
+            <div class="col2"></div>
 
-        </fieldset>
+        </div>    
 
-    <% } %>
+        <div class="section-contents">
+             <%foreach (var a in Model.ElicitationTypes) { %>
+    
+                <fieldset>
+                    <legend><%: a.Name %></legend>
+
+                    <% if (a.Id != (Model.Project.SecurityAssessmentType != null ? Model.Project.SecurityAssessmentType.Id : -1)) { %>
+
+                        <input type="button" class="select_elicitation button ui-corner-all ui-state-default" style="float:right; top: -.5em;" value="Save" data-id='<%: a.Id %>' data-name='<%: a.Name %>' />
+
+                    <% } %>
+
+                    <h3>Description:</h3>
+                    <%: a.Description %>
+
+                    <h3>Strengths:</h3>
+                    <%: a.Strengths %>
+
+                    <h3>Weaknesses:</h3>
+                    <%: a.Weaknesses %>
+
+                </fieldset>
+
+            <% } %>       
+        </div>
+
+    </div>
 
     <div id="dialog" title="Select Elicitation Technique">
         <% using (Html.BeginForm()) { %>
@@ -52,6 +76,12 @@
         <br /><br />
         <input type="submit" value="Save" class="button ui-corner-all ui-state-default" />
         <% } %>
+    </div>
+
+    <div class="pstep-container">
+    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
+
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
     </div>
 
 </asp:Content>
@@ -78,6 +108,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="nav-button"}) %>
 
 </asp:Content>

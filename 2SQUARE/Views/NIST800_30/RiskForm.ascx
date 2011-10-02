@@ -46,15 +46,15 @@
 
     <h3>Likelihood</h3>
 
-    <%= this.Select("likelihoodId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Likelihood Level--").Selected(Model.Risk.Likelihood.Id)%>
+    <%= this.Select("likelihoodId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Likelihood Level--").Selected(Model.Risk.Likelihood != null ? Model.Risk.Likelihood.Id : string.Empty)%>
 
     <h3>Impact</h3>
 
     <strong>Impact on Security Goal</strong>
-    <%= this.Select("impactId").Options(Model.Impacts, x => x.Id, x => x.Name).FirstOption("-1", "--Select an Impact--").Selected(Model.Risk.Impact.Id.ToString()) %>
+    <%= this.Select("impactId").Options(Model.Impacts, x => x.Id, x => x.Name).FirstOption("-1", "--Select an Impact--").Selected(Model.Risk.Impact != null ? Model.Risk.Impact.Id.ToString() : string.Empty) %>
     <br />
     <strong>Magnitude of Impact</strong>
-    <%= this.Select("magnitudeId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Magnitude of Impact--").Selected(Model.Risk.Magnitude.Id) %>
+    <%= this.Select("magnitudeId").Class("risk-level-calc").Options(Model.RiskLevels, x => x.Id, x => x.Name).FirstOption("--Select a Magnitude of Impact--").Selected(Model.Risk.Magnitude != null ? Model.Risk.Magnitude.Id : string.Empty) %>
 
     <h3>Risk Level</h3>
 

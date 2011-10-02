@@ -21,6 +21,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-    <%: Html.ActionLink<NIST800_30Controller>(a=>a.Index(Model.ProjectStep.Id,Model.Project.Id), "NIST 800-30 Home", new {@class="button ui-state-default"}) %>
+    <%: Html.ActionLink<NIST800_30Controller>(a=>a.Index(Model.ProjectStep.Id,Model.Project.Id), "NIST 800-30 Home", new {@class="nav-button"}) %>
 
 </asp:Content>

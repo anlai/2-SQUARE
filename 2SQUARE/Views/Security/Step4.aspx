@@ -7,28 +7,49 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Security Step 4 - Risk Assessment</h2>
+    <div class="section-container">
 
-    <table cellpadding="5px">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Source</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% foreach (var a in Model.AssessmentTypes) { %>
-                <tr class="definition-row">
-                    <td class="button-cell">
-                        <%: Html.ActionLink<SecurityController>(b=>b.SelectAssessmentType(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Select", new {@class="button ui-state-default ui-corner-all"}) %>
-                    </td>
-                    <td><%: a.Name %></td>
-                    <td><%: a.Source %></td>
-                </tr>
-            <%} %>
-        </tbody>
-    </table>
+        <div class="section-header">
+        
+            <div class="col1"><h2>Security Step 4 - Risk Assessment</h2></div>
+            <div class="col2"></div>
+
+        </div>    
+
+        <div class="section-contents">
+            <table cellpadding="5px">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% foreach (var a in Model.AssessmentTypes) { %>
+                        <tr class="definition-row">
+                            <td class="button-cell">
+                                <%: Html.ActionLink<SecurityController>(b=>b.SelectAssessmentType(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Select", new {@class="button "}) %>
+                            </td>
+                            <td><%: a.Name %></td>
+                            <td><%: a.Source %></td>
+                        </tr>
+                    <%} %>
+                </tbody>
+            </table>        
+        </div>
+
+    </div>
+
+    
+
+
+
+    <div class="pstep-container">
+    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
+
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
+    </div>
 
 </asp:Content>
 

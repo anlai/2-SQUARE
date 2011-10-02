@@ -17,7 +17,7 @@
             </li>
             <li><strong></strong>
                 <%:Html.SubmitButton("Save", "Save", new {@class = "button ui-corner-all ui-state-default"})%>
-                <%:Html.ActionLink("Cancel", "Index", new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button ui-state-default ui-corner-all"}) %>
+                <%:Html.ActionLink("Cancel", "Index", new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button"}) %>
             </li>
         </ul>
     <% } %>

@@ -7,44 +7,59 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>PRET Module</h2>
+    <div class="section-container">
 
-    <fieldset style="padding: 1em;">
+        <div class="section-header">
         
-        <legend>Actions</legend>
+            <div class="col1"><h2>PRET Module</h2></div>
+            <div class="col2"></div>
 
-        <%: Html.ActionLink<PRETController>(a=>a.Run(Model.ProjectStep.Id, Model.Project.Id), "Run PRET", new {@class="button ui-corner-all ui-state-default"}) %>
+        </div>    
 
-        <%: Html.ActionLink<GenericElicitationController>(a => a.Index(Model.ProjectStep.Id, Model.Project.Id), "Edit Requirements Manually", new { @class = "button ui-corner-all ui-state-default" })%>
-    </fieldset>
-
-    <fieldset style="padding: 1em;">
+        <div class="section-contents">
         
-        <legend>Requirements</legend>
+            <%: Html.ActionLink<PRETController>(a=>a.Run(Model.ProjectStep.Id, Model.Project.Id), "Run PRET", new {@class="button"}) %>
 
-        <table>
-            
-            <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Requirement</td>
-                </tr>
-            </thead>
+            <%: Html.ActionLink<GenericElicitationController>(a => a.Index(Model.ProjectStep.Id, Model.Project.Id), "Edit Requirements Manually", new { @class = "button" })%>            
 
-            <tbody>
-                <% foreach (var a in Model.Project.Requirements) { %>
+        </div>
+
+    </div>
+
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div class="col1"><h3>Requirements</h3></div>
+            <div class="col2"></div>
+
+        </div>    
+
+        <div class="section-contents">
+            <table>
             
+                <thead>
                     <tr>
-                        <td><%: a.RequirementId %></td>
-                        <td><%: a.RequirementText %></td>
+                        <td>Id</td>
+                        <td>Requirement</td>
                     </tr>
+                </thead>
 
-                <% } %>
-            </tbody>
-        </table>
+                <tbody>
+                    <% foreach (var a in Model.Project.Requirements) { %>
+            
+                        <tr>
+                            <td><%: a.RequirementId %></td>
+                            <td><%: a.RequirementText %></td>
+                        </tr>
 
-    </fieldset>
-    
+                    <% } %>
+                </tbody>
+            </table>        
+        </div>
+
+    </div>
+ 
 
 </asp:Content>
 
@@ -53,6 +68,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
 
-<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<ProjectController>(a=>a.Details(Model.Project.Id), Model.Project.Name + " Home", new {@class="nav-button"}) %>
 
 </asp:Content>

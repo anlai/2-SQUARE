@@ -40,30 +40,45 @@
     });
 </script>
 
+<div class="section-container">
 
-<h2><%: Model.ProjectStep.Step.SquareType.Name %> Step 8 - Prioritize Requirements</h2>
+    <div class="section-header">
+        
+        <div><h2><%: Model.ProjectStep.Step.SquareType.Name %> Step 8 - Prioritize Requirements</h2></div>
 
-<table id="requirements">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Requirement</th>
-            <th>Essential</th>
-            <th>Cateogry</th>
-            <th>Priority</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% foreach (var a in Model.Requirements.OrderBy(b=>b.Order)) { %>
-            <tr data-id='<%: a.Id %>'>
-                <td><%: a.RequirementId %></td>
-                <td><%: a.RequirementText %></td>
-                <td><%: a.Essential %></td>
-                <td><%: a.Category.Name %></td>
-                <td>
-                    <input type="text" class="priority" data-id="<%: a.Id %>" value="<%: a.Priority %>" />
-                </td>
-            </tr>
-        <% } %>
-    </tbody>
-</table>
+    </div>    
+
+    <div class="section-contents">
+        <table id="requirements">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Requirement</th>
+                    <th>Essential</th>
+                    <th>Cateogry</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% foreach (var a in Model.Requirements.OrderBy(b=>b.Order)) { %>
+                    <tr data-id='<%: a.Id %>'>
+                        <td><%: a.RequirementId %></td>
+                        <td><%: a.RequirementText %></td>
+                        <td><%: a.Essential %></td>
+                        <td><%: a.Category.Name %></td>
+                        <td>
+                            <input type="text" class="priority" data-id="<%: a.Id %>" value="<%: a.Priority %>" />
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>        
+    </div>
+
+</div>
+
+    <div class="pstep-container">
+    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
+
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
+    </div>

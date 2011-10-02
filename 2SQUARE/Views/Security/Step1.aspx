@@ -53,35 +53,10 @@
 
     </div>
 
-<%--    <% if (Model.ProjectManager || Model.Stakeholder || Model.RequirementsEngineer) { %>
-        <h3>Responsiblities</h3>
-    <% } %>
-
-    <% if (Model.ProjectManager) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a project manager.
-            </p>
-        </div>
-    <% } %>
-    <% if (Model.RequirementsEngineer) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a requirements engineer.
-            </p>
-        </div>
-    <% } %>    
-    <% if (Model.Stakeholder) { %>
-        <div class="responsibility-box ui-state-highlight">
-            <p>
-                This is your guidance as a stake holder.
-            </p>
-        </div>
-    <% } %>--%>
-
+    <div class="pstep-container">
     <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
 
     <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
-
+    </div>
 </asp:Content>
 

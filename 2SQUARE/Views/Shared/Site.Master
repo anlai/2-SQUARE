@@ -39,13 +39,13 @@
     <div id="nav">
         <div id="nav-container">
             
-            <div class="col1">
+            <div class="col1" style="width: 70%;">
                 <%: Html.ActionLink<ProjectController>(a=>a.Index(), "Home", new {@class="nav-button ui-corner-left"}) %>
                 <asp:ContentPlaceHolder runat="server" ID="NavContents"></asp:ContentPlaceHolder>
                 <%: Html.ActionLink<GuidanceController>(a=>a.Index(), "Square Guidance", new {@class="nav-button"}) %>
                 <%: Html.ActionLink<HomeController>(a=>a.About(), "About", new {@class="nav-button ui-corner-right"}) %>
             </div>
-            <div class="col2">
+            <div class="col2" style="width: 28%;">
                 <%: Page.User.Identity.Name %>
                 <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logoff", new {@class="ui-corner-all button ui-state-default"}) %>
             </div>

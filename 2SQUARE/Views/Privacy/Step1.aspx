@@ -14,7 +14,20 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Privacy Step 1 - Agree on Definitions</h2>
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div class="col1"><h2>Privacy Step 1 - Agree on Definitions</h2></div>
+            <div class="col2"></div>
+
+        </div>    
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
 
     <div class="section-container">
 

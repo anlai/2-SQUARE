@@ -16,7 +16,7 @@
             <input type='file' name='file' id='file' />
         </li>
         <li><strong></strong>
-            <%: Html.SubmitButton("Save", "Save", new {@class="button ui-corner-all ui-state-default"}) %>
-            <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button ui-corner-all ui-state-default"}) %>
+            <%: Html.SubmitButton("Save", "Save", new {@class="button"}) %>
+            <%: Html.ActionLink("Cancel", Model.ProjectStep.Step.Action, Model.ProjectStep.Step.Controller, new {id=Model.ProjectStep.Id, projectId=Model.ProjectStep.Project.Id}, new {@class="button "}) %>
         </li>
     </ul>

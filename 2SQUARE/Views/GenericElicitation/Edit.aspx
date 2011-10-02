@@ -17,5 +17,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
-<%: Html.ActionLink<GenericElicitationController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Generic Elicitation Home", new {@class="button ui-state-default"}) %>
+<%: Html.ActionLink<GenericElicitationController>(a=>a.Index(Model.ProjectStep.Id, Model.Project.Id), "Generic Elicitation Home", new {@class="nav-button"}) %>
 </asp:Content>

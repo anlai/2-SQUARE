@@ -7,7 +7,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Security Step 2 - Identify Security Goals</h2>
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div ><h2>Security Step 2 - Identify Security Goals</h2></div>
+
+        </div>    
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
 
     <div class="section-container">
 
@@ -72,6 +84,12 @@
                 </table>
             <% } %>
         </div>
+    </div>
+
+    <div class="pstep-container">
+    <% Html.RenderPartial("_ProjectStepNotes", Model.ProjectStep); %>
+
+    <% Html.RenderPartial("_ProjectStepFile", Model.ProjectStep); %>
     </div>
 
 </asp:Content>
