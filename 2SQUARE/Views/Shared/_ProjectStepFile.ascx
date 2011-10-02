@@ -58,6 +58,7 @@
     $(function () {
 
         $("#ps-file-dialog").dialog({
+                modal: true,
                 autoOpen: false,
                 width: 500,
                 buttons: {

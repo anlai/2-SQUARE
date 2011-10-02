@@ -51,6 +51,7 @@
     $(function () {
 
         $("#ps-note-dialog").dialog({
+            modal: true,
             autoOpen: false,
             buttons: {
                 Save: function () {
