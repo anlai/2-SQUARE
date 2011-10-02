@@ -651,6 +651,58 @@ namespace _2SQUARE
             var terms = new List<Term>();
             var defs = new List<Definition>();
 
+
+            var t1 = new Term() {Name = "access", SquareType = privacy, IsActive = true};
+            var t2 = new Term() {Name = "aggregation", SquareType = privacy, IsActive = true};
+            var t3 = new Term() {Name = "anonymity", SquareType = privacy, IsActive = true};
+            var t4 = new Term() {Name = "anonymous", SquareType = privacy, IsActive = true};
+            var t5 = new Term() {Name = "application of denial of service", SquareType = privacy, IsActive = true};
+            var t6 = new Term() {Name = "application modification", SquareType = privacy, IsActive = true};
+            var t7 = new Term() {Name = "appropriation", SquareType = privacy, IsActive = true};
+            var t8 = new Term() {Name = "authentication", SquareType = privacy, IsActive = true};
+            var t9 = new Term() {Name = "authorization", SquareType = privacy, IsActive = true};
+            var t10 = new Term() {Name = "blackmail", SquareType = privacy, IsActive = true};
+            var t11 = new Term() {Name = "client-side profiles", SquareType = privacy, IsActive = true};
+            var t12 = new Term() {Name = "contact", SquareType = privacy, IsActive = true};
+            var t13 = new Term() {Name = "confidentiality", SquareType = privacy, IsActive = true};
+            var t14 = new Term() {Name = "cookie", SquareType = privacy, IsActive = true};
+            var t15 = new Term() {Name = "credential theft", SquareType = privacy, IsActive = true};
+            var t16 = new Term() {Name = "data breach", SquareType = privacy, IsActive = true};
+            var t17 = new Term() {Name = "data controller", SquareType = privacy, IsActive = true};
+            var t18 = new Term() {Name = "data exposure", SquareType = privacy, IsActive = true};
+            var t19 = new Term() {Name = "data privacy", SquareType = privacy, IsActive = true};
+            var t20 = new Term() {Name = "data quality", SquareType = privacy, IsActive = true};
+            var t21 = new Term() {Name = "disclosure", SquareType = privacy, IsActive = true};
+            var t22 = new Term() {Name = "distortion", SquareType = privacy, IsActive = true};
+            var t23 = new Term() {Name = "exclusion", SquareType = privacy, IsActive = true};
+            var t24 = new Term() {Name = "exposure", SquareType = privacy, IsActive = true};
+            var t25 = new Term() { Name = "fair information practice", SquareType = privacy, IsActive = true };
+            var t26 = new Term() {Name = "functional manipulation", SquareType = privacy, IsActive = true};
+            var t27 = new Term() {Name = "identification", SquareType = privacy, IsActive = true};
+            var t28 = new Term() {Name = "identity fraud", SquareType = privacy, IsActive = true};
+            var t29 = new Term() {Name = "increased accessibility", SquareType = privacy, IsActive = true};
+            var t30 = new Term() {Name = "information aggregation", SquareType = privacy, IsActive = true};
+            var t31 = new Term() {Name = "information collection", SquareType = privacy, IsActive = true};
+            var t32 = new Term() {Name = "information monitoring", SquareType = privacy, IsActive = true};
+            var t33 = new Term() {Name = "information personaliza-tion", SquareType = privacy, IsActive = true};
+            var t34 = new Term() {Name = "information storage", SquareType = privacy, IsActive = true};
+            var t35 = new Term() {Name = "information transfer", SquareType = privacy, IsActive = true};
+            var t36 = new Term() {Name = "insecurity", SquareType = privacy, IsActive = true};
+            var t37 = new Term() {Name = "interrogation", SquareType = privacy, IsActive = true};
+            var t38 = new Term() {Name = "network credential theft", SquareType = privacy, IsActive = true};
+            var t39 = new Term() {Name = "network denial of service", SquareType = privacy, IsActive = true};
+            var t40 = new Term() {Name = "network exposure", SquareType = privacy, IsActive = true};
+            var t41 = new Term() { Name = "openness", SquareType = privacy, IsActive = true };
+            var t42 = new Term() { Name = "privacy", SquareType = privacy, IsActive = true };
+            var t43 = new Term() { Name = "privacy act", SquareType = privacy, IsActive = true };
+            var t44 = new Term() { Name = "privacy policy", SquareType = privacy, IsActive = true };
+            var t45 = new Term() { Name = "privacy protection", SquareType = privacy, IsActive = true };
+            var t46 = new Term() { Name = "right to privacy", SquareType = privacy, IsActive = true };
+            var t47 = new Term() { Name = "pseudonymity", SquareType = privacy, IsActive = true };
+            var t48 = new Term() { Name = "pseudonymous profile", SquareType = privacy, IsActive = true };
+            var t49 = new Term() { Name = "secondary use", SquareType = privacy, IsActive = true };
+            var t50 = new Term() { Name = "surveillance", SquareType = privacy, IsActive = true };
+
             foreach (var t in terms)
             {
                 context.Terms.Add(t);
