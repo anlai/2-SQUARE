@@ -11,8 +11,6 @@ namespace _2SQUARE.Core.Domain
 
         [Required]
         public string Description { get; set; }
-        [StringLength(200)]
-        [Required]
         public string Source { get; set; }
         public bool IsActive { get; set; }
         
