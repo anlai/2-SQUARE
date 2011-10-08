@@ -49,4 +49,6 @@
 
     </div>
 
+    <% Html.RenderPartial("_ProjectStepCollaboration", Model.ProjectStep); %>
+
 </asp:Content>
