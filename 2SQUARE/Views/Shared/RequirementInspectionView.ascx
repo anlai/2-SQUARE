@@ -18,6 +18,7 @@
                     <th>Id</th>
                     <th>Requirement</th>
                     <th>Category</th>
+                    <th>Priority</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                         <td><%: a.RequirementId %></td>
                         <td><%: a.RequirementText %></td>
                         <td><%: a.Category.Name %></td>
+                        <td><%: a.Priority %></td>
                     </tr>
                     <% if (a.RequirementDefects.Any()) { %>
                         <% foreach (var b in a.RequirementDefects) { %>
