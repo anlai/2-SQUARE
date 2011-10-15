@@ -809,15 +809,13 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Files
-        public ProjectStepFile AddFileToProjectStep(int id, string note, HttpPostedFileBase file, string userId)
+        public ProjectStepFile AddFileToProjectStep(int id, string note, string filename, string contenttype, byte[] contents, string userId)
         {
             using (var db = new SquareContext())
             {
                 var projectStep = db.ProjectSteps.Where(a => a.Id == id).FirstOrDefault();
-                var psFile = new ProjectStepFile() { Notes = note, ContentType = file.ContentType, FileName = file.FileName, ProjectStep = projectStep};
-
-                psFile.Contents = new byte[file.ContentLength];
-                file.InputStream.Read(psFile.Contents, 0, file.ContentLength);
+                var psFile = new ProjectStepFile() { Notes = note, ContentType = contenttype, FileName = filename, ProjectStep = projectStep};
+                psFile.Contents = contents;
 
                 db.ProjectStepFiles.Add(psFile);
                 db.SaveChanges();

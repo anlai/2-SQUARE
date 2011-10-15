@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Web;
@@ -16,14 +17,29 @@ namespace _2SQUARE.Controllers
             _projectService = projectService;
         }
 
-        public JsonResult SaveFile(int id, string notes, HttpPostedFileBase filedata)
+        [HttpPost]
+        public JsonResult SaveFile(int id)//, string notes)//, HttpPostedFileBase filedata)
         {
+            // test
+            
+
             try
             {
-                // call the save if it hasn't thrown an exception yet
-                var psfile = _projectService.AddFileToProjectStep(id, notes, filedata, CurrentUserId);
+                var request = ControllerContext.HttpContext.Request;
+                var notes = request["notes"];
+                var qqfile = request["qqfile"];
+                var contentType = request.Headers["X-File-Type"];
 
-                return Json(new {id=psfile.Id, notes=psfile.Notes, dateCreated=psfile.DateCreated.ToString("d"), fileName=psfile.FileName});
+                byte[] contents;
+
+                using (var reader = new BinaryReader(request.InputStream))
+                {
+                    contents = reader.ReadBytes((int)request.InputStream.Length);
+                }
+
+                var psfile = _projectService.AddFileToProjectStep(id, notes, qqfile, contentType, contents, CurrentUserId);
+
+                return Json(new {id=psfile.Id, notes=psfile.Notes, dateCreated=psfile.DateCreated.ToString("d"), fileName=psfile.FileName, success = true});
             }
             catch (Exception ex)
             {

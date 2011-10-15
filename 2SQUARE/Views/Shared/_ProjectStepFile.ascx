@@ -41,14 +41,19 @@
 </div>
 
 <div id="ps-file-dialog" title="Upload Project Step File">
-    <form action="<%: Url.Action("SaveFile", "ProjectStepFile") %>" method="POST" enctype="multipart/form-data">
+<%--    <form action="<%: Url.Action("SaveFile", "ProjectStepFile") %>" method="POST" enctype="multipart/form-data">
     Notes:<br/>
     <textarea id="ps-file-notes"></textarea><br/>
     <input type="file" id="ps-file" name="file" />
-    </form>
+    </form>--%>
+
+    <textarea id="ps-file-notes"></textarea>
+
+    <div id="ps-file-uploader"></div>
+
 </div>
 
-<link href="<%: Url.Content("~/Scripts/uploadify-v2.1.4/uploadify.css") %>" type="text/css" rel="stylesheet"/>
+<%--<link href="<%: Url.Content("~/Scripts/uploadify-v2.1.4/uploadify.css") %>" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="<%: Url.Content("~/Scripts/uploadify-v2.1.4/swfobject.js") %>"></script>
 <script type="text/javascript" src="<%: Url.Content("~/Scripts/uploadify-v2.1.4/jquery.uploadify.v2.1.4.min.js") %>"></script>
 <script type="text/javascript" src="https://raw.github.com/douglascrockford/JSON-js/master/json_parse.js"></script>
@@ -82,6 +87,9 @@
             'auto': false,
             'multi' : false,
             onError: function (a, b, c, d) {
+
+                debugger;
+                
                  if (d.status == 404)  
                    alert("Could not find upload script. Use a path relative to: "+"<?= getcwd() ?>");  
                  else if (d.type === "HTTP")  
@@ -118,6 +126,70 @@
                 
             });
             
+        });
+
+    });
+
+</script>--%>
+
+<link href="<%: Url.Content("~/Content/fileuploader.css") %>" type="text/css" rel="stylesheet"/>
+<%--http://valums.com/ajax-upload/--%>
+<script type="text/javascript" src="<%: Url.Content("~/Scripts/fileuploader.js") %>"></script>
+<script type="text/javascript" src="https://raw.github.com/douglascrockford/JSON-js/master/json_parse.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#ps-file-dialog").dialog({
+            modal: true,
+            autoOpen: false,
+            width: 500,
+            buttons: {
+                "Close": function () { $(this).dialog("close"); }
+            }
+        });
+
+        $("#ps-add-file").click(function () { $("#ps-file-notes").val(""); $("#ps-file-dialog").dialog("open"); });
+
+        var uploader = new qq.FileUploader({
+            element: $("#ps-file-uploader")[0],
+            action: '<%: Url.Action("SaveFile", "ProjectStepFile", new {id=Model.Id}) %>',
+            //params: { notes: $("#ps-file-notes").val() },
+            onSubmit: function (id, fileName) {
+
+                var note = $("#ps-file-notes").val();
+                uploader.setParams({ notes:note });
+
+            },
+            onComplete: function (id, fileName, responseJSON) {
+                $("#ps-file-dialog").dialog("close");
+
+                var parsed = responseJSON;
+                var file = [{ id: parsed.id, fileName: parsed.fileName, notes: parsed.notes, dateCreated: parsed.dateCreated}];
+
+                $("#psfile-template").tmpl(file).appendTo("#ps-files tbody");
+                $("#ps-file-dialog").dialog("close");
+
+                $(".button").button();
+
+            }
+        });
+
+        $(".delete-file").live("click", function () {
+
+            var $that = $(this);
+
+            var url = '<%: Url.Action("DeleteFile", "ProjectStepFile") %>';
+            $.post(url, { id: '<%: Model.Id %>', fileId: $that.data("id") }, function (result) {
+
+                if (result == true) {
+                    $that.parents("tr").remove();
+                }
+
+
+            });
+
         });
 
     });

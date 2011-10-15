@@ -115,7 +115,7 @@ namespace _2SQUARE.Services
         #endregion
 
         #region Project Step File
-        ProjectStepFile AddFileToProjectStep(int id, string note, HttpPostedFileBase file, string userId);
+        ProjectStepFile AddFileToProjectStep(int id, string note, string filename, string contenttype, byte[] contents, string userId);
         #endregion
 
         #region Step Status Methods

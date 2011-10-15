@@ -223,6 +223,8 @@
     <Compile Include="SQUAREContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fileuploader.css" />
+    <Content Include="Content\loading.gif" />
     <Content Include="Content\PageStyles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -243,6 +245,7 @@
     <Content Include="Images\branding.jpg" />
     <Content Include="Images\Logo.PNG" />
     <Content Include="Images\title_bar_bg.png" />
+    <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.min.js" />
     <Content Include="Scripts\jquery.tablednd_0_5.js" />
