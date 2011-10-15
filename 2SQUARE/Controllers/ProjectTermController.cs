@@ -58,8 +58,10 @@ namespace _2SQUARE.Controllers
                 Message = "Successfully added term to project.";    
             }
 
-            var viewModel = ProjectTermPredefinedTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
-            return View(viewModel);            
+            //var viewModel = ProjectTermPredefinedTermsViewModel.Create(Db, _projectService, id, projectId, CurrentUserId);
+            //return View(viewModel);            
+
+            return this.RedirectToAction(a => a.ViewPredefinedTerms(id, projectId));
         }
 
         /// <summary>

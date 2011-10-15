@@ -635,6 +635,14 @@ namespace _2SQUARE
             var t88 = new Term() { Name = "worm", SquareType = security, IsActive = true };
             defs.Add(new Definition() { Description = "A self-replicating virus that does not alter files but resides in active memory and duplicates itself. Worms use parts of an operating system that are automatic and usu- ally invisible to the user. It is common for worms to be noticed only when their un- controlled replication consumes system resources, slowing or halting other tasks [TechTarget 05].", Source = "http://watis.techtarget.com", IsActive = true, Term = t88 });
 
+            // strip out the [reference], since data was taken from case study
+            foreach (var def in defs)
+            {
+                var index = def.Description.IndexOf('[');
+
+                def.Description = def.Description.Substring(0, index < 0 ? def.Description.Length : index);
+            }
+
             foreach (var t in terms)
             {
                 context.Terms.Add(t);

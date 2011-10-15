@@ -9,11 +9,13 @@
             </tr>
         </thead>
         <tbody>
-            <%foreach (var a in Model.PredefinedTerms) { %>
+            <% foreach (var a in Model.PredefinedTerms) { %>
                 <tr class="term">
                     <td colspan="3"><%: a.Name %></td>
                 </tr>
-                <% foreach (var b in a.Definitions) { %>
+                <% foreach (var b in a.Definitions) {
+                       
+                        %>
                     <tr class="definition-row">
                         <% using (Html.BeginForm()) { %>
 

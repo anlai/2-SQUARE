@@ -15,19 +15,6 @@ namespace _2SQUARE
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        //public static void RegisterRoutes(RouteCollection routes)
-        //{
-        //    routes.Clear();
-
-        //    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-        //    routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
-
-        //    MvcRoute.MappUrl("{controller}/{action}/{id}")
-        //        .WithDefaults(new { controller = "Home", action = "Index", id = "" })
-        //        .AddWithName("Default", routes);
-
-        //}
-
         protected void Application_Start()
         {
 
@@ -36,8 +23,8 @@ namespace _2SQUARE
             IWindsorContainer container = InitializeServiceLocator();
 
 #if DEBUG
-            Database.SetInitializer(new SquareInitializer());
-            //Database.SetInitializer(new SquareInitializerDropCreate());
+            //Database.SetInitializer(new SquareInitializer());
+            Database.SetInitializer(new SquareInitializerDropCreate());
 #else
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
 #endif
