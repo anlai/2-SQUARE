@@ -81,10 +81,9 @@ namespace _2SQUARE.Controllers
             // creating new goal
             if (goal == null)
             {
-                var goalType = Db.GoalTypes.Where(a => a.Id == GoalTypes.Business).Single();
-                goal = new Goal(){Description = businessGoal, GoalType = goalType};
+                goal = new Goal(){Description = businessGoal};
 
-                _projectService.SaveGoal(id, goal);
+                _projectService.SaveGoal(id, goal, goalTypeId: GoalTypes.Business);
             }
             // updating the existing goal
             else
