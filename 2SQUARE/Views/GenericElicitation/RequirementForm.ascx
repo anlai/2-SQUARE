@@ -15,6 +15,20 @@
             <li><strong>Requirement:</strong>
                 <%:Html.TextAreaFor(a => a.Requirement.RequirementText)%>
             </li>
+
+            <li><strong>Goal:</strong>
+                <%: Html.TextAreaFor(a=>a.Requirement.Goal) %>
+            </li>
+            <li><strong>Recommendation:</strong>
+                <%: Html.TextAreaFor(a => a.Requirement.Recommendation)%>
+            </li>
+            <li><strong>Implementation:</strong>
+                <%: Html.TextAreaFor(a => a.Requirement.Implementation)%>
+            </li>
+            <li><strong>Source:</strong>
+                <%: Html.TextBoxFor(a => a.Requirement.Source) %>
+            </li>
+
             <li><strong></strong>
                 <%:Html.SubmitButton("Save", "Save", new {@class = "button ui-corner-all ui-state-default"})%>
                 <%:Html.ActionLink("Cancel", "Index", new {id=Model.ProjectStep.Id, projectId=Model.Project.Id}, new {@class="button"}) %>

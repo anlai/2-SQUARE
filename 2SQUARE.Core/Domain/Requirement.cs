@@ -13,15 +13,21 @@ namespace _2SQUARE.Core.Domain
             RequirementDefects = new List<RequirementDefect>();
         }
 
-        [StringLength(100)]
         [Required]
         public string Name { get; set; }
         [Required]
         public string RequirementText { get; set; }
+
+        public string Goal { get; set; }
+        public string Recommendation { get; set; }
+        public string Implementation { get; set; }
+
+        public string Source { get; set; }
+
         /// <summary>
         /// Used for user to define a specific id if they want
         /// </summary>
-        [StringLength(10)]
+        [Required]
         public string RequirementId { get; set; }
 
         public int? Priority { get; set; }

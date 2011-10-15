@@ -144,6 +144,7 @@ table thead { background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50
 table td { padding-top: 10px; padding-bottom: 10px; }
 table th { text-align: left; }
 table tr th:first-child { width: 154px;}
+table td, table th { padding: 5px;}
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
@@ -226,3 +227,4 @@ Sections
 
 .section-contents {}
 
+.ui-button-text-only .ui-button-text { font-size: .9em;padding: .4em;}

@@ -142,6 +142,7 @@
     <Compile Include="Controllers\ArtifactController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GenericRiskAssessmentController.cs" />
     <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\GuidanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

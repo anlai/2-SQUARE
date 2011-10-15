@@ -369,6 +369,7 @@ namespace _2SQUARE
             var et15 = new ElicitationType() { Name = "Quality Function Deployment", SquareType = privacy, Controller = "GenericElicitation", Description = "" };
             var et16 = new ElicitationType() { Name = "Feature-Oriented Domain Analysis", SquareType = privacy, Controller = "GenericElicitation", Description = "" };
             var et17 = new ElicitationType() { Name = "Privacy Requirements Elicitation Technique (PRET)", SquareType = privacy, Controller = "PRET", Description = "" };
+            var et18 = new ElicitationType() { Name = "Not Listed", SquareType = security, Controller = "GenericElicitation", Description = "Use for elicitation types not listed." };
 
             context.ElicitationTypes.Add(et1);
             context.ElicitationTypes.Add(et2);
@@ -387,6 +388,7 @@ namespace _2SQUARE
             context.ElicitationTypes.Add(et15);
             context.ElicitationTypes.Add(et16);
             context.ElicitationTypes.Add(et17);
+            context.ElicitationTypes.Add(et18);
         } 
         
         private void AddGoalTypes(SquareContext context, SquareType security, SquareType privacy)
@@ -1229,6 +1231,7 @@ namespace _2SQUARE
             var et15 = new ElicitationType() { Name = "Quality Function Deployment", SquareType = privacy, Controller = "GenericElicitation", Description = "" };
             var et16 = new ElicitationType() { Name = "Feature-Oriented Domain Analysis", SquareType = privacy, Controller = "GenericElicitation", Description = "" };
             var et17 = new ElicitationType() { Name = "Privacy Requirements Elicitation Technique (PRET)", SquareType = privacy, Controller = "PRET", Description = "" };
+            var et18 = new ElicitationType() { Name = "Not Listed", SquareType = security, Controller = "GenericElicitation", Description = "Use for elicitation types not listed." };
 
             context.ElicitationTypes.Add(et1);
             context.ElicitationTypes.Add(et2);
@@ -1247,6 +1250,7 @@ namespace _2SQUARE
             context.ElicitationTypes.Add(et15);
             context.ElicitationTypes.Add(et16);
             context.ElicitationTypes.Add(et17);
+            context.ElicitationTypes.Add(et18);
         }
 
         private void AddGoalTypes(SquareContext context, SquareType security, SquareType privacy)
