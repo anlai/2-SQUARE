@@ -611,9 +611,6 @@ namespace _2SQUARE.Services
                     existingReq.RequirementId = requirement.RequirementId;
                     existingReq.Name = requirement.Name;
                     existingReq.RequirementText = requirement.RequirementText;
-                    existingReq.Goal = requirement.Goal;
-                    existingReq.Recommendation = requirement.Recommendation;
-                    existingReq.Implementation = requirement.Implementation;
                     existingReq.Source = requirement.Source;
 
                     existingReq.Project = project;

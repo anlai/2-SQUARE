@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% foreach (var a in Model.CategorizedRequirements) { %>
+                    <% foreach (var a in Model.CategorizedRequirements.OrderBy(a=>a.RequirementId)) { %>
                         <tr>
                             <td style="width: 105px;">
                                 <%: Html.ActionLink<RequirementController>(b=>b.Categorize(Model.ProjectStep.Id, Model.Project.Id, a.Id), "Categorize", new {@class="button ui-state-default ui-corner-all"}) %>

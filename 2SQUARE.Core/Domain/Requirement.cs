@@ -18,10 +18,6 @@ namespace _2SQUARE.Core.Domain
         [Required]
         public string RequirementText { get; set; }
 
-        public string Goal { get; set; }
-        public string Recommendation { get; set; }
-        public string Implementation { get; set; }
-
         public string Source { get; set; }
 
         /// <summary>

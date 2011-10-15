@@ -16,15 +16,6 @@
                 <%:Html.TextAreaFor(a => a.Requirement.RequirementText)%>
             </li>
 
-            <li><strong>Goal:</strong>
-                <%: Html.TextAreaFor(a=>a.Requirement.Goal) %>
-            </li>
-            <li><strong>Recommendation:</strong>
-                <%: Html.TextAreaFor(a => a.Requirement.Recommendation)%>
-            </li>
-            <li><strong>Implementation:</strong>
-                <%: Html.TextAreaFor(a => a.Requirement.Implementation)%>
-            </li>
             <li><strong>Source:</strong>
                 <%: Html.TextBoxFor(a => a.Requirement.Source) %>
             </li>
