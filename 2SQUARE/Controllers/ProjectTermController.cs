@@ -171,8 +171,8 @@ namespace _2SQUARE.Controllers
         [HttpPost]
         public RedirectToRouteResult RemoveTerm(int id, int projectStepId)
         {
-            var step = Db.ProjectSteps.Where(a => a.Id == projectStepId).SingleOrDefault();
-            var projectTerm = Db.ProjectTerms.Where(a => a.Id == id).SingleOrDefault();
+            var step = Db.ProjectSteps.Include("Project").Include("Step").Where(a => a.Id == projectStepId).SingleOrDefault();
+            var projectTerm = Db.ProjectTerms.Include("Project").Where(a => a.Id == id).SingleOrDefault();
             var term = projectTerm.Term;
 
             if (step == null || projectTerm == null)
