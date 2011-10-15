@@ -2,7 +2,7 @@
 
 <div id="file-trigger" class="ui-widget-header">Project Step Files</div>
 
-<div id="file-dialog" tite="Project Step Files">
+<div id="file-dialog" title="Project Step Files">
 
     <% Html.RenderPartial("_ProjectStepFile"); %>
 
