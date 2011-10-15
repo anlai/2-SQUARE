@@ -99,28 +99,6 @@ body
     /*height: 100px;*/
 }
 
-/*
-.button
-{
-    cursor: pointer;
-    padding: 0.4em 1em;
-    margin-right: 0.1em;
-    overflow:visible;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid #D3D3D3;
-    color: #555555;
-}
-
-.button:hover
-{
-    background:url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #DADADA;
-    border:1px solid #999999;
-    color:#212121;
-    font-weight:normal;
-}
-*/
 .shadow
 {
     -moz-box-shadow: 3px 3px 4px #000;
@@ -134,20 +112,6 @@ body
 
 a {text-decoration: none;}
 
-/*
-h2
-{
-    border-bottom: 1px solid lightgray;
-    padding-bottom: .5em;
-}
-
-
-h3 
-{
-    border-bottom: 1px solid lightgray;
-    padding-bottom: .5em;
-}
-*/
 h4
 {
     border-bottom: 1px solid lightgray;
@@ -163,6 +127,7 @@ fieldset { border: 1px solid lightgray; }
     padding: 10px 0px 10px;
 }
 
+/* form */
 .entry-form{ list-style: none; }
 .entry-form li { margin: 7px;}
 .entry-form li strong 
@@ -170,12 +135,15 @@ fieldset { border: 1px solid lightgray; }
     display: inline-block;
     width: 150px;
 }
+.entry-form input[type='text'], .entry-form textarea, .entry-form select { width: 400px;}
+.entry-form textarea { height: 120px;}
 
 /* Controls */
 table { border-spacing: 0px; width: 100%;}
 table thead { background: url(../Images/title_bar_bg.png) repeat-x scroll 50% 50% #CCCCCC; }
 table td { padding-top: 10px; padding-bottom: 10px; }
 table th { text-align: left; }
+table tr th:first-child { width: 154px;}
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/

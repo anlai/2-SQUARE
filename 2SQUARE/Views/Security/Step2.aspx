@@ -67,6 +67,7 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Name</th>
                             <th>Security Goal</th>
                         </tr>
                     </thead>
@@ -77,6 +78,7 @@
                                     <%: Html.ActionLink<GoalController>(b=>b.Edit(Model.ProjectStep.Id, a.Id), "Edit", new {@class="button ui-state-default ui-corner-all"}) %>
                                     <%: Html.ActionLink<GoalController>(b=>b.Delete(Model.ProjectStep.Id, a.Id), "Delete", new {@class="button ui-state-default ui-corner-all"}) %>
                                 </td>
+                                <td><%: a.Name %></td>
                                 <td style="width: 700px;"><%: a.Description %></td>
                             </tr>
                         <% } %>

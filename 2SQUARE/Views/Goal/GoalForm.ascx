@@ -8,7 +8,9 @@
 <%: Html.ValidationSummary() %>
 
 <ul class="entry-form">
-        
+    <li><strong>Name:</strong>
+        <%: Html.TextBoxFor(a=>a.Goal.Name) %>
+    </li>
     <li><strong>Goal:</strong>
         <%: Html.TextAreaFor(a=>a.Goal.Description) %>
     </li>

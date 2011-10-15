@@ -5,6 +5,9 @@ namespace _2SQUARE.Core.Domain
     public class Goal : DomainObject
     {
         [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
 
         [Required]

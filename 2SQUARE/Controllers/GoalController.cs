@@ -81,7 +81,7 @@ namespace _2SQUARE.Controllers
             // creating new goal
             if (goal == null)
             {
-                goal = new Goal(){Description = businessGoal};
+                goal = new Goal(){Name="Business", Description = businessGoal};
 
                 _projectService.SaveGoal(id, goal, goalTypeId: GoalTypes.Business);
             }

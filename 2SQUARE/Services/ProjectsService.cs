@@ -371,12 +371,14 @@ namespace _2SQUARE.Services
                     var goalToSave = db.Goals.Include("SquareType").Include("Project").Include("GoalType")
                                    .Where(a => a.Id == goalId.Value).Single();
 
+                    goalToSave.Name = goal.Name;
                     goalToSave.Description = goal.Description;
                     goalToSave.GoalType = goalType;
                     goal = goalToSave;
                 }
                 else
                 {
+                    goal.Name = goal.Name;
                     goal.Description = goal.Description;
                     goal.SquareType = projectStep.Step.SquareType;
                     goal.Project = projectStep.Project;
