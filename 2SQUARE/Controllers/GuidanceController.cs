@@ -13,81 +13,92 @@ namespace _2SQUARE.Controllers
             return View();
         }
 
-        #region Security        
+        #region Security       
+
+        public ActionResult Security()
+        {
+            return View();
+        }
+
         public ActionResult SecurityStep1()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep2()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep3()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep4()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep5()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep6()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep7()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep8()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult SecurityStep9()
         {
-            throw new NotImplementedException();
+            return View();
         }
         #endregion
 
         #region Privacy
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
         public ActionResult PrivacyStep1()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep2()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep3()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep4()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep5()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep6()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep7()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep8()
         {
-            throw new NotImplementedException();
+            return View();
         }
         public ActionResult PrivacyStep9()
         {
-            throw new NotImplementedException();
+            return View();
         }
         #endregion
     }
