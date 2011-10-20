@@ -24,6 +24,24 @@
 
     </div>
 
+    <div class="section-container">
+    
+        <div class="section-header"><h3>Responsibilities</h3></div>
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
+
+    <div class="section-container">
+    
+        <div class="section-header"><h3>Exit Criteria</h3></div>
+
+        <div class="section-contents"></div>
+
+    </div>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
