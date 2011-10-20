@@ -70,6 +70,41 @@
 
         <div class="section-contents">
         
+            <h3>Requirements Engineering Team</h3>
+
+            <ol>
+                <li>
+                    Facilitate the brainstorm session by the stakeholders, emphasizing the importance of creating a single business goal, followed by several security goals that support it.
+                </li> 
+                <li>
+                    Review the stakeholders’ business and security goals, providing any feedback on scope, level of detail, and relevance to the business goal of the project.
+                </li>
+                <li>
+                    Document and share the finalized business goal and corresponding security goals.
+                </li>
+            </ol>
+
+            <h3>Stakeholders</h3>
+
+            <ol>
+                <li>
+                    Identify a single business goal for the project. This goal should be stated in one sentence,
+                    such as “The system shall provide the means to effectively manage company resources
+                    in a disaster situation.”
+                </li>
+                <li>
+                    Brainstorm and create approximately half a dozen security goals that are in clear support
+                    of the business goal. For example, “The system shall maintain high availability, even in
+                    the face of public utility failures.”                
+                </li>
+                <li>
+                    Prioritize the security goals.  
+                </li>
+                <li>
+                    Provide the business goal and security goals to the requirements engineering team for
+                    review, and edit the goals as deemed necessary by the team.
+                </li>
+            </ol>
         </div>
 
     </div>
@@ -78,7 +113,14 @@
     
         <div class="section-header"><h3>Exit Criteria</h3></div>
 
-        <div class="section-contents"></div>
+        <div class="section-contents">
+        
+            <p>
+                A single business goal for the project and several prioritized security goals that support it
+                have been established.
+            </p>
+
+        </div>
 
     </div>
 
