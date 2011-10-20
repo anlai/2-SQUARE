@@ -42,11 +42,6 @@
                 
                         <a href="<%: Url.Action(b.Step.Action, b.Step.Controller, new {id=b.Id, projectId=b.Project.Id}) %>">
 
-<%--                            <span class="button" style="width: 270px; margin-top: .5em; text-align: left;">
-                                <span class="icon ui-icon ui-icon-circle-minus" style="display: inline-block;"></span>
-                                <%: b.Step.Name %>
-                            </span>--%>
-
                             <% if (!b.DateStarted.HasValue) { %>
                                 <span class="button pending" style="width: 270px; margin-top: .5em; text-align: left;">
                                 <span class="icon ui-icon ui-icon-circle-minus" style="display: inline-block;"></span>
@@ -72,6 +67,8 @@
         </div>
 
     </div>
+
+    <%: Html.ActionLink("Get Report", "GenerateReport", "Report", new {id=Model.Project.Id}, new {})%>
 
 </asp:Content>
 

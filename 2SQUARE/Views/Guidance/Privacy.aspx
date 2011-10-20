@@ -11,7 +11,7 @@
     <ol>
         <li><%: Html.ActionLink("Agree on Definitions", "PrivacyStep1") %></li>
         <li><%: Html.ActionLink("Identify assets and privacy goals", "PrivacyStep2") %></li>
-        <li><%: Html.ActionLink("Develop Artifacts", "PrivacyStep3") %></li>
+        <li><%: Html.ActionLink("Collect Artifacts", "PrivacyStep3") %></li>
         <li><%: Html.ActionLink("Risk Assessment", "PrivacyStep4") %></li>
         <li><%: Html.ActionLink("Select Elicitation Technique", "PrivacyStep5") %></li>
         <li><%: Html.ActionLink("Elicit Privacy Requirements", "PrivacyStep6") %></li>

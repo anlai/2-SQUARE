@@ -57,6 +57,12 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\bin\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra">
+      <HintPath>..\bin\itextsharp.xtra.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -157,6 +163,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTermController.cs" />
     <Compile Include="Controllers\GenericElicitationController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RequirementController.cs" />
     <Compile Include="Controllers\RequirementDefectController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
