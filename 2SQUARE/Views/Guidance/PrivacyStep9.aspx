@@ -6,7 +6,23 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>PrivacyStep9</h2>
+    <div class="section-container">
+
+        <div class="section-header">
+        
+            <div class="col1">
+                <h2>Security Step 9 - Inspect Requirements</h2>
+            </div>
+            <div class="col2">
+            </div>
+
+        </div>    
+
+        <div class="section-contents">
+        
+        </div>
+
+    </div>
 
 </asp:Content>
 
@@ -14,4 +30,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
+<a href="#" onClick="history.go(-1)" class="nav-button">Back</a> 
 </asp:Content>

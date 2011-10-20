@@ -29,4 +29,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="NavContents" runat="server">
+    <a href="#" onClick="history.go(-1)" class="nav-button">Back</a> 
 </asp:Content>
