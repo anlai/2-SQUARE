@@ -40,7 +40,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
 
@@ -59,7 +59,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
 
@@ -94,7 +94,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
 
@@ -116,7 +116,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
 
@@ -151,7 +151,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
 
@@ -174,7 +174,7 @@ namespace _2SQUARE.Controllers
             }
             catch (SecurityException)
             {
-                return this.RedirectToAction<ErrorController>(a => a.Security(string.Format(Messages.NoAccess, "project")));
+                return this.RedirectToAction<ErrorController>(a => a.NoAccessToStep());
             }
         }
     }

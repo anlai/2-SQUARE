@@ -22,15 +22,50 @@ namespace _2SQUARE.Services
         /// </summary>
         /// <param name="id">Project Id</param>
         /// <param name="login"></param>
+        /// <param name="projectStepId">Project Step Id to also check user's permissions to</param>
         /// <returns></returns>
-        public bool HasAccess(int id, string login)
+        public bool HasAccess(int id, string login, int? projectStepId = null)
         {
             Check.Require(!string.IsNullOrWhiteSpace(login), "login is required.");
+
+            if (projectStepId.HasValue) return HasStepAccess(projectStepId.Value, login);
 
             using (var db = new SquareContext())
             {
                 return db.ProjectWorkers.Where(a => a.Project.Id == id && a.User.Username.ToLower() == login.ToLower()).Any();
             }
+        }
+
+        /// <summary>
+        /// Determine's a person's access to the step by their role
+        /// </summary>
+        /// <param name="projectStepId"></param>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public bool HasStepAccess(int projectStepId, string login)
+        {
+            using (var db = new SquareContext())
+            {
+                var projectStep = db.ProjectSteps.Include("Project").Include("Step").Include("Step.SquareType").Where(a => a.Id == projectStepId).Single();
+                var roles = db.ProjectWorkers.Where(a => a.Project.Id == projectStep.Project.Id && a.User.Username == login).Select(a => a.Role.Id).ToList();
+
+                // PM has access to all, don't even bother.
+                if (roles.Contains(ProjectRoles.ProjectManager)) return true;
+
+                // RE Team has access to all
+                if (roles.Contains(ProjectRoles.RequirementsEngineer)) return true;
+
+                // check the stakeholders access
+                var step = projectStep.Step.Order;
+                if (roles.Contains(ProjectRoles.Stakeholder) && (step == 1 || step == 2 || step == 4 || step == 6 || step == 8 || step == 9))
+                {
+                    return true;
+                }
+
+            }
+
+            // default
+            return false;
         }
 
         /// <summary>
@@ -133,7 +168,7 @@ namespace _2SQUARE.Services
                                                  .Include("ProjectStepNotes").Include("ProjectStepFiles")
                                                  .Where(a => a.Id == id).Single();
 
-                if (HasAccess(projectStep.Project.Id, login))
+                if (HasAccess(projectStep.Project.Id, login, id))
                 {
                     return projectStep;
                 }

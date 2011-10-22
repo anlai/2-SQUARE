@@ -9,7 +9,8 @@ namespace _2SQUARE.Services
     public interface IProjectService
     {
         #region Access Methods
-        bool HasAccess(int id, string login);
+        bool HasAccess(int id, string login, int? projectStepId = null);
+        bool HasStepAccess(int projectStepId, string login);
         List<string> UserRoles(int id, string login);
         bool IsInProjectRole(int id /* project id */, string login, string roleId);
         IList<Project> GetByUser(string login);

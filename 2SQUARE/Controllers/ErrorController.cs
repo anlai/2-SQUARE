@@ -26,6 +26,11 @@ namespace _2SQUARE.Controllers
             return View(message);
         }
 
+        public ActionResult NoAccessToStep()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Not authorized to access a project resource
         /// </summary>

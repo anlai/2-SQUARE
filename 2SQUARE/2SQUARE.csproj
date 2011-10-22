@@ -266,6 +266,7 @@
     <Content Include="Views\Category\Create.aspx" />
     <Content Include="Views\Category\Edit.aspx" />
     <Content Include="Views\Category\Index.aspx" />
+    <Content Include="Views\Error\NoAccessToStep.aspx" />
     <Content Include="Views\Error\Notauthorized.aspx" />
     <Content Include="Views\Error\Security.aspx" />
     <Content Include="Views\GenericElicitation\Edit.aspx" />
