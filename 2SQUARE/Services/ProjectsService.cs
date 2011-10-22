@@ -106,7 +106,8 @@ namespace _2SQUARE.Services
                                              .Include("PrivacyAssessmentType")
                                              .Include("SecurityElicitationType")
                                              .Include("PrivacyElicitationType")
-                                             .Include("Requirements")
+                                             .Include("Requirements").Include("ProjectWorkers")
+                                             .Include("ProjectWorkers.User").Include("ProjectWorkers.Role")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }

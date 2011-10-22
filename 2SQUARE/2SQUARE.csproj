@@ -319,11 +319,14 @@
     <Content Include="Views\Privacy\Step8.aspx" />
     <Content Include="Views\Privacy\Step9.aspx" />
     <Content Include="Views\ProjectTerm\EditTerm.aspx" />
+    <Content Include="Views\Project\AddPermission.aspx" />
     <Content Include="Views\Project\ChangeStatus.aspx" />
     <Content Include="Views\Project\Create.aspx" />
     <Content Include="Views\Project\Details.aspx" />
+    <Content Include="Views\Project\Edit.aspx" />
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\GenericElicitation\Add.aspx" />
+    <Content Include="Views\Project\Permissions.aspx" />
     <Content Include="Views\RequirementDefect\Create.aspx" />
     <Content Include="Views\Requirement\Categorize.aspx" />
     <Content Include="Views\RiskRecommendation\Create.aspx" />

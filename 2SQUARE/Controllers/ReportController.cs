@@ -34,6 +34,9 @@ namespace _2SQUARE.Controllers
             var pageWidth = document.PageSize.Width - (document.LeftMargin + document.RightMargin);
             var pageHeight = document.PageSize.Height - (document.TopMargin + document.BottomMargin);
 
+            var security = Db.SquareTypes.Where(a => a.Name == SquareTypes.Security).Single();
+            var privacy = Db.SquareTypes.Where(a => a.Name == SquareTypes.Privacy).Single();
+
             var ms = new MemoryStream();
             var writer = PdfWriter.GetInstance(document, ms);
 
@@ -53,7 +56,6 @@ namespace _2SQUARE.Controllers
             table.AddCell(CreateCell(new Paragraph(string.IsNullOrEmpty(project.Description) ? "No description available." : project.Description, _font)));
 
             // security section
-            var security = Db.SquareTypes.Where(a => a.Name == SquareTypes.Security).Single();
             table.AddCell(CreateCell(new Paragraph("Security", _titleFont), true));
 
             // security terms
@@ -78,6 +80,26 @@ namespace _2SQUARE.Controllers
 
             // privacy section
             table.AddCell(CreateCell(new Paragraph("Privacy", _titleFont), true));
+
+            // privacy terms
+            table.AddCell(CreateCell(new Paragraph("Terms", _bold)));
+            table.AddCell(CreateTerms(project, privacy));
+
+            // privacy goals
+            table.AddCell(CreateCell(new Paragraph("Assets", _bold)));
+            table.AddCell(CreateGoals(project, GoalTypes.Asset));
+            table.AddCell(CreateCell(new Paragraph("Privacy Goals", _bold)));
+            table.AddCell(CreateGoals(project, GoalTypes.Privacy));
+
+            // elicitation type and justification
+            table.AddCell(CreateCell(new Paragraph("Elicitation Technique", _bold)));
+            table.AddCell(CreateCell(new Paragraph(project.PrivacyElicitationType != null ? project.PrivacyElicitationType.Name : "Privacy Elicitation Technique not selected.", _font)));
+            table.AddCell(CreateCell(new Paragraph("Rationale", _bold)));
+            table.AddCell(CreateCell(new Paragraph(project.PrivacyElicitationRationale, _font)));
+
+            // requirements
+            table.AddCell(CreateCell(new Paragraph("Requirements", _bold), true));
+            table.AddCell(CreateRequirements(project, privacy, pageWidth));
 
             document.Add(table);
 

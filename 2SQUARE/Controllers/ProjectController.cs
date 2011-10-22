@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security;
 using System.Web.Mvc;
+using CodeFirstMembershipDemoSharp.Data;
 using _2SQUARE.App_GlobalResources;
 using _2SQUARE.Core.Domain;
 using _2SQUARE.Helpers;
@@ -97,7 +99,9 @@ namespace _2SQUARE.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
-            return View();
+            var project = _projectService.GetProject(id, CurrentUserId);
+
+            return View(project);
         }
 
         /// <summary>
@@ -106,9 +110,22 @@ namespace _2SQUARE.Controllers
         /// <param name="id">Project Id</param>
         /// <param name="project">Project with new information</param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Edit(int id, Project project)
         {
-            return View();
+            var projectToEdit = Db.Projects.Where(a => a.Id == id).FirstOrDefault();
+
+            if (projectToEdit != null && ModelState.IsValid)
+            {
+                projectToEdit.Name = project.Name;
+                projectToEdit.Description = project.Description;
+
+                Db.SaveChanges();
+
+                return this.RedirectToAction(a => a.Details(id));
+            }
+
+            return View(project);
         }
 
         /// <summary>
@@ -159,6 +176,68 @@ namespace _2SQUARE.Controllers
             validationResult.ProjectStepId = stepId;
         
             return Json(validationResult);
+        }
+
+        public ActionResult Permissions(int id)
+        {
+            var project = _projectService.GetProject(id, CurrentUserId);
+
+            return View(project);
+        }
+
+        [HttpPost]
+        public ActionResult RemovePermission(int id)
+        {
+            var worker = Db.ProjectWorkers.Include("Project").Where(a => a.Id == id).FirstOrDefault();
+
+            var project = _projectService.GetProject(worker.Project.Id, CurrentUserId);
+
+            Db.ProjectWorkers.Remove(worker);
+            Db.SaveChanges();
+
+            return this.RedirectToAction(a => a.Permissions(project.Id));
+        }
+
+        public ActionResult AddPermission(int id)
+        {
+            var viewModel = AddPermissionViewModel.Create(Db.Users.ToList(), Db.ProjectRoles.ToList());
+            viewModel.ProjectId = id;
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddPermission(int id, Guid userId, string roleId)
+        {
+            var permissionCheck = _projectService.GetProject(id, CurrentUserId);
+
+            var project = Db.Projects.Where(a => a.Id == id).FirstOrDefault();
+            var user = Db.Users.Where(a => a.UserId == userId).FirstOrDefault();
+            var role = Db.ProjectRoles.Where(a => a.Id == roleId).FirstOrDefault();
+
+            if (project == null || user == null || role == null) return this.RedirectToAction(a => a.Index());
+
+            var worker = new ProjectWorker() {Project = project, Role = role, User = user};
+            Db.ProjectWorkers.Add(worker);
+            Db.SaveChanges();
+
+            Message = "Permission added to project.";
+
+            return this.RedirectToAction(a => a.Permissions(id));
+        }
+    }
+
+    public class AddPermissionViewModel
+    {
+        public IList<User> Users { get; set; }
+        public IList<ProjectRole> Roles { get; set; }
+
+        public int ProjectId { get; set; }
+
+        public static AddPermissionViewModel Create(List<User> users, List<ProjectRole> roles  )
+        {
+            var viewModel = new AddPermissionViewModel(){Users = users, Roles = roles};
+
+            return viewModel;
         }
     }
 }

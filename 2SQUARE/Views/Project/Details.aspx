@@ -10,7 +10,11 @@
     <div class="section-container">
     
         <div class="section-header">
-            <h2><%: Model.Project.Name %></h2>    
+            <div class="col1"><h2><%: Model.Project.Name %></h2>    </div>
+            <div class="col2">
+                <%: Html.ActionLink("Edit Project", "Edit", new {id=Model.Project.Id}, new {@class="button"})%>
+                <%: Html.ActionLink("Permissions", "Permissions", new {id=Model.Project.Id}, new {@class="button"})%>
+            </div>
         </div>
 
         <div class="section-contents">
@@ -24,8 +28,10 @@
         <div class="section-header">
         
             <div class="col1"><h3>SQUARE Steps</h3></div>
-            <div class="col2"><%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.Id), "Change Status", new { @class = "button"})%></div>
-
+            <div class="col2">
+                <%: Html.ActionLink<ProjectController>(a => a.ChangeStatus(Model.Project.Id), "Change Status", new { @class = "button"})%>
+                <%: Html.ActionLink("Get Report", "GenerateReport", "Report", new {id=Model.Project.Id}, new {@class="button"})%>
+            </div>
         </div>
 
         <div class="section-contents">
@@ -68,7 +74,7 @@
 
     </div>
 
-    <%: Html.ActionLink("Get Report", "GenerateReport", "Report", new {id=Model.Project.Id}, new {})%>
+    
 
 </asp:Content>
 
