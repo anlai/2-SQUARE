@@ -1,3 +1,0 @@
-﻿ALTER DATABASE [$(DatabaseName)]
-    ADD FILE (NAME = [2Square], FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\2Square.mdf', SIZE = 3328 KB, FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
-

@@ -1,3 +1,0 @@
-﻿ALTER TABLE [dbo].[PRETRequirements]
-    ADD CONSTRAINT [FK_PRETRequirements_PRETLaws] FOREIGN KEY ([LawId]) REFERENCES [dbo].[PRETLaws] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
