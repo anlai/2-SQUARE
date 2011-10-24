@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Devtalk.EF.CodeFirst;
 using _2SQUARE.Controllers;
 using Microsoft.Practices.ServiceLocation;
 using MvcContrib.Castle;
@@ -22,14 +23,15 @@ namespace _2SQUARE
 
             IWindsorContainer container = InitializeServiceLocator();
 
-            Database.SetInitializer(new SquareInitializerDropCreate());
 
-//#if DEBUG
-//            Database.SetInitializer(new SquareInitializer());
-//            Database.SetInitializer(new SquareInitializerDropCreate());
-//#else
-//            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
-//#endif
+
+#if DEBUG
+            //Database.SetInitializer(new SquareInitializer());
+            Database.SetInitializer(new SquareInitializerDropCreate());
+#else
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
+            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
+#endif
 
 
         }

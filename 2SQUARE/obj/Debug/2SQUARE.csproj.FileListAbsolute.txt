@@ -146,3 +146,6 @@ C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\obj\Debug\2SQUARE.dll
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\obj\Debug\2SQUARE.pdb
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\itextsharp.dll
 C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\itextsharp.xtra.dll
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\Devtalk.EF.CodeFirst.dll
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\lai\Dropbox\Masters Project\2-SQUARE\2SQUARE\bin\WebActivator.dll
