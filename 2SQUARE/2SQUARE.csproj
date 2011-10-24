@@ -163,6 +163,7 @@
     <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\GuidanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InitializationController.cs" />
     <Compile Include="Controllers\IProcedureController.cs" />
     <Compile Include="Controllers\ISquareTypeController.cs" />
     <Compile Include="Controllers\NIST800_30Controller.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\RequirementController.cs" />
     <Compile Include="Controllers\RequirementDefectController.cs" />
     <Compile Include="Controllers\RiskRecommendationController.cs" />
+    <Compile Include="Helpers\Initializer.cs" />
     <Compile Include="Membership\CodeFirstCrypto.cs" />
     <Compile Include="Membership\CodeFirstExtendedProvider.cs" />
     <Compile Include="Membership\CodeFirstMembershipProvider.cs" />
@@ -310,6 +312,7 @@
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Home.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Initialization\Index.aspx" />
     <Content Include="Views\NIST800_30\Add.aspx" />
     <Content Include="Views\NIST800_30\Edit.aspx" />
     <Content Include="Views\NIST800_30\Index.aspx" />
