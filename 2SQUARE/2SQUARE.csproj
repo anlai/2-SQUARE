@@ -361,6 +361,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Site-orig.css" />
     <Content Include="Scripts\jquery.validate.js" />

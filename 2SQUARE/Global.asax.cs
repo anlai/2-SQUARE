@@ -22,12 +22,14 @@ namespace _2SQUARE
 
             IWindsorContainer container = InitializeServiceLocator();
 
-#if DEBUG
-            Database.SetInitializer(new SquareInitializer());
-            //Database.SetInitializer(new SquareInitializerDropCreate());
-#else
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
-#endif
+            Database.SetInitializer(new SquareInitializerDropCreate());
+
+//#if DEBUG
+//            Database.SetInitializer(new SquareInitializer());
+//            Database.SetInitializer(new SquareInitializerDropCreate());
+//#else
+//            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
+//#endif
 
 
         }
