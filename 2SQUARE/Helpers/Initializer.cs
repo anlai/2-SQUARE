@@ -13,7 +13,7 @@ namespace _2SQUARE.Helpers
     public static class Initializer
     {
         // Seeds the database with the necessary values
-        public static void Initilize(SquareContext context = null)
+        public static void Initilize(SquareContext context = null, bool caseStudy = false)
         {
             // if it's null, then it's not being called from the initializer
             if (context == null)
@@ -53,8 +53,6 @@ namespace _2SQUARE.Helpers
 
             AddPRET(context);
 
-            CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("demo", "password", "demo@demo.com");
-
             try
             {
                 context.SaveChanges();
@@ -63,6 +61,8 @@ namespace _2SQUARE.Helpers
             {
                 throw;
             }
+
+            if (caseStudy) InsertCaseStudy(context);
         }
 
         private static void WipeDatabase(SquareContext context)
@@ -70,6 +70,7 @@ namespace _2SQUARE.Helpers
             var disableConstraint= "EXEC sp_msforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT all\"";
             var enableConstraints = "exec sp_msforeachtable \"ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all\"";
             var getTables = "select name from sys.all_objects where type = 'U' and name <> \'EdmMetaData\'";
+            var getIdentityTables = "select TABLE_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = \'dbo\' and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, \'IsIdentity\') = 1 order by TABLE_NAME";
 
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SquareContext"].ConnectionString))
             {
@@ -91,12 +92,30 @@ namespace _2SQUARE.Helpers
 
                 foreach (var table in tables)
                 {
+                    // wipe the tables
                     var cmd = new SqlCommand(string.Format("delete from {0}", table), connection);
                     cmd.ExecuteNonQuery();
                 }
 
+                // re-enable the constraints
                 cmd3.ExecuteNonQuery();
 
+                // reseed the identities
+                tables.Clear();
+                var cmd4 = new SqlCommand(getIdentityTables, connection);
+                reader = cmd4.ExecuteReader();
+                while (reader.Read())
+                {
+                    tables.Add(reader.GetValue(0).ToString());
+                }
+                reader.Close();
+
+                foreach (var table in tables)
+                {
+                    var cmd5 = new SqlCommand(string.Format("DBCC CHECKIDENT ({0}, reseed, 0)", table), connection);
+                    cmd5.ExecuteNonQuery();    
+                }
+                
                 connection.Close();
             }
         }
@@ -911,6 +930,39 @@ namespace _2SQUARE.Helpers
             context.PretAnswers.Add(new PRETAnswer() { Answer = "High", Question = q13 });
             context.PretAnswers.Add(new PRETAnswer() { Answer = "Mid", Question = q13 });
             context.PretAnswers.Add(new PRETAnswer() { Answer = "Low", Question = q13 });
+        }
+
+        /// <summary>
+        ///  Inserts the values available for the case study
+        /// </summary>
+        /// <param name="context"></param>
+        private static void InsertCaseStudy(SquareContext context)
+        {
+            var token = CodeFirstMembershipDemoSharp.Code.CodeFirstSecurity.CreateAccount("casestudy", "password", "alan.n.lai@gmail.com");
+            var user = context.Users.Where(a => a.Username == "casestudy").Single();
+
+            // create the project
+
+            // create the steps
+
+            // create the terms
+
+            // create the business/security goals
+
+            // select the elicitation and risk assessment types
+
+            // insert the requirements
+
+            // save
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                throw;
+            }
+
         }
     }
 }

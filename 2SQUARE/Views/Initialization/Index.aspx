@@ -21,6 +21,7 @@
 
                     <ul class="entry-form">
                         <li><strong>Password:</strong><input type="text" id="password" name="password"/></li>
+                        <li><strong>Case Study:</strong><%: Html.CheckBox("caseStudy") %></li>
                         <li><strong>&nbsp;</strong><input type="submit" value="Confirm" class="button"/><%: Html.ActionLink("Cancel", "Index", "Home", new {}, new {@class="button"}) %></li>
                     </ul>
 

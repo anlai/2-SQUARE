@@ -8,7 +8,7 @@ using _2SQUARE.Helpers;
 
 namespace _2SQUARE.Controllers
 {
-    public class InitializationController : Controller
+    public class InitializationController : ApplicationController
     {
         public ActionResult Index()
         {
@@ -16,7 +16,7 @@ namespace _2SQUARE.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string password)
+        public ActionResult Index(string password, bool caseStudy)
         {
             if (password != ConfigurationManager.AppSettings["InitializationPassword"])
             {
@@ -24,8 +24,8 @@ namespace _2SQUARE.Controllers
                 return View();
             }
 
-            Initializer.Initilize();
-
+            Initializer.Initilize(caseStudy:caseStudy);
+            Message = "Database has been reinitialized";
             return RedirectToAction("Index", "Home");
         }
     }
