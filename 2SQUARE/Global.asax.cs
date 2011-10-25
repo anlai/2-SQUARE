@@ -23,7 +23,12 @@ namespace _2SQUARE
 
             IWindsorContainer container = InitializeServiceLocator();
 
+#if DEBUG
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
+#else
+            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
+#endif
+
 
             //Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
 
@@ -32,7 +37,7 @@ namespace _2SQUARE
             //          Database.SetInitializer(new SquareInitializerDropCreate());  
 //#else
 //            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
-//            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
+
 //#endif
 
 
