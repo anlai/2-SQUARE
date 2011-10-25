@@ -240,7 +240,7 @@
       <DependentUpon>SquareTypes.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ProjectsService.cs" />
-    <Compile Include="Services\ValidationService.cs" />
+    <Compile Include="Views\ValidationService.cs" />
     <Compile Include="SQUAREContext.cs" />
   </ItemGroup>
   <ItemGroup>
