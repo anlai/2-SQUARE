@@ -200,19 +200,15 @@ table td, table th { padding: 5px;}
     display: inline-block;
 }
 
-input[type='text']
+input[type='text'], textarea, input[type='password'], select
 {
     width: 200px;
+    padding: .4em;
 }
 
 select
 {
     min-width: 200px;
-}
-
-textarea
-{
-    width: 200px;
 }
 
 

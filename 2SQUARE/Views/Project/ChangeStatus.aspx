@@ -124,7 +124,7 @@
     </script>
 
     <style type="text/css">
-        select {min-width: 20px;}
+        select {min-width: 20px; width: 115px;}
     </style>
 </asp:Content>
 

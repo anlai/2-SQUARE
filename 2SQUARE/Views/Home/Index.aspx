@@ -5,14 +5,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>2Square</title>
+    
     <link href="<%: Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+    <style type="text/css">
+        input[type='text'], input[type='password'] {width: 150px;}
+    </style>
+
+    <script type="text/javascript" src='<%: Url.Content("~/Scripts/jquery-1.5.1.min.js") %>'></script>
+    <script type="text/javascript" src='<%: Url.Content("~/Scripts/jquery-ui-1.8.13.min.js") %>'></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".button").button();
+        });
+    </script>
 </head>
 
 <body>
     <div id="header">
         <span class=logos>
-            <img src="<%= Url.Content("~/Images/logo.png") %>" alt="UC Davis" />
+            <img src="<%= Url.Content("~/Images/logo.png") %>" alt="2Square" />
         </span>
     </div>
 
@@ -39,13 +53,13 @@
             </p>
         </div>
         </div>
-        <div class="small-right-box ui-corner-all" style="height: 200px;">
+        <div class="small-right-box ui-corner-all" style="height: 225px;">
             <div class="box-header ui-widget-header ui-corner-all">Account Information</div>
             <div class="box-content">
             <% if (Request.IsAuthenticated) { %>
                 Welcome <%: Page.User.Identity.Name %>
 
-                <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logout", new {@class="ui-button ui-corner-all"}) %>
+                <%: Html.ActionLink<AccountController>(a=>a.LogOff(), "Logout", new {@class="button"}) %>
             <% } else { %>            
                 <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new {style="width: 200px;"})) { %>
                         <div class="editor-label">
@@ -73,8 +87,8 @@
                         
                         </div>
 
-                            <input type="submit" class="ui-corner-all button ui-state-default" style="display:inline;" value="Log On" />
-                            <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "ui-corner-all button ui-state-default", style="position:relative;"})%>
+                            <input type="submit" class="button" style="display:inline;" value="Log On" />
+                            <%: Html.ActionLink("Register", "Register", "Account", null, new { @class = "button", style="position:relative;"})%>
                     </div>
             
                 <% } %>

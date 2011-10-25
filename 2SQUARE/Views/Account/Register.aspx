@@ -52,7 +52,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="Register" class="button" />
                 </p>
             </fieldset>
         </div>

@@ -29,18 +29,6 @@ namespace _2SQUARE
             Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
 #endif
 
-
-            //Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<SquareContext>());
-
-//#if DEBUG
-//            //Database.SetInitializer(new SquareInitializer());
-            //          Database.SetInitializer(new SquareInitializerDropCreate());  
-//#else
-//            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SquareContext>());
-
-//#endif
-
-
         }
 
         private static IWindsorContainer InitializeServiceLocator()

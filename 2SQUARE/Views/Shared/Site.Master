@@ -32,7 +32,7 @@
 <body>
     <div id="header">
         <span class=logos>
-            <img src="<%= Url.Content("~/Images/logo.png") %>" alt="UC Davis" />
+            <a href="<%: Url.Action("Index", "Home") %>"><img src="<%= Url.Content("~/Images/logo.png") %>" alt="2Square" /></a>
         </span>
     </div>
     
