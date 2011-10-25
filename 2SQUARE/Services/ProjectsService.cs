@@ -143,6 +143,7 @@ namespace _2SQUARE.Services
                                              .Include("PrivacyElicitationType")
                                              .Include("Requirements").Include("ProjectWorkers")
                                              .Include("ProjectWorkers.User").Include("ProjectWorkers.Role")
+                                             .Include("Risks").Include("Risks.RiskLevel")
                                              .Where(a => a.Id == id).Single();
                     return project;    
                 }
@@ -571,6 +572,47 @@ namespace _2SQUARE.Services
 
             }
 
+        }
+
+        /// <summary>
+        /// Create a risk
+        /// </summary>
+        /// <param name="id">Project Id</param>
+        /// <param name="userId"></param>
+        /// <param name="name"></param>
+        /// <param name="source"></param>
+        /// <param name="vulnerability"></param>
+        /// <param name="riskLevelId"></param>
+        public void CreateRisk(int id, int squareTypeId, string userId, string name, string source, string vulnerability, string riskLevelId)
+        {
+            using(var db = new SquareContext())
+            {
+                var project = db.Projects.Include("SecurityAssessmentType").Include("PrivacyAssessmentType").Where(a => a.Id == id).Single();
+                var riskLevel = db.RiskLevels.Where(a => a.Id == riskLevelId).Single();
+                var squareType = db.SquareTypes.Where(a => a.Id == squareTypeId).Single();
+
+                var risk = new Risk() { Name = name, Source = source, Vulnerability = vulnerability, Project = project, RiskLevel = riskLevel, SquareType = squareType};
+
+                if (squareType.Name == SquareTypes.Security) risk.AssessmentType = project.SecurityAssessmentType;
+                else if (squareType.Name == SquareTypes.Privacy) risk.AssessmentType = project.PrivacyAssessmentType;
+
+                db.Risks.Add(risk);
+                db.SaveChanges();
+            }
+        }
+
+        public void RemoveRisk(int id)
+        {
+            using (var db = new SquareContext())
+            {
+                var risk = db.Risks.Where(a => a.Id == id).SingleOrDefault();
+
+                if (risk != null)
+                {
+                    db.Risks.Remove(risk);
+                    db.SaveChanges();
+                }
+            }
         }
 
         #endregion

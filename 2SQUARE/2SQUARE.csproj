@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ArtifactController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GenericAssessmentController.cs" />
     <Compile Include="Controllers\GenericRiskAssessmentController.cs" />
     <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\GuidanceController.cs" />
@@ -282,6 +283,9 @@
     <Content Include="Views\Error\NoAccessToStep.aspx" />
     <Content Include="Views\Error\Notauthorized.aspx" />
     <Content Include="Views\Error\Security.aspx" />
+    <Content Include="Views\GenericAssessment\Create.aspx" />
+    <Content Include="Views\GenericAssessment\Edit.aspx" />
+    <Content Include="Views\GenericAssessment\Index.aspx" />
     <Content Include="Views\GenericElicitation\Edit.aspx" />
     <Content Include="Views\GenericElicitation\Index.aspx" />
     <Content Include="Views\GenericElicitation\RequirementForm.ascx" />

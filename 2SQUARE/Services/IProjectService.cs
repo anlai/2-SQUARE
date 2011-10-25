@@ -40,6 +40,9 @@ namespace _2SQUARE.Services
 
         #region Step 4 Methods
         void SetAssessmentType(int id /* project id */, int assessmentTypeId, string userId);
+
+        void CreateRisk(int id, int squareTypeId, string userId, string name, string source, string vulnerability, string riskLevelId);
+        void RemoveRisk(int id);
         #endregion
 
         #region Step 5 Methods

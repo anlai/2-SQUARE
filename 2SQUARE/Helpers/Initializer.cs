@@ -367,9 +367,14 @@ namespace _2SQUARE.Helpers
             var at2 = new AssessmentType() { Name = "Privacy Risk Analysis for Ubiquitous Computing", Source = "n/a", SquareType = privacy, Controller = "PRAUC" };
             var at3 = new AssessmentType() { Name = "NIST 800-30", Source = "NIST", SquareType = privacy, Controller = "NIST800_30" };
 
+            var at4 = new AssessmentType() { Name = "Generic Method", Source = "n/a", Controller = "GenericAssessment", SquareType = security };
+            var at5 = new AssessmentType() { Name = "Generic Method", Source = "n/a", Controller = "GenericAssessment", SquareType = privacy };
+
             context.AssessmentTypes.Add(at1);
             context.AssessmentTypes.Add(at2);
             context.AssessmentTypes.Add(at3);
+            context.AssessmentTypes.Add(at4);
+            context.AssessmentTypes.Add(at5);
         }
 
         private static void AddElicitationTypes(SquareContext context, SquareType security, SquareType privacy)
